@@ -16,7 +16,9 @@
     <color name="font_color_dark">#D1D1D1</color>
 
     <color name="menu_button_color">#9EA2AB</color>
+    <color name="text_field_bg_color">#303641</color>
 
+    <color name="error_color">#e94560</color>
 <!--    <color name="purple_200">#FFBB86FC</color>
     <color name="purple_500">#FF6200EE</color>
     <color name="purple_700">#FF3700B3</color>

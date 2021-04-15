@@ -1,3 +1,22 @@
 <resources>
     <string name="app_name">Eventme</string>
+
+    <!-- LoginActivity Strings -->
+    <string name="login_nickname_email_label">Nickname / Email</string>
+    <string name="login_password_label">Password</string>
+    <string name="login_login_btn">Log in</string>
+    <string name="login_account_question">Don\'t have an account?</string>
+    <string name="login_gotosignup_btn">Sign up</string>
+
+    <!-- RegisterActivity Strings -->
+    <string name="signup_gotologin_btn">Log in</string>
+    <string name="signup_fullname_label">Full name</string>
+    <string name="signup_nickname_label">Nickname</string>
+    <string name="signup_email_label">Email</string>
+    <string name="signup_password_label">Password</string>
+    <string name="signup_repassword_label">Repeat password</string>
+    <string name="signup_signup_btn">Sign up</string>
+    <string name="signup_account_question">Have an acount?</string>
+
+
 </resources>
