@@ -19,4 +19,7 @@
     <string name="signup_account_question">Have an acount?</string>
 
 
+    <string name="acces_but">Acces to eventme</string>
+    <string name="welcome">Welcome to eventme.</string>
+    <string name="welcome_subtitle">Your favourite events near you</string>
 </resources>
