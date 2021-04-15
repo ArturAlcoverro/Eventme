@@ -4,29 +4,28 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    tools:context=".MainActivity">
+    tools:context=".StartActivity">
 
     <ImageView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:src="@drawable/initialImage"
+        android:src="@drawable/initial_image"
         android:contentDescription="Girl having fun in a festival"
         />
 
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:background="@color/background_color"
         android:layout_alignParentBottom="true"
+        android:background="@drawable/shape_backdrop"
         android:orientation="vertical"
-        android:padding="20px">
+        android:padding="30px">
 
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="@string/welcome"
+            android:text="@string/start_welcome"
             android:textSize="30sp"
-            android:textColor="@color/font_color"
             android:layout_gravity="center"
             android:layout_marginTop="20dp">
         </TextView>
@@ -34,23 +33,19 @@
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="@string/welcome_subtitle"
-            android:textColor="@color/font_color"
+            android:text="@string/start_welcome_subtitle"
             android:layout_gravity="center"
             android:layout_margin="5dp">
         </TextView>
 
-        <Button
+        <com.google.android.material.button.MaterialButton
             android:id="@+id/containedButton"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="@string/acces_but"
-            android:textAllCaps="false"
-            android:textColor="@color/font_color"
+            android:text="@string/start_acces_but"
             android:layout_gravity="center"
-            app:backgroundTint="@color/main_purple"
-            style="@style/Widget.MaterialComponents.Button"
             android:layout_margin="25dp"
+            style="@style/Style.Eventme.Button"
             />
     </LinearLayout>
 
