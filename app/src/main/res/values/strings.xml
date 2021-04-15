@@ -20,4 +20,7 @@
 
 
     <string name="xat_type_message">Type a message</string>
+    <string name="acces_but">Acces to eventme</string>
+    <string name="welcome">Welcome to eventme.</string>
+    <string name="welcome_subtitle">Your favourite events near you</string>
 </resources>
