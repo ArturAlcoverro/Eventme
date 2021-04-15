@@ -1,0 +1,84 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/background_color_dark">
+
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:id="@+id/constraintLayout"
+        android:layout_width="match_parent"
+        android:layout_height="78dp"
+        android:background="@color/background_color"
+        android:orientation="horizontal"
+        tools:ignore="MissingConstraints"
+        tools:layout_editor_absoluteX="0dp"
+        tools:layout_editor_absoluteY="1dp">
+
+        <ImageView
+            android:id="@+id/xat_back_arrow"
+            android:layout_width="39dp"
+            android:layout_height="40dp"
+            app:srcCompat="@drawable/ic_baseline_arrow_back_24"
+            tools:ignore="MissingConstraints"
+            tools:layout_editor_absoluteX="16dp"
+            tools:layout_editor_absoluteY="16dp" />
+
+        <TextView
+            android:id="@+id/xat_friend_name"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="David Marquet"
+            android:textColor="@color/font_color"
+            android:textSize="24sp"
+            tools:ignore="MissingConstraints"
+            tools:layout_editor_absoluteX="126dp"
+            tools:layout_editor_absoluteY="16dp" />
+
+        <ImageView
+            android:id="@+id/xat_image_user"
+            android:layout_width="40dp"
+            android:layout_height="40dp"
+            tools:ignore="MissingConstraints"
+            tools:layout_editor_absoluteX="70dp"
+            tools:layout_editor_absoluteY="16dp"
+            tools:srcCompat="@tools:sample/avatars" />
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="50dp"
+        android:orientation="horizontal"
+        tools:ignore="MissingConstraints"
+        tools:layout_editor_absoluteX="-3dp"
+        tools:layout_editor_absoluteY="682dp">
+
+        <com.google.android.material.textfield.TextInputLayout
+            android:id="@+id/xat_text_send"
+            android:layout_width="288dp"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="20dp">
+
+            <com.google.android.material.textfield.TextInputEditText
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:background="@color/background_color_light"
+                android:hint="@string/xat_type_message" />
+        </com.google.android.material.textfield.TextInputLayout>
+
+        <ImageButton
+            android:id="@+id/xat_send_button"
+            android:layout_width="92dp"
+            android:layout_height="match_parent"
+            android:layout_marginLeft="10dp"
+            android:background="@color/main_purple"
+            android:paddingLeft="0dp"
+            android:paddingEnd="0dp"
+            app:srcCompat="@drawable/ic_baseline_send_24"
+            tools:layout_editor_absoluteX="334dp"
+            tools:layout_editor_absoluteY="683dp" />
+    </LinearLayout>
+
+</androidx.constraintlayout.widget.ConstraintLayout>
