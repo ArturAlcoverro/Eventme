@@ -20,6 +20,8 @@
 
     <!-- Xat Strings -->
     <string name="xat_type_message">Type a message</string>
+
+    <!-- StartActivity Strings -->
     <string name="xat_backarrow_desc">Back Arrow image</string>
     <string name="xat_user_name_desc">David Marquet</string>
     <string name="xat_user_image_desc">User image</string>
@@ -27,7 +29,7 @@
 
 
 
-    <string name="acces_but">Acces to eventme</string>
-    <string name="welcome">Welcome to eventme.</string>
-    <string name="welcome_subtitle">Your favourite events near you</string>
+    <string name="start_acces_but">Acces to eventme</string>
+    <string name="start_welcome">Welcome to eventme.</string>
+    <string name="start_welcome_subtitle">Your favourite events near you</string>
 </resources>
