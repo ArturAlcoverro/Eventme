@@ -54,4 +54,7 @@
     <string name="editProfile_upload_label">Profile image</string>
     <string name="editProfile_prova_maqueteig">wilson_wilson</string>
 
+    <!-- FriendsListFragment Strings-->
+    <string name="friendsList_title">Friends</string>
+
 </resources>
