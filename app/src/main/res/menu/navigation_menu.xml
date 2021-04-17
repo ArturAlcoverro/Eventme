@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <item android:id="@+id/navigation_menu_home"
+        android:title=""
+        android:icon="@drawable/ic_baseline_home_24" />
+
+    <item android:id="@+id/navigation_menu_add"
+        android:title=""
+        android:icon="@drawable/ic_baseline_add_box_24" />
+
+    <item android:id="@+id/navigation_menu_chat"
+        android:title=""
+        android:icon="@drawable/ic_baseline_chat_24" />
+
+    <item android:id="@+id/navigation_menu_profile"
+        android:title=""
+        android:icon="@drawable/ic_baseline_person_24" />
+
+</menu>
