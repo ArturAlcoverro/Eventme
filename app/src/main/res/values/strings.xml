@@ -59,5 +59,10 @@
 
     <!-- ChatListFragment Strings-->
     <string name="chatList_title">Chat</string>
+    
+    <!-- ProfileTimeline Strings-->
+    <string name="profileTimeline_created">Created</string>
+    <string name="profileTimeline_assisted">Assisted</string>
+    <string name="profileTimeline_friends">Friends</string>
 
 </resources>
