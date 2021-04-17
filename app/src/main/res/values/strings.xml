@@ -49,4 +49,9 @@
     <string name="createEvent_capacity_label">Capacity</string>
     <string name="createEvent_icon_calendar">Calendar Icon</string>
 
+    <!-- EditProfileFragment Strings-->
+    <string name="editProfile_apply_btn">Apply changes</string>
+    <string name="editProfile_upload_label">Profile image</string>
+    <string name="editProfile_prova_maqueteig">wilson_wilson</string>
+
 </resources>
