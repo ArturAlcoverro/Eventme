@@ -81,7 +81,7 @@
             <com.google.android.material.textfield.TextInputEditText
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
-                android:background=""
+                android:background="@color/transparent"
                 android:hint="@string/xat_type_message" />
         </com.google.android.material.textfield.TextInputLayout>
 

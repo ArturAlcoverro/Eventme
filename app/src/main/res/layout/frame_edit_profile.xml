@@ -33,7 +33,7 @@
         android:layout_marginTop="20dp"
         android:layout_marginBottom="20dp"
         android:padding="10dp"
-        android:src="@drawable/profileImageTest"
+        android:src="@drawable/profile_image_test"
         app:layout_constraintTop_toBottomOf="@+id/usernameTitle"
         app:layout_constraintBottom_toTopOf="@+id/editProfileNickname"
         tools:ignore="MissingConstraints"
