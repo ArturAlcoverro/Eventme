@@ -7,13 +7,21 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools">
 
-    <ImageView
+    <androidx.cardview.widget.CardView
         android:id="@+id/profileImage"
-        android:layout_width="64dp"
-        android:layout_height="64dp"
-        android:src="@drawable/profile_image_test"
-        tools:ignore="MissingConstraints"
-        tools:layout_editor_absoluteX="15dp" />
+        android:layout_width="60dp"
+        android:layout_height="60dp"
+        app:cardElevation="0dp"
+        app:cardCornerRadius="50dp"
+        tools:ignore="MissingConstraints">
+
+        <ImageView
+            android:layout_width="match_parent"
+            android:id="@+id/image"
+            android:src="@drawable/profile_image_test"
+            android:layout_height="match_parent" />
+
+    </androidx.cardview.widget.CardView>
 
     <LinearLayout
         android:id="@+id/personalInfo"
