@@ -17,11 +17,11 @@
         tools:ignore="MissingConstraints" />
 
     <TextView
-        android:id="@+id/friendsTitle"
+        android:id="@+id/chatTitle"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:textStyle="bold"
-        android:text="@string/friendsList_title"
+        android:text="@string/chatList_title"
         android:textSize="18sp"
         android:layout_marginLeft="10dp"
         app:layout_constraintStart_toEndOf="@+id/arrowLeft"
@@ -32,14 +32,14 @@
         android:layout_width="match_parent"
         android:layout_height="0.5dp"
         android:background="#c0c0c0"
-        app:layout_constraintTop_toBottomOf="@+id/friendsTitle"
+        app:layout_constraintTop_toBottomOf="@+id/chatTitle"
         android:layout_marginLeft="-20dp"
         android:layout_marginRight="-20dp"
         android:layout_marginTop="20dp"
         tools:layout_editor_absoluteX="15dp" />
 
     <androidx.recyclerview.widget.RecyclerView
-        android:id="@+id/recyclerViewFriends"
+        android:id="@+id/recyclerViewChat"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         app:layout_constraintTop_toBottomOf="@+id/lineSeparator"
