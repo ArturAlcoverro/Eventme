@@ -64,5 +64,7 @@
     <string name="profileTimeline_created">Created</string>
     <string name="profileTimeline_assisted">Assisted</string>
     <string name="profileTimeline_friends">Friends</string>
+    <string name="profileTimeline_requestFriend">Request Friend</string>
+    <string name="profileTimeline_sendMessage">Send message</string>
 
 </resources>

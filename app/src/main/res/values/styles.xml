@@ -10,7 +10,4 @@
         <item name="android:textColor">@color/font_color</item>
     </style>
 
-    <style name="strokeIcon">
-        <item name="strokeColor">@color</item>
-    </style>
 </resources>
