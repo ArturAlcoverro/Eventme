@@ -10,4 +10,20 @@
         <item name="android:textColor">@color/font_color</item>
     </style>
 
+    <style name="Style.Eventme.Title" parent="Widget.AppCompat.TextView">
+        <item name="android:textSize">28sp</item>
+        <item name="color">@color/font_color</item>
+        <item name="android:textStyle">bold</item>
+    </style>
+
+    <style name="Style.Eventme.Chip" parent="">
+        <item name="chipCornerRadius">20dp</item>
+        <item name="chipMinHeight">40dp</item>
+        <item name="chipStartPadding">20dp</item>
+        <item name="chipEndPadding">20dp</item>
+        <item name="chipBackgroundColor">@color/home_chip_selector</item>
+        <item name="android:checkable">true</item>
+        <item name="checkedIcon">false</item>
+        <item name="android:textColor">@color/font_color</item>
+    </style>
 </resources>

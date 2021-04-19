@@ -20,15 +20,12 @@
 
     <!-- Xat Strings -->
     <string name="xat_type_message">Type a message</string>
-
-    <!-- StartActivity Strings -->
     <string name="xat_backarrow_desc">Back Arrow image</string>
     <string name="xat_user_name_desc">David Marquet</string>
     <string name="xat_user_image_desc">User image</string>
     <string name="xat_bottom_to_send_text_desc">bottom to send text</string>
 
-
-
+    <!-- StartActivity Strings -->
     <string name="start_acces_but">Acces to eventme</string>
     <string name="start_welcome">Welcome to eventme.</string>
     <string name="start_welcome_subtitle">Your favourite events near you</string>
@@ -59,12 +56,23 @@
 
     <!-- ChatListFragment Strings-->
     <string name="chatList_title">Chat</string>
-    
+
     <!-- ProfileTimeline Strings-->
     <string name="profileTimeline_created">Created</string>
     <string name="profileTimeline_assisted">Assisted</string>
     <string name="profileTimeline_friends">Friends</string>
     <string name="profileTimeline_requestFriend">Request Friend</string>
     <string name="profileTimeline_sendMessage">Send message</string>
+
+    <!-- HomeFragment Strings -->
+    <string name="home_title">Events near you.</string>
+    <string name="home_chip_all">All</string>
+    <string name="home_chip_music">Music</string>
+    <string name="home_chip_sport">Sport</string>
+    <string name="home_chip_cultural">Cultural</string>
+    <string name="home_chip_others">Others</string>
+
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Hello blank fragment</string>
 
 </resources>
