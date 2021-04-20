@@ -29,7 +29,7 @@ public class EventsCarrouselAdapter extends RecyclerView.Adapter<EventsCarrousel
     @Override
     public EventsCarrouselViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
         View view = LayoutInflater.from(parent.getContext()).inflate(R.layout.home_carrousel_event, parent, false);
-        return null;
+        return new EventsCarrouselViewHolder(view);
     }
 
     @Override

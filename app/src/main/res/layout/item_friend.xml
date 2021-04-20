@@ -17,7 +17,7 @@
 
         <ImageView
             android:layout_width="match_parent"
-            android:id="@+id/image"
+            android:id="@+id/imageProfile"
             android:src="@drawable/profile_image_test"
             android:layout_height="match_parent" />
 
@@ -35,6 +35,7 @@
         tools:ignore="MissingConstraints">
 
         <TextView
+            android:id="@+id/nickname"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="Wilson Wilson"
@@ -42,6 +43,7 @@
             android:textStyle="bold" />
 
         <TextView
+            android:id="@+id/full_name"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="mr_rabbit"
