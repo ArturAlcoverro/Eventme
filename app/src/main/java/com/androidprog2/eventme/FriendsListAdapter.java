@@ -11,6 +11,8 @@ import android.widget.TextView;
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
+import com.android.volley.VolleyError;
+import com.android.volley.toolbox.ImageLoader;
 import com.androidprog2.eventme.business.User;
 
 import java.util.List;
@@ -58,7 +60,25 @@ public class FriendsListAdapter extends RecyclerView.Adapter<FriendsListAdapter.
 
         public void bind(User _user){
             this.user = _user;
-            //this.user_image.setImageBitmap());
+
+            String url = "http://puigmal.salle.url.edu/img/" + this.user.getImage();
+            ImageLoader imageLoader = VolleySingleton.getImageLoader();
+
+            imageLoader.get(url, new ImageLoader.ImageListener() {
+
+                @Override
+                public void onResponse(ImageLoader.ImageContainer response, boolean isImmediate) {
+                    if (response.getBitmap() != null){
+                        user_image.setImageBitmap(response.getBitmap());
+                    }
+                }
+
+                public void onErrorResponse(VolleyError error) {
+                    user_image.setImageResource(R.drawable.avatar_profile);
+                }
+
+            });
+
             this.nickname.setText(user.getNickname());
             this.full_name.setText(user.getFull_name());
         }
