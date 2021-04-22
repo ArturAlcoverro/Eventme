@@ -1,4 +1,4 @@
-package com.androidprog2.eventme;
+package com.androidprog2.eventme.business;
 
 public class FriendShip {
 
