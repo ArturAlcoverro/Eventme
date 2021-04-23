@@ -89,4 +89,18 @@ public class Event {
     public String getType() {
         return type;
     }
+
+    public String getDay(){
+        Calendar cal = Calendar.getInstance();
+        cal.setTime(startDate);
+        int day = cal.get(Calendar.DAY_OF_MONTH);
+        return String.valueOf(day);
+    }
+
+    public String getMonth(){
+        Calendar cal = Calendar.getInstance();
+        cal.setTime(startDate);
+        int month = cal.get(Calendar.MONTH);
+        return String.valueOf(month);
+    }
 }
