@@ -6,96 +6,106 @@
     android:layout_height="match_parent"
     android:background="@color/background_color_dark">
 
+    <androidx.appcompat.widget.Toolbar
+        android:id="@+id/toolbar"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        tools:ignore="MissingConstraints"
+        android:background="@color/background_color"
+        app:contentInsetStart="0dp">
+
     <androidx.constraintlayout.widget.ConstraintLayout
         android:id="@+id/constraintLayout"
-        android:layout_width="411dp"
-        android:layout_height="73dp"
-        android:background="@color/background_color"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
         android:orientation="horizontal"
-        app:layout_constraintTop_toTopOf="parent"
-        tools:ignore="MissingConstraints"
-        tools:layout_editor_absoluteX="0dp">
+        tools:ignore="MissingConstraints">
 
         <ImageView
             android:id="@+id/xat_back_arrow"
-            android:layout_width="39dp"
-            android:layout_height="40dp"
+            style="@style/Style.Eventme.IconButton"
             android:contentDescription="@string/xat_backarrow_desc"
             app:srcCompat="@drawable/ic_baseline_arrow_back_24"
-            tools:ignore="MissingConstraints"
-            tools:layout_editor_absoluteX="16dp"
-            tools:layout_editor_absoluteY="16dp" />
+            tools:ignore="MissingConstraints" />
 
-        <TextView
-            android:id="@+id/xat_friend_name"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="@string/xat_user_name_desc"
-            android:textColor="@color/font_color"
-            android:textSize="24sp"
-            tools:ignore="MissingConstraints"
-            tools:layout_editor_absoluteX="126dp"
-            tools:layout_editor_absoluteY="16dp" />
-
-        <ImageView
-            android:id="@+id/xat_image_user"
+        <androidx.cardview.widget.CardView
+            android:id="@+id/profileImageChat"
             android:layout_width="40dp"
             android:layout_height="40dp"
-            android:contentDescription="@string/xat_user_image_desc"
-            tools:ignore="MissingConstraints"
-            tools:layout_editor_absoluteX="70dp"
-            tools:layout_editor_absoluteY="16dp"
-            tools:srcCompat="@tools:sample/avatars" />
+            android:layout_marginLeft="10dp"
+            app:cardCornerRadius="50dp"
+            app:cardElevation="0dp"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintStart_toEndOf="@+id/xat_back_arrow"
+            app:layout_constraintTop_toTopOf="parent">
+
+            <ImageView
+                android:id="@+id/imageProfile"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:src="@drawable/profile_image_test" />
+
+        </androidx.cardview.widget.CardView>
+
+        <TextView
+            android:id="@+id/nameProfile"
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:layout_marginLeft="10dp"
+            android:ellipsize="end"
+            android:maxLines="1"
+            android:text="Wilson Wilson"
+            android:textSize="18dp"
+            android:textStyle="bold"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintStart_toEndOf="@+id/profileImageChat"
+            app:layout_constraintTop_toTopOf="parent" />
+
+
     </androidx.constraintlayout.widget.ConstraintLayout>
+
+    </androidx.appcompat.widget.Toolbar>
 
     <androidx.recyclerview.widget.RecyclerView
         android:layout_width="match_parent"
-        android:layout_height="609dp"
-        tools:ignore="MissingConstraints"
-        tools:layout_editor_absoluteX="2dp"
-        tools:layout_editor_absoluteY="73dp">
+        android:layout_height="wrap_content"
+        android:padding="15dp"
+        app:layout_constraintTop_toBottomOf="@+id/toolbar"
+        tools:ignore="MissingConstraints">
 
     </androidx.recyclerview.widget.RecyclerView>
 
-    <LinearLayout
-        android:id="@+id/linearLayout"
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:id="@+id/inputLayout"
         android:layout_width="match_parent"
-        android:layout_height="50dp"
+        android:layout_height="wrap_content"
         android:orientation="horizontal"
+        android:padding="10dp"
         app:layout_constraintBottom_toBottomOf="parent"
-        tools:ignore="MissingConstraints"
-        tools:layout_editor_absoluteX="45dp">
+        tools:ignore="MissingConstraints">
 
         <com.google.android.material.textfield.TextInputLayout
             android:id="@+id/xat_text_send"
-            android:layout_width="288dp"
+            android:layout_width="300dp"
             android:layout_height="wrap_content"
-            android:layout_marginStart="20dp"
-            android:backgroundTint="#090909"
-            app:boxBackgroundMode="filled"
-            app:boxCornerRadiusBottomEnd="15dp"
-            app:boxCornerRadiusBottomStart="15dp"
-            app:boxCornerRadiusTopEnd="15dp"
-            app:boxCornerRadiusTopStart="15dp">
+            app:layout_constraintStart_toStartOf="@+id/inputLayout"
+            app:layout_constraintEnd_toStartOf="@+id/xat_send_button"
+            app:boxStrokeWidth="0dp">
 
             <com.google.android.material.textfield.TextInputEditText
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
-                android:background="@color/transparent"
+                android:background="@color/background_color_light"
                 android:hint="@string/xat_type_message" />
         </com.google.android.material.textfield.TextInputLayout>
 
-        <Button
+        <ImageButton
             android:id="@+id/xat_send_button"
-            style="@style/Style.Eventme.Button"
-            android:layout_width="52dp"
-            android:layout_height="match_parent"
-            android:layout_marginStart="30dp"
-            android:contentDescription="@string/xat_bottom_to_send_text_desc"
-            app:icon="@drawable/ic_baseline_send_24"
-            tools:ignore="RtlSymmetry"
-            tools:layout_editor_absoluteX="334dp"
-            tools:layout_editor_absoluteY="683dp" />
-    </LinearLayout>
+            style="@style/Style.Eventme.IconButton"
+            android:background="@drawable/shape_icon_send"
+            android:src="@drawable/ic_baseline_send_24"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toEndOf="@+id/xat_text_send" />
+    </androidx.constraintlayout.widget.ConstraintLayout>
 
 </androidx.constraintlayout.widget.ConstraintLayout>

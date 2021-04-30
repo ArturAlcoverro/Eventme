@@ -12,7 +12,9 @@
         tools:ignore="MissingConstraints"
         app:contentInsetStart="0dp">
 
-        
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
 
         <ImageButton
             android:id="@+id/arrowLeft"
@@ -21,24 +23,29 @@
             app:layout_constraintEnd_toStartOf="@+id/usernameTitle"
             tools:ignore="MissingConstraints" />
 
-        <TextView
-            android:id="@+id/usernameTitle"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:ellipsize="end"
-            android:maxLines="1"
-            android:text="@string/editProfile_prova_maqueteig"
-            android:textSize="17sp"
-            android:textStyle="bold"
-            android:layout_marginLeft="10dp"
-            app:layout_constraintStart_toEndOf="@+id/arrowLeft"
-            tools:ignore="MissingConstraints" />
+            <TextView
+                android:id="@+id/usernameTitle"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="10dp"
+                android:ellipsize="end"
+                android:maxLines="1"
+                android:text="@string/editProfile_prova_maqueteig"
+                android:textSize="17sp"
+                android:textStyle="bold"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintStart_toEndOf="@+id/arrowLeft"
+                app:layout_constraintTop_toTopOf="parent"
+                tools:ignore="MissingConstraints" />
 
-        <ImageButton
-            android:id="@+id/filter"
-            style="@style/Style.Eventme.IconButton"
-            android:src="@drawable/ic_baseline_filter_alt_24"
-            tools:ignore="MissingConstraints" />
+            <ImageButton
+                android:id="@+id/filter"
+                style="@style/Style.Eventme.IconButton"
+                android:src="@drawable/ic_baseline_filter_alt_24"
+                app:layout_constraintEnd_toEndOf="parent"
+                tools:ignore="MissingConstraints" />
+
+        </androidx.constraintlayout.widget.ConstraintLayout>
 
     </androidx.appcompat.widget.Toolbar>
 
