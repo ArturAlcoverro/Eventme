@@ -75,7 +75,7 @@
         </HorizontalScrollView>
 
         <TextView
-            style="@style/Style.Eventme.Title"
+            style="@style/Style.Eventme.Text.Header1"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_margin="12dp"

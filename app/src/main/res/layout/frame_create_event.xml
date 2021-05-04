@@ -128,7 +128,7 @@
             app:startIconContentDescription="@string/createEvent_icon_calendar"
             app:layout_constraintTop_toBottomOf="@+id/createEvent_description"
             tools:layout_editor_absoluteX="50dp">
-
+w
             <com.google.android.material.textfield.TextInputEditText
                 style="@style/Style.Eventme.TextInput"
                 android:layout_width="match_parent"
