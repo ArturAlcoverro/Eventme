@@ -12,24 +12,24 @@ import com.androidprog2.eventme.business.Event;
 
 import java.util.List;
 
-public class timelineAdapter extends RecyclerView.Adapter<timelineAdapter.timelineViewHolder> {
+public class TimelineAdapter extends RecyclerView.Adapter<TimelineAdapter.timelineViewHolder> {
     List<Event> events;
     Context context;
 
-    public timelineAdapter(List<Event> events, Context context) {
+    public TimelineAdapter(List<Event> events, Context context) {
         this.events = events;
         this.context = context;
     }
 
     @NonNull
     @Override
-    public timelineAdapter.timelineViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
+    public TimelineAdapter.timelineViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
         View view = LayoutInflater.from(parent.getContext()).inflate(R.layout.timeline_item, parent, false);
-        return new timelineAdapter.timelineViewHolder(view);
+        return new TimelineAdapter.timelineViewHolder(view);
     }
 
     @Override
-    public void onBindViewHolder(@NonNull timelineAdapter.timelineViewHolder holder, int position) {
+    public void onBindViewHolder(@NonNull TimelineAdapter.timelineViewHolder holder, int position) {
         holder.bind(events.get(position));
     }
 
