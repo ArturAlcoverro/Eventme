@@ -6,14 +6,60 @@
         <item name="textAllCaps">false</item>
     </style>
 
+    <style name="Style.Eventme.Button.Outline" parent="Widget.MaterialComponents.Button.OutlinedButton">
+        <item name="cornerRadius">50dp</item>
+        <item name="textAllCaps">false</item>
+        <item name="android:textColor">@color/font_color</item>
+    </style>
+
     <style name="Style.Eventme.TextInput" parent="">
         <item name="android:textColor">@color/font_color</item>
     </style>
 
-    <style name="Style.Eventme.Title" parent="Widget.AppCompat.TextView">
-        <item name="android:textSize">28sp</item>
-        <item name="color">@color/font_color</item>
+    <style name="Style.Eventme.Text.Header1" parent="Widget.AppCompat.TextView">
+        <item name="android:textSize">@dimen/font_size_header1</item>
+        <item name="android:textColor">@color/font_color</item>
         <item name="android:textStyle">bold</item>
+    </style>
+
+    <style name="Style.Eventme.Text.Header2" parent="Widget.AppCompat.TextView">
+        <item name="android:textSize">@dimen/font_size_header2</item>
+        <item name="android:textColor">@color/font_color</item>
+        <item name="android:textStyle">bold</item>
+    </style>
+
+    <style name="Style.Eventme.Text.Header3" parent="Widget.AppCompat.TextView">
+        <item name="android:textSize">@dimen/font_size_header3</item>
+        <item name="android:textColor">@color/font_color</item>
+        <item name="android:textStyle">bold</item>
+    </style>
+
+    <style name="Style.Eventme.Text.Important" parent="Widget.AppCompat.TextView">
+        <item name="android:textSize">@dimen/font_size_important</item>
+        <item name="android:textColor">@color/font_color_darker</item>
+        <item name="android:textStyle">bold</item>
+    </style>
+
+    <style name="Style.Eventme.Text.Regular" parent="Widget.AppCompat.TextView">
+        <item name="android:textSize">@dimen/font_size_regular</item>
+        <item name="android:textColor">@color/font_color</item>
+    </style>
+
+    <style name="Style.Eventme.Text.Regular.Bold" parent="Widget.AppCompat.TextView">
+        <item name="android:textSize">@dimen/font_size_regular</item>
+        <item name="android:textColor">@color/font_color</item>
+        <item name="android:textStyle">bold</item>
+    </style>
+
+    <style name="Style.Eventme.Text.Regular.Medium" parent="Widget.AppCompat.TextView">
+        <item name="android:textSize">@dimen/font_size_regular</item>
+        <item name="android:textColor">@color/font_color</item>
+        <item name="android:fontFamily">@font/roboto_medium</item>
+    </style>
+
+    <style name="Style.Eventme.Text.Little" parent="Widget.AppCompat.TextView">
+        <item name="android:textSize">@dimen/font_size_little</item>
+        <item name="android:textColor">@color/font_color</item>
     </style>
 
     <style name="Style.Eventme.Chip" parent="">
