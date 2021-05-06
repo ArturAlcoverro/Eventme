@@ -25,11 +25,11 @@
             app:layout_constraintTop_toTopOf="parent" />
 
         <com.google.android.material.textfield.TextInputLayout
-            android:id="@+id/signup_nickname"
+            android:id="@+id/signup_firstname"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginTop="32dp"
-            android:hint="@string/signup_nickname_label"
+            android:hint="@string/signup_firstname_label"
             android:nextFocusDown="@id/login_password"
             app:layout_constraintTop_toBottomOf="@+id/signup_logo_imageview"
             tools:layout_editor_absoluteX="50dp">
@@ -42,13 +42,13 @@
         </com.google.android.material.textfield.TextInputLayout>
 
         <com.google.android.material.textfield.TextInputLayout
-            android:id="@+id/signup_fullname"
+            android:id="@+id/signup_lastname"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginTop="16dp"
-            android:hint="@string/signup_fullname_label"
+            android:hint="@string/signup_lastname_label"
             android:nextFocusDown="@id/login_password"
-            app:layout_constraintTop_toBottomOf="@+id/signup_nickname"
+            app:layout_constraintTop_toBottomOf="@+id/signup_firstname"
             tools:layout_editor_absoluteX="50dp">
 
             <com.google.android.material.textfield.TextInputEditText
@@ -65,7 +65,7 @@
             android:layout_marginTop="16dp"
             android:hint="@string/signup_email_label"
             android:nextFocusDown="@id/login_password"
-            app:layout_constraintTop_toBottomOf="@+id/signup_fullname"
+            app:layout_constraintTop_toBottomOf="@+id/signup_lastname"
             tools:layout_editor_absoluteX="50dp">
 
             <com.google.android.material.textfield.TextInputEditText
@@ -132,6 +132,7 @@
 
         <com.google.android.material.button.MaterialButton
             style="@style/Widget.MaterialComponents.Button.TextButton"
+            android:id="@+id/registerToLoginBtn"
             android:layout_width="wrap_content"
             android:layout_height="30dp"
             android:height="10dp"

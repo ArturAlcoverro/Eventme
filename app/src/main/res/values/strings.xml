@@ -10,8 +10,8 @@
 
     <!-- RegisterActivity Strings -->
     <string name="signup_gotologin_btn">Log in</string>
-    <string name="signup_fullname_label">Full name</string>
-    <string name="signup_nickname_label">Nickname</string>
+    <string name="signup_lastname_label">Last Name</string>
+    <string name="signup_firstname_label">First Name</string>
     <string name="signup_email_label">Email</string>
     <string name="signup_password_label">Password</string>
     <string name="signup_repassword_label">Repeat password</string>
