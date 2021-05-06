@@ -12,7 +12,8 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.Eventme"
         android:usesCleartextTraffic="true">
-        <activity android:name=".EventDetailActivity"></activity>
+        <activity android:name=".ChatActivity"></activity>
+        <activity android:name=".EventDetailActivity" />
         <activity android:name=".RegisterActivity" />
         <activity android:name=".LoginActivity" />
         <activity android:name=".StartActivity">
@@ -22,7 +23,6 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-
     </application>
 
 </manifest>
