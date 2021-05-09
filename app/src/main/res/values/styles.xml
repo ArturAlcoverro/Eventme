@@ -36,6 +36,12 @@
 
     <style name="Style.Eventme.Text.Important" parent="Widget.AppCompat.TextView">
         <item name="android:textSize">@dimen/font_size_important</item>
+        <item name="android:textColor">@color/font_color</item>
+        <item name="android:textStyle">bold</item>
+    </style>
+
+    <style name="Style.Eventme.Text.Important.Secundary" parent="Widget.AppCompat.TextView">
+        <item name="android:textSize">@dimen/font_size_important</item>
         <item name="android:textColor">@color/font_color_darker</item>
         <item name="android:textStyle">bold</item>
     </style>
