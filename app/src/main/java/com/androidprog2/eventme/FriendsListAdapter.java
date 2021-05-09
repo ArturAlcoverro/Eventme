@@ -79,7 +79,7 @@ public class FriendsListAdapter extends RecyclerView.Adapter<FriendsListAdapter.
 
             });
 
-            this.nickname.setText(user.getNickname());
+            this.nickname.setText(user.getName());
             this.full_name.setText(user.getFull_name());
         }
 

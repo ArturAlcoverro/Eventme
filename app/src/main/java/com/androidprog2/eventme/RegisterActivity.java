@@ -6,6 +6,7 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 
+import com.androidprog2.eventme.business.User;
 import com.google.android.material.button.MaterialButton;
 import com.google.android.material.textfield.TextInputLayout;
 
@@ -20,6 +21,7 @@ public class RegisterActivity extends AppCompatActivity {
     private TextInputLayout lastNameInput;
     private TextInputLayout emailInput;
     private TextInputLayout passwordInput;
+    private TextInputLayout passwordInputRepeat;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -33,23 +35,27 @@ public class RegisterActivity extends AppCompatActivity {
         lastNameInput = findViewById(R.id.signup_lastname);
         emailInput = findViewById(R.id.signup_email);
         passwordInput = findViewById(R.id.signup_password);
+        passwordInputRepeat = findViewById(R.id.signup_repeat_password);
 
         signUpBtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                JSONObject jsonObject = new JSONObject();
-                try {
-                    jsonObject.put("name", firstNameInput.getEditText().getText().toString());
-                    jsonObject.put("last_name", lastNameInput.getEditText().getText().toString());
-                    jsonObject.put("email", emailInput.getEditText().getText().toString());
-                    jsonObject.put("password", passwordInput.getEditText().getText().toString());
+                String name = firstNameInput.getEditText().getText().toString();
+                String lastname = lastNameInput.getEditText().getText().toString();
+                String email = emailInput.getEditText().getText().toString();
+                String password = passwordInput.getEditText().getText().toString();
+                String repeatPsswd = passwordInputRepeat.getEditText().getText().toString();
+
+                if(password.equals(repeatPsswd) && password.length() >= 8 && !name.isEmpty()
+                        && !lastname.isEmpty() && !email.isEmpty()){
+                    User user = new User(0, null, name, lastname, email, password);
                     //Fetch a la api
 
                     if(true){      //si el registre es correcte anem a pantalla de login
                         startActivity(loginIntent);
                     }
-                } catch (JSONException e) {
-                    e.printStackTrace();
+                }else{
+                    //mostrar error ja que els dos passwords no coincideixen
                 }
             }
         });
