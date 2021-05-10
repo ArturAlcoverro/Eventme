@@ -62,7 +62,7 @@ public class EventsCarrouselAdapter extends RecyclerView.Adapter<EventsCarrousel
             this.event = _event;
             this.event_days.setText(event.getPeriod());
             this.event_name.setText(event.getNameAndLocalization());
-            this.event_participants.setText(event.getNumParticipants());
+            this.event_participants.setText(event.getNumParticipants() + "");
         }
 
         @Override
