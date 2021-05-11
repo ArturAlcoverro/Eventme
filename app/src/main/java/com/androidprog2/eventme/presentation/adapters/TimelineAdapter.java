@@ -1,4 +1,4 @@
-package com.androidprog2.eventme;
+package com.androidprog2.eventme.presentation.adapters;
 
 import android.content.Context;
 import android.view.LayoutInflater;
@@ -8,6 +8,8 @@ import android.widget.TextView;
 
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
+
+import com.androidprog2.eventme.R;
 import com.androidprog2.eventme.business.Event;
 
 import java.util.List;

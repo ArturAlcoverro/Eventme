@@ -1,4 +1,4 @@
-package com.androidprog2.eventme;
+package com.androidprog2.eventme.presentation.fragments;
 
 import android.graphics.Rect;
 import android.os.Bundle;
@@ -12,7 +12,9 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
+import com.androidprog2.eventme.R;
 import com.androidprog2.eventme.business.Event;
+import com.androidprog2.eventme.presentation.adapters.EventsCarrouselAdapter;
 
 import java.util.ArrayList;
 import java.util.Date;

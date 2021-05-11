@@ -1,4 +1,4 @@
-package com.androidprog2.eventme;
+package com.androidprog2.eventme.presentation.activities;
 
 import android.os.Bundle;
 
@@ -12,6 +12,8 @@ import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
 import retrofit2.Retrofit;
+
+import com.androidprog2.eventme.R;
 
 public class StartActivity extends AppCompatActivity {
 

@@ -1,7 +1,6 @@
-package com.androidprog2.eventme;
+package com.androidprog2.eventme.presentation.adapters;
 
 import android.content.Context;
-import android.net.Uri;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -13,6 +12,8 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import com.android.volley.VolleyError;
 import com.android.volley.toolbox.ImageLoader;
+import com.androidprog2.eventme.R;
+import com.androidprog2.eventme.VolleySingleton;
 import com.androidprog2.eventme.business.User;
 
 import java.util.List;
