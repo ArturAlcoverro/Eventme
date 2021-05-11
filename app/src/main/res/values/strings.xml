@@ -7,6 +7,10 @@
     <string name="login_login_btn">Log in</string>
     <string name="login_account_question">Don\'t have an account?</string>
     <string name="login_gotosignup_btn">Sign up</string>
+    <string name="login_password_error">Missing password field</string>
+    <string name="login_email_error">Missing email field</string>
+    <string name="login_email_syntax_error">The email format is not correct</string>
+    <string name="login_incorrect">The credentials did not match our records.</string>
 
     <!-- RegisterActivity Strings -->
     <string name="signup_gotologin_btn">Log in</string>
