@@ -1,0 +1,80 @@
+<resources>
+    <string name="app_name">Eventme</string>
+
+    <!-- LoginActivity Strings -->
+    <string name="login_nickname_email_label">Nickname / Email</string>
+    <string name="login_password_label">Password</string>
+    <string name="login_login_btn">Log in</string>
+    <string name="login_account_question">Don\'t have an account?</string>
+    <string name="login_gotosignup_btn">Sign up</string>
+
+    <!-- RegisterActivity Strings -->
+    <string name="signup_gotologin_btn">Log in</string>
+    <string name="signup_fullname_label">Full name</string>
+    <string name="signup_nickname_label">Nickname</string>
+    <string name="signup_email_label">Email</string>
+    <string name="signup_password_label">Password</string>
+    <string name="signup_repassword_label">Repeat password</string>
+    <string name="signup_signup_btn">Sign up</string>
+    <string name="signup_account_question">Have an acount?</string>
+
+    <!-- Xat Strings -->
+    <string name="xat_type_message">Type a message</string>
+    <string name="xat_backarrow_desc">Back Arrow image</string>
+    <string name="xat_user_name_desc">David Marquet</string>
+    <string name="xat_user_image_desc">User image</string>
+    <string name="xat_bottom_to_send_text_desc">bottom to send text</string>
+    <string name="xat_message">Esto es un mensaje</string>
+    <string name="xat_test_time">09:41</string>
+
+    <!-- StartActivity Strings -->
+    <string name="start_acces_but">Acces to eventme</string>
+    <string name="start_welcome">Welcome to eventme.</string>
+    <string name="start_welcome_subtitle">Your favourite events near you</string>
+
+    <!-- CreateEventFragment Strings-->
+    <string name="createEvent_title">Event Register</string>
+    <string name="createEvent_imageDescription">Event image</string>
+    <string name="createEvent_create_btn">Create</string>
+    <string name="createEvent_upload_btn">Upload</string>
+    <string name="createEvent_name_label">Name</string>
+    <string name="createEvent_location_label">Location</string>
+    <string name="createEvent_description_label">Description</string>
+    <string name="createEvent_startDate_label">Start Date</string>
+    <string name="createEvent_startTime_label">Start Time</string>
+    <string name="createEvent_endDate_label">End Date</string>
+    <string name="createEvent_endTime_label">End Time</string>
+    <string name="createEvent_category_label">Category</string>
+    <string name="createEvent_capacity_label">Capacity</string>
+    <string name="createEvent_icon_calendar">Calendar Icon</string>
+
+    <!-- EditProfileFragment Strings-->
+    <string name="editProfile_apply_btn">Apply changes</string>
+    <string name="editProfile_upload_label">Profile image</string>
+    <string name="editProfile_prova_maqueteig">wilson_wilson</string>
+
+    <!-- FriendsListFragment Strings-->
+    <string name="friendsList_title">Friends</string>
+
+    <!-- ChatListFragment Strings-->
+    <string name="chatList_title">Chat</string>
+
+    <!-- ProfileTimeline Strings-->
+    <string name="profileTimeline_created">Created</string>
+    <string name="profileTimeline_assisted">Assisted</string>
+    <string name="profileTimeline_friends">Friends</string>
+    <string name="profileTimeline_requestFriend">Request Friend</string>
+    <string name="profileTimeline_sendMessage">Send message</string>
+
+    <!-- HomeFragment Strings -->
+    <string name="home_title">Events near you.</string>
+    <string name="home_chip_all">All</string>
+    <string name="home_chip_music">Music</string>
+    <string name="home_chip_sport">Sport</string>
+    <string name="home_chip_cultural">Cultural</string>
+    <string name="home_chip_others">Others</string>
+
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Hello blank fragment</string>
+
+</resources>

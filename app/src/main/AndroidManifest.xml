@@ -9,15 +9,15 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/Theme.Eventme">
-        <activity android:name=".ChatActivity"></activity>
-        <activity android:name=".EventDetailActivity" />
-        <activity android:name=".RegisterActivity" />
-        <activity android:name=".LoginActivity" />
-        <activity android:name=".StartActivity">
-
-        </activity>
-
-        <activity android:name=".MainActivity">
+        <activity android:name=".presentation.activities.UserFriendsActivity"></activity>
+        <activity android:name=".presentation.activities.UserEventsActivity" />
+        <activity android:name=".presentation.activities.EditProfileActivity" />
+        <activity android:name=".presentation.activities.ChatActivity" />
+        <activity android:name=".presentation.activities.EventDetailActivity" />
+        <activity android:name=".presentation.activities.RegisterActivity" />
+        <activity android:name=".presentation.activities.LoginActivity" />
+        <activity android:name=".presentation.activities.StartActivity" />
+        <activity android:name=".presentation.activities.MainActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 

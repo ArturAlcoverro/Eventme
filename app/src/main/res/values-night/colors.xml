@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <color name="main_purple">#7857BE</color>
+    <color name="main_purple_opaque">#807857BE</color>
+    <color name="main_purple_dark">#6341A9</color>
+    <color name="main_purple_darker">#52368C</color>
+    <color name="main_purple_light">#8F73C9</color>
+    <color name="main_purple_lighter">#A691D4</color>
+    <color name="background_color">#252B37</color>
+    <color name="background_color_dark">#14181F</color>
+    <color name="background_color_darker">#040506</color>
+    <color name="background_color_light">#3B4558</color>
+    <color name="background_color_lighter">#525F7A</color>
+    <color name="font_color">#FFFFFF</color>
+    <color name="font_color_dark">#D1D1D1</color>
+    <color name="font_color_darker">#B2B2B2</color>
+    <color name="background_chat_msg">#332756</color>
+
+    <color name="menu_button_color">#9EA2AB</color>
+
+    <color name="error_color">#e94560</color>
+
+    <color name="transparent">#00000000</color>
+    <color name="black">#000</color>
+
+    <!--    <color name="purple_200">#FFBB86FC</color>
+        <color name="purple_500">#FF6200EE</color>
+        <color name="purple_700">#FF3700B3</color>
+        <color name="teal_200">#FF03DAC5</color>
+        <color name="teal_700">#FF018786</color>
+        <color name="black">#FF000000</color>
+        <color name="white">#FFFFFFFF</color>-->
+
+</resources>
