@@ -6,4 +6,6 @@
     <dimen name="font_size_important">18sp</dimen>
     <dimen name="font_size_regular">14sp</dimen>
     <dimen name="font_size_little">12sp</dimen>
+
+    <dimen name="navigation_space">70dp</dimen>
 </resources>

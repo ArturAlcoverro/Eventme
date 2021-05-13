@@ -5,6 +5,10 @@ import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentTransaction;
 
 import android.os.Bundle;
+import android.view.View;
+import android.view.ViewGroup;
+import android.widget.FrameLayout;
+import android.widget.Toast;
 
 import com.androidprog2.eventme.R;
 import com.androidprog2.eventme.presentation.fragments.ChatListFragment;
@@ -14,18 +18,19 @@ import com.androidprog2.eventme.presentation.fragments.ProfileFragment;
 import com.google.android.material.bottomnavigation.BottomNavigationItemView;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
 
-public class MainActivity extends AppCompatActivity {
+import net.yslibrary.android.keyboardvisibilityevent.KeyboardVisibilityEvent;
+import net.yslibrary.android.keyboardvisibilityevent.KeyboardVisibilityEventListener;
 
+public class MainActivity extends AppCompatActivity {
     private HomeFragment mHomeFragment;
     private CreateEventFragment mCreateEventFragment;
     private ChatListFragment mChatListFragment;
     private ProfileFragment mProfileFragment;
 
+    private FrameLayout mFrame;
     private BottomNavigationView mBottomNavigationView;
     private int mNavViewLastPosition;
-
-    private FragmentTransaction mFragmentTransaction;
-
+    private Fragment mNavViewLastFragment;
 
     private final int HOME_POSITION = 1;
     private final int ADD_POSITION = 2;
@@ -44,6 +49,13 @@ public class MainActivity extends AppCompatActivity {
 //        AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_YES);
 
         mBottomNavigationView = (BottomNavigationView) findViewById(R.id.navigation_view);
+        mFrame = (FrameLayout) findViewById(R.id.fragment);
+        loadFragments();
+
+        keyboardListener();
+    }
+
+    private void loadFragments() {
         mNavViewLastPosition = 1;
 
         mHomeFragment = new HomeFragment();
@@ -61,6 +73,8 @@ public class MainActivity extends AppCompatActivity {
                 .hide(mChatListFragment)
                 .hide(mProfileFragment)
                 .commit();
+
+        mNavViewLastFragment = mHomeFragment;
 
         mBottomNavigationView.setOnNavigationItemSelectedListener(item -> {
             switch (item.getItemId()) {
@@ -82,24 +96,43 @@ public class MainActivity extends AppCompatActivity {
     }
 
     private void switchFragment(int clickedPosition, Fragment fragment) {
+        FragmentTransaction transaction;
+
         if (clickedPosition != mNavViewLastPosition) {
-            mFragmentTransaction = getSupportFragmentManager().beginTransaction();
+            transaction = getSupportFragmentManager().beginTransaction();
 
             if (clickedPosition > mNavViewLastPosition)
-                mFragmentTransaction.setCustomAnimations(R.anim.slide_in_right, R.anim.slide_out_left);
+                transaction.setCustomAnimations(R.anim.slide_in_right, R.anim.slide_out_left);
             else
-                mFragmentTransaction.setCustomAnimations(R.anim.slide_in_left, R.anim.slide_out_right);
+                transaction.setCustomAnimations(R.anim.slide_in_left, R.anim.slide_out_right);
 
-            mFragmentTransaction
-                    .hide(mHomeFragment)
-                    .hide(mCreateEventFragment)
-                    .hide(mChatListFragment)
-                    .hide(mProfileFragment);
+            transaction.hide(mNavViewLastFragment);
 
             mNavViewLastPosition = clickedPosition;
-            mFragmentTransaction
+            mNavViewLastFragment = fragment;
+
+            transaction
                     .show(fragment)
                     .commit();
         }
+    }
+
+    private void keyboardListener() {
+        KeyboardVisibilityEvent.setEventListener(this, new KeyboardVisibilityEventListener() {
+            @Override
+            public void onVisibilityChanged(boolean isOpen) {
+                ViewGroup.MarginLayoutParams margins;
+                int marginBottom = getResources().getDimensionPixelSize(R.dimen.navigation_space);
+                if (isOpen) {
+                    mBottomNavigationView.setVisibility(View.GONE);
+                    margins = (ViewGroup.MarginLayoutParams) mFrame.getLayoutParams();
+                    margins.bottomMargin = -marginBottom;
+                } else {
+                    mBottomNavigationView.setVisibility(View.VISIBLE);
+                    margins = (ViewGroup.MarginLayoutParams) mFrame.getLayoutParams();
+                    margins.bottomMargin = 0;
+                }
+            }
+        });
     }
 }
