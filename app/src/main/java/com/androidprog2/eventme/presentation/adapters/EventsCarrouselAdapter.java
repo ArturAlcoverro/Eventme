@@ -1,4 +1,4 @@
-package com.androidprog2.eventme;
+package com.androidprog2.eventme.presentation.adapters;
 
 import android.content.Context;
 import android.view.LayoutInflater;
@@ -10,9 +10,9 @@ import android.widget.TextView;
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
+import com.androidprog2.eventme.R;
 import com.androidprog2.eventme.business.Event;
 
-import java.net.ConnectException;
 import java.util.List;
 
 public class EventsCarrouselAdapter extends RecyclerView.Adapter<EventsCarrouselAdapter.EventsCarrouselViewHolder> {
@@ -62,7 +62,7 @@ public class EventsCarrouselAdapter extends RecyclerView.Adapter<EventsCarrousel
             this.event = _event;
             this.event_days.setText(event.getPeriod());
             this.event_name.setText(event.getNameAndLocalization());
-            this.event_participants.setText(event.getNumParticipants());
+            this.event_participants.setText(event.getNumParticipants() + "");
         }
 
         @Override

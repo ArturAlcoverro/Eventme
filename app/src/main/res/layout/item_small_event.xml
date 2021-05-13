@@ -15,6 +15,7 @@
         tools:ignore="MissingConstraints">
 
         <ImageView
+            android:id="@+id/eventImageList"
             android:background="@color/font_color"
             android:padding="1dp"
             android:layout_width="match_parent"
@@ -39,6 +40,7 @@
             android:orientation="vertical">
 
             <TextView
+                android:id="@+id/eventTitleList"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="Global Code"
@@ -47,12 +49,14 @@
                 android:textStyle="bold" />
 
             <TextView
+                android:id="@+id/eventLocationList"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="Los Angeles, California"
                 android:textSize="18sp" />
 
             <TextView
+                android:id="@+id/eventDateList"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="21/03/2021  -  25/03/2021"
@@ -61,6 +65,7 @@
         </LinearLayout>
 
         <TextView
+            android:id="@+id/eventCategoryList"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="Tech"

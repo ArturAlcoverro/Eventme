@@ -17,8 +17,6 @@
     <color name="font_color_darker">#B2B2B2</color>
     <color name="background_chat_msg">#332756</color>
 
-    <color name="notification_bar">#1d212b</color>
-
     <color name="menu_button_color">#9EA2AB</color>
 
     <color name="error_color">#e94560</color>

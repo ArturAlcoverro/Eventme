@@ -4,8 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:padding="12dp"
-    tools:context=".MainActivity">
+    tools:context=".presentation.activities.MainActivity">
 
     <FrameLayout
         android:id="@+id/fragment"
@@ -19,6 +18,7 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         app:labelVisibilityMode="unlabeled"
+        android:layout_margin="12dp"
         app:itemIconTint="@color/navigation_menu_selector"
         android:background="@drawable/shape_toolbar"
         app:layout_constraintBottom_toBottomOf="parent"

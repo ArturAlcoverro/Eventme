@@ -16,6 +16,7 @@ public class Event {
     private int maxParticipants;
     private int numParticipants;
     private String img;
+    private String type;
     private Calendar calendar;
 
     public Event() {
@@ -63,5 +64,43 @@ public class Event {
 
     public int getNumParticipants(){
         return this.numParticipants;
+    }
+
+    public String getImg() {
+        return img;
+    }
+
+    public String getName() {
+        return name;
+    }
+
+    public String getLocalization() {
+        return localization;
+    }
+
+    public Date getStartDate() {
+        return startDate;
+    }
+
+    public Date getEndDate() {
+        return endDate;
+    }
+
+    public String getType() {
+        return type;
+    }
+
+    public String getDay(){
+        Calendar cal = Calendar.getInstance();
+        cal.setTime(startDate);
+        int day = cal.get(Calendar.DAY_OF_MONTH);
+        return String.valueOf(day);
+    }
+
+    public String getMonth(){
+        Calendar cal = Calendar.getInstance();
+        cal.setTime(startDate);
+        int month = cal.get(Calendar.MONTH);
+        return String.valueOf(month);
     }
 }
