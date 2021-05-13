@@ -1,273 +1,291 @@
 <?xml version="1.0" encoding="utf-8"?>
 <FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
     tools:context=".presentation.fragments.CreateEventFragment">
 
-    <androidx.constraintlayout.widget.ConstraintLayout
+    <ScrollView
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:padding="12dp">
-
-        <TextView
-            android:id="@+id/registerTitle"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:text="@string/createEvent_title"
-            android:textSize="20sp"
-            tools:ignore="MissingConstraints"
-            tools:layout_editor_absoluteX="15dp"
-            />
-
-        <ImageView
-            android:id="@+id/imageIcon"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_gravity="center"
-            android:layout_marginTop="20dp"
-            android:background="@drawable/shape_camera_icon"
-            android:padding="10dp"
-            android:src="@drawable/ic_camera_icon"
-            app:layout_constraintTop_toBottomOf="@+id/registerTitle"
-            tools:ignore="MissingConstraints"
-            tools:layout_editor_absoluteX="15dp" />
+        android:layout_height="match_parent">
 
         <LinearLayout
-            android:id="@+id/uploadImageBtn"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:orientation="vertical"
-            android:layout_marginLeft="35dp"
-            app:layout_constraintBottom_toTopOf="@+id/createEvent_name"
-            app:layout_constraintStart_toEndOf="@+id/imageIcon"
-            app:layout_constraintTop_toBottomOf="@+id/registerTitle">
-
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="@string/createEvent_imageDescription"
-                android:textSize="15dp" />
-
-            <com.google.android.material.button.MaterialButton
-                android:id="@+id/upload_btn"
-                style="@style/Style.Eventme.Button"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:paddingLeft="25dp"
-                android:paddingRight="25dp"
-                android:text="@string/createEvent_upload_btn">
-
-            </com.google.android.material.button.MaterialButton>
-
-        </LinearLayout>
-
-        <com.google.android.material.textfield.TextInputLayout
-            android:id="@+id/createEvent_name"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:hint="@string/createEvent_name_label"
-            tools:layout_editor_absoluteY="153dp"
-            tools:ignore="MissingConstraints">
+            android:orientation="vertical">
 
-            <com.google.android.material.textfield.TextInputEditText
-                style="@style/Style.Eventme.TextInput"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content" />
-
-        </com.google.android.material.textfield.TextInputLayout>
-
-        <com.google.android.material.textfield.TextInputLayout
-            android:id="@+id/createEvent_location"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="16dp"
-            android:hint="@string/createEvent_location_label"
-            app:layout_constraintTop_toBottomOf="@+id/createEvent_name"
-            tools:layout_editor_absoluteX="50dp">
-
-            <com.google.android.material.textfield.TextInputEditText
+            <androidx.constraintlayout.widget.ConstraintLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                style="@style/Style.Eventme.TextInput" />
+                android:padding="12dp">
 
-        </com.google.android.material.textfield.TextInputLayout>
-
-        <com.google.android.material.textfield.TextInputLayout
-            android:id="@+id/createEvent_description"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="16dp"
-            android:hint="@string/createEvent_description_label"
-            app:layout_constraintTop_toBottomOf="@+id/createEvent_location"
-            tools:layout_editor_absoluteX="50dp">
-
-            <com.google.android.material.textfield.TextInputEditText
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:lines="3"
-                android:gravity="top"
-                style="@style/Style.Eventme.TextInput" />
-
-        </com.google.android.material.textfield.TextInputLayout>
-
-        <LinearLayout
-            android:id="@+id/startLayout"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:orientation="horizontal"
-            app:layout_constraintTop_toBottomOf="@+id/createEvent_description"
-            tools:layout_editor_absoluteX="10dp">
-
-            <com.google.android.material.textfield.TextInputLayout
-                android:id="@+id/createEvent_startDate"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="16dp"
-                android:layout_marginRight="8dp"
-                android:layout_weight="1"
-                android:hint="@string/createEvent_startDate_label"
-                app:startIconDrawable="@drawable/ic_calendar_icon"
-                app:startIconContentDescription="@string/createEvent_icon_calendar"
-                app:layout_constraintTop_toBottomOf="@+id/createEvent_description"
-                tools:layout_editor_absoluteX="50dp">
-                w
-                <com.google.android.material.textfield.TextInputEditText
-                    style="@style/Style.Eventme.TextInput"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content" />
-
-            </com.google.android.material.textfield.TextInputLayout>
-
-            <com.google.android.material.textfield.TextInputLayout
-                android:id="@+id/createEvent_startTime"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="16dp"
-                android:layout_marginLeft="8dp"
-                android:layout_weight="1"
-                android:hint="@string/createEvent_startTime_label"
-                app:layout_constraintHorizontal_weight="0.5"
-                app:layout_constraintTop_toBottomOf="@+id/createEvent_startDate"
-                tools:layout_editor_absoluteX="50dp">
-
-                <com.google.android.material.textfield.TextInputEditText
-                    style="@style/Style.Eventme.TextInput"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content" />
-
-            </com.google.android.material.textfield.TextInputLayout>
-        </LinearLayout>
-
-        <LinearLayout
-            android:id="@+id/endLayout"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:orientation="horizontal"
-            app:layout_constraintTop_toBottomOf="@+id/startLayout"
-            tools:layout_editor_absoluteX="10dp">
-
-            <com.google.android.material.textfield.TextInputLayout
-                android:id="@+id/createEvent_endDate"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="16dp"
-                android:layout_marginRight="8dp"
-                android:layout_weight="1"
-                android:hint="@string/createEvent_endDate_label"
-                app:startIconDrawable="@drawable/ic_calendar_icon"
-                app:startIconContentDescription="@string/createEvent_icon_calendar"
-                app:layout_constraintTop_toBottomOf="@+id/startLayout"
-                tools:layout_editor_absoluteX="50dp">
-
-                <com.google.android.material.textfield.TextInputEditText
-                    style="@style/Style.Eventme.TextInput"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content" />
-
-            </com.google.android.material.textfield.TextInputLayout>
-
-            <com.google.android.material.textfield.TextInputLayout
-                android:id="@+id/createEvent_endTime"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="16dp"
-                android:layout_marginLeft="8dp"
-                android:layout_weight="1"
-                android:hint="@string/createEvent_endTime_label"
-                app:layout_constraintHorizontal_weight="0.5"
-                app:layout_constraintTop_toBottomOf="@+id/startLayout"
-                tools:layout_editor_absoluteX="50dp">
-
-                <com.google.android.material.textfield.TextInputEditText
-                    style="@style/Style.Eventme.TextInput"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content" />
-
-            </com.google.android.material.textfield.TextInputLayout>
-        </LinearLayout>
-
-        <LinearLayout
-            android:id="@+id/latestLayout"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:orientation="horizontal"
-            app:layout_constraintTop_toBottomOf="@+id/endLayout"
-            tools:layout_editor_absoluteX="10dp">
-
-            <com.google.android.material.textfield.TextInputLayout
-                android:id="@+id/createEvent_category"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="16dp"
-                android:layout_marginRight="8dp"
-                android:layout_weight="1"
-                android:hint="@string/createEvent_category_label"
-                app:layout_constraintTop_toBottomOf="@+id/endLayout"
-                tools:layout_editor_absoluteX="50dp"
-                style="@style/Widget.MaterialComponents.TextInputLayout.FilledBox.ExposedDropdownMenu">
-
-                <AutoCompleteTextView
+                <TextView
+                    style="@style/Style.Eventme.Text.Header2"
+                    android:id="@+id/registerTitle"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:inputType="none" />
+                    android:text="@string/createEvent_title"
+                    tools:ignore="MissingConstraints"
+                    tools:layout_editor_absoluteX="15dp" />
 
-            </com.google.android.material.textfield.TextInputLayout>
+                <ImageView
+                    android:id="@+id/imageIcon"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center"
+                    android:layout_marginTop="20dp"
+                    android:background="@drawable/shape_camera_icon"
+                    android:padding="10dp"
+                    android:src="@drawable/ic_camera_icon"
+                    app:layout_constraintTop_toBottomOf="@+id/registerTitle"
+                    tools:ignore="MissingConstraints"
+                    tools:layout_editor_absoluteX="15dp" />
 
-            <com.google.android.material.textfield.TextInputLayout
-                android:id="@+id/createEvent_capacity"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="16dp"
-                android:layout_marginLeft="8dp"
-                android:layout_weight="1"
-                android:hint="@string/createEvent_capacity_label"
-                app:layout_constraintHorizontal_weight="0.5"
-                app:layout_constraintTop_toBottomOf="@+id/endLayout"
-                tools:layout_editor_absoluteX="50dp"
-                style="@style/Widget.MaterialComponents.TextInputLayout.FilledBox.ExposedDropdownMenu">
+                <LinearLayout
+                    android:id="@+id/uploadImageBtn"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="35dp"
+                    android:orientation="vertical"
+                    app:layout_constraintBottom_toTopOf="@+id/createEvent_name"
+                    app:layout_constraintStart_toEndOf="@+id/imageIcon"
+                    app:layout_constraintTop_toBottomOf="@+id/registerTitle">
 
-                <AutoCompleteTextView
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="@string/createEvent_imageDescription"
+                        android:textSize="15dp" />
+
+                    <com.google.android.material.button.MaterialButton
+                        android:id="@+id/upload_btn"
+                        android:layout_marginTop="5dp"
+                        style="@style/Style.Eventme.Button"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:paddingLeft="25dp"
+                        android:paddingRight="25dp"
+                        android:text="@string/createEvent_upload_btn">
+
+                    </com.google.android.material.button.MaterialButton>
+
+                </LinearLayout>
+
+                <com.google.android.material.textfield.TextInputLayout
+                    android:id="@+id/createEvent_name"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:inputType="none" />
+                    android:layout_marginTop="20dp"
+                    android:hint="@string/createEvent_name_label"
+                    app:layout_constraintTop_toBottomOf="@+id/imageIcon"
+                    tools:layout_editor_absoluteX="12dp">
 
-            </com.google.android.material.textfield.TextInputLayout>
+                    <com.google.android.material.textfield.TextInputEditText
+                        style="@style/Style.Eventme.TextInput"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content" />
+
+                </com.google.android.material.textfield.TextInputLayout>
+
+                <com.google.android.material.textfield.TextInputLayout
+                    android:id="@+id/createEvent_location"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="16dp"
+                    android:hint="@string/createEvent_location_label"
+                    app:layout_constraintTop_toBottomOf="@+id/createEvent_name"
+                    tools:layout_editor_absoluteX="50dp">
+
+                    <com.google.android.material.textfield.TextInputEditText
+                        style="@style/Style.Eventme.TextInput"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content" />
+
+                </com.google.android.material.textfield.TextInputLayout>
+
+                <com.google.android.material.textfield.TextInputLayout
+                    android:id="@+id/createEvent_description"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="16dp"
+                    android:hint="@string/createEvent_description_label"
+                    app:layout_constraintTop_toBottomOf="@+id/createEvent_location"
+                    tools:layout_editor_absoluteX="50dp">
+
+                    <com.google.android.material.textfield.TextInputEditText
+                        style="@style/Style.Eventme.TextInput"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:gravity="top"
+                        android:lines="3" />
+
+                </com.google.android.material.textfield.TextInputLayout>
+
+                <LinearLayout
+                    android:id="@+id/startLayout"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal"
+                    app:layout_constraintTop_toBottomOf="@+id/createEvent_description"
+                    tools:layout_editor_absoluteX="10dp">
+
+                    <com.google.android.material.textfield.TextInputLayout
+                        android:id="@+id/createEvent_startDate"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="16dp"
+                        android:layout_marginRight="8dp"
+                        android:layout_weight="1"
+                        android:hint="@string/createEvent_startDate_label"
+                        app:layout_constraintTop_toBottomOf="@+id/createEvent_description"
+                        app:startIconContentDescription="@string/createEvent_icon_calendar"
+                        app:startIconDrawable="@drawable/ic_calendar_icon"
+                        tools:layout_editor_absoluteX="50dp">
+                        w
+
+                        <com.google.android.material.textfield.TextInputEditText
+                            style="@style/Style.Eventme.TextInput"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content" />
+
+                    </com.google.android.material.textfield.TextInputLayout>
+
+                    <com.google.android.material.textfield.TextInputLayout
+                        android:id="@+id/createEvent_startTime"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginLeft="8dp"
+                        android:layout_marginTop="16dp"
+                        android:layout_weight="1"
+                        android:hint="@string/createEvent_startTime_label"
+                        app:layout_constraintHorizontal_weight="0.5"
+                        app:layout_constraintTop_toBottomOf="@+id/createEvent_startDate"
+                        tools:layout_editor_absoluteX="50dp">
+
+                        <com.google.android.material.textfield.TextInputEditText
+                            style="@style/Style.Eventme.TextInput"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content" />
+
+                    </com.google.android.material.textfield.TextInputLayout>
+                </LinearLayout>
+
+                <LinearLayout
+                    android:id="@+id/endLayout"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal"
+                    app:layout_constraintTop_toBottomOf="@+id/startLayout"
+                    tools:layout_editor_absoluteX="10dp">
+
+                    <com.google.android.material.textfield.TextInputLayout
+                        android:id="@+id/createEvent_endDate"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="16dp"
+                        android:layout_marginRight="8dp"
+                        android:layout_weight="1"
+                        android:hint="@string/createEvent_endDate_label"
+                        app:layout_constraintTop_toBottomOf="@+id/startLayout"
+                        app:startIconContentDescription="@string/createEvent_icon_calendar"
+                        app:startIconDrawable="@drawable/ic_calendar_icon"
+                        tools:layout_editor_absoluteX="50dp">
+
+                        <com.google.android.material.textfield.TextInputEditText
+                            style="@style/Style.Eventme.TextInput"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content" />
+
+                    </com.google.android.material.textfield.TextInputLayout>
+
+                    <com.google.android.material.textfield.TextInputLayout
+                        android:id="@+id/createEvent_endTime"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginLeft="8dp"
+                        android:layout_marginTop="16dp"
+                        android:layout_weight="1"
+                        android:hint="@string/createEvent_endTime_label"
+                        app:layout_constraintHorizontal_weight="0.5"
+                        app:layout_constraintTop_toBottomOf="@+id/startLayout"
+                        tools:layout_editor_absoluteX="50dp">
+
+                        <com.google.android.material.textfield.TextInputEditText
+                            style="@style/Style.Eventme.TextInput"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content" />
+
+                    </com.google.android.material.textfield.TextInputLayout>
+                </LinearLayout>
+
+                <LinearLayout
+                    android:id="@+id/latestLayout"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal"
+                    app:layout_constraintTop_toBottomOf="@+id/endLayout"
+                    tools:layout_editor_absoluteX="10dp">
+
+                    <com.google.android.material.textfield.TextInputLayout
+                        android:id="@+id/createEvent_category"
+                        style="@style/Widget.MaterialComponents.TextInputLayout.FilledBox.ExposedDropdownMenu"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="16dp"
+                        android:layout_marginRight="8dp"
+                        android:layout_weight="1"
+                        android:hint="@string/createEvent_category_label"
+                        app:layout_constraintTop_toBottomOf="@+id/endLayout"
+                        tools:layout_editor_absoluteX="50dp">
+
+                        <AutoCompleteTextView
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:inputType="none" />
+
+                    </com.google.android.material.textfield.TextInputLayout>
+
+                    <com.google.android.material.textfield.TextInputLayout
+                        android:id="@+id/createEvent_capacity"
+                        style="@style/Widget.MaterialComponents.TextInputLayout.FilledBox.ExposedDropdownMenu"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginLeft="8dp"
+                        android:layout_marginTop="16dp"
+                        android:layout_weight="1"
+                        android:hint="@string/createEvent_capacity_label"
+                        app:layout_constraintHorizontal_weight="0.5"
+                        app:layout_constraintTop_toBottomOf="@+id/endLayout"
+                        tools:layout_editor_absoluteX="50dp">
+
+                        <AutoCompleteTextView
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:inputType="none" />
+
+                    </com.google.android.material.textfield.TextInputLayout>
+                </LinearLayout>
+
+                <com.google.android.material.button.MaterialButton
+                    android:id="@+id/create_btn"
+                    style="@style/Style.Eventme.Button"
+                    android:layout_width="match_parent"
+                    android:layout_height="55dp"
+                    android:layout_marginTop="20dp"
+                    android:text="@string/createEvent_create_btn"
+                    app:layout_constraintTop_toBottomOf="@+id/latestLayout"
+                    tools:layout_editor_absoluteX="15dp">
+
+                </com.google.android.material.button.MaterialButton>
+
+            </androidx.constraintlayout.widget.ConstraintLayout>
+
+            <View
+                android:layout_width="wrap_content"
+                android:layout_height="@dimen/navigation_space" />
         </LinearLayout>
 
-        <com.google.android.material.button.MaterialButton
-            android:id="@+id/create_btn"
-            style="@style/Style.Eventme.Button"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:text="@string/createEvent_create_btn"
-            android:layout_marginTop="20dp"
-            app:layout_constraintTop_toBottomOf="@+id/latestLayout"
-            tools:layout_editor_absoluteX="15dp">
-
-        </com.google.android.material.button.MaterialButton>
-
-    </androidx.constraintlayout.widget.ConstraintLayout>
+    </ScrollView>
 
 </FrameLayout>
