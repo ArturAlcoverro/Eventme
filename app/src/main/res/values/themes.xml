@@ -2,6 +2,7 @@
     <!-- Base application theme. -->
     <style name="Theme.Eventme" parent="Theme.MaterialComponents.Light.NoActionBar">
         <item name="colorPrimary">@color/main_purple</item>
+        <item name="colorPrimaryDark">@color/notification_bar</item>
         <item name="colorPrimaryVariant">@color/main_purple_light</item>
         <item name="colorOnPrimary">@color/font_color</item>
         <item name="colorSecondary">@color/background_color_light</item>

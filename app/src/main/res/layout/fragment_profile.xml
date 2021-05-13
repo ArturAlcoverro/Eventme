@@ -24,15 +24,14 @@
                 app:layout_constraintEnd_toStartOf="@+id/usernameTitle" />
 
             <TextView
+                style="@style/Style.Eventme.Text.Header2"
                 android:id="@+id/usernameTitle"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 android:layout_marginLeft="10dp"
                 android:ellipsize="end"
                 android:maxLines="1"
-                android:text="@string/editProfile_prova_maqueteig"
-                android:textSize="17sp"
-                android:textStyle="bold"
+                android:text="Your profile"
                 app:layout_constraintStart_toEndOf="@+id/arrowLeft"
                 tools:ignore="MissingConstraints" />
         </androidx.appcompat.widget.Toolbar>
@@ -145,8 +144,8 @@
                     android:layout_marginRight="8dp"
                     android:backgroundTint="@color/background_color"
                     android:text="@string/profileTimeline_sendMessage"
-                    app:strokeColor="@color/font_color"
-                    app:strokeWidth="1dp" />
+                    app:strokeColor="@color/background_color_lighter"
+                    app:strokeWidth="2dp" />
 
                 <com.google.android.material.button.MaterialButton
                     android:id="@+id/requestFriend"
@@ -160,12 +159,13 @@
 
             <TextView
                 android:id="@+id/textView"
+                style="@style/Style.Eventme.Text.Header3"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="10dp"
+                android:textAlignment="center"
                 android:text="Wilson Wilson"
-                android:textSize="20dp"
-                android:textStyle="bold"
+                android:ellipsize="end"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@+id/profileImage" />
@@ -173,11 +173,11 @@
             <View
                 android:id="@+id/lineSeparator"
                 android:layout_width="match_parent"
-                android:layout_height="0.5dp"
+                android:layout_height="1dp"
                 android:layout_marginLeft="-20dp"
                 android:layout_marginTop="20dp"
                 android:layout_marginRight="-20dp"
-                android:background="#c0c0c0"
+                android:background="@color/background_color_lighter"
                 app:layout_constraintTop_toBottomOf="@+id/linearButtons"
                 tools:layout_editor_absoluteX="15dp" />
 
@@ -186,7 +186,7 @@
                 android:layout_width="60dp"
                 android:layout_height="60dp"
                 android:layout_marginTop="10dp"
-                app:cardCornerRadius="50dp"
+                app:cardCornerRadius="30dp"
                 app:cardElevation="0dp"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"

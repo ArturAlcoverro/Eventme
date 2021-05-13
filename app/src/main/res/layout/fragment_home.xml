@@ -81,7 +81,7 @@
         android:layout_height="match_parent"
         android:orientation="vertical"
         style="@style/Widget.Design.BottomNavigationView"
-        android:paddingBottom="80dp">
+        android:paddingBottom="@dimen/navigation_space">
         <TextView
             style="@style/Style.Eventme.Text.Header1"
             android:layout_width="match_parent"
@@ -93,7 +93,8 @@
             android:overScrollMode="never"
             android:id="@+id/home_view_pager"
             android:layout_width="match_parent"
-            android:layout_height="match_parent"/>
+            android:layout_height="match_parent"
+            android:paddingBottom="10dp"/>
     </LinearLayout>
 
     </LinearLayout>
