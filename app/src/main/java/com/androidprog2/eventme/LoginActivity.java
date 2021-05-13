@@ -43,7 +43,6 @@ public class LoginActivity extends AppCompatActivity {
         loginBtn = (MaterialButton) findViewById(R.id.login_btn);
 
         loginBtn.setOnClickListener(new View.OnClickListener() {
-            @SuppressLint("ResourceAsColor")
             @Override
             public void onClick(View v) {
                 textInputLayoutEmail.getEditText().clearFocus();
