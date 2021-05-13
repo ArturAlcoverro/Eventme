@@ -1,4 +1,4 @@
-package com.androidprog2.eventme.Persistance;
+package com.androidprog2.eventme.Persistance.API;
 
 import com.androidprog2.eventme.business.Event;
 

@@ -1,15 +1,24 @@
-package com.androidprog2.eventme.Persistance;
+package com.androidprog2.eventme.Persistance.API;
 
 import com.androidprog2.eventme.business.User;
 
 import java.util.ArrayList;
 
+import retrofit2.Call;
+import retrofit2.http.Body;
+import retrofit2.http.Headers;
+import retrofit2.http.POST;
+
 public interface UserDAO {
+
     // POST /users	Crea un usuari amb els següents parámetres
-    public void createUser(User user);
+    @POST("users")
+    @Headers("Content-Type: application/json")
+    Call<User> createUser(@Body User user);
 
     // POST /users/login	Autentica al usuari
-    public void loginUser(User user);
+    @POST("users/login")
+    Call<String> loginUser(User user);
 
     // GET /users	Retorna tots el ususaris
     public ArrayList<User> getAllUsers();

@@ -1,29 +1,26 @@
 package com.androidprog2.eventme.Persistance.API;
 
+import com.google.gson.Gson;
+import com.google.gson.GsonBuilder;
+
+import retrofit2.Call;
+import retrofit2.Retrofit;
+import retrofit2.converter.gson.GsonConverterFactory;
+
 public class APIConnector {
-    private static APIConnector instance = null;
-    private final String url;
+    private static final String API_BASE_URL = "http://puigmal.salle.url.edu/api/";
+    private static Retrofit retrofit;
 
-    public static APIConnector getInstance() {
-        if (instance == null) {
-            instance = new APIConnector("http://puigmal.salle.url.edu/api/");
+    public static Retrofit getRetrofitInstance() {
+        if (retrofit == null) {
+            Gson gson = new GsonBuilder()
+                    .setLenient()
+                    .create();
+            retrofit = new Retrofit.Builder()
+                    .baseUrl(API_BASE_URL)
+                    .addConverterFactory(GsonConverterFactory.create(gson))
+                    .build();
         }
-        return instance;
-    }
-
-    private APIConnector(String url) {
-        this.url = url;
-    }
-
-    public void getApi() {
-    }
-
-    public void postApi() {
-    }
-
-    public void putApi() {
-    }
-
-    public void deleteApi() {
+        return retrofit;
     }
 }
