@@ -105,7 +105,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginTop="16dp"
-            android:hint="@string/signup_fullname_label"
+            android:hint="@string/signup_lastname_label"
             android:textColorHint="@color/main_purple"
             app:layout_constraintTop_toBottomOf="@+id/editProfileNickname">
 
@@ -138,7 +138,7 @@
             android:id="@+id/editProfileNickname"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:hint="@string/signup_nickname_label"
+            android:hint="@string/signup_firstname_label"
             android:textColorHint="@color/main_purple"
             tools:ignore="MissingConstraints"
             tools:layout_editor_absoluteY="153dp">
