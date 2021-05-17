@@ -1,4 +1,4 @@
-package com.androidprog2.eventme.presentation.adapters;
+package com.androidprog2.eventme;
 
 import android.content.Context;
 import android.view.LayoutInflater;
