@@ -4,16 +4,12 @@ import android.os.Bundle;
 
 import androidx.appcompat.app.AppCompatActivity;
 
-<<<<<<<< HEAD:app/src/main/java/com/androidprog2/eventme/presentation/activities/StartActivity.java
-
 import com.androidprog2.eventme.R;
-========
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 
 import com.google.android.material.button.MaterialButton;
->>>>>>>> feature/Arreglant_la_merda_del_david:app/src/main/java/com/androidprog2/eventme/StartActivity.java
 
 public class StartActivity extends AppCompatActivity {
     private MaterialButton accessBtn;
