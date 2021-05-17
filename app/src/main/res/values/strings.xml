@@ -2,21 +2,33 @@
     <string name="app_name">Eventme</string>
 
     <!-- LoginActivity Strings -->
-    <string name="login_nickname_email_label">Nickname / Email</string>
+    <string name="login_nickname_email_label">Email</string>
     <string name="login_password_label">Password</string>
     <string name="login_login_btn">Log in</string>
     <string name="login_account_question">Don\'t have an account?</string>
     <string name="login_gotosignup_btn">Sign up</string>
+    <string name="login_password_error">Missing password field</string>
+    <string name="login_email_error">Missing email field</string>
+    <string name="login_email_syntax_error">The email format is not correct</string>
+    <string name="login_incorrect">The credentials did not match our records.</string>
 
     <!-- RegisterActivity Strings -->
     <string name="signup_gotologin_btn">Log in</string>
-    <string name="signup_fullname_label">Full name</string>
-    <string name="signup_nickname_label">Nickname</string>
+    <string name="signup_lastname_label">Last Name</string>
+    <string name="signup_firstname_label">First Name</string>
     <string name="signup_email_label">Email</string>
     <string name="signup_password_label">Password</string>
     <string name="signup_repassword_label">Repeat password</string>
     <string name="signup_signup_btn">Sign up</string>
     <string name="signup_account_question">Have an acount?</string>
+    <string name="signup_name_error">Missing First name field</string>
+    <string name="signup_lastname_error">Missing Last name field</string>
+    <string name="signup_email_error">Missing email field</string>
+    <string name="signup_password_error">Missing password field</string>
+    <string name="signup_email_syntax_error">The email format is not correct</string>
+    <string name="signup_password_regex">The password must be 8 characters long</string>
+    <string name="signup_password_compare">Please make sure your passwords match</string>
+    <string name="signup_incorrect"></string>
 
     <!-- Xat Strings -->
     <string name="xat_type_message">Type a message</string>

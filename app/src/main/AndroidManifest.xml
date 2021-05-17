@@ -14,9 +14,12 @@
         <activity android:name=".presentation.activities.EditProfileActivity" />
         <activity android:name=".presentation.activities.ChatActivity" />
         <activity android:name=".presentation.activities.EventDetailActivity" />
-        <activity android:name=".presentation.activities.RegisterActivity" />
-        <activity android:name=".presentation.activities.LoginActivity" />
-        <activity android:name=".presentation.activities.StartActivity" />
+        <activity android:name=".presentation.activities.RegisterActivity"
+            android:noHistory="true"/>
+        <activity android:name=".presentation.activities.LoginActivity"
+            android:noHistory="true"/>
+        <activity android:name=".presentation.activities.StartActivity"
+            android:noHistory="true"/>
         <activity android:name=".presentation.activities.MainActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
@@ -24,6 +27,7 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
+
     </application>
 
 </manifest>

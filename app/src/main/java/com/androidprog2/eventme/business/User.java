@@ -3,16 +3,16 @@ package com.androidprog2.eventme.business;
 public class User {
     private int id;
     private String image;
-    private String nickname;
-    private String full_name;
+    private String name;
+    private String last_name;
     private String email;
     private String password;
 
-    public User(int id, String image, String nickname, String full_name, String email, String password) {
+    public User(int id, String image, String name, String last_name, String email, String password) {
         this.id = id;
         this.image = image;
-        this.nickname = nickname;
-        this.full_name = full_name;
+        this.name = name;
+        this.last_name = last_name;
         this.email = email;
         this.password = password;
     }
@@ -25,12 +25,16 @@ public class User {
         return image;
     }
 
-    public String getNickname() {
-        return nickname;
+    public String getName() {
+        return name;
     }
 
-    public String getFull_name() {
-        return full_name;
+    public String getLast_name() {
+        return last_name;
+    }
+
+    public String getFull_name(){
+        return name + " " + last_name;
     }
 
     public String getEmail() {
