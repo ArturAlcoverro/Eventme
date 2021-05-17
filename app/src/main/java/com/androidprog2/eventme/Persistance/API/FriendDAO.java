@@ -1,4 +1,4 @@
-package com.androidprog2.eventme.Persistance.API;
+package com.androidprog2.eventme.persistance.API;
 
 public interface FriendDAO {
     // GET /friends/requests	Obté la llista d'usuaris que han enviat una petició d'amistat a l'usuari autenticat.

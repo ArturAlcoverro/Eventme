@@ -1,4 +1,4 @@
-package com.androidprog2.eventme.Persistance.API;
+package com.androidprog2.eventme.persistance.API;
 
 public interface ChatDAO {
     // POST /messages	Crea un missatge
