@@ -5,6 +5,8 @@ import androidx.appcompat.app.AppCompatActivity;
 import android.annotation.SuppressLint;
 import android.content.Intent;
 import android.os.Bundle;
+import android.text.Editable;
+import android.text.TextWatcher;
 import android.view.Gravity;
 import android.view.KeyEvent;
 import android.view.View;
@@ -31,6 +33,8 @@ public class LoginActivity extends AppCompatActivity {
     private TextInputLayout textInputLayoutEmail;
     private TextInputLayout textInputLayoutPassword;
 
+    private boolean validation = false;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -39,10 +43,38 @@ public class LoginActivity extends AppCompatActivity {
         Intent registerIntent = new Intent(this, RegisterActivity.class);
         Intent mainIntent = new Intent(this, MainActivity.class);
 
-        textInputLayoutEmail = findViewById(R.id.login_nickname);
-        textInputLayoutPassword = findViewById(R.id.login_password);
         signUpBtn = (MaterialButton) findViewById(R.id.loginToRegisterBtn);
         loginBtn = (MaterialButton) findViewById(R.id.login_btn);
+
+        textInputLayoutEmail = findViewById(R.id.login_nickname);
+        textInputLayoutEmail.getEditText().addTextChangedListener(new TextWatcher() {
+            @Override
+            public void beforeTextChanged(CharSequence s, int start, int count, int after) { }
+
+            @Override
+            public void onTextChanged(CharSequence s, int start, int before, int count) {
+                validateEmail(s);
+            }
+
+            @Override
+            public void afterTextChanged(Editable s) {
+
+            }
+        });
+
+        textInputLayoutPassword = findViewById(R.id.login_password);
+        textInputLayoutPassword.getEditText().addTextChangedListener(new TextWatcher() {
+            @Override
+            public void beforeTextChanged(CharSequence s, int start, int count, int after) { }
+
+            @Override
+            public void onTextChanged(CharSequence s, int start, int before, int count) {
+                validatePassword(s);
+            }
+
+            @Override
+            public void afterTextChanged(Editable s) { }
+        });
 
         loginBtn.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -86,38 +118,30 @@ public class LoginActivity extends AppCompatActivity {
                 startActivity(registerIntent);
             }
         });
+    }
 
-        textInputLayoutEmail.getEditText().setOnFocusChangeListener(new View.OnFocusChangeListener() {
-            @Override
-            public void onFocusChange(View v, boolean hasFocus) {
-                if(hasFocus){
-                    textInputLayoutEmail.setError(null);
-                    textInputLayoutEmail.setErrorEnabled(false);
-                }
+    public boolean validateEmail(CharSequence email){
+        if(email.length() != 0){
+            if(isEmailValid(email.toString())){
+                return true;
+            }else{
+                return false;
             }
-        });
+        }else{
+            textInputLayoutEmail.setError(getString(R.string.login_email_error));
+            return false;
+        }
+    }
 
-        textInputLayoutPassword.getEditText().setOnFocusChangeListener(new View.OnFocusChangeListener() {
-            @Override
-            public void onFocusChange(View v, boolean hasFocus) {
-                if(hasFocus){
-                    textInputLayoutPassword.setError(null);
-                    textInputLayoutPassword.setErrorEnabled(false);
-                }
-            }
-        });
+    public boolean validatePassword(CharSequence password){
+        if(password.length() != 0){
+            return true;
+        }
+        return false;
+    }
 
-        textInputLayoutPassword.getEditText().setOnEditorActionListener(new TextView.OnEditorActionListener() {
-            @Override
-            public boolean onEditorAction(TextView v, int actionId, KeyEvent event) {
-                boolean handled = false;
-                if (actionId == EditorInfo.IME_ACTION_SEND && event.getAction() == KeyEvent.KEYCODE_ENTER) {
-                    loginBtn.performClick();
-                    handled = true;
-                }
-                return handled;
-            }
-        });
+    public boolean validateData(){
+        
     }
 
     public static boolean isEmailValid(String email) {
