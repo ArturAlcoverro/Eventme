@@ -49,7 +49,8 @@ public class LoginActivity extends AppCompatActivity {
         textInputLayoutEmail = findViewById(R.id.login_nickname);
         textInputLayoutEmail.getEditText().addTextChangedListener(new TextWatcher() {
             @Override
-            public void beforeTextChanged(CharSequence s, int start, int count, int after) { }
+            public void beforeTextChanged(CharSequence s, int start, int count, int after) {
+            }
 
             @Override
             public void onTextChanged(CharSequence s, int start, int before, int count) {
@@ -65,7 +66,8 @@ public class LoginActivity extends AppCompatActivity {
         textInputLayoutPassword = findViewById(R.id.login_password);
         textInputLayoutPassword.getEditText().addTextChangedListener(new TextWatcher() {
             @Override
-            public void beforeTextChanged(CharSequence s, int start, int count, int after) { }
+            public void beforeTextChanged(CharSequence s, int start, int count, int after) {
+            }
 
             @Override
             public void onTextChanged(CharSequence s, int start, int before, int count) {
@@ -73,7 +75,8 @@ public class LoginActivity extends AppCompatActivity {
             }
 
             @Override
-            public void afterTextChanged(Editable s) { }
+            public void afterTextChanged(Editable s) {
+            }
         });
 
         loginBtn.setOnClickListener(new View.OnClickListener() {
@@ -83,25 +86,25 @@ public class LoginActivity extends AppCompatActivity {
                 textInputLayoutPassword.getEditText().clearFocus();
 
                 String email = textInputLayoutEmail.getEditText().getText().toString();
-                String password =  textInputLayoutPassword.getEditText().getText().toString();
+                String password = textInputLayoutPassword.getEditText().getText().toString();
                 boolean errorControl = false;
-                if(password.isEmpty()){
+                if (password.isEmpty()) {
                     textInputLayoutPassword.setError(getString(R.string.login_password_error));
                     errorControl = true;
                 }
-                if(email.isEmpty()){
+                if (email.isEmpty()) {
                     textInputLayoutEmail.setError(getString(R.string.login_email_error));
                     errorControl = true;
-                } else if(!isEmailValid(email)){
+                } else if (!isEmailValid(email)) {
                     textInputLayoutEmail.setError(getString(R.string.login_email_syntax_error));
                     errorControl = true;
                 }
 
-                if(!errorControl) {
+                if (!errorControl) {
                     User user = new User(0, null, null, null, email, password);
                     //Fetch a la api endpoint login
 
-                    if (2==1) {   //si el login es correcte
+                    if (2 == 1) {   //si el login es correcte
                         startActivity(mainIntent);
                     } else {
                         Toast toast = Toast.makeText(getApplicationContext(), getString(R.string.login_incorrect), Toast.LENGTH_LONG);
@@ -120,28 +123,28 @@ public class LoginActivity extends AppCompatActivity {
         });
     }
 
-    public boolean validateEmail(CharSequence email){
-        if(email.length() != 0){
-            if(isEmailValid(email.toString())){
+    public boolean validateEmail(CharSequence email) {
+        if (email.length() != 0) {
+            if (isEmailValid(email.toString())) {
                 return true;
-            }else{
+            } else {
                 return false;
             }
-        }else{
+        } else {
             textInputLayoutEmail.setError(getString(R.string.login_email_error));
             return false;
         }
     }
 
-    public boolean validatePassword(CharSequence password){
-        if(password.length() != 0){
+    public boolean validatePassword(CharSequence password) {
+        if (password.length() != 0) {
             return true;
         }
         return false;
     }
 
-    public boolean validateData(){
-        
+    public boolean validateData() {
+        return false;
     }
 
     public static boolean isEmailValid(String email) {

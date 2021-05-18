@@ -1,11 +1,6 @@
-package com.androidprog2.eventme.persistance.API;
-
-import android.app.Activity;
-import android.util.Log;
+package com.androidprog2.eventme.Persistance.API;
 
 import com.androidprog2.eventme.business.User;
-import com.google.gson.Gson;
-import com.google.gson.GsonBuilder;
 
 import java.io.File;
 
@@ -20,16 +15,17 @@ public class CallSingelton {
 
     private CallSingelton instance;
 
-    private CallSingelton() {}
+    private CallSingelton() {
+    }
 
-    public CallSingelton getInstance(){
+    public CallSingelton getInstance() {
         if (instance == null) {
             instance = new CallSingelton();
         }
         return instance;
     }
 
-    private void createUser(String firstName, String lastName, File image, String email, String password, Callback callback ) {
+    private void createUser(String firstName, String lastName, File image, String email, String password, Callback callback) {
         Retrofit retrofit = APIConnector.getRetrofitInstance();
         UserDAO userDAO = retrofit.create(UserDAO.class);
 
