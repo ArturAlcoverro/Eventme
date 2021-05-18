@@ -53,13 +53,11 @@ public class LoginActivity extends AppCompatActivity {
 
             @Override
             public void onTextChanged(CharSequence s, int start, int before, int count) {
-                validateEmail(s);
+                validateEmail(s.toString());
             }
 
             @Override
-            public void afterTextChanged(Editable s) {
-
-            }
+            public void afterTextChanged(Editable s) { }
         });
 
         textInputLayoutPassword = findViewById(R.id.login_password);
@@ -69,7 +67,7 @@ public class LoginActivity extends AppCompatActivity {
 
             @Override
             public void onTextChanged(CharSequence s, int start, int before, int count) {
-                validatePassword(s);
+                validatePassword(s.toString());
             }
 
             @Override
@@ -82,22 +80,9 @@ public class LoginActivity extends AppCompatActivity {
                 textInputLayoutEmail.getEditText().clearFocus();
                 textInputLayoutPassword.getEditText().clearFocus();
 
-                String email = textInputLayoutEmail.getEditText().getText().toString();
-                String password =  textInputLayoutPassword.getEditText().getText().toString();
-                boolean errorControl = false;
-                if(password.isEmpty()){
-                    textInputLayoutPassword.setError(getString(R.string.login_password_error));
-                    errorControl = true;
-                }
-                if(email.isEmpty()){
-                    textInputLayoutEmail.setError(getString(R.string.login_email_error));
-                    errorControl = true;
-                } else if(!isEmailValid(email)){
-                    textInputLayoutEmail.setError(getString(R.string.login_email_syntax_error));
-                    errorControl = true;
-                }
-
-                if(!errorControl) {
+                if(validateData()) {
+                    String email = textInputLayoutEmail.getEditText().getText().toString();
+                    String password =  textInputLayoutPassword.getEditText().getText().toString();
                     User user = new User(0, null, null, null, email, password);
                     //Fetch a la api endpoint login
 
@@ -120,28 +105,37 @@ public class LoginActivity extends AppCompatActivity {
         });
     }
 
-    public boolean validateEmail(CharSequence email){
-        if(email.length() != 0){
-            if(isEmailValid(email.toString())){
+    public boolean validateEmail(String email){
+        if(!email.isEmpty()){
+            if(isEmailValid(email)){
+                textInputLayoutEmail.setErrorEnabled(false);
                 return true;
-            }else{
-                return false;
             }
-        }else{
-            textInputLayoutEmail.setError(getString(R.string.login_email_error));
+            textInputLayoutEmail.setError(getString(R.string.login_email_syntax_error));
             return false;
         }
+        textInputLayoutEmail.setError(getString(R.string.login_email_error));
+        return false;
     }
 
-    public boolean validatePassword(CharSequence password){
-        if(password.length() != 0){
+    public boolean validatePassword(String password){
+        if(!password.isEmpty()){
+            textInputLayoutPassword.setErrorEnabled(false);
             return true;
         }
+        textInputLayoutPassword.setError(getString(R.string.login_password_error));
         return false;
     }
 
     public boolean validateData(){
-        
+        boolean error = true;
+        if(!validateEmail(textInputLayoutEmail.getEditText().getText().toString())){
+            error = false;
+        }
+        if(!validatePassword(textInputLayoutPassword.getEditText().getText().toString())){
+            error = false;
+        }
+        return error;
     }
 
     public static boolean isEmailValid(String email) {
