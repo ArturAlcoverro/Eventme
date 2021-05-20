@@ -240,6 +240,7 @@
                         tools:layout_editor_absoluteX="50dp">
 
                         <AutoCompleteTextView
+                            android:id="@+id/dropdown_menu_Category"
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
                             android:inputType="none" />
@@ -248,7 +249,6 @@
 
                     <com.google.android.material.textfield.TextInputLayout
                         android:id="@+id/createEvent_capacity"
-                        style="@style/Widget.MaterialComponents.TextInputLayout.FilledBox.ExposedDropdownMenu"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:layout_marginLeft="8dp"
@@ -259,10 +259,11 @@
                         app:layout_constraintTop_toBottomOf="@+id/endLayout"
                         tools:layout_editor_absoluteX="50dp">
 
-                        <AutoCompleteTextView
+                        <com.google.android.material.textfield.TextInputEditText
+                            style="@style/Style.Eventme.TextInput"
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
-                            android:inputType="none" />
+                            android:inputType="number" />
 
                     </com.google.android.material.textfield.TextInputLayout>
                 </LinearLayout>

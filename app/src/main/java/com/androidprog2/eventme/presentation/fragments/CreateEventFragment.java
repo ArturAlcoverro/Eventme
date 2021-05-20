@@ -4,11 +4,20 @@ import android.os.Bundle;
 
 import androidx.fragment.app.Fragment;
 
+import android.text.Editable;
+import android.text.TextUtils;
+import android.text.TextWatcher;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.AdapterView;
+import android.widget.ArrayAdapter;
+import android.widget.AutoCompleteTextView;
 
 import com.androidprog2.eventme.R;
+import com.androidprog2.eventme.presentation.activities.MainActivity;
+import com.google.android.material.button.MaterialButton;
+import com.google.android.material.textfield.TextInputLayout;
 
 /**
  * A simple {@link Fragment} subclass.
@@ -25,6 +34,18 @@ public class CreateEventFragment extends Fragment {
     // TODO: Rename and change types of parameters
     private String mParam1;
     private String mParam2;
+
+    private MaterialButton createBtn;
+    private MaterialButton uploadBtn;
+
+    private TextInputLayout nameInput;
+    private TextInputLayout locationInput;
+    private TextInputLayout descriptionInput;
+    private TextInputLayout capacityInput;
+    private TextInputLayout categroyInput;
+    private AutoCompleteTextView autoCompleteCategory;
+
+    private String selectedCategory;
 
     public CreateEventFragment() {
         // Required empty public constructor
@@ -61,6 +82,184 @@ public class CreateEventFragment extends Fragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
-        return inflater.inflate(R.layout.fragment_create_event, container, false);
+        View view =  inflater.inflate(R.layout.fragment_create_event, container, false);
+        uploadBtn = (MaterialButton) view.findViewById(R.id.upload_btn);
+        createBtn = (MaterialButton) view.findViewById(R.id.create_btn);
+
+        nameInput = view.findViewById(R.id.createEvent_name);
+        locationInput = view.findViewById(R.id.createEvent_location);
+        descriptionInput = view.findViewById(R.id.createEvent_description);
+        capacityInput = view.findViewById(R.id.createEvent_capacity);
+        categroyInput = view.findViewById(R.id.createEvent_category);
+        autoCompleteCategory = view.findViewById(R.id.dropdown_menu_Category);
+
+        loadDropDownMenuCategory();
+        validationListeners();
+
+        uploadBtn.setOnClickListener(v -> { System.out.println("upload clicked"); });
+        createBtn.setOnClickListener(v -> { createEvent(); });
+
+        return view;
+    }
+
+    public void createEvent(){
+        if(validateData()){
+            System.out.println("hola he clicat");
+        }
+    }
+
+    public void loadDropDownMenuCategory(){
+        selectedCategory = null;
+        String[] category = new String[] {"Music", "Education", "Games", "Travel"};
+        ArrayAdapter<String> adapter = new ArrayAdapter<>(getContext(),
+                R.layout.list_item_dropdown_menu,
+                category);
+        autoCompleteCategory.setAdapter(adapter);
+    }
+
+    public void validationListeners(){
+        autoCompleteCategory.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
+            @Override
+            public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
+                selectedCategory = parent.getItemAtPosition(position).toString();
+                System.out.println(selectedCategory);
+            }
+
+            @Override
+            public void onNothingSelected(AdapterView<?> parent) {
+
+            }
+        });
+
+        nameInput.getEditText().addTextChangedListener(new TextWatcher() {
+            @Override
+            public void beforeTextChanged(CharSequence s, int start, int count, int after) { }
+
+            @Override
+            public void onTextChanged(CharSequence s, int start, int before, int count) {
+                validateName(s.toString());
+            }
+
+            @Override
+            public void afterTextChanged(Editable s) { }
+        });
+
+        locationInput.getEditText().addTextChangedListener(new TextWatcher() {
+            @Override
+            public void beforeTextChanged(CharSequence s, int start, int count, int after) { }
+
+            @Override
+            public void onTextChanged(CharSequence s, int start, int before, int count) {
+                validateLocation(s.toString());
+            }
+
+            @Override
+            public void afterTextChanged(Editable s) { }
+        });
+
+        descriptionInput.getEditText().addTextChangedListener(new TextWatcher() {
+            @Override
+            public void beforeTextChanged(CharSequence s, int start, int count, int after) { }
+
+            @Override
+            public void onTextChanged(CharSequence s, int start, int before, int count) {
+                validateDescription(s.toString());
+            }
+
+            @Override
+            public void afterTextChanged(Editable s) { }
+        });
+
+        capacityInput.getEditText().addTextChangedListener(new TextWatcher() {
+            @Override
+            public void beforeTextChanged(CharSequence s, int start, int count, int after) { }
+
+            @Override
+            public void onTextChanged(CharSequence s, int start, int before, int count) {
+                validateCapacity(s.toString());
+            }
+
+            @Override
+            public void afterTextChanged(Editable s) { }
+        });
+
+        nameInput.getEditText().setOnFocusChangeListener((v, hasFocus) -> {
+            if(!hasFocus) validateName(nameInput.getEditText().getText().toString());
+        });
+
+        locationInput.getEditText().setOnFocusChangeListener((v, hasFocus) -> {
+           if(!hasFocus) validateLocation(locationInput.getEditText().getText().toString());
+        });
+
+        descriptionInput.getEditText().setOnFocusChangeListener((v, hasFocus) -> {
+            if(!hasFocus) validateDescription(descriptionInput.getEditText().getText().toString());
+        });
+
+        capacityInput.getEditText().setOnFocusChangeListener((v, hasFocus) -> {
+            if(!hasFocus) validateCapacity(capacityInput.getEditText().getText().toString());
+        });
+
+        categroyInput.getEditText().setOnFocusChangeListener((v, hasFocus) -> {
+            if(!hasFocus) validateCategory();
+        });
+    }
+
+    public boolean validateName(String name){
+        if(!name.isEmpty()){
+            nameInput.setErrorEnabled(false);
+            return true;
+        }
+        nameInput.setError(getString(R.string.createEvent_name_error));
+        return false;
+    }
+
+    public boolean validateLocation(String location){
+        if(!location.isEmpty()){
+            locationInput.setErrorEnabled(false);
+            return true;
+        }
+        locationInput.setError(getString(R.string.createEvent_location_error));
+        return false;
+    }
+
+    public boolean validateDescription(String description){
+        if(!description.isEmpty()){
+            descriptionInput.setErrorEnabled(false);
+            return true;
+        }
+        descriptionInput.setError(getString(R.string.createEvent_description_error));
+        return false;
+    }
+
+    public boolean validateCapacity(String capacity){
+        if(!capacity.isEmpty()){
+            if(TextUtils.isDigitsOnly(capacity)){
+                capacityInput.setErrorEnabled(false);
+                return true;
+            }
+            capacityInput.setError(getString(R.string.createEvent_capacity_error_syntax));
+            return false;
+        }
+        capacityInput.setError(getString(R.string.createEvent_capacity_error));
+        return false;
+    }
+
+    public boolean validateCategory(){
+        if(selectedCategory != null){
+            categroyInput.setErrorEnabled(false);
+            return true;
+        }
+        categroyInput.setError(getString(R.string.createEvent_capacity_error));
+        return false;
+    }
+
+    public boolean validateData(){
+        boolean error = true;
+        if(!validateName(nameInput.getEditText().getText().toString())) error = false;
+        if(!validateLocation(locationInput.getEditText().getText().toString())) error = false;
+        if(!validateDescription(descriptionInput.getEditText().getText().toString())) error = false;
+        if(!validateCategory()) error = false;
+        if(!validateCapacity(capacityInput.getEditText().getText().toString())) error = false;
+        return error;
     }
 }

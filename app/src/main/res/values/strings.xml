@@ -59,6 +59,12 @@
     <string name="createEvent_category_label">Category</string>
     <string name="createEvent_capacity_label">Capacity</string>
     <string name="createEvent_icon_calendar">Calendar Icon</string>
+    <string name="createEvent_name_error">Missing name field</string>
+    <string name="createEvent_location_error">Missing location field</string>
+    <string name="createEvent_description_error">Missing description field</string>
+    <string name="createEvent_capacity_error">Missing capacity field</string>
+    <string name="createEvent_capacity_error_syntax">Field must be a number</string>
+    <string name="createEvent_categroy_error">Missing category field</string>
 
     <!-- EditProfileFragment Strings-->
     <string name="editProfile_apply_btn">Apply changes</string>
