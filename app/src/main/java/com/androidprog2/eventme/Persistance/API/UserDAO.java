@@ -7,8 +7,8 @@ import java.util.ArrayList;
 import okhttp3.MultipartBody;
 import okhttp3.RequestBody;
 import retrofit2.Call;
-import retrofit2.http.Body;
-import retrofit2.http.Headers;
+import retrofit2.http.Field;
+import retrofit2.http.FormUrlEncoded;
 import retrofit2.http.Multipart;
 import retrofit2.http.POST;
 import retrofit2.http.Part;
@@ -18,13 +18,9 @@ public interface UserDAO {
     // POST /users	Crea un usuari amb els següents parámetres
     @Multipart
     @POST("users")
-    Call<User> createUser(
-            @Part("name") RequestBody name,
-            @Part("last_name") RequestBody last_name,
-            @Part("image") MultipartBody.Part image,
-            @Part("email") RequestBody email,
-            @Part("password") RequestBody password
-    );
+    Call<User> createUser(@Part("name") RequestBody name, @Part("last_name") RequestBody last_name,
+                          @Part("image") MultipartBody.Part image, @Part("email") RequestBody email,
+                          @Part("password") RequestBody password);
 //                "name" : "John",
 //                "last_name" : "Doe",
 //                "email" : "jonh@doe.com",
@@ -32,7 +28,14 @@ public interface UserDAO {
 
     // POST /users/login	Autentica al usuari
     @POST("users/login")
-    Call<String> loginUser(User user);
+    @FormUrlEncoded
+    Call<String> loginUser(@Field("email") String email, @Field("password") String password);
+    /*
+    {
+        "email" : "jonh@doe.com",
+        "password" : "i<3cats"
+    }
+    */
 
     // GET /users	Retorna tots el ususaris
     public ArrayList<User> getAllUsers();

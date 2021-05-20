@@ -12,13 +12,13 @@ import retrofit2.Callback;
 import retrofit2.Retrofit;
 
 public class CallSingelton {
+    private static CallSingelton instance;
+    private String token;
 
-    private CallSingelton instance;
-
-    private CallSingelton() {
+    public CallSingelton() {
     }
 
-    public CallSingelton getInstance() {
+    public static CallSingelton getInstance() {
         if (instance == null) {
             instance = new CallSingelton();
         }
@@ -32,6 +32,7 @@ public class CallSingelton {
         RequestBody requestFile = RequestBody.create(MediaType.parse("multipart/form-data"), image);
         MultipartBody.Part requestImage = MultipartBody.Part.createFormData("image", image.getName(), requestFile);
 
+
         Call<User> call = userDAO.createUser(
                 RequestBody.create(MultipartBody.FORM, firstName),
                 RequestBody.create(MultipartBody.FORM, lastName),
@@ -40,5 +41,20 @@ public class CallSingelton {
                 RequestBody.create(MultipartBody.FORM, password));
 
         call.enqueue(callback);
+    }
+
+    public void loginUser(User user, Callback callback) {
+        UserDAO userDAO = APIConnector.getRetrofitInstance().create(UserDAO.class);
+        Call<String> call = userDAO.loginUser(user.getEmail(), user.getPassword());
+        call.enqueue(callback);
+    }
+
+
+    public String getToken() {
+        return token;
+    }
+
+    public void setToken(String token) {
+        this.token = token;
     }
 }
