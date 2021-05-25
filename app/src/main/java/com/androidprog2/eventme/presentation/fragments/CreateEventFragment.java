@@ -1,5 +1,6 @@
 package com.androidprog2.eventme.presentation.fragments;
 
+import android.content.Context;
 import android.os.Bundle;
 
 import androidx.fragment.app.Fragment;
@@ -7,12 +8,16 @@ import androidx.fragment.app.Fragment;
 import android.text.Editable;
 import android.text.TextUtils;
 import android.text.TextWatcher;
+import android.view.KeyEvent;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.view.inputmethod.EditorInfo;
+import android.view.inputmethod.InputMethodManager;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.AutoCompleteTextView;
+import android.widget.TextView;
 
 import com.androidprog2.eventme.R;
 import com.androidprog2.eventme.presentation.activities.MainActivity;
@@ -41,6 +46,10 @@ public class CreateEventFragment extends Fragment {
     private TextInputLayout nameInput;
     private TextInputLayout locationInput;
     private TextInputLayout descriptionInput;
+    private TextInputLayout startDateInput;
+    private TextInputLayout endDateInput;
+    private TextInputLayout startTimeInput;
+    private TextInputLayout endTimeInput;
     private TextInputLayout capacityInput;
     private TextInputLayout categroyInput;
     private AutoCompleteTextView autoCompleteCategory;
@@ -89,6 +98,10 @@ public class CreateEventFragment extends Fragment {
         nameInput = view.findViewById(R.id.createEvent_name);
         locationInput = view.findViewById(R.id.createEvent_location);
         descriptionInput = view.findViewById(R.id.createEvent_description);
+        startDateInput = view.findViewById(R.id.createEvent_startDate);
+        endDateInput = view.findViewById(R.id.createEvent_endDate);
+        startTimeInput = view.findViewById(R.id.createEvent_startTime);
+        endTimeInput = view.findViewById(R.id.createEvent_endTime);
         capacityInput = view.findViewById(R.id.createEvent_capacity);
         categroyInput = view.findViewById(R.id.createEvent_category);
         autoCompleteCategory = view.findViewById(R.id.dropdown_menu_Category);
@@ -201,6 +214,48 @@ public class CreateEventFragment extends Fragment {
 
         categroyInput.getEditText().setOnFocusChangeListener((v, hasFocus) -> {
             if(!hasFocus) validateCategory();
+        });
+
+        startDateInput.getEditText().setOnEditorActionListener((v, actionId, event) -> {
+            if(actionId == EditorInfo.IME_ACTION_UNSPECIFIED){
+                startTimeInput.requestFocus();
+                return true;
+            }
+            return false;
+        });
+
+        startTimeInput.getEditText().setOnEditorActionListener((v, actionId, event) -> {
+            if(actionId == EditorInfo.IME_ACTION_UNSPECIFIED){
+                endDateInput.requestFocus();
+                return true;
+            }
+            return false;
+        });
+
+        endDateInput.getEditText().setOnEditorActionListener((v, actionId, event) -> {
+            if(actionId == EditorInfo.IME_ACTION_UNSPECIFIED){
+                endTimeInput.requestFocus();
+                return true;
+            }
+            return false;
+        });
+
+        endTimeInput.getEditText().setOnEditorActionListener((v, actionId, event) -> {
+            if(actionId == EditorInfo.IME_ACTION_UNSPECIFIED){
+                categroyInput.requestFocus();
+                return true;
+            }
+            return false;
+        });
+
+        capacityInput.getEditText().setOnEditorActionListener((v, actionId, event) -> {
+            if(actionId == EditorInfo.IME_ACTION_UNSPECIFIED){
+                //hidekeyboard
+                capacityInput.clearFocus();
+                createEvent();
+                return true;
+            }
+            return false;
         });
     }
 
