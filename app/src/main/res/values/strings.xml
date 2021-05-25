@@ -65,6 +65,11 @@
     <string name="createEvent_capacity_error">Missing capacity field</string>
     <string name="createEvent_capacity_error_syntax">Field must be a number</string>
     <string name="createEvent_categroy_error">Missing category field</string>
+    <string name="createEvent_startDate_error">Missing StartDate field</string>
+    <string name="createEvent_endDate_error">Missing EndDate field</string>
+    <string name="createEvent_startTime_error">Missing StartTime field</string>
+    <string name="createEvent_endTime_error">Missing EndTime field</string>
+    <string name="cancel">Cancel</string>
 
     <!-- EditProfileFragment Strings-->
     <string name="editProfile_apply_btn">Apply changes</string>

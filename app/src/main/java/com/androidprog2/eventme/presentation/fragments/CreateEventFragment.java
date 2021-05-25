@@ -1,11 +1,13 @@
 package com.androidprog2.eventme.presentation.fragments;
 
+import android.app.DatePickerDialog;
 import android.content.Context;
 import android.os.Bundle;
 
 import androidx.fragment.app.Fragment;
 
 import android.text.Editable;
+import android.text.InputType;
 import android.text.TextUtils;
 import android.text.TextWatcher;
 import android.view.KeyEvent;
@@ -17,12 +19,17 @@ import android.view.inputmethod.InputMethodManager;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.AutoCompleteTextView;
+import android.widget.DatePicker;
 import android.widget.TextView;
 
 import com.androidprog2.eventme.R;
 import com.androidprog2.eventme.presentation.activities.MainActivity;
 import com.google.android.material.button.MaterialButton;
 import com.google.android.material.textfield.TextInputLayout;
+
+import java.text.SimpleDateFormat;
+import java.util.Calendar;
+import java.util.Locale;
 
 /**
  * A simple {@link Fragment} subclass.
@@ -55,6 +62,8 @@ public class CreateEventFragment extends Fragment {
     private AutoCompleteTextView autoCompleteCategory;
 
     private String selectedCategory;
+    private boolean isStartDateOrEnd;
+    private final Calendar myCalendar = Calendar.getInstance();
 
     public CreateEventFragment() {
         // Required empty public constructor
@@ -106,6 +115,9 @@ public class CreateEventFragment extends Fragment {
         categroyInput = view.findViewById(R.id.createEvent_category);
         autoCompleteCategory = view.findViewById(R.id.dropdown_menu_Category);
 
+        startDateInput.getEditText().setInputType(InputType.TYPE_NULL);
+        endDateInput.getEditText().setInputType(InputType.TYPE_NULL);
+
         loadDropDownMenuCategory();
         validationListeners();
 
@@ -143,6 +155,18 @@ public class CreateEventFragment extends Fragment {
 
             }
         });
+
+        DatePickerDialog.OnDateSetListener date = new DatePickerDialog.OnDateSetListener() {
+
+            @Override
+            public void onDateSet(DatePicker view, int year, int monthOfYear,
+                                  int dayOfMonth) {
+                myCalendar.set(Calendar.YEAR, year);
+                myCalendar.set(Calendar.MONTH, monthOfYear);
+                myCalendar.set(Calendar.DAY_OF_MONTH, dayOfMonth);
+                updateLabel();
+            }
+        };
 
         nameInput.getEditText().addTextChangedListener(new TextWatcher() {
             @Override
@@ -216,6 +240,28 @@ public class CreateEventFragment extends Fragment {
             if(!hasFocus) validateCategory();
         });
 
+        startDateInput.getEditText().setOnFocusChangeListener((v, hasFocus) -> {
+            if(hasFocus){
+                isStartDateOrEnd = true;
+                new DatePickerDialog(getContext(), date, myCalendar
+                        .get(Calendar.YEAR), myCalendar.get(Calendar.MONTH),
+                        myCalendar.get(Calendar.DAY_OF_MONTH)).show();
+            }else{
+                validateStartDate(startDateInput.getEditText().getText().toString());
+            }
+        });
+
+        endDateInput.getEditText().setOnFocusChangeListener((v, hasFocus) -> {
+            if(hasFocus){
+                isStartDateOrEnd = false;
+                new DatePickerDialog(getContext(), date, myCalendar
+                        .get(Calendar.YEAR), myCalendar.get(Calendar.MONTH),
+                        myCalendar.get(Calendar.DAY_OF_MONTH)).show();
+            }else{
+                validateEndDate(endDateInput.getEditText().getText().toString());
+            }
+        });
+
         startDateInput.getEditText().setOnEditorActionListener((v, actionId, event) -> {
             if(actionId == EditorInfo.IME_ACTION_UNSPECIFIED){
                 startTimeInput.requestFocus();
@@ -252,7 +298,6 @@ public class CreateEventFragment extends Fragment {
             if(actionId == EditorInfo.IME_ACTION_UNSPECIFIED){
                 //hidekeyboard
                 capacityInput.clearFocus();
-                createEvent();
                 return true;
             }
             return false;
@@ -286,6 +331,32 @@ public class CreateEventFragment extends Fragment {
         return false;
     }
 
+    public boolean validateStartDate(String startDate){
+        if(!startDate.isEmpty()){
+            startDateInput.setErrorEnabled(false);
+            return true;
+        }
+        startDateInput.setError(getString(R.string.createEvent_startDate_error));
+        return false;
+    }
+
+    public boolean validateEndDate(String endDate){
+        if(!endDate.isEmpty()){
+            endDateInput.setErrorEnabled(false);
+            return true;
+        }
+        endDateInput.setError(getString(R.string.createEvent_endDate_error));
+        return false;
+    }
+
+    public boolean validateStartTime(String startTime){
+        return false;
+    }
+
+    public boolean validateEndTime(String endTime){
+        return false;
+    }
+
     public boolean validateCapacity(String capacity){
         if(!capacity.isEmpty()){
             if(TextUtils.isDigitsOnly(capacity)){
@@ -316,5 +387,16 @@ public class CreateEventFragment extends Fragment {
         if(!validateCategory()) error = false;
         if(!validateCapacity(capacityInput.getEditText().getText().toString())) error = false;
         return error;
+    }
+
+    private void updateLabel() {
+        String myFormat = "dd/MM/yy"; //In which you need put here
+        SimpleDateFormat sdf = new SimpleDateFormat(myFormat, Locale.UK);
+
+        if(isStartDateOrEnd){
+            startDateInput.getEditText().setText(sdf.format(myCalendar.getTime()));
+        }else{
+            endDateInput.getEditText().setText(sdf.format(myCalendar.getTime()));
+        }
     }
 }
