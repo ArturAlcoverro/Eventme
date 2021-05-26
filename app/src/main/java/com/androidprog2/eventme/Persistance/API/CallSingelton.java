@@ -9,6 +9,8 @@ import java.io.IOException;
 import java.io.InputStream;
 import java.io.UnsupportedEncodingException;
 
+import com.androidprog2.eventme.persistance.API.UserDAO;
+import com.androidprog2.eventme.persistance.API.APIConnector;
 import okhttp3.MediaType;
 import okhttp3.MultipartBody;
 import okhttp3.RequestBody;

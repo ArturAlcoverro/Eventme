@@ -1,4 +1,4 @@
-package com.androidprog2.eventme.Persistance.API;
+package com.androidprog2.eventme.persistance.API;
 
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
