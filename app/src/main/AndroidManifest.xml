@@ -3,6 +3,8 @@
     package="com.androidprog2.eventme">
 
     <uses-permission android:name="android.permission.INTERNET" />
+    <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
+    <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE" />
 
     <application
         android:allowBackup="true"
@@ -18,7 +20,7 @@
         <activity android:name=".presentation.activities.ChatActivity" />
         <activity android:name=".presentation.activities.EventDetailActivity" />
         <activity android:name=".presentation.activities.RegisterActivity"
-            android:noHistory="true"/>
+            />
         <activity android:name=".presentation.activities.LoginActivity"
             android:noHistory="true"/>
         <activity android:name=".presentation.activities.StartActivity"
