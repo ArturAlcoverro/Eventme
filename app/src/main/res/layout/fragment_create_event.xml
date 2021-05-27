@@ -7,6 +7,7 @@
     tools:context=".presentation.fragments.CreateEventFragment">
 
     <ScrollView
+        android:id="@+id/scroll_create_event"
         android:layout_width="match_parent"
         android:layout_height="match_parent">
 
@@ -43,6 +44,7 @@
                     tools:layout_editor_absoluteX="15dp">
 
                     <ImageView
+                        android:id="@+id/eventImage"
                         android:layout_width="80dp"
                         android:layout_height="80dp"
                         android:layout_gravity="center"
@@ -96,7 +98,6 @@
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:singleLine="true"
-                        android:imeOptions="actionNext"
                         />
 
                 </com.google.android.material.textfield.TextInputLayout>
@@ -114,8 +115,7 @@
                         style="@style/Style.Eventme.TextInput"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:singleLine="true"
-                        android:imeOptions="actionNext"/>
+                        android:singleLine="true" />
 
                 </com.google.android.material.textfield.TextInputLayout>
 
@@ -280,7 +280,6 @@
                             style="@style/Style.Eventme.TextInput"
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
-                            android:imeOptions="actionGo"
                             android:singleLine="true"
                             android:inputType="number"
                              />

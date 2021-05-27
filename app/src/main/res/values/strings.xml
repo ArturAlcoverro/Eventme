@@ -95,6 +95,13 @@
     <string name="home_chip_music">Music</string>
     <string name="home_chip_sport">Sport</string>
     <string name="home_chip_cultural">Cultural</string>
+    <string name="home_chip_education">Education</string>
+    <string name="home_chip_travel">Travel</string>
+    <string name="home_chip_games">Games</string>
+    <string name="home_chip_technology">Technology</string>
+    <string name="home_chip_science">Science</string>
+    <string name="home_chip_art">Art</string>
+    <string name="home_chip_politics">Politics</string>
     <string name="home_chip_others">Others</string>
 
     <!-- TODO: Remove or change this placeholder text -->
