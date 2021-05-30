@@ -35,6 +35,7 @@ import android.widget.AutoCompleteTextView;
 import android.widget.DatePicker;
 import android.widget.EditText;
 import android.widget.ImageView;
+import android.widget.ProgressBar;
 import android.widget.ScrollView;
 import android.widget.TextView;
 import android.widget.TimePicker;
@@ -77,6 +78,7 @@ public class CreateEventFragment extends Fragment {
 
     private MaterialButton createBtn;
     private MaterialButton uploadBtn;
+    private ProgressBar progressBar;
     private ImageView eventImage;
     private File mImageFile;
     private ScrollView scrollView;
@@ -147,6 +149,7 @@ public class CreateEventFragment extends Fragment {
         autoCompleteCategory = view.findViewById(R.id.dropdown_menu_Category);
         eventImage = view.findViewById(R.id.eventImage);
         scrollView = view.findViewById(R.id.scroll_create_event);
+        progressBar = view.findViewById(R.id.progress_bar);
 
         startDateInput.getEditText().setInputType(InputType.TYPE_NULL);
         endDateInput.getEditText().setInputType(InputType.TYPE_NULL);
@@ -162,8 +165,10 @@ public class CreateEventFragment extends Fragment {
 
     public void createEvent(){
         if(validateData()){
+            loading(true);
             if (mImageFile != null) {
-                //call API
+                //call API i en el onresponse fer loading(false)
+
             }else {
                 //call API with default image
             }
@@ -175,7 +180,7 @@ public class CreateEventFragment extends Fragment {
         String[] category = new String[] {getString(R.string.home_chip_art), getString(R.string.home_chip_cultural),
                 getString(R.string.home_chip_education), getString(R.string.home_chip_games), getString(R.string.home_chip_music),
                 getString(R.string.home_chip_politics), getString(R.string.home_chip_science), getString(R.string.home_chip_sport),
-                getString(R.string.home_chip_technology), getString(R.string.home_chip_technology), getString(R.string.home_chip_others)};
+                getString(R.string.home_chip_technology), getString(R.string.home_chip_others)};
         ArrayAdapter<String> adapter = new ArrayAdapter<>(getContext(),
                 R.layout.list_item_dropdown_menu,
                 category);
@@ -350,22 +355,6 @@ public class CreateEventFragment extends Fragment {
             }
             return false;
         });*/
-
-        nameInput.getEditText().setOnEditorActionListener((v, actionId, event) -> {
-            if(actionId == EditorInfo.IME_ACTION_UNSPECIFIED){
-                locationInput.requestFocus();
-                return true;
-            }
-            return false;
-        });
-
-        locationInput.getEditText().setOnEditorActionListener((v, actionId, event) -> {
-            if(actionId == EditorInfo.IME_ACTION_UNSPECIFIED){
-                descriptionInput.requestFocus();
-                return true;
-            }
-            return false;
-        });
 
         capacityInput.getEditText().setOnEditorActionListener((v, actionId, event) -> {
             if(actionId == EditorInfo.IME_ACTION_UNSPECIFIED){
@@ -554,6 +543,30 @@ public class CreateEventFragment extends Fragment {
         int bytesRead;
         while ((bytesRead = input.read(buffer)) != -1) {
             output.write(buffer, 0, bytesRead);
+        }
+    }
+
+    public void loading(boolean state) {
+        boolean enable = !state;
+
+        createBtn.setEnabled(enable);
+        uploadBtn.setEnabled(enable);
+        nameInput.setEnabled(enable);
+        locationInput.setEnabled(enable);
+        descriptionInput.setEnabled(enable);
+        startDateInput.setEnabled(enable);
+        startTimeInput.setEnabled(enable);
+        endDateInput.setEnabled(enable);
+        endTimeInput.setEnabled(enable);
+        categroyInput.setEnabled(enable);
+        capacityInput.setEnabled(enable);
+
+        if (state) {
+            progressBar.setVisibility(View.VISIBLE);
+            createBtn.setVisibility(View.GONE);
+        } else {
+            progressBar.setVisibility(View.GONE);
+            createBtn.setVisibility(View.VISIBLE);
         }
     }
 
