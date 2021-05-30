@@ -65,6 +65,17 @@
     <string name="createEvent_category_label">Category</string>
     <string name="createEvent_capacity_label">Capacity</string>
     <string name="createEvent_icon_calendar">Calendar Icon</string>
+    <string name="createEvent_name_error">Missing name field</string>
+    <string name="createEvent_location_error">Missing location field</string>
+    <string name="createEvent_description_error">Missing description field</string>
+    <string name="createEvent_capacity_error">Missing capacity field</string>
+    <string name="createEvent_capacity_error_syntax">Field must be a number</string>
+    <string name="createEvent_categroy_error">Missing category field</string>
+    <string name="createEvent_startDate_error">Missing StartDate field</string>
+    <string name="createEvent_endDate_error">Missing EndDate field</string>
+    <string name="createEvent_startTime_error">Missing StartTime field</string>
+    <string name="createEvent_endTime_error">Missing EndTime field</string>
+    <string name="cancel">Cancel</string>
 
     <!-- EditProfileFragment Strings-->
     <string name="editProfile_apply_btn">Apply changes</string>
@@ -90,6 +101,13 @@
     <string name="home_chip_music">Music</string>
     <string name="home_chip_sport">Sport</string>
     <string name="home_chip_cultural">Cultural</string>
+    <string name="home_chip_education">Education</string>
+    <string name="home_chip_travel">Travel</string>
+    <string name="home_chip_games">Games</string>
+    <string name="home_chip_technology">Technology</string>
+    <string name="home_chip_science">Science</string>
+    <string name="home_chip_art">Art</string>
+    <string name="home_chip_politics">Politics</string>
     <string name="home_chip_others">Others</string>
 
     <!-- TODO: Remove or change this placeholder text -->
