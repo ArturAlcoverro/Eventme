@@ -19,6 +19,8 @@ import retrofit2.Callback;
 import retrofit2.Retrofit;
 
 public class CallSingelton {
+    private static CallSingelton instance;
+    private String token;
 
     private static CallSingelton instance;
 
@@ -69,5 +71,20 @@ public class CallSingelton {
             result.write(buffer, 0, length);
         }
         return result.toString("UTF-8");
+    }
+
+    public void loginUser(User user, Callback callback) {
+        UserDAO userDAO = APIConnector.getRetrofitInstance().create(UserDAO.class);
+        Call<String> call = userDAO.loginUser(user.getEmail(), user.getPassword());
+        call.enqueue(callback);
+    }
+
+
+    public String getToken() {
+        return token;
+    }
+
+    public void setToken(String token) {
+        this.token = token;
     }
 }
