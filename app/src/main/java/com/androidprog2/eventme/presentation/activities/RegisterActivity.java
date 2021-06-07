@@ -1,24 +1,19 @@
 package com.androidprog2.eventme.presentation.activities;
 
-import android.app.Activity;
 import android.content.ContentResolver;
-import android.content.Context;
 import android.content.Intent;
 import android.net.Uri;
 import android.os.Bundle;
 import android.os.Environment;
-import android.os.FileUtils;
 import android.text.Editable;
 import android.text.TextWatcher;
 import android.util.Log;
-import android.view.KeyEvent;
 import android.view.View;
 import android.view.inputmethod.EditorInfo;
 import android.view.inputmethod.InputMethodManager;
 import android.webkit.MimeTypeMap;
 import android.widget.ImageView;
 import android.widget.ProgressBar;
-import android.widget.TextView;
 import android.widget.Toast;
 
 import androidx.annotation.Nullable;
@@ -32,7 +27,6 @@ import com.google.android.material.button.MaterialButton;
 import com.google.android.material.textfield.TextInputLayout;
 
 import java.io.File;
-import java.io.FileNotFoundException;
 import java.io.FileOutputStream;
 import java.io.IOException;
 import java.io.InputStream;
@@ -42,8 +36,6 @@ import java.util.Date;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
-import okhttp3.MediaType;
-import okhttp3.RequestBody;
 import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
@@ -177,21 +169,23 @@ public class RegisterActivity extends AppCompatActivity implements Callback<User
                         .insertUser(firstName, lastName, DEFAULT_IMG, email, password, this);
 
         } else {
-            Toast.makeText(getApplicationContext(), "ERROR", Toast.LENGTH_SHORT).show();
+            Toast.makeText(getApplicationContext(), "ERROR", Toast.LENGTH_LONG).show();
         }
     }
 
     @Override
     public void onResponse(Call call, Response response) {
         loading(false);
-
         if (response.isSuccessful()) {
             if (response.code() == 201) {
                 goLogin();
             }
+            else if (response.code() == 400){
+                Toast.makeText(getApplicationContext(), getString(R.string.incorrect_body_error), Toast.LENGTH_LONG).show();
+            }
         } else {
             try {
-                Toast.makeText(getApplicationContext(), response.errorBody().string(), Toast.LENGTH_SHORT).show();
+                Toast.makeText(getApplicationContext(), response.errorBody().string(), Toast.LENGTH_LONG).show();
             } catch (IOException e) {
                 e.printStackTrace();
             }

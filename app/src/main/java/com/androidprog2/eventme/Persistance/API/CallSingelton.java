@@ -22,8 +22,6 @@ public class CallSingelton {
     private static CallSingelton instance;
     private String token;
 
-    private static CallSingelton instance;
-
     private CallSingelton() {
     }
 
@@ -64,22 +62,12 @@ public class CallSingelton {
         call.enqueue(callback);
     }
 
-    public String readInputString(InputStream input) throws IOException {
-        ByteArrayOutputStream result = new ByteArrayOutputStream();
-        byte[] buffer = new byte[1024];
-        for (int length; (length = input.read(buffer)) != -1; ) {
-            result.write(buffer, 0, length);
-        }
-        return result.toString("UTF-8");
-    }
-
     public void loginUser(User user, Callback callback) {
         UserDAO userDAO = APIConnector.getRetrofitInstance().create(UserDAO.class);
         Call<String> call = userDAO.loginUser(user.getEmail(), user.getPassword());
         call.enqueue(callback);
     }
-
-
+    
     public String getToken() {
         return token;
     }

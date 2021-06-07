@@ -68,12 +68,12 @@ public class HomeFragment extends Fragment implements ViewPager2.PageTransformer
 
         ArrayList<Event> events = new ArrayList<>();
 
-        events.add(new Event(1, "Name string exisde", 1, "Plaça Catalunya", new Date(), new Date(), new Date(), 100, 20, "imagen"));
-        events.add(new Event(2, "Name string", 1, "Plaça Catalunya", new Date(), new Date(), new Date(), 100, 20, "imagen"));
-        events.add(new Event(3, "Name string", 1, "Plaça Catalunya", new Date(), new Date(), new Date(), 100, 20, "imagen"));
-        events.add(new Event(4, "Name string", 1, "Plaça Catalunya", new Date(), new Date(), new Date(), 100, 20, "imagen"));
-        events.add(new Event(5, "Name string", 1, "Plaça Catalunya", new Date(), new Date(), new Date(), 100, 20, "imagen"));
-        events.add(new Event(6, "Name string", 1, "Plaça Catalunya", new Date(), new Date(), new Date(), 100, 20, "imagen"));
+        events.add(new Event(1, "Name string exisde", 1, "Plaça Catalunya", new Date(), new Date(), new Date(), 20, "imagen"));
+        events.add(new Event(2, "Name string", 1, "Plaça Catalunya", new Date(), new Date(), new Date(), 20, "imagen"));
+        events.add(new Event(3, "Name string", 1, "Plaça Catalunya", new Date(), new Date(), new Date(), 20, "imagen"));
+        events.add(new Event(4, "Name string", 1, "Plaça Catalunya", new Date(), new Date(), new Date(), 20, "imagen"));
+        events.add(new Event(5, "Name string", 1, "Plaça Catalunya", new Date(), new Date(), new Date(), 20, "imagen"));
+        events.add(new Event(6, "Name string", 1, "Plaça Catalunya", new Date(), new Date(), new Date(), 20, "imagen"));
 
         EventsCarrouselAdapter adapter = new EventsCarrouselAdapter(events, getContext());
 

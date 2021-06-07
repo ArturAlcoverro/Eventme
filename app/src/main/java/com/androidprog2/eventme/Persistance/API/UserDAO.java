@@ -17,14 +17,14 @@ import retrofit2.http.Part;
 
 public interface UserDAO {
 
-    // POST /users	Crea un usuari amb els següents parámetres
+    // POST /users	Crea un usuari amb fitxer
     @Multipart
     @POST("users")
     Call<User> createUser(@Part("name") RequestBody name, @Part("last_name") RequestBody last_name,
                           @Part MultipartBody.Part image, @Part("email") RequestBody email,
                           @Part("password") RequestBody password);
 
-
+    // POST /users	Crea un usuari amb URL
     @FormUrlEncoded
     @POST("users")
     Call<User> createUserWithoutImg(
@@ -34,10 +34,6 @@ public interface UserDAO {
             @Field("email") String email,
             @Field("password") String password
     );
-//                "name" : "John",
-//                "last_name" : "Doe",
-//                "email" : "jonh@doe.com",
-//                "password" : "i<3cats",
 
     // POST /users/login	Autentica al usuari
     @POST("users/login")

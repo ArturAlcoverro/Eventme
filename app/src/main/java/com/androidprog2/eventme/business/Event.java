@@ -1,5 +1,7 @@
 package com.androidprog2.eventme.business;
 
+import com.google.gson.annotations.SerializedName;
+
 import java.text.SimpleDateFormat;
 import java.util.Calendar;
 import java.util.Date;
@@ -8,21 +10,27 @@ public class Event {
 
     private int id;
     private String name;
-    private int ownerId;
     private String localization;
-    private Date creationDate;
-    private Date startDate;
-    private Date endDate;
-    private int maxParticipants;
-    private int numParticipants;
     private String img;
     private String type;
     private Calendar calendar;
 
+    @SerializedName("owner_id")
+    private int ownerId;
+    @SerializedName("date")
+    private Date creationDate;
+    @SerializedName("eventStart_date")
+    private Date startDate;
+    @SerializedName("eventEnd_date")
+    private Date endDate;
+    @SerializedName("n_participators")
+    private int numParticipants;
+
+
     public Event() {
     }
 
-    public Event(int id, String name, int ownerId, String localization, Date creationDate, Date startDate, Date endDate, int maxParticipants, int numParticipants, String img) {
+    public Event(int id, String name, int ownerId, String localization, Date creationDate, Date startDate, Date endDate, int numParticipants, String img) {
         this.id = id;
         this.name = name;
         this.ownerId = ownerId;
@@ -30,7 +38,6 @@ public class Event {
         this.creationDate = creationDate;
         this.startDate = startDate;
         this.endDate = endDate;
-        this.maxParticipants = maxParticipants;
         this.numParticipants = numParticipants;
         this.img = img;
         this.calendar = Calendar.getInstance();
@@ -54,7 +61,6 @@ public class Event {
         } else {
             r = format.format(startDate) + " - " + format.format(endDate);
         }
-
         return r;
     }
 
