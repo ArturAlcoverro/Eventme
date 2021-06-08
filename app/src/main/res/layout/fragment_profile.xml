@@ -47,6 +47,7 @@
             tools:layout_editor_absoluteX="0dp">
 
             <ImageButton
+                android:id="@+id/editProfileBtn"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:background="@drawable/shape_icon_box"

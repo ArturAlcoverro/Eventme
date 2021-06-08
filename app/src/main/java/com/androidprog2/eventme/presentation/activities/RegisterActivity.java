@@ -210,7 +210,7 @@ public class RegisterActivity extends AppCompatActivity implements Callback<User
 
     private boolean validateFirstName(String firstName) {
         if (firstName.isEmpty()) {
-            mFirstNameInputLayout.setError("Missing first name field");
+            mFirstNameInputLayout.setError(getString(R.string.signup_name_error));
             return true;
         }
         mFirstNameInputLayout.setErrorEnabled(false);
@@ -219,7 +219,7 @@ public class RegisterActivity extends AppCompatActivity implements Callback<User
 
     private boolean validateLastName(String lastName) {
         if (lastName.isEmpty()) {
-            mLastNameInputLayout.setError("Missing last name field");
+            mLastNameInputLayout.setError(getString(R.string.signup_lastname_error));
             return true;
         }
         mLastNameInputLayout.setErrorEnabled(false);

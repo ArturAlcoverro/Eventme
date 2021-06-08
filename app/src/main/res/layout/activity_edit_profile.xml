@@ -83,8 +83,10 @@
             tools:layout_editor_absoluteX="15dp">
 
             <ImageView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
+                android:id="@+id/imageProfileEdit"
+                android:layout_width="80dp"
+                android:layout_height="80dp"
+                android:layout_gravity="center"
                 android:src="@drawable/profile_image_test" />
 
         </androidx.cardview.widget.CardView>
@@ -105,7 +107,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginTop="16dp"
-            android:hint="@string/signup_fullname_label"
+            android:hint="@string/signup_lastname_label"
             android:textColorHint="@color/main_purple"
             app:layout_constraintTop_toBottomOf="@+id/editProfileNickname">
 
@@ -113,7 +115,8 @@
                 style="@style/Style.Eventme.TextInput"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:text="Edmon Bosch" />
+                android:singleLine="true"
+                android:text="Bosch" />
 
         </com.google.android.material.textfield.TextInputLayout>
 
@@ -130,7 +133,9 @@
                 style="@style/Style.Eventme.TextInput"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:text="edmonbosch@gmail.com" />
+                android:text="edmonbosch@gmail.com"
+                android:imeOptions="actionGo"
+                android:inputType="textEmailAddress"/>
 
         </com.google.android.material.textfield.TextInputLayout>
 
@@ -147,10 +152,20 @@
                 style="@style/Style.Eventme.TextInput"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:text="bosched15" />
+                android:singleLine="true"
+                android:text="Edmon" />
 
         </com.google.android.material.textfield.TextInputLayout>
 
+        <ProgressBar
+            android:visibility="gone"
+            android:id="@+id/progress_bar"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:indeterminate="true"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            tools:ignore="MissingConstraints" />
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 
