@@ -15,6 +15,7 @@ import android.webkit.MimeTypeMap;
 import android.widget.ImageButton;
 import android.widget.ImageView;
 import android.widget.ProgressBar;
+import android.widget.TextView;
 
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
@@ -43,6 +44,8 @@ public class EditProfileActivity extends AppCompatActivity {
     private ImageButton backArrow_btn;
     private MaterialButton apply_changes_btn;
     private MaterialButton upload_btn;
+    private TextView profileName;
+    private ImageView profileImage;
 
     private TextInputLayout nameInput;
     private TextInputLayout lastNameInput;
@@ -57,7 +60,7 @@ public class EditProfileActivity extends AppCompatActivity {
         backArrow_btn = (ImageButton) findViewById(R.id.arrowLeft);
         apply_changes_btn = (MaterialButton) findViewById(R.id.apply_changes_btn);
         upload_btn = (MaterialButton) findViewById(R.id.upload_btn);
-        progressBar = findViewById(R.id.progress_bar);
+        progressBar = findViewById(R.id.progress_bar_profle_activity);
         eventImage = findViewById(R.id.imageProfileEdit);
 
         nameInput = findViewById(R.id.editProfileNickname);
@@ -68,10 +71,13 @@ public class EditProfileActivity extends AppCompatActivity {
 
         backArrow_btn.setOnClickListener(v -> { finish(); });
         upload_btn.setOnClickListener(v -> { selectImage(); });
-        apply_changes_btn.setOnClickListener(v -> { saveChanges(); });
+        apply_changes_btn.setOnClickListener(v -> {
+            System.out.println("buton clicado");
+            saveChanges();
+        });
     }
 
-    private void saveChanges() {
+    public void saveChanges() {
         if(validateData()){
             String name = nameInput.getEditText().getText().toString();
             String lastName = lastNameInput.getEditText().getText().toString();
@@ -80,7 +86,6 @@ public class EditProfileActivity extends AppCompatActivity {
             loading(true);
             if(imageHasChanged){
                 //call api with new image to update user
-                finish();
             }else{
                 //call api to only update the fields
             }
@@ -146,7 +151,6 @@ public class EditProfileActivity extends AppCompatActivity {
         emailInput.getEditText().setOnEditorActionListener((v, actionId, event) -> {
             if (actionId == EditorInfo.IME_ACTION_UNSPECIFIED) {
                 hideKeyboard();
-                emailInput.clearFocus();
                 saveChanges();
                 return true;
             }
@@ -187,9 +191,9 @@ public class EditProfileActivity extends AppCompatActivity {
 
     public boolean validateData(){
         boolean error = true;
-        if(!validateFirstName(nameInput.getEditText().getText().toString())) error = false;
-        if(!validateLastName(lastNameInput.getEditText().getText().toString())) error = false;
-        if(!validateEmail(emailInput.getEditText().getText().toString())) error = false;
+        if(validateFirstName(nameInput.getEditText().getText().toString())) error = false;
+        if(validateLastName(lastNameInput.getEditText().getText().toString())) error = false;
+        if(validateEmail(emailInput.getEditText().getText().toString())) error = false;
         return error;
     }
 

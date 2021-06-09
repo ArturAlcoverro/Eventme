@@ -176,8 +176,10 @@ public class CreateEventFragment extends Fragment implements Callback<Event> {
             String name = nameInput.getEditText().getText().toString();
             String location = locationInput.getEditText().getText().toString();
             String description = descriptionInput.getEditText().getText().toString();
-            String startDate = unionDateAndTime(startDateInput.getEditText().getText().toString(), startTimeInput.getEditText().getText().toString());
-            String endDate = unionDateAndTime(endDateInput.getEditText().getText().toString(), endTimeInput.getEditText().getText().toString());
+            //String startDate = unionDateAndTime(startDateInput.getEditText().getText().toString(), startTimeInput.getEditText().getText().toString());
+            //String endDate = unionDateAndTime(endDateInput.getEditText().getText().toString(), endTimeInput.getEditText().getText().toString());
+            String startDate = startDateInput.getEditText().getText().toString();
+            String endDate = endDateInput.getEditText().getText().toString();
             String category = categroyInput.getEditText().getText().toString();
             String capacity = capacityInput.getEditText().getText().toString();
 
@@ -210,6 +212,7 @@ public class CreateEventFragment extends Fragment implements Callback<Event> {
             }
         } else {
             try {
+                System.out.println(response.errorBody().toString());
                 Toast.makeText(getContext(), response.errorBody().string(), Toast.LENGTH_LONG).show();
             } catch (IOException e) {
                 e.printStackTrace();
@@ -219,6 +222,7 @@ public class CreateEventFragment extends Fragment implements Callback<Event> {
 
     @Override
     public void onFailure(Call<Event> call, Throwable t) {
+        System.out.println("aqui he entrat");
         Toast.makeText(getContext(), t.getMessage(), Toast.LENGTH_SHORT).show();
         loading(false);
     }

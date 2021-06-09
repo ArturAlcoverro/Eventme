@@ -92,10 +92,12 @@ public class CallSingelton {
 
     public void insertEvent(String name, String image, String location, String description, String eventStart_date,
                             String eventEnd_date, String type, String n_participators, Callback<Event> callback) {
+        setToken("eyJhbGciOiJIUzI1NiJ9.eyJpZCI6MjM5LCJuYW1lIjoiQWxiYTIiLCJsYXN0X25hbWUiOiJCb3NjaCIsImVtYWlsIjoiYWxiYWJvc2NoQGdtYWlsLmNvbSIsImltYWdlIjoiOTFjMDViNDUtZWJiOS00ZjRmLWE1OGUtNmNjYWU2OGQwYjI3LmpwZyJ9.GupcKuzcApA3pDKF-uQ1uypjVne6QtCKf6g5tsWAMkY");
         Retrofit retrofit = APIConnector.getRetrofitInstance();
         EventDAO eventDAO = retrofit.create(EventDAO.class);
 
         Call<Event> call = eventDAO.createEventWithoutImg(
+                "Bearer " + getToken(),
                 name,
                 image,
                 location,
