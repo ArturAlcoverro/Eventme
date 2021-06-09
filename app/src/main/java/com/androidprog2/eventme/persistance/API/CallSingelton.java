@@ -56,6 +56,23 @@ public class CallSingelton {
         call.enqueue(callback);
     }
 
+    public void updateUser(File image, String firstName, String lastName, String email, Callback<User> callback){
+        Retrofit retrofit = APIConnector.getRetrofitInstance();
+        UserDAO userDAO = retrofit.create(UserDAO.class);
+        setToken("eyJhbGciOiJIUzI1NiJ9.eyJpZCI6MjM5LCJuYW1lIjoiQWxiYTIiLCJsYXN0X25hbWUiOiJCb3NjaCIsImVtYWlsIjoiYWxiYWJvc2NoQGdtYWlsLmNvbSIsImltYWdlIjoiOTFjMDViNDUtZWJiOS00ZjRmLWE1OGUtNmNjYWU2OGQwYjI3LmpwZyJ9.GupcKuzcApA3pDKF-uQ1uypjVne6QtCKf6g5tsWAMkY");
+
+        RequestBody requestFile = RequestBody.create(MediaType.parse("multipart/form-data"), image);
+        MultipartBody.Part requestImage = MultipartBody.Part.createFormData("image", image.getName(), requestFile);
+        Call<User> call = userDAO.updateUser(
+                "Bearer " + getToken(),
+                requestImage,
+                RequestBody.create(MultipartBody.FORM, firstName),
+                RequestBody.create(MultipartBody.FORM, lastName),
+                RequestBody.create(MultipartBody.FORM, email));
+
+        call.enqueue(callback);
+    }
+
     public void loginUser(User user, Callback callback) {
         UserDAO userDAO = APIConnector.getRetrofitInstance().create(UserDAO.class);
         Call<String> call = userDAO.loginUser(user.getEmail(), user.getPassword());
@@ -78,6 +95,7 @@ public class CallSingelton {
         RequestBody requestFile = RequestBody.create(MediaType.parse("multipart/form-data"), image);
         MultipartBody.Part requestImage = MultipartBody.Part.createFormData("image", image.getName(), requestFile);
         Call<Event> call = eventDAO.createEvent(
+                "Bearer " + getToken(),
                 RequestBody.create(MultipartBody.FORM, name),
                 requestImage,
                 RequestBody.create(MultipartBody.FORM, location),

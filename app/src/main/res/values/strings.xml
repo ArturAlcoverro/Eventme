@@ -81,6 +81,7 @@
     <string name="editProfile_apply_btn">Apply changes</string>
     <string name="editProfile_upload_label">Profile image</string>
     <string name="editProfile_prova_maqueteig">wilson_wilson</string>
+    <string name="editProfile_changeImage_Btn">Change Image</string>
 
     <!-- FriendsListFragment Strings-->
     <string name="friendsList_title">Friends</string>

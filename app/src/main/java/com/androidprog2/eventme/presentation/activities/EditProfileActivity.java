@@ -16,11 +16,14 @@ import android.widget.ImageButton;
 import android.widget.ImageView;
 import android.widget.ProgressBar;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
 
 import com.androidprog2.eventme.R;
+import com.androidprog2.eventme.business.User;
+import com.androidprog2.eventme.persistance.API.CallSingelton;
 import com.google.android.material.button.MaterialButton;
 import com.google.android.material.textfield.TextInputLayout;
 
@@ -34,18 +37,20 @@ import java.util.Date;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
-public class EditProfileActivity extends AppCompatActivity {
+import retrofit2.Call;
+import retrofit2.Callback;
+import retrofit2.Response;
+
+public class EditProfileActivity extends AppCompatActivity implements Callback<User> {
     private static final int REQUEST_GALLERY_IMAGE = 1;
     private ProgressBar progressBar;
     private ImageView eventImage;
     private File mImageFile;
-    private boolean imageHasChanged;
 
     private ImageButton backArrow_btn;
     private MaterialButton apply_changes_btn;
-    private MaterialButton upload_btn;
+    private MaterialButton change_image_btn;
     private TextView profileName;
-    private ImageView profileImage;
 
     private TextInputLayout nameInput;
     private TextInputLayout lastNameInput;
@@ -56,12 +61,13 @@ public class EditProfileActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_edit_profile);
 
-        imageHasChanged = false;
+        mImageFile = null;
         backArrow_btn = (ImageButton) findViewById(R.id.arrowLeft);
         apply_changes_btn = (MaterialButton) findViewById(R.id.apply_changes_btn);
-        upload_btn = (MaterialButton) findViewById(R.id.upload_btn);
+        change_image_btn = (MaterialButton) findViewById(R.id.upload_btn);
         progressBar = findViewById(R.id.progress_bar_profle_activity);
         eventImage = findViewById(R.id.imageProfileEdit);
+        profileName = findViewById(R.id.usernameTitle);
 
         nameInput = findViewById(R.id.editProfileNickname);
         lastNameInput = findViewById(R.id.editProfileName);
@@ -70,11 +76,8 @@ public class EditProfileActivity extends AppCompatActivity {
         validationListeners();
 
         backArrow_btn.setOnClickListener(v -> { finish(); });
-        upload_btn.setOnClickListener(v -> { selectImage(); });
-        apply_changes_btn.setOnClickListener(v -> {
-            System.out.println("buton clicado");
-            saveChanges();
-        });
+        change_image_btn.setOnClickListener(v -> { selectImage(); });
+        apply_changes_btn.setOnClickListener(v -> { saveChanges(); });
     }
 
     public void saveChanges() {
@@ -84,13 +87,43 @@ public class EditProfileActivity extends AppCompatActivity {
             String email = emailInput.getEditText().getText().toString();
 
             loading(true);
-            if(imageHasChanged){
-                //call api with new image to update user
-            }else{
-                //call api to only update the fields
+            if(mImageFile == null) {
+               //call singleton amb la imatge original
+            }else {
+                CallSingelton
+                        .getInstance()
+                        .updateUser(mImageFile, name, lastName, email, this);
             }
         }
-        //loading(false);
+    }
+
+    @Override
+    public void onResponse(Call<User> call, Response<User> response) {
+        loading(false);
+        if (response.isSuccessful()) {
+            if (response.code() == 201) {
+                //Decidir que fer
+                System.out.println("vamos actulaitzat");
+            }
+            else if (response.code() == 400){
+                Toast.makeText(getApplicationContext(), getString(R.string.incorrect_body_error), Toast.LENGTH_LONG).show();
+            }else if (response.code() == 409){
+                Toast.makeText(getApplicationContext(), getString(R.string.incorrect_to_insert), Toast.LENGTH_LONG).show();
+            }
+        } else {
+            try {
+                System.out.println(response.errorBody().toString());
+                Toast.makeText(getApplicationContext(), response.errorBody().string(), Toast.LENGTH_LONG).show();
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
+        }
+    }
+
+    @Override
+    public void onFailure(Call<User> call, Throwable t) {
+        Toast.makeText(getApplicationContext(), t.getMessage(), Toast.LENGTH_SHORT).show();
+        loading(false);
     }
 
     public void validationListeners(){
@@ -236,7 +269,6 @@ public class EditProfileActivity extends AppCompatActivity {
                     Log.d("ERR", "Error occurred while creating the file");
                 }
                 eventImage.setImageURI(uriData);
-                imageHasChanged = true;
                 InputStream inputStream = getContentResolver().openInputStream(uriData);
                 FileOutputStream fileOutputStream = new FileOutputStream(mImageFile);
                 // Copying
@@ -273,7 +305,7 @@ public class EditProfileActivity extends AppCompatActivity {
     public void loading(boolean state) {
         boolean enable = !state;
 
-        upload_btn.setEnabled(enable);
+        change_image_btn.setEnabled(enable);
         apply_changes_btn.setEnabled(enable);
         nameInput.setEnabled(enable);
         lastNameInput.setEnabled(enable);
@@ -287,4 +319,5 @@ public class EditProfileActivity extends AppCompatActivity {
             apply_changes_btn.setVisibility(View.VISIBLE);
         }
     }
+
 }

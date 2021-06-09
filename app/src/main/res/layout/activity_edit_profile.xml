@@ -73,6 +73,7 @@
             app:layout_constraintTop_toTopOf="parent">
 
             <TextView
+                android:layout_gravity="center"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="@string/editProfile_upload_label"
@@ -86,7 +87,7 @@
                 android:paddingLeft="25dp"
                 android:paddingRight="25dp"
                 android:layout_marginBottom="20dp"
-                android:text="@string/createEvent_upload_btn">
+                android:text="@string/editProfile_changeImage_Btn">
 
             </com.google.android.material.button.MaterialButton>
 

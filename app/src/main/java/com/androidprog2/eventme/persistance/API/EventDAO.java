@@ -18,7 +18,8 @@ public interface EventDAO {
     //POST /events	Crea un event associat a l'usuari autenticat.
     @Multipart
     @POST("events")
-    Call<Event> createEvent(@Part("name") RequestBody name,
+    Call<Event> createEvent(@Header("authorization") String token,
+                            @Part("name") RequestBody name,
                             @Part MultipartBody.Part image,
                             @Part("location") RequestBody location,
                             @Part("description") RequestBody description,

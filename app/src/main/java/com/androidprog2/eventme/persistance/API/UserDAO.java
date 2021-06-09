@@ -9,8 +9,10 @@ import okhttp3.RequestBody;
 import retrofit2.Call;
 import retrofit2.http.Field;
 import retrofit2.http.FormUrlEncoded;
+import retrofit2.http.Header;
 import retrofit2.http.Multipart;
 import retrofit2.http.POST;
+import retrofit2.http.PUT;
 import retrofit2.http.Part;
 
 public interface UserDAO {
@@ -51,14 +53,18 @@ public interface UserDAO {
     public User searchById(int id);
 
     // GET /users/search	Busca l'usuari que tingui el email, nom o cognom semblant al querystring s.
-    //TODO
 
     // PUT /users/	Modifica l'usuari autenticat
-    public void changeUser(User user);
+    @Multipart
+    @PUT("users")
+    Call<User> updateUser(@Header("authorization") String token,
+                          @Part MultipartBody.Part image,
+                          @Part("name") RequestBody name,
+                          @Part("last_name") RequestBody last_name,
+                          @Part("email") RequestBody email);
 
     // DELETE /users	Borra l'usuari autenticat
     public void deleteUser();
-
 
     // GET /users/ID/events	Obté la llista d'events (que n'és propietari) l'usuari ID
     // GET /users/ID/events/future	Obté la llista d'events (que n'és propietari) l'usuari ID que encara no han succeït
