@@ -199,7 +199,7 @@ public class CreateEventFragment extends Fragment implements Callback<Event> {
     }
 
     @Override
-    public void onResponse(Call<Event> call, Response<Event> response) {
+    public void onResponse(Call call, Response response) {
         loading(false);
         if (response.isSuccessful()) {
             if (response.code() == 201) {
@@ -221,7 +221,7 @@ public class CreateEventFragment extends Fragment implements Callback<Event> {
     }
 
     @Override
-    public void onFailure(Call<Event> call, Throwable t) {
+    public void onFailure(Call call, Throwable t) {
         System.out.println("aqui he entrat");
         Toast.makeText(getContext(), t.getMessage(), Toast.LENGTH_SHORT).show();
         loading(false);
