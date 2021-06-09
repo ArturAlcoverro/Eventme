@@ -11,6 +11,7 @@ public class Event {
     private int id;
     private String name;
     private String localization;
+    private String description;
     private String img;
     private String type;
     private Calendar calendar;
@@ -108,5 +109,13 @@ public class Event {
         cal.setTime(startDate);
         int month = cal.get(Calendar.MONTH);
         return String.valueOf(month);
+    }
+
+    public String getDescription() {
+        return description;
+    }
+
+    public void setDescription(String description) {
+        this.description = description;
     }
 }

@@ -6,13 +6,12 @@ import android.text.Editable;
 import android.text.TextWatcher;
 import android.view.Gravity;
 import android.view.View;
-import android.widget.ProgressBar;
 import android.widget.Toast;
 
 import androidx.appcompat.app.AppCompatActivity;
 
-import com.androidprog2.eventme.Persistance.API.CallSingelton;
-import com.androidprog2.eventme.Persistance.API.UserDAO;
+import com.androidprog2.eventme.persistance.API.CallSingelton;
+import com.androidprog2.eventme.persistance.API.UserDAO;
 import com.androidprog2.eventme.R;
 import com.androidprog2.eventme.business.User;
 import com.google.android.material.button.MaterialButton;
@@ -93,7 +92,7 @@ public class LoginActivity extends AppCompatActivity {
                             switch (response.code()) {
 
                                 case 200:
-                                    CallSingelton callSingelton = new CallSingelton();
+                                    //CallSingelton callSingelton = new CallSingelton();
                                     //callSingelton.setToken(response.message());
                                     //oast toast = Toast.makeText(getApplicationContext(), "token:" + response.message(), Toast.LENGTH_LONG);
                                     //toast.setGravity(Gravity.TOP, 0, 60);

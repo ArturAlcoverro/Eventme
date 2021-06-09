@@ -40,35 +40,6 @@
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/toolbar">
 
-        <LinearLayout
-            android:id="@+id/uploadImageBtn"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginLeft="35dp"
-            android:orientation="vertical"
-            app:layout_constraintBottom_toTopOf="@+id/editProfileNickname"
-            app:layout_constraintStart_toEndOf="@+id/profileImage"
-            app:layout_constraintTop_toTopOf="parent">
-
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="@string/editProfile_upload_label"
-                android:textSize="15dp" />
-
-            <com.google.android.material.button.MaterialButton
-                android:id="@+id/upload_btn"
-                style="@style/Style.Eventme.Button"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:paddingLeft="25dp"
-                android:paddingRight="25dp"
-                android:text="@string/createEvent_upload_btn">
-
-            </com.google.android.material.button.MaterialButton>
-
-        </LinearLayout>
-
         <androidx.cardview.widget.CardView
             android:id="@+id/profileImage"
             android:layout_width="wrap_content"
@@ -83,29 +54,67 @@
             tools:layout_editor_absoluteX="15dp">
 
             <ImageView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
+                android:id="@+id/imageProfileEdit"
+                android:layout_width="80dp"
+                android:layout_height="80dp"
+                android:layout_gravity="center"
                 android:src="@drawable/profile_image_test" />
 
         </androidx.cardview.widget.CardView>
 
-        <com.google.android.material.button.MaterialButton
-            android:id="@+id/apply_changes_btn"
-            style="@style/Style.Eventme.Button"
+        <LinearLayout
+            android:id="@+id/uploadImageBtn"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="35dp"
+            android:orientation="vertical"
+            app:layout_constraintBottom_toTopOf="@+id/editProfileNickname"
+            app:layout_constraintStart_toEndOf="@+id/profileImage"
+            app:layout_constraintTop_toTopOf="parent">
+
+            <TextView
+                android:layout_gravity="center"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/editProfile_upload_label"
+                android:textSize="15dp" />
+
+            <com.google.android.material.button.MaterialButton
+                android:id="@+id/upload_btn"
+                style="@style/Style.Eventme.Button"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:paddingLeft="25dp"
+                android:paddingRight="25dp"
+                android:layout_marginBottom="20dp"
+                android:text="@string/editProfile_changeImage_Btn">
+
+            </com.google.android.material.button.MaterialButton>
+
+        </LinearLayout>
+
+        <com.google.android.material.textfield.TextInputLayout
+            android:id="@+id/editProfileNickname"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="@string/editProfile_apply_btn"
-            app:layout_constraintBottom_toBottomOf="parent"
-            tools:layout_editor_absoluteX="15dp">
+            android:hint="@string/signup_firstname_label"
+            android:textColorHint="@color/main_purple"
+            app:layout_constraintTop_toBottomOf="@+id/uploadImageBtn">
 
-        </com.google.android.material.button.MaterialButton>
+            <com.google.android.material.textfield.TextInputEditText
+                style="@style/Style.Eventme.TextInput"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:singleLine="true"
+                android:text="Edmon" />
+        </com.google.android.material.textfield.TextInputLayout>
 
         <com.google.android.material.textfield.TextInputLayout
             android:id="@+id/editProfileName"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginTop="16dp"
-            android:hint="@string/signup_fullname_label"
+            android:hint="@string/signup_lastname_label"
             android:textColorHint="@color/main_purple"
             app:layout_constraintTop_toBottomOf="@+id/editProfileNickname">
 
@@ -113,7 +122,8 @@
                 style="@style/Style.Eventme.TextInput"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:text="Edmon Bosch" />
+                android:singleLine="true"
+                android:text="Bosch" />
 
         </com.google.android.material.textfield.TextInputLayout>
 
@@ -130,27 +140,32 @@
                 style="@style/Style.Eventme.TextInput"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:text="edmonbosch@gmail.com" />
+                android:text="edmonbosch@gmail.com"
+                android:imeOptions="actionGo"
+                android:inputType="textEmailAddress"/>
 
         </com.google.android.material.textfield.TextInputLayout>
 
-        <com.google.android.material.textfield.TextInputLayout
-            android:id="@+id/editProfileNickname"
+        <com.google.android.material.button.MaterialButton
+            android:id="@+id/apply_changes_btn"
+            style="@style/Style.Eventme.Button"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:hint="@string/signup_firstname_label"
-            android:textColorHint="@color/main_purple"
-            tools:ignore="MissingConstraints"
-            tools:layout_editor_absoluteY="153dp">
+            android:text="@string/editProfile_apply_btn"
+            app:layout_constraintBottom_toBottomOf="parent"
+            tools:layout_editor_absoluteX="15dp">
 
-            <com.google.android.material.textfield.TextInputEditText
-                style="@style/Style.Eventme.TextInput"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:text="bosched15" />
+        </com.google.android.material.button.MaterialButton>
 
-        </com.google.android.material.textfield.TextInputLayout>
-
+        <ProgressBar
+            android:id="@+id/progress_bar_profle_activity"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:indeterminate="true"
+            android:visibility="gone"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintBottom_toBottomOf="parent"/>
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 

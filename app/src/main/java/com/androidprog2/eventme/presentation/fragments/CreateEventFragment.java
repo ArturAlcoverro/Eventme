@@ -4,17 +4,9 @@ import android.app.DatePickerDialog;
 import android.app.Dialog;
 import android.app.TimePickerDialog;
 import android.content.ContentResolver;
-import android.content.Context;
 import android.content.Intent;
-import android.hardware.SensorManager;
 import android.net.Uri;
 import android.os.Bundle;
-
-import androidx.annotation.Nullable;
-import androidx.fragment.app.DialogFragment;
-import androidx.fragment.app.Fragment;
-import androidx.fragment.app.FragmentTransaction;
-
 import android.os.Environment;
 import android.text.Editable;
 import android.text.InputType;
@@ -22,7 +14,6 @@ import android.text.TextUtils;
 import android.text.TextWatcher;
 import android.text.format.DateFormat;
 import android.util.Log;
-import android.view.KeyEvent;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -32,7 +23,6 @@ import android.webkit.MimeTypeMap;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.AutoCompleteTextView;
-import android.widget.DatePicker;
 import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.ProgressBar;
@@ -41,7 +31,14 @@ import android.widget.TextView;
 import android.widget.TimePicker;
 import android.widget.Toast;
 
+import androidx.annotation.Nullable;
+import androidx.fragment.app.DialogFragment;
+import androidx.fragment.app.Fragment;
+import androidx.fragment.app.FragmentTransaction;
+
+import com.androidprog2.eventme.persistance.API.CallSingelton;
 import com.androidprog2.eventme.R;
+import com.androidprog2.eventme.business.Event;
 import com.google.android.material.button.MaterialButton;
 import com.google.android.material.textfield.TextInputLayout;
 
@@ -50,10 +47,15 @@ import java.io.FileOutputStream;
 import java.io.IOException;
 import java.io.InputStream;
 import java.io.OutputStream;
+import java.sql.Timestamp;
 import java.text.SimpleDateFormat;
 import java.util.Calendar;
 import java.util.Date;
 import java.util.Locale;
+
+import retrofit2.Call;
+import retrofit2.Callback;
+import retrofit2.Response;
 
 import static android.app.Activity.RESULT_OK;
 import static android.content.Context.INPUT_METHOD_SERVICE;
@@ -63,14 +65,14 @@ import static android.content.Context.INPUT_METHOD_SERVICE;
  * Use the {@link CreateEventFragment#newInstance} factory method to
  * create an instance of this fragment.
  */
-public class CreateEventFragment extends Fragment {
+public class CreateEventFragment extends Fragment implements Callback<Event> {
 
     // TODO: Rename parameter arguments, choose names that match
     // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
     private static final String ARG_PARAM1 = "param1";
     private static final String ARG_PARAM2 = "param2";
     private static final int REQUEST_GALLERY_IMAGE = 1;
-    private static final String DEFAULT_IMG = "https://i.imgur.com/toKfoY6.png";
+    private String DEFAULT_IMG;
 
     // TODO: Rename and change types of parameters
     private String mParam1;
@@ -97,6 +99,7 @@ public class CreateEventFragment extends Fragment {
     private String selectedCategory;
     private boolean isStartDateOrEnd;
     private final Calendar myCalendar = Calendar.getInstance();
+    private String[] categories;
 
     public CreateEventFragment() {
         // Required empty public constructor
@@ -137,6 +140,11 @@ public class CreateEventFragment extends Fragment {
         uploadBtn = (MaterialButton) view.findViewById(R.id.upload_btn);
         createBtn = (MaterialButton) view.findViewById(R.id.create_btn);
 
+        categories = new String[] {getString(R.string.home_chip_art), getString(R.string.home_chip_cultural),
+                getString(R.string.home_chip_education), getString(R.string.home_chip_games), getString(R.string.home_chip_music),
+                getString(R.string.home_chip_politics), getString(R.string.home_chip_science), getString(R.string.home_chip_sport),
+                getString(R.string.home_chip_technology), getString(R.string.home_chip_others)};
+
         nameInput = view.findViewById(R.id.createEvent_name);
         locationInput = view.findViewById(R.id.createEvent_location);
         descriptionInput = view.findViewById(R.id.createEvent_description);
@@ -165,25 +173,65 @@ public class CreateEventFragment extends Fragment {
 
     public void createEvent(){
         if(validateData()){
+            String name = nameInput.getEditText().getText().toString();
+            String location = locationInput.getEditText().getText().toString();
+            String description = descriptionInput.getEditText().getText().toString();
+            //String startDate = unionDateAndTime(startDateInput.getEditText().getText().toString(), startTimeInput.getEditText().getText().toString());
+            //String endDate = unionDateAndTime(endDateInput.getEditText().getText().toString(), endTimeInput.getEditText().getText().toString());
+            String startDate = startDateInput.getEditText().getText().toString();
+            String endDate = endDateInput.getEditText().getText().toString();
+            String category = categroyInput.getEditText().getText().toString();
+            String capacity = capacityInput.getEditText().getText().toString();
+
             loading(true);
             if (mImageFile != null) {
-                //call API i en el onresponse fer loading(false)
+                CallSingelton
+                        .getInstance()
+                        .insertEvent(name, mImageFile, location, description, startDate, endDate, category, capacity, this);
 
             }else {
-                //call API with default image
+                setDefaultImage(category);
+                CallSingelton
+                        .getInstance()
+                        .insertEvent(name, DEFAULT_IMG, location, description, startDate, endDate, category, capacity, this);
             }
         }
     }
 
+    @Override
+    public void onResponse(Call call, Response response) {
+        loading(false);
+        if (response.isSuccessful()) {
+            if (response.code() == 201) {
+                //Decidir que fer
+            }
+            else if (response.code() == 400){
+                Toast.makeText(getContext(), getString(R.string.incorrect_body_error), Toast.LENGTH_LONG).show();
+            }else if (response.code() == 409){
+                Toast.makeText(getContext(), getString(R.string.incorrect_to_insert), Toast.LENGTH_LONG).show();
+            }
+        } else {
+            try {
+                System.out.println(response.errorBody().toString());
+                Toast.makeText(getContext(), response.errorBody().string(), Toast.LENGTH_LONG).show();
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
+        }
+    }
+
+    @Override
+    public void onFailure(Call call, Throwable t) {
+        System.out.println("aqui he entrat");
+        Toast.makeText(getContext(), t.getMessage(), Toast.LENGTH_SHORT).show();
+        loading(false);
+    }
+
     public void loadDropDownMenuCategory(){
         selectedCategory = null;
-        String[] category = new String[] {getString(R.string.home_chip_art), getString(R.string.home_chip_cultural),
-                getString(R.string.home_chip_education), getString(R.string.home_chip_games), getString(R.string.home_chip_music),
-                getString(R.string.home_chip_politics), getString(R.string.home_chip_science), getString(R.string.home_chip_sport),
-                getString(R.string.home_chip_technology), getString(R.string.home_chip_others)};
         ArrayAdapter<String> adapter = new ArrayAdapter<>(getContext(),
                 R.layout.list_item_dropdown_menu,
-                category);
+                categories);
         autoCompleteCategory.setAdapter(adapter);
     }
 
@@ -567,6 +615,36 @@ public class CreateEventFragment extends Fragment {
         } else {
             progressBar.setVisibility(View.GONE);
             createBtn.setVisibility(View.VISIBLE);
+        }
+    }
+
+    public String unionDateAndTime(String date, String time){
+        String ts = null;
+        try {
+            SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd hh:mm:ss.SSS");
+            Date parsedDate = dateFormat.parse(date + " " + time + ":00.000");
+            Timestamp timestamp = new java.sql.Timestamp(parsedDate.getTime());
+            ts = timestamp.toString();
+        } catch(Exception e) {
+            System.out.println(e);
+        }
+        return ts;
+    }
+
+    public void setDefaultImage(String category){
+        String[] urls = new String[] {"shorturl.at/cnFT1", "shorturl.at/eiDX6", "shorturl.at/cgmI5", "shorturl.at/hrCL5", "shorturl.at/fnvV3",
+                    "shorturl.at/cwB36", "shorturl.at/mtwWX", "shorturl.at/tHPS8", "shorturl.at/ksKO0"};
+        int position = -1;
+        for (int i = 0; i < categories.length; i++) {
+            if(category.equals(categories[i])){
+                position = i;
+            }
+        }
+
+        if(position == -1){
+            DEFAULT_IMG = "shorturl.at/pxCX0";
+        }else{
+            DEFAULT_IMG = urls[position];
         }
     }
 

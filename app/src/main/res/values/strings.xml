@@ -81,6 +81,7 @@
     <string name="editProfile_apply_btn">Apply changes</string>
     <string name="editProfile_upload_label">Profile image</string>
     <string name="editProfile_prova_maqueteig">wilson_wilson</string>
+    <string name="editProfile_changeImage_Btn">Change Image</string>
 
     <!-- FriendsListFragment Strings-->
     <string name="friendsList_title">Friends</string>
@@ -114,5 +115,6 @@
     <string name="hello_blank_fragment">Hello blank fragment</string>
     <string name="sign_up_image_label">Profile image</string>
     <string name="incorrect_body_error">The data is incorrect, please check the fields</string>
+    <string name="incorrect_to_insert">The server could not create the event, try again</string>
 
 </resources>

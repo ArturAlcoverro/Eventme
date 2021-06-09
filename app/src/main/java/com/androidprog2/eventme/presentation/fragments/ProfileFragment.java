@@ -1,14 +1,16 @@
 package com.androidprog2.eventme.presentation.fragments;
 
+import android.content.Intent;
 import android.os.Bundle;
-
-import androidx.fragment.app.Fragment;
-
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ImageButton;
+
+import androidx.fragment.app.Fragment;
 
 import com.androidprog2.eventme.R;
+import com.androidprog2.eventme.presentation.activities.EditProfileActivity;
 
 /**
  * A simple {@link Fragment} subclass.
@@ -16,6 +18,8 @@ import com.androidprog2.eventme.R;
  * create an instance of this fragment.
  */
 public class ProfileFragment extends Fragment {
+
+    private ImageButton editProfileBtn;
 
     // TODO: Rename parameter arguments, choose names that match
     // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
@@ -61,6 +65,13 @@ public class ProfileFragment extends Fragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
-        return inflater.inflate(R.layout.fragment_profile, container, false);
+        View view =  inflater.inflate(R.layout.fragment_profile, container, false);
+        Intent intent = new Intent(getContext(), EditProfileActivity.class);
+
+        editProfileBtn = view.findViewById(R.id.editProfileBtn);
+        editProfileBtn.setOnClickListener(v -> {
+            startActivity(intent);
+        });
+        return view;
     }
 }
