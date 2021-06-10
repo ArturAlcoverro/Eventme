@@ -1,21 +1,19 @@
 package com.androidprog2.eventme.presentation.activities;
 
-import androidx.appcompat.app.AppCompatActivity;
-import androidx.fragment.app.Fragment;
-import androidx.fragment.app.FragmentTransaction;
-
 import android.os.Bundle;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.FrameLayout;
-import android.widget.Toast;
+
+import androidx.appcompat.app.AppCompatActivity;
+import androidx.fragment.app.Fragment;
+import androidx.fragment.app.FragmentTransaction;
 
 import com.androidprog2.eventme.R;
 import com.androidprog2.eventme.presentation.fragments.ChatListFragment;
 import com.androidprog2.eventme.presentation.fragments.CreateEventFragment;
 import com.androidprog2.eventme.presentation.fragments.HomeFragment;
 import com.androidprog2.eventme.presentation.fragments.ProfileFragment;
-import com.google.android.material.bottomnavigation.BottomNavigationItemView;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
 
 import net.yslibrary.android.keyboardvisibilityevent.KeyboardVisibilityEvent;
@@ -112,6 +110,8 @@ public class MainActivity extends AppCompatActivity {
             mNavViewLastFragment = fragment;
 
             transaction
+                    //.detach(fragment)
+                    //.attach(fragment)
                     .show(fragment)
                     .commit();
         }

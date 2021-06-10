@@ -104,8 +104,6 @@ public class ChatListAdapter extends RecyclerView.Adapter<ChatListAdapter.ChatLi
                     List<Message> messages = (List<Message>) response.body();
                     if(!messages.isEmpty()){
                         this.message = messages.get(messages.size()-1);
-                        System.out.println(this.message.getContent());
-                        System.out.println(this.message.getTimestamp());
                         this.hourMessage.setText(message.getTs());
                         this.contentMessage.setText(message.getContent());
                     }else{
