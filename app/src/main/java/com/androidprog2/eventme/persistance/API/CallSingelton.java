@@ -1,9 +1,11 @@
 package com.androidprog2.eventme.persistance.API;
 
 import com.androidprog2.eventme.business.Event;
+import com.androidprog2.eventme.business.Message;
 import com.androidprog2.eventme.business.User;
 
 import java.io.File;
+import java.util.List;
 
 import okhttp3.MediaType;
 import okhttp3.MultipartBody;
@@ -125,6 +127,24 @@ public class CallSingelton {
                 n_participators,
                 type);
 
+        call.enqueue(callback);
+    }
+
+    public void getUsersListChat(Callback<List<User>> callback){
+        setToken("eyJhbGciOiJIUzI1NiJ9.eyJpZCI6MTEsIm5hbWUiOiJMb3JlbSIsImxhc3RfbmFtZSI6Iklwc3VtIiwiZW1haWwiOiJsb3JlbUBpcHN1bS5jb20iLCJpbWFnZSI6IiJ9.oOSABVyRDqIGtslDCNTzE4HiSz74uW6saBtJO9CMTY8");
+        Retrofit retrofit = APIConnector.getRetrofitInstance();
+        ChatDAO chatDAO = retrofit.create(ChatDAO.class);
+
+        Call<List<User>> call = chatDAO.usersListChat("Bearer " + token);
+        call.enqueue(callback);
+    }
+
+    public void getMessages(int id, Callback<List<Message>> callback){
+        setToken("eyJhbGciOiJIUzI1NiJ9.eyJpZCI6MTEsIm5hbWUiOiJMb3JlbSIsImxhc3RfbmFtZSI6Iklwc3VtIiwiZW1haWwiOiJsb3JlbUBpcHN1bS5jb20iLCJpbWFnZSI6IiJ9.oOSABVyRDqIGtslDCNTzE4HiSz74uW6saBtJO9CMTY8");
+        Retrofit retrofit = APIConnector.getRetrofitInstance();
+        ChatDAO chatDAO = retrofit.create(ChatDAO.class);
+
+        Call<List<Message>> call = chatDAO.getMessages("Bearer " + token, id);
         call.enqueue(callback);
     }
 }
