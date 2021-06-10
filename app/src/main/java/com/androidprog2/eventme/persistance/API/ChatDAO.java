@@ -1,5 +1,6 @@
 package com.androidprog2.eventme.persistance.API;
 
+import com.androidprog2.eventme.business.Message;
 import com.androidprog2.eventme.business.User;
 
 import java.util.List;
@@ -7,6 +8,7 @@ import java.util.List;
 import retrofit2.Call;
 import retrofit2.http.GET;
 import retrofit2.http.Header;
+import retrofit2.http.Path;
 
 public interface ChatDAO {
     // POST /messages	Crea un missatge
@@ -16,4 +18,6 @@ public interface ChatDAO {
     Call<List<User>> usersListChat(@Header("Authorization") String token);
 
     // GET /messages/USER_ID	Obté tots els missatges de l'USER_ID a l'usuari autenticat.
+    @GET("messages/{id}")
+    Call<List<Message>> getMessages(@Header("Authorization") String token, @Path("id") int id);
 }

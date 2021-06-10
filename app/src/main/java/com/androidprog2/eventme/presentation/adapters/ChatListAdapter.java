@@ -6,6 +6,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
@@ -16,17 +17,21 @@ import com.androidprog2.eventme.R;
 import com.androidprog2.eventme.VolleySingleton;
 import com.androidprog2.eventme.business.Message;
 import com.androidprog2.eventme.business.User;
+import com.androidprog2.eventme.persistance.API.CallSingelton;
 
+import java.io.IOException;
 import java.util.List;
+
+import retrofit2.Call;
+import retrofit2.Callback;
+import retrofit2.Response;
 
 public class ChatListAdapter extends RecyclerView.Adapter<ChatListAdapter.ChatListViewHolder> {
     List<User> users;
-    List<Message> messages;
     Context context;
 
     public ChatListAdapter(List<User> users, Context context) {
         this.users = users;
-        //this.messages = messages;
         this.context = context;
     }
 
@@ -39,7 +44,6 @@ public class ChatListAdapter extends RecyclerView.Adapter<ChatListAdapter.ChatLi
 
     @Override
     public void onBindViewHolder(@NonNull ChatListAdapter.ChatListViewHolder holder, int position) {
-        //holder.bind(users.get(position), messages.get(position));
         holder.bind(users.get(position), context);
     }
 
@@ -48,7 +52,7 @@ public class ChatListAdapter extends RecyclerView.Adapter<ChatListAdapter.ChatLi
         return this.users.size();
     }
 
-    public static class ChatListViewHolder extends RecyclerView.ViewHolder implements View.OnClickListener{
+    public static class ChatListViewHolder extends RecyclerView.ViewHolder implements View.OnClickListener, Callback<List<Message>> {
 
         private User user;
         private Message message;
@@ -68,12 +72,13 @@ public class ChatListAdapter extends RecyclerView.Adapter<ChatListAdapter.ChatLi
 
         public void bind(User _user, Context _context){
             this.user = _user;
-            //this.message = _message;
+
+            CallSingelton
+                    .getInstance()
+                    .getMessages(this.user.getId(), this);
             this.context = _context;
             String url = "http://puigmal.salle.url.edu/img/" + this.user.getImage();
             ImageLoader imageLoader = VolleySingleton.getInstance(context).getImageLoader();
-            System.out.println(imageLoader);
-            System.out.println(url);
             imageLoader.get(url, new ImageLoader.ImageListener() {
 
                 @Override
@@ -90,8 +95,38 @@ public class ChatListAdapter extends RecyclerView.Adapter<ChatListAdapter.ChatLi
             });
 
             this.full_name.setText(user.getFull_name());
-            //this.hourMessage.setText(message.getTs());
-            //this.contentMessage.setText(message.getContent());
+        }
+
+        @Override
+        public void onResponse(Call call, Response response) {
+            if (response.isSuccessful()) {
+                if (response.code() == 200) {
+                    List<Message> messages = (List<Message>) response.body();
+                    if(!messages.isEmpty()){
+                        this.message = messages.get(messages.size()-1);
+                        System.out.println(this.message.getContent());
+                        System.out.println(this.message.getTimestamp());
+                        this.hourMessage.setText(message.getTs());
+                        this.contentMessage.setText(message.getContent());
+                    }else{
+                        this.hourMessage.setText("");
+                        this.contentMessage.setText("");
+                    }
+                }
+            } else {
+                try {
+                    Toast.makeText(context, response.errorBody().string(), Toast.LENGTH_LONG).show();
+                } catch (IOException e) {
+                    e.printStackTrace();
+                }
+            }
+        }
+
+        @Override
+        public void onFailure(Call call, Throwable t) {
+            Toast.makeText(context, t.getMessage(), Toast.LENGTH_SHORT).show();
+            this.hourMessage.setText("");
+            this.contentMessage.setText("");
         }
 
         @Override

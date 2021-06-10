@@ -1,7 +1,6 @@
 package com.androidprog2.eventme.business;
 
 import java.sql.Timestamp;
-import java.util.Date;
 
 public class Message {
 
@@ -9,14 +8,14 @@ public class Message {
     private String content;
     private int user_id_send;
     private int user_id_recived;
-    private Timestamp ts;
+    private Timestamp timestamp;
 
-    public Message(int id, String content, int user_id_send, int user_id_recived, Timestamp ts) {
+    public Message(int id, String content, int user_id_send, int user_id_recived, Timestamp timestamp) {
         this.id = id;
         this.content = content;
         this.user_id_send = user_id_send;
         this.user_id_recived = user_id_recived;
-        this.ts = ts;
+        this.timestamp = timestamp;
     }
 
     public int getId() {
@@ -36,9 +35,17 @@ public class Message {
     }
 
     public String getTs() {
-        Date date = new Date(ts.getTime());
-        String time = date.toString();
-        String hourAndMin = time.substring(11,16);
-        return hourAndMin;
+        //Date date = new Date(timestamp.getTime());
+        //String time = date.toString();
+        //String hourAndMin = timestamp.substring(11,16);
+        return null;
+    }
+
+    public Timestamp getTimestamp() {
+        return timestamp;
+    }
+
+    public void setTimestamp(Timestamp timestamp) {
+        this.timestamp = timestamp;
     }
 }

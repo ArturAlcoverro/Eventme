@@ -16,7 +16,6 @@ import com.androidprog2.eventme.persistance.API.CallSingelton;
 import com.androidprog2.eventme.presentation.adapters.ChatListAdapter;
 
 import java.io.IOException;
-import java.util.ArrayList;
 import java.util.List;
 
 import retrofit2.Call;
@@ -77,20 +76,12 @@ public class ChatListFragment extends Fragment implements Callback<List<User>> {
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
         View view = inflater.inflate(R.layout.fragment_chat_list, container, false);
+        recyclerView = view.findViewById(R.id.recyclerViewChat);
+        recyclerView.setLayoutManager(new LinearLayoutManager(getContext()));
+
         CallSingelton
                 .getInstance()
                 .getUsersListChat(this);
-
-        recyclerView = view.findViewById(R.id.recyclerViewChat);
-        ArrayList<User> users = new ArrayList<>();
-
-        users.add(new User(1, "x", "Edmon", "Bosch", "edmonbosch@gmail.com", "x"));
-        users.add(new User(2, "x","Jordi", "Bosch", "jordibosch@gmail.com", "x"));
-        users.add(new User(3, "x","Alba", "Bosch", "albabosch@gmail.com", "x"));
-
-        chatListAdapter = new ChatListAdapter(users, getContext());
-        recyclerView.setAdapter(chatListAdapter);
-        recyclerView.setLayoutManager(new LinearLayoutManager(getContext()));
 
         return view;
     }
@@ -98,11 +89,11 @@ public class ChatListFragment extends Fragment implements Callback<List<User>> {
     @Override
     public void onResponse(Call call, Response response) {
         if (response.isSuccessful()) {
+            System.out.println("hola a veure quants cops entrem aqui");
             if (response.code() == 200) {
-                //Decidir que fer
                 List<User> users = (List<User>) response.body();
-                users.get(0).getFull_name();
-                System.out.println(response.body());
+                chatListAdapter = new ChatListAdapter(users, getContext());
+                recyclerView.setAdapter(chatListAdapter);
             }
         } else {
             try {
