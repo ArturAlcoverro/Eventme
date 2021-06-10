@@ -36,7 +36,7 @@ public class EventsListAdapter extends RecyclerView.Adapter<EventsListAdapter.Ev
 
     @Override
     public void onBindViewHolder(@NonNull EventsListAdapter.EventsListViewHolder holder, int position) {
-        holder.bind(events.get(position));
+        holder.bind(events.get(position), context);
     }
 
     @Override
@@ -47,6 +47,7 @@ public class EventsListAdapter extends RecyclerView.Adapter<EventsListAdapter.Ev
     public static class EventsListViewHolder extends RecyclerView.ViewHolder implements View.OnClickListener{
 
         private Event event;
+        private Context context;
         private ImageView event_image;
         private TextView name;
         private TextView location;
@@ -62,11 +63,11 @@ public class EventsListAdapter extends RecyclerView.Adapter<EventsListAdapter.Ev
             this.category = (TextView) itemView.findViewById(R.id.eventCategoryList);
         }
 
-        public void bind(Event _event){
+        public void bind(Event _event, Context _context){
             this.event = _event;
-
+            this.context = _context;
             String url = "http://puigmal.salle.url.edu/img/" + this.event.getImg();
-            ImageLoader imageLoader = VolleySingleton.getImageLoader();
+            ImageLoader imageLoader = VolleySingleton.getInstance(context).getImageLoader();
 
             imageLoader.get(url, new ImageLoader.ImageListener() {
 

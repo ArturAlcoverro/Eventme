@@ -12,8 +12,6 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import com.android.volley.VolleyError;
 import com.android.volley.toolbox.ImageLoader;
-import com.androidprog2.eventme.R;
-import com.androidprog2.eventme.VolleySingleton;
 import com.androidprog2.eventme.business.User;
 
 import java.util.List;
@@ -37,7 +35,7 @@ public class FriendsListAdapter extends RecyclerView.Adapter<FriendsListAdapter.
 
     @Override
     public void onBindViewHolder(@NonNull FriendsListAdapter.FriendsListViewHolder holder, int position) {
-        holder.bind(users.get(position));
+        holder.bind(users.get(position), context);
     }
 
     @Override
@@ -48,6 +46,7 @@ public class FriendsListAdapter extends RecyclerView.Adapter<FriendsListAdapter.
     public static class FriendsListViewHolder extends RecyclerView.ViewHolder implements View.OnClickListener{
 
         private User user;
+        private Context context;
         private ImageView user_image;
         private TextView nickname;
         private TextView full_name;
@@ -59,11 +58,12 @@ public class FriendsListAdapter extends RecyclerView.Adapter<FriendsListAdapter.
             this.full_name = (TextView) itemView.findViewById(R.id.full_name);
         }
 
-        public void bind(User _user){
+        public void bind(User _user, Context _context){
             this.user = _user;
+            this.context = _context;
 
             String url = "http://puigmal.salle.url.edu/img/" + this.user.getImage();
-            ImageLoader imageLoader = VolleySingleton.getImageLoader();
+            ImageLoader imageLoader = VolleySingleton.getInstance(context).getImageLoader();
 
             imageLoader.get(url, new ImageLoader.ImageListener() {
 

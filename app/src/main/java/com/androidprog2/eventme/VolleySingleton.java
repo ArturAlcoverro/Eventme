@@ -12,7 +12,7 @@ public class VolleySingleton {
 
     private static VolleySingleton instance;
     private RequestQueue requestQueue;
-    private static ImageLoader imageLoader;
+    private ImageLoader imageLoader;
 
     private VolleySingleton(Context context) {
         requestQueue = Volley.newRequestQueue(context);
@@ -45,7 +45,7 @@ public class VolleySingleton {
         return requestQueue;
     }
 
-    public static ImageLoader getImageLoader() {
+    public ImageLoader getImageLoader() {
         return imageLoader;
     }
 }

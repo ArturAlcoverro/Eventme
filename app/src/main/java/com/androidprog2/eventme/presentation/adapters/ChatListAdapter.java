@@ -24,9 +24,9 @@ public class ChatListAdapter extends RecyclerView.Adapter<ChatListAdapter.ChatLi
     List<Message> messages;
     Context context;
 
-    public ChatListAdapter(List<User> users, List<Message> messages, Context context) {
+    public ChatListAdapter(List<User> users, Context context) {
         this.users = users;
-        this.messages = messages;
+        //this.messages = messages;
         this.context = context;
     }
 
@@ -39,7 +39,8 @@ public class ChatListAdapter extends RecyclerView.Adapter<ChatListAdapter.ChatLi
 
     @Override
     public void onBindViewHolder(@NonNull ChatListAdapter.ChatListViewHolder holder, int position) {
-        holder.bind(users.get(position), messages.get(position));
+        //holder.bind(users.get(position), messages.get(position));
+        holder.bind(users.get(position), context);
     }
 
     @Override
@@ -51,6 +52,7 @@ public class ChatListAdapter extends RecyclerView.Adapter<ChatListAdapter.ChatLi
 
         private User user;
         private Message message;
+        private Context context;
         private ImageView image;
         private TextView full_name;
         private TextView hourMessage;
@@ -64,13 +66,14 @@ public class ChatListAdapter extends RecyclerView.Adapter<ChatListAdapter.ChatLi
             this.contentMessage = (TextView) itemView.findViewById(R.id.lastMessage);
         }
 
-        public void bind(User _user, Message _message){
+        public void bind(User _user, Context _context){
             this.user = _user;
-            this.message = _message;
-
+            //this.message = _message;
+            this.context = _context;
             String url = "http://puigmal.salle.url.edu/img/" + this.user.getImage();
-            ImageLoader imageLoader = VolleySingleton.getImageLoader();
-
+            ImageLoader imageLoader = VolleySingleton.getInstance(context).getImageLoader();
+            System.out.println(imageLoader);
+            System.out.println(url);
             imageLoader.get(url, new ImageLoader.ImageListener() {
 
                 @Override
@@ -87,8 +90,8 @@ public class ChatListAdapter extends RecyclerView.Adapter<ChatListAdapter.ChatLi
             });
 
             this.full_name.setText(user.getFull_name());
-            this.hourMessage.setText(message.getTs());
-            this.contentMessage.setText(message.getContent());
+            //this.hourMessage.setText(message.getTs());
+            //this.contentMessage.setText(message.getContent());
         }
 
         @Override
