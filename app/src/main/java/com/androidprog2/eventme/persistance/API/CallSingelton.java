@@ -1,10 +1,18 @@
 package com.androidprog2.eventme.persistance.API;
 
+import android.os.Build;
+
+import androidx.annotation.RequiresApi;
+
 import com.androidprog2.eventme.business.Event;
 import com.androidprog2.eventme.business.Message;
 import com.androidprog2.eventme.business.User;
 
+import org.json.JSONException;
+import org.json.JSONObject;
+
 import java.io.File;
+import java.util.Base64;
 import java.util.List;
 
 import okhttp3.MediaType;
@@ -16,7 +24,7 @@ import retrofit2.Retrofit;
 
 public class CallSingelton {
     private static CallSingelton instance;
-    private String token;
+    private static String token;
 
     private CallSingelton() {
     }
@@ -26,6 +34,21 @@ public class CallSingelton {
             instance = new CallSingelton();
         }
         return instance;
+    }
+
+    @RequiresApi(api = Build.VERSION_CODES.O)
+    public static JSONObject getPayload(){
+        String[] chunks = token.split("\\.");
+        Base64.Decoder decoder = Base64.getDecoder();
+        String header = new String(decoder.decode(chunks[0]));
+        String payload = new String(decoder.decode(chunks[1]));
+        JSONObject jsonObject = null;
+        try {
+            jsonObject = new JSONObject(payload);
+        } catch (JSONException e) {
+            e.printStackTrace();
+        }
+        return jsonObject;
     }
 
     public void insertUser(String firstName, String lastName, File image, String email, String password, Callback<User> callback) {
@@ -145,6 +168,15 @@ public class CallSingelton {
         ChatDAO chatDAO = retrofit.create(ChatDAO.class);
 
         Call<List<Message>> call = chatDAO.getMessages("Bearer " + token, id);
+        call.enqueue(callback);
+    }
+
+    public void insertMessage(String content, int user_id_send, int user_id_recived, Callback<Message> callback){
+        setToken("eyJhbGciOiJIUzI1NiJ9.eyJpZCI6MTEsIm5hbWUiOiJMb3JlbSIsImxhc3RfbmFtZSI6Iklwc3VtIiwiZW1haWwiOiJsb3JlbUBpcHN1bS5jb20iLCJpbWFnZSI6IiJ9.oOSABVyRDqIGtslDCNTzE4HiSz74uW6saBtJO9CMTY8");
+        Retrofit retrofit = APIConnector.getRetrofitInstance();
+        ChatDAO chatDAO = retrofit.create(ChatDAO.class);
+
+        Call<Message> call = chatDAO.createMessage("Bearer " + token, content, user_id_send, user_id_recived);
         call.enqueue(callback);
     }
 }
