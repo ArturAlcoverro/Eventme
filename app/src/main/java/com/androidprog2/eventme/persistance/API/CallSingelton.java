@@ -48,7 +48,6 @@ public class CallSingelton {
         } catch (JSONException e) {
             e.printStackTrace();
         }
-        System.out.println(payload.toString());
         return jsonObject;
     }
 

@@ -116,7 +116,6 @@ public class ChatActivity extends AppCompatActivity implements Callback<List<Mes
     @RequiresApi(api = Build.VERSION_CODES.O)
     private void sendMessage() {
         content = textToSend.getText().toString();
-        //CallSingelton.getPayload();
         user_id_send = 0;
         try {
             JSONObject jsonObject = CallSingelton.getPayload();
@@ -125,7 +124,6 @@ public class ChatActivity extends AppCompatActivity implements Callback<List<Mes
         } catch (JSONException e) {
             e.printStackTrace();
         }
-        //int user_id_send = 11;
         user_id_recived = this.user.getId();
 
         CallSingelton
@@ -134,16 +132,12 @@ public class ChatActivity extends AppCompatActivity implements Callback<List<Mes
                     @Override
                     public void onResponse(Call<Message> call, Response<Message> response) {
                         if (response.isSuccessful()) {
-                            if (response.code() == 204) {
+                            System.out.println(response.code());
+                            if (response.code() == 201) {
                                 Message message = new Message(content, user_id_send, user_id_recived);
-                                //adapter.addItem(message);
-                                messages.add(message);
-                                adapter = new MessageListAdapter(messages, user, getApplicationContext());
-                                recyclerView.setAdapter(adapter);
-                                /*adapter.notifyItemInserted(adapter.getItemCount()-1);
-                                recyclerView.setVisibility(View.GONE);
-                                recyclerView.setVisibility(View.VISIBLE);*/
+                                adapter.addItem(message);
                                 recyclerView.scrollToPosition(adapter.getItemCount() -1);
+                                textToSend.setText("");
                             }
                         } else {
                             try {
