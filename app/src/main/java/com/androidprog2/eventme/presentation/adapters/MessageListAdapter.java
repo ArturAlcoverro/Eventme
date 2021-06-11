@@ -7,6 +7,7 @@ import android.view.ViewGroup;
 import android.widget.TextView;
 
 import androidx.annotation.NonNull;
+import androidx.annotation.UiThread;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.androidprog2.eventme.R;
@@ -65,7 +66,11 @@ public class MessageListAdapter extends RecyclerView.Adapter<MessageListAdapter.
         return this.messages.size();
     }
 
-
+    @UiThread
+    public void addItem(Message message){
+        this.messages.add(message);
+        notifyItemInserted(getItemCount()-1);
+    }
 
     public static class messageViewHolder extends RecyclerView.ViewHolder implements View.OnClickListener{
 

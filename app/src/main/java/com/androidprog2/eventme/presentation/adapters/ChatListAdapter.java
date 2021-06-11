@@ -60,6 +60,7 @@ public class ChatListAdapter extends RecyclerView.Adapter<ChatListAdapter.ChatLi
         return this.users.size();
     }
 
+
     public static class ChatListViewHolder extends RecyclerView.ViewHolder implements View.OnClickListener, Callback<List<Message>> {
 
         private User user;
@@ -147,6 +148,7 @@ public class ChatListAdapter extends RecyclerView.Adapter<ChatListAdapter.ChatLi
 
             this.context.startActivity(intent);
         }
+
     }
 
 }

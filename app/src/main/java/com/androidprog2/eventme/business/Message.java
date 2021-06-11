@@ -11,12 +11,20 @@ public class Message {
     private int user_id_recived;
     private Timestamp timeStamp;
 
-    public Message(int id, String content, int user_id_send, int user_id_recived, Timestamp timestamp) {
+    public Message(int id, String content, int user_id_send, int user_id_recived, Timestamp timeStamp) {
         this.id = id;
         this.content = content;
         this.user_id_send = user_id_send;
         this.user_id_recived = user_id_recived;
         this.timeStamp = timeStamp;
+    }
+
+    public Message(String content, int user_id_send, int user_id_recived){
+        this.content = content;
+        this.user_id_send = user_id_send;
+        this.user_id_recived = user_id_recived;
+        this.id = 0;
+        this.timeStamp = new Timestamp(System.currentTimeMillis());
     }
 
     public int getId() {

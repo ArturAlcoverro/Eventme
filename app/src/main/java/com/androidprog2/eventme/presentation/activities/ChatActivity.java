@@ -1,6 +1,7 @@
 package com.androidprog2.eventme.presentation.activities;
 
 import android.content.Intent;
+import android.os.Build;
 import android.os.Bundle;
 import android.widget.EditText;
 import android.widget.ImageButton;
@@ -8,6 +9,7 @@ import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import androidx.annotation.RequiresApi;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
@@ -21,6 +23,9 @@ import com.androidprog2.eventme.business.User;
 import com.androidprog2.eventme.persistance.API.CallSingelton;
 import com.androidprog2.eventme.presentation.adapters.ChatListAdapter;
 import com.androidprog2.eventme.presentation.adapters.MessageListAdapter;
+
+import org.json.JSONException;
+import org.json.JSONObject;
 
 import java.io.IOException;
 import java.util.List;
@@ -39,7 +44,13 @@ public class ChatActivity extends AppCompatActivity implements Callback<List<Mes
     private EditText textToSend;
     private RecyclerView recyclerView;
     private ImageButton send_btn;
+    private List<Message> messages;
 
+    private String content;
+    private int user_id_send;
+    private int user_id_recived;
+
+    @RequiresApi(api = Build.VERSION_CODES.O)
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -51,7 +62,12 @@ public class ChatActivity extends AppCompatActivity implements Callback<List<Mes
         textToSend = findViewById(R.id.xat_text_send);
         send_btn = findViewById(R.id.xat_send_button);
         recyclerView = findViewById(R.id.recyclerViewChat);
-        recyclerView.setLayoutManager(new LinearLayoutManager(getApplicationContext()));
+        LinearLayoutManager linearLayoutManager = new LinearLayoutManager(getApplicationContext(), LinearLayoutManager.VERTICAL, false);
+        linearLayoutManager.setStackFromEnd(true);
+        recyclerView.setLayoutManager(linearLayoutManager);
+        recyclerView.setHasFixedSize(false);
+
+        listener();
 
         Intent intent = getIntent();
         int id = intent.getIntExtra(ChatListAdapter.EXTRA_ID, 0);
@@ -72,6 +88,13 @@ public class ChatActivity extends AppCompatActivity implements Callback<List<Mes
         send_btn.setOnClickListener(v -> { sendMessage(); });
     }
 
+    public void listener(){
+        textToSend.setOnFocusChangeListener((v, hasFocus) -> {
+            if(hasFocus){
+                recyclerView.scrollToPosition(adapter.getItemCount() -1); }
+        });
+    }
+
     private void setImage() {
         String url = "http://puigmal.salle.url.edu/img/" + this.user.getImage();
         ImageLoader imageLoader = VolleySingleton.getInstance(getApplicationContext()).getImageLoader();
@@ -90,25 +113,63 @@ public class ChatActivity extends AppCompatActivity implements Callback<List<Mes
         });
     }
 
+    @RequiresApi(api = Build.VERSION_CODES.O)
     private void sendMessage() {
+        content = textToSend.getText().toString();
+        //CallSingelton.getPayload();
+        user_id_send = 0;
+        try {
+            JSONObject jsonObject = CallSingelton.getPayload();
+            user_id_send = (int) jsonObject.get("id");
+            System.out.println(user_id_send);
+        } catch (JSONException e) {
+            e.printStackTrace();
+        }
+        //int user_id_send = 11;
+        user_id_recived = this.user.getId();
+
+        CallSingelton
+                .getInstance()
+                .insertMessage(content, user_id_send, user_id_recived, new Callback<Message>() {
+                    @Override
+                    public void onResponse(Call<Message> call, Response<Message> response) {
+                        if (response.isSuccessful()) {
+                            if (response.code() == 204) {
+                                Message message = new Message(content, user_id_send, user_id_recived);
+                                //adapter.addItem(message);
+                                messages.add(message);
+                                adapter = new MessageListAdapter(messages, user, getApplicationContext());
+                                recyclerView.setAdapter(adapter);
+                                /*adapter.notifyItemInserted(adapter.getItemCount()-1);
+                                recyclerView.setVisibility(View.GONE);
+                                recyclerView.setVisibility(View.VISIBLE);*/
+                                recyclerView.scrollToPosition(adapter.getItemCount() -1);
+                            }
+                        } else {
+                            try {
+                                Toast.makeText(getApplicationContext(), response.errorBody().string(), Toast.LENGTH_LONG).show();
+                            } catch (IOException e) {
+                                e.printStackTrace();
+                            }
+                        }
+                    }
+
+                    @Override
+                    public void onFailure(Call<Message> call, Throwable t) {
+                        Toast.makeText(getApplicationContext(), t.getMessage(), Toast.LENGTH_SHORT).show();
+                    }
+                });
     }
 
     @Override
     public void onResponse(Call<List<Message>> call, Response<List<Message>> response) {
         if (response.isSuccessful()) {
             if (response.code() == 200) {
-                List<Message> messages = (List<Message>) response.body();
+                messages = (List<Message>) response.body();
                 if(!messages.isEmpty()){
-                    /*for (int i = 0; i < messages.size(); i++) {
-                        Message message = messages.get(i);
-                        if(message.getUser_id_send() == this.user.getId()){
-
-                        }else{
-
-                        }
-                    }*/
                     adapter = new MessageListAdapter(messages, this.user, getApplicationContext());
                     recyclerView.setAdapter(adapter);
+                    recyclerView.scrollToPosition(adapter.getItemCount() -1);
                 }
             }
         } else {
