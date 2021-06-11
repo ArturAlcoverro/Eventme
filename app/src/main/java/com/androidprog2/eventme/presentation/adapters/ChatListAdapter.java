@@ -1,6 +1,7 @@
 package com.androidprog2.eventme.presentation.adapters;
 
 import android.content.Context;
+import android.content.Intent;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -18,6 +19,7 @@ import com.androidprog2.eventme.VolleySingleton;
 import com.androidprog2.eventme.business.Message;
 import com.androidprog2.eventme.business.User;
 import com.androidprog2.eventme.persistance.API.CallSingelton;
+import com.androidprog2.eventme.presentation.activities.ChatActivity;
 
 import java.io.IOException;
 import java.util.List;
@@ -27,6 +29,12 @@ import retrofit2.Callback;
 import retrofit2.Response;
 
 public class ChatListAdapter extends RecyclerView.Adapter<ChatListAdapter.ChatListViewHolder> {
+    public static String EXTRA_ID = "EXTRA_ID";
+    public static String EXTRA_NAME = "EXTRA_NAME";
+    public static String EXTRA_LAST_NAME = "EXTRA_LAST_NAME";
+    public static String EXTRA_EMAIL = "EXTRA_EMAIL";
+    public static String EXTRA_IMAGE = "EXTRA_IMAGE";
+
     List<User> users;
     Context context;
 
@@ -68,6 +76,7 @@ public class ChatListAdapter extends RecyclerView.Adapter<ChatListAdapter.ChatLi
             this.full_name = (TextView) itemView.findViewById(R.id.nameChat);
             this.hourMessage = (TextView) itemView.findViewById(R.id.hourChat);
             this.contentMessage = (TextView) itemView.findViewById(R.id.lastMessage);
+            itemView.setOnClickListener(this);
         }
 
         public void bind(User _user, Context _context){
@@ -91,7 +100,6 @@ public class ChatListAdapter extends RecyclerView.Adapter<ChatListAdapter.ChatLi
                 public void onErrorResponse(VolleyError error) {
                     image.setImageResource(R.drawable.avatar_profile);
                 }
-
             });
 
             this.full_name.setText(user.getFull_name());
@@ -129,7 +137,16 @@ public class ChatListAdapter extends RecyclerView.Adapter<ChatListAdapter.ChatLi
 
         @Override
         public void onClick(View v) {
-            //Open activity detail
+            System.out.println("ha clicalt al item aixi q fes algu no?");
+            Intent intent = new Intent(context, ChatActivity.class);
+            intent.putExtra(EXTRA_ID, this.user.getId());
+            intent.putExtra(EXTRA_NAME, this.user.getName());
+            intent.putExtra(EXTRA_LAST_NAME, this.user.getLast_name());
+            intent.putExtra(EXTRA_EMAIL, this.user.getEmail());
+            intent.putExtra(EXTRA_IMAGE, this.user.getImage());
+
+            this.context.startActivity(intent);
         }
     }
+
 }
