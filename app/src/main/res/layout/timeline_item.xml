@@ -10,6 +10,7 @@
         android:layout_height="wrap_content">
 
         <View
+            android:id="@+id/lineTimeLineFirst"
             android:layout_width="10dp"
             android:layout_height="50dp"
             android:layout_gravity="center_horizontal"

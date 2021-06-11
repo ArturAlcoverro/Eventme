@@ -8,12 +8,22 @@ import java.util.Date;
 
 public class Event {
 
+    @SerializedName("id")
     private int id;
+    @SerializedName("name")
     private String name;
+    @SerializedName("location")
     private String localization;
+    @SerializedName("description")
     private String description;
+    @SerializedName("image")
     private String img;
+    @SerializedName("type")
     private String type;
+    @SerializedName("comentary")
+    private String comentary;
+    @SerializedName("puntuation")
+    private String puntuation;
     private Calendar calendar;
 
     @SerializedName("owner_id")
@@ -45,6 +55,7 @@ public class Event {
     }
 
     public String getPeriod() {
+        this.calendar = Calendar.getInstance();
         String r;
         int startDay, startMonth, endDay, endMonth;
         SimpleDateFormat format = new SimpleDateFormat("MMM dd");

@@ -153,6 +153,15 @@ public class CallSingelton {
         call.enqueue(callback);
     }
 
+    public void getUserAssistances(int id, Callback<List<Event>> callback){
+        setToken("eyJhbGciOiJIUzI1NiJ9.eyJpZCI6MjM5LCJuYW1lIjoiQWxiYTIiLCJsYXN0X25hbWUiOiJCb3NjaCIsImVtYWlsIjoiYWxiYWJvc2NoQGdtYWlsLmNvbSIsImltYWdlIjoiOTFjMDViNDUtZWJiOS00ZjRmLWE1OGUtNmNjYWU2OGQwYjI3LmpwZyJ9.GupcKuzcApA3pDKF-uQ1uypjVne6QtCKf6g5tsWAMkY");
+        Retrofit retrofit = APIConnector.getRetrofitInstance();
+        UserDAO userDAO = retrofit.create(UserDAO.class);
+
+        Call<List<Event>> call = userDAO.userAssistances("Bearer " + token, id);
+        call.enqueue(callback);
+    }
+
     public void getUsersListChat(Callback<List<User>> callback){
         setToken("eyJhbGciOiJIUzI1NiJ9.eyJpZCI6MTEsIm5hbWUiOiJMb3JlbSIsImxhc3RfbmFtZSI6Iklwc3VtIiwiZW1haWwiOiJsb3JlbUBpcHN1bS5jb20iLCJpbWFnZSI6IiJ9.oOSABVyRDqIGtslDCNTzE4HiSz74uW6saBtJO9CMTY8");
         Retrofit retrofit = APIConnector.getRetrofitInstance();

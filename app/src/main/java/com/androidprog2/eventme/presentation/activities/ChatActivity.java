@@ -120,7 +120,6 @@ public class ChatActivity extends AppCompatActivity implements Callback<List<Mes
         try {
             JSONObject jsonObject = CallSingelton.getPayload();
             user_id_send = (int) jsonObject.get("id");
-            System.out.println(user_id_send);
         } catch (JSONException e) {
             e.printStackTrace();
         }
@@ -132,7 +131,6 @@ public class ChatActivity extends AppCompatActivity implements Callback<List<Mes
                     @Override
                     public void onResponse(Call<Message> call, Response<Message> response) {
                         if (response.isSuccessful()) {
-                            System.out.println(response.code());
                             if (response.code() == 201) {
                                 Message message = new Message(content, user_id_send, user_id_recived);
                                 adapter.addItem(message);
