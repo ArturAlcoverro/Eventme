@@ -230,6 +230,7 @@ public class ProfileFragment extends Fragment {
                             if (response.code() == 200) {
                                 List<Event> created = response.body();
                                 createdNumber.setText(String.valueOf(created.size()));
+                                System.out.println(created.size() + " vaja vaja pero que passa");
                             }
                         } else {
                             try {
@@ -289,6 +290,7 @@ public class ProfileFragment extends Fragment {
                                     adapter = new TimelineAdapter(assistances, getContext());
                                     recyclerView.setAdapter(adapter);
                                 }
+                                System.out.println(assistances.size() + "hola que cony passa");
                                 assistanceNumber.setText(String.valueOf(assistances.size()));
                             }
                         } else {

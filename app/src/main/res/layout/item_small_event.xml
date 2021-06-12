@@ -27,7 +27,7 @@
             android:layout_height="match_parent"
             android:adjustViewBounds="true"
             android:alpha="0.5"
-            android:src="@drawable/event_image_test"
+            android:src="@drawable/default_event"
             />
 
         <ImageView

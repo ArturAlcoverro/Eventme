@@ -71,6 +71,7 @@ public class UserEventsActivity extends AppCompatActivity {
                         if (response.isSuccessful()) {
                             if (response.code() == 200) {
                                 List<Event> assistances = response.body();
+                                System.out.println(assistances.size() + "aqui aqui mira aqui");
                                 if(!assistances.isEmpty()){
                                     adapter = new EventsListAdapter(assistances, getApplicationContext());
                                     recyclerView.setAdapter(adapter);
@@ -101,6 +102,7 @@ public class UserEventsActivity extends AppCompatActivity {
                         if (response.isSuccessful()) {
                             if (response.code() == 200) {
                                 List<Event> created = response.body();
+                                System.out.println(created.size() + "otra otra aqui aqui");
                                 if(!created.isEmpty()){
                                     adapter = new EventsListAdapter(created, getApplicationContext());
                                     recyclerView.setAdapter(adapter);
