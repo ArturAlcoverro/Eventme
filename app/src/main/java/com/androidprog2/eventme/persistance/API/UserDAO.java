@@ -54,7 +54,8 @@ public interface UserDAO {
     public ArrayList<User> getAllUsers();
 
     // GET /users/ID	Retorna l'usuari amb l'ID
-    public User searchById(int id);
+    @GET("users/{id}")
+    Call<List<User>> getUserProfile(@Header("Authorization") String token, @Path("id") int id);
 
     // GET /users/search	Busca l'usuari que tingui el email, nom o cognom semblant al querystring s.
 
@@ -71,6 +72,9 @@ public interface UserDAO {
     public void deleteUser();
 
     // GET /users/ID/events	Obté la llista d'events (que n'és propietari) l'usuari ID
+    @GET("users/{id}/events")
+    Call<List<Event>> userEvents(@Header("Authorization") String token, @Path("id") int id);
+
     // GET /users/ID/events/future	Obté la llista d'events (que n'és propietari) l'usuari ID que encara no han succeït
     // GET /users/ID/events/finished	Obté la llista d'events (que n'és propietari) l'usuari ID que ja han acabat
     // GET /users/ID/events/current	Obté la llista d'events (que n'és propietari) l'usuari ID que están succeint en aquest moment.
@@ -82,5 +86,6 @@ public interface UserDAO {
     // GET /users/ID/assistances/future	Obté la llista d'assistències a events per a l'usuari ID que encara no han succeît
     // GET /users/ID/assistances/finished	Obté la llista d'assistències a events per a l'usuari ID que ja ha finalitzat
     // GET /users/ID/friends	Obté el llistat d'usuaris que són amics de l'usuari ID
-
+    @GET("users/{id}/friends")
+    Call<List<User>> getUserFriends(@Header("Authorization") String token, @Path("id") int id);
 }

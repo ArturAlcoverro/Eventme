@@ -37,18 +37,20 @@ public class CallSingelton {
     }
 
     @RequiresApi(api = Build.VERSION_CODES.O)
-    public static JSONObject getPayload(){
+    public static int getUserId(){
         String[] chunks = token.split("\\.");
         Base64.Decoder decoder = Base64.getDecoder();
         String header = new String(decoder.decode(chunks[0]));
         String payload = new String(decoder.decode(chunks[1]));
         JSONObject jsonObject = null;
+        int id = 0;
         try {
             jsonObject = new JSONObject(payload);
+            id = (int) jsonObject.get("id");
         } catch (JSONException e) {
             e.printStackTrace();
         }
-        return jsonObject;
+        return id;
     }
 
     public void insertUser(String firstName, String lastName, File image, String email, String password, Callback<User> callback) {
@@ -103,6 +105,15 @@ public class CallSingelton {
         Call<String> call = userDAO.loginUser(user.getEmail(), user.getPassword());
         call.enqueue(callback);
     }
+
+    public void getProfileUser(int id, Callback<List<User>> callback){
+        setToken("eyJhbGciOiJIUzI1NiJ9.eyJpZCI6MjM5LCJuYW1lIjoiQWxiYTIiLCJsYXN0X25hbWUiOiJCb3NjaCIsImVtYWlsIjoiYWxiYWJvc2NoQGdtYWlsLmNvbSIsImltYWdlIjoiOTFjMDViNDUtZWJiOS00ZjRmLWE1OGUtNmNjYWU2OGQwYjI3LmpwZyJ9.GupcKuzcApA3pDKF-uQ1uypjVne6QtCKf6g5tsWAMkY");
+        Retrofit retrofit = APIConnector.getRetrofitInstance();
+        UserDAO userDAO = retrofit.create(UserDAO.class);
+
+        Call<List<User>> call = userDAO.getUserProfile("Bearer " + token, id);
+        call.enqueue(callback);
+    }
     
     public String getToken() {
         return token;
@@ -150,6 +161,24 @@ public class CallSingelton {
                 n_participators,
                 type);
 
+        call.enqueue(callback);
+    }
+
+    public void getUserFriends(int id, Callback<List<User>> callback){
+        setToken("eyJhbGciOiJIUzI1NiJ9.eyJpZCI6MjM5LCJuYW1lIjoiQWxiYTIiLCJsYXN0X25hbWUiOiJCb3NjaCIsImVtYWlsIjoiYWxiYWJvc2NoQGdtYWlsLmNvbSIsImltYWdlIjoiOTFjMDViNDUtZWJiOS00ZjRmLWE1OGUtNmNjYWU2OGQwYjI3LmpwZyJ9.GupcKuzcApA3pDKF-uQ1uypjVne6QtCKf6g5tsWAMkY");
+        Retrofit retrofit = APIConnector.getRetrofitInstance();
+        UserDAO userDAO = retrofit.create(UserDAO.class);
+
+        Call<List<User>> call = userDAO.getUserFriends("Bearer " + token, id);
+        call.enqueue(callback);
+    }
+
+    public void getUserEventsCreated(int id, Callback<List<Event>> callback){
+        setToken("eyJhbGciOiJIUzI1NiJ9.eyJpZCI6MjM5LCJuYW1lIjoiQWxiYTIiLCJsYXN0X25hbWUiOiJCb3NjaCIsImVtYWlsIjoiYWxiYWJvc2NoQGdtYWlsLmNvbSIsImltYWdlIjoiOTFjMDViNDUtZWJiOS00ZjRmLWE1OGUtNmNjYWU2OGQwYjI3LmpwZyJ9.GupcKuzcApA3pDKF-uQ1uypjVne6QtCKf6g5tsWAMkY");
+        Retrofit retrofit = APIConnector.getRetrofitInstance();
+        UserDAO userDAO = retrofit.create(UserDAO.class);
+
+        Call<List<Event>> call = userDAO.userEvents("Bearer " + token, id);
         call.enqueue(callback);
     }
 

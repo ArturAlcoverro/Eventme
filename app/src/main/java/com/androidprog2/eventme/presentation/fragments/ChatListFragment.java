@@ -89,7 +89,6 @@ public class ChatListFragment extends Fragment implements Callback<List<User>> {
     @Override
     public void onResponse(Call call, Response response) {
         if (response.isSuccessful()) {
-            System.out.println("hola a veure quants cops entrem aqui");
             if (response.code() == 200) {
                 List<User> users = (List<User>) response.body();
                 chatListAdapter = new ChatListAdapter(users, getContext());

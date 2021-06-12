@@ -27,9 +27,6 @@ import com.androidprog2.eventme.persistance.API.CallSingelton;
 import com.androidprog2.eventme.presentation.activities.EditProfileActivity;
 import com.androidprog2.eventme.presentation.adapters.TimelineAdapter;
 
-import org.json.JSONException;
-import org.json.JSONObject;
-
 import java.io.IOException;
 import java.util.List;
 
@@ -45,13 +42,18 @@ import retrofit2.Response;
 public class ProfileFragment extends Fragment {
 
     private ImageButton editProfileBtn;
+    private ImageButton chatProfileBtn;
     private ImageButton backArrow_btn;
     private LinearLayout linearLayout;
     private ImageView profileImage;
     private TextView profileName;
-    private User user;
     private RecyclerView recyclerView;
     private TimelineAdapter adapter;
+    private TextView createdNumber;
+    private TextView assistanceNumber;
+    private TextView friendsNumber;
+
+    private int id;
 
     // TODO: Rename parameter arguments, choose names that match
     // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
@@ -102,36 +104,123 @@ public class ProfileFragment extends Fragment {
         profileImage = view.findViewById(R.id.imageProfile);
         profileName = view.findViewById(R.id.textView_Name);
         editProfileBtn = view.findViewById(R.id.editProfileBtn);
+        chatProfileBtn = view.findViewById(R.id.chatProfileBtn);
         backArrow_btn = view.findViewById(R.id.arrowLeft);
         linearLayout = view.findViewById(R.id.linearButtons);
         recyclerView = view.findViewById(R.id.recyclerViewTimeline);
         recyclerView.setLayoutManager(new LinearLayoutManager(getContext()));
+        createdNumber = view.findViewById(R.id.createdStatistics);
+        assistanceNumber = view.findViewById(R.id.assistedStatistics);
+        friendsNumber = view.findViewById(R.id.friendsStatistics);
 
-        JSONObject jsonObject = CallSingelton.getPayload();
-        String image = null;
-        try {
-            int id = (int) jsonObject.get("id");
-            String name = (String) jsonObject.get("name");
-            String last_name = (String) jsonObject.get("last_name");
-            image = (String) jsonObject.get("image");
-            String email = (String) jsonObject.get("email");
-            this.user = new User(id, name, last_name, email);
-        } catch (JSONException e) {
-            e.printStackTrace();
-        }
-        profileName.setText(this.user.getFull_name());
-        setImage(image);
-
-        loadTimeline();
+        updateData();
 
         Intent intent = new Intent(getContext(), EditProfileActivity.class);
         backArrow_btn.setVisibility(View.GONE);
         linearLayout.setVisibility(View.GONE);
+        chatProfileBtn.setVisibility(View.GONE);
 
-        editProfileBtn.setOnClickListener(v -> {
-            startActivity(intent);
+        editProfileBtn.setOnClickListener(v -> { startActivity(intent); });
+        chatProfileBtn.setOnClickListener(v -> {
+         //start chatActivity
         });
         return view;
+    }
+
+    @RequiresApi(api = Build.VERSION_CODES.O)
+    public void updateData(){
+        id = CallSingelton.getUserId();
+        setProfileInformation(id);
+        setStatistics(id);
+        loadTimeline();
+    }
+
+    private void setStatistics(int id) {
+        getCreatedStatistics(id);
+        getFriendsStatistics(id);
+    }
+
+    private void getFriendsStatistics(int id) {
+        CallSingelton
+                .getInstance()
+                .getUserFriends(id, new Callback<List<User>>() {
+                    @Override
+                    public void onResponse(Call<List<User>> call, Response<List<User>> response) {
+                        if (response.isSuccessful()) {
+                            if (response.code() == 200) {
+                                List<User> friends = (List<User>) response.body();
+                                friendsNumber.setText(String.valueOf(friends.size()));
+                            }
+                        } else {
+                            try {
+                                Toast.makeText(getContext(), response.errorBody().string(), Toast.LENGTH_LONG).show();
+                            } catch (IOException e) {
+                                e.printStackTrace();
+                            }
+                        }
+                    }
+
+                    @Override
+                    public void onFailure(Call<List<User>> call, Throwable t) {
+                        Toast.makeText(getContext(), t.getMessage(), Toast.LENGTH_SHORT).show();
+                    }
+                });
+    }
+
+    private void getCreatedStatistics(int id) {
+        CallSingelton
+                .getInstance()
+                .getUserEventsCreated(id, new Callback<List<Event>>() {
+                    @Override
+                    public void onResponse(Call<List<Event>> call, Response<List<Event>> response) {
+                        if (response.isSuccessful()) {
+                            if (response.code() == 200) {
+                                List<Event> created = response.body();
+                                createdNumber.setText(String.valueOf(created.size()));
+                            }
+                        } else {
+                            try {
+                                Toast.makeText(getContext(), response.errorBody().string(), Toast.LENGTH_LONG).show();
+                            } catch (IOException e) {
+                                e.printStackTrace();
+                            }
+                        }
+                    }
+
+                    @Override
+                    public void onFailure(Call<List<Event>> call, Throwable t) {
+                        Toast.makeText(getContext(), t.getMessage(), Toast.LENGTH_SHORT).show();
+                    }
+                });
+    }
+
+    private void setProfileInformation(int id) {
+        CallSingelton
+                .getInstance()
+                .getProfileUser(id, new Callback<List<User>>() {
+                    @Override
+                    public void onResponse(Call call, Response response) {
+                        if (response.isSuccessful()) {
+                            if (response.code() == 200) {
+                                List<User> user = (List<User>) response.body();
+                                profileName.setText(user.get(0).getFull_name());
+                                setImage(user.get(0).getImage());
+                            }
+                        } else {
+                            try {
+                                Toast.makeText(getContext(), response.errorBody().string(), Toast.LENGTH_LONG).show();
+                            } catch (IOException e) {
+                                e.printStackTrace();
+                            }
+                        }
+                    }
+
+                    @Override
+                    public void onFailure(Call call, Throwable t) {
+                        System.out.println("entro en el failure q guai");
+                        Toast.makeText(getContext(), t.getMessage(), Toast.LENGTH_SHORT).show();
+                    }
+                });
     }
 
     private void loadTimeline() {
@@ -147,6 +236,7 @@ public class ProfileFragment extends Fragment {
                                     adapter = new TimelineAdapter(assistances, getContext());
                                     recyclerView.setAdapter(adapter);
                                 }
+                                assistanceNumber.setText(String.valueOf(assistances.size()));
                             }
                         } else {
                             try {

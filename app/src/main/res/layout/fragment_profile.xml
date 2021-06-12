@@ -6,7 +6,8 @@
     android:layout_height="match_parent"
     tools:context=".presentation.fragments.ProfileFragment">
 
-    <androidx.constraintlayout.widget.ConstraintLayout
+    <LinearLayout
+        android:orientation="vertical"
         android:layout_width="match_parent"
         android:layout_height="match_parent">
 
@@ -43,6 +44,17 @@
                 app:layout_constraintEnd_toEndOf="parent"
                 tools:ignore="MissingConstraints" />
 
+            <ImageButton
+                android:id="@+id/chatProfileBtn"
+                android:visibility="gone"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:background="@drawable/shape_icon_box"
+                android:padding="5dp"
+                android:src="@drawable/ic_baseline_chat_white_24"
+                app:layout_constraintEnd_toEndOf="parent"
+                tools:ignore="MissingConstraints" />
+
             <LinearLayout
                 android:id="@+id/statistics"
                 android:layout_width="match_parent"
@@ -59,6 +71,7 @@
                     android:orientation="vertical">
 
                     <TextView
+                        android:id="@+id/createdStatistics"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_gravity="center"
@@ -80,6 +93,7 @@
                     android:orientation="vertical">
 
                     <TextView
+                        android:id="@+id/assistedStatistics"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_gravity="center"
@@ -99,6 +113,7 @@
                     android:orientation="vertical">
 
                     <TextView
+                        android:id="@+id/friendsStatistics"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_gravity="center"
@@ -194,12 +209,10 @@
         <androidx.recyclerview.widget.RecyclerView
             android:id="@+id/recyclerViewTimeline"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:paddingBottom="300dp"
-            app:layout_constraintTop_toBottomOf="@+id/constraintLayout2">
-
+            android:layout_height="match_parent"
+            android:layout_marginBottom="@dimen/navigation_space">
         </androidx.recyclerview.widget.RecyclerView>
 
-    </androidx.constraintlayout.widget.ConstraintLayout>
+    </LinearLayout>
 
 </FrameLayout>

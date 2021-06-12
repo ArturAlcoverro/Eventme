@@ -24,9 +24,6 @@ import com.androidprog2.eventme.persistance.API.CallSingelton;
 import com.androidprog2.eventme.presentation.adapters.ChatListAdapter;
 import com.androidprog2.eventme.presentation.adapters.MessageListAdapter;
 
-import org.json.JSONException;
-import org.json.JSONObject;
-
 import java.io.IOException;
 import java.util.List;
 
@@ -116,13 +113,7 @@ public class ChatActivity extends AppCompatActivity implements Callback<List<Mes
     @RequiresApi(api = Build.VERSION_CODES.O)
     private void sendMessage() {
         content = textToSend.getText().toString();
-        user_id_send = 0;
-        try {
-            JSONObject jsonObject = CallSingelton.getPayload();
-            user_id_send = (int) jsonObject.get("id");
-        } catch (JSONException e) {
-            e.printStackTrace();
-        }
+        user_id_send = CallSingelton.getUserId();
         user_id_recived = this.user.getId();
 
         CallSingelton
