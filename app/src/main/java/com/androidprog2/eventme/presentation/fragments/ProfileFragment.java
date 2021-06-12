@@ -25,7 +25,9 @@ import com.androidprog2.eventme.business.Event;
 import com.androidprog2.eventme.business.User;
 import com.androidprog2.eventme.persistance.API.CallSingelton;
 import com.androidprog2.eventme.presentation.activities.EditProfileActivity;
+import com.androidprog2.eventme.presentation.activities.UserFriendsActivity;
 import com.androidprog2.eventme.presentation.adapters.TimelineAdapter;
+import com.google.android.material.button.MaterialButton;
 
 import java.io.IOException;
 import java.util.List;
@@ -41,8 +43,11 @@ import retrofit2.Response;
  */
 public class ProfileFragment extends Fragment {
 
+    public static final String EXTRA_ID = "EXTRA_ID";
     private ImageButton editProfileBtn;
     private ImageButton chatProfileBtn;
+    private MaterialButton sendMessageBtn;
+    private MaterialButton requestFriendBtn;
     private ImageButton backArrow_btn;
     private LinearLayout linearLayout;
     private ImageView profileImage;
@@ -52,6 +57,7 @@ public class ProfileFragment extends Fragment {
     private TextView createdNumber;
     private TextView assistanceNumber;
     private TextView friendsNumber;
+    private LinearLayout friendsLinear;
 
     private int id;
 
@@ -112,6 +118,9 @@ public class ProfileFragment extends Fragment {
         createdNumber = view.findViewById(R.id.createdStatistics);
         assistanceNumber = view.findViewById(R.id.assistedStatistics);
         friendsNumber = view.findViewById(R.id.friendsStatistics);
+        sendMessageBtn = view.findViewById(R.id.sendMessage);
+        requestFriendBtn = view.findViewById(R.id.requestFriend);
+        friendsLinear = view.findViewById(R.id.friendsLinear);
 
         updateData();
 
@@ -121,10 +130,26 @@ public class ProfileFragment extends Fragment {
         chatProfileBtn.setVisibility(View.GONE);
 
         editProfileBtn.setOnClickListener(v -> { startActivity(intent); });
-        chatProfileBtn.setOnClickListener(v -> {
-         //start chatActivity
-        });
+        chatProfileBtn.setOnClickListener(v -> { startChatActivity(); });
+        sendMessageBtn.setOnClickListener(v -> { startChatActivity(); });
+        requestFriendBtn.setOnClickListener(v -> { requestFriendShip(); });
+        friendsLinear.setOnClickListener(v -> { startFriendActivity(); });
         return view;
+    }
+
+    private void startFriendActivity() {
+        Intent intent = new Intent(getContext(), UserFriendsActivity.class);
+        intent.putExtra(EXTRA_ID, id);
+
+        startActivity(intent);
+    }
+
+    private void requestFriendShip() {
+
+    }
+
+    private void startChatActivity() {
+
     }
 
     @RequiresApi(api = Build.VERSION_CODES.O)
