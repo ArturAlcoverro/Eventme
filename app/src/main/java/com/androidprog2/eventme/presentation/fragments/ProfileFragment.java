@@ -25,6 +25,7 @@ import com.androidprog2.eventme.business.Event;
 import com.androidprog2.eventme.business.User;
 import com.androidprog2.eventme.persistance.API.CallSingelton;
 import com.androidprog2.eventme.presentation.activities.EditProfileActivity;
+import com.androidprog2.eventme.presentation.activities.UserEventsActivity;
 import com.androidprog2.eventme.presentation.activities.UserFriendsActivity;
 import com.androidprog2.eventme.presentation.adapters.TimelineAdapter;
 import com.google.android.material.button.MaterialButton;
@@ -44,6 +45,9 @@ import retrofit2.Response;
 public class ProfileFragment extends Fragment {
 
     public static final String EXTRA_ID = "EXTRA_ID";
+    public static final String EXTRA_NAME = "EXTRA_NAME";
+    public static final String EXTRA_TYPE = "EXTRA_TYPE";
+
     private ImageButton editProfileBtn;
     private ImageButton chatProfileBtn;
     private MaterialButton sendMessageBtn;
@@ -58,6 +62,8 @@ public class ProfileFragment extends Fragment {
     private TextView assistanceNumber;
     private TextView friendsNumber;
     private LinearLayout friendsLinear;
+    private LinearLayout createdLinear;
+    private LinearLayout assistanceLinear;
 
     private int id;
 
@@ -121,6 +127,8 @@ public class ProfileFragment extends Fragment {
         sendMessageBtn = view.findViewById(R.id.sendMessage);
         requestFriendBtn = view.findViewById(R.id.requestFriend);
         friendsLinear = view.findViewById(R.id.friendsLinear);
+        createdLinear = view.findViewById(R.id.createdLinear);
+        assistanceLinear = view.findViewById(R.id.assistanceLinear);
 
         updateData();
 
@@ -134,7 +142,27 @@ public class ProfileFragment extends Fragment {
         sendMessageBtn.setOnClickListener(v -> { startChatActivity(); });
         requestFriendBtn.setOnClickListener(v -> { requestFriendShip(); });
         friendsLinear.setOnClickListener(v -> { startFriendActivity(); });
+        createdLinear.setOnClickListener(v -> { startCreatedActivity(); });
+        assistanceLinear.setOnClickListener(v -> { startAssistanceActivity(); });
         return view;
+    }
+
+    private void startAssistanceActivity() {
+        Intent intent = new Intent(getContext(), UserEventsActivity.class);
+        intent.putExtra(EXTRA_ID, id);
+        intent.putExtra(EXTRA_NAME, profileName.getText().toString());
+        intent.putExtra(EXTRA_TYPE, "EXTRA_CREATED");
+
+        startActivity(intent);
+    }
+
+    private void startCreatedActivity() {
+        Intent intent = new Intent(getContext(), UserEventsActivity.class);
+        intent.putExtra(EXTRA_ID, id);
+        intent.putExtra(EXTRA_NAME, profileName.getText().toString());
+        intent.putExtra(EXTRA_TYPE, "EXTRA_ASSISTANCE");
+
+        startActivity(intent);
     }
 
     private void startFriendActivity() {
