@@ -4,6 +4,7 @@ import com.androidprog2.eventme.business.Event;
 import com.androidprog2.eventme.business.User;
 
 import java.io.File;
+import java.util.ArrayList;
 
 import okhttp3.MediaType;
 import okhttp3.MultipartBody;
@@ -17,6 +18,7 @@ public class CallSingelton {
     private String token;
 
     private CallSingelton() {
+        token = "eyJhbGciOiJIUzI1NiJ9.eyJpZCI6NDMyLCJuYW1lIjoiSm9obiIsImxhc3RfbmFtZSI6IkRvZSIsImVtYWlsIjoiam9uaDEyM0Bkb2UuY29tIiwiaW1hZ2UiOiJodHRwczovL2kuaW1ndXIuY29tL3pZZnJ6REUuanBnIn0.ri402JbvGa4b69YKSLLriZBPcnB0ZmROjamPO5go0yc";
     }
 
     public static CallSingelton getInstance() {
@@ -56,18 +58,18 @@ public class CallSingelton {
         call.enqueue(callback);
     }
 
-    public void updateUser(File image, String firstName, String lastName, String email, Callback<User> callback){
+    public void updateUser(File image, String firstName, String lastName, String password, String email, Callback<User> callback) {
         Retrofit retrofit = APIConnector.getRetrofitInstance();
         UserDAO userDAO = retrofit.create(UserDAO.class);
-        setToken("eyJhbGciOiJIUzI1NiJ9.eyJpZCI6MjM5LCJuYW1lIjoiQWxiYTIiLCJsYXN0X25hbWUiOiJCb3NjaCIsImVtYWlsIjoiYWxiYWJvc2NoQGdtYWlsLmNvbSIsImltYWdlIjoiOTFjMDViNDUtZWJiOS00ZjRmLWE1OGUtNmNjYWU2OGQwYjI3LmpwZyJ9.GupcKuzcApA3pDKF-uQ1uypjVne6QtCKf6g5tsWAMkY");
 
         RequestBody requestFile = RequestBody.create(MediaType.parse("multipart/form-data"), image);
         MultipartBody.Part requestImage = MultipartBody.Part.createFormData("image", image.getName(), requestFile);
         Call<User> call = userDAO.updateUser(
-                "Bearer " + getToken(),
+                "Bearer " + token,
                 requestImage,
                 RequestBody.create(MultipartBody.FORM, firstName),
                 RequestBody.create(MultipartBody.FORM, lastName),
+                RequestBody.create(MultipartBody.FORM, password),
                 RequestBody.create(MultipartBody.FORM, email));
 
         call.enqueue(callback);
@@ -78,13 +80,11 @@ public class CallSingelton {
         Call<String> call = userDAO.loginUser(user.getEmail(), user.getPassword());
         call.enqueue(callback);
     }
-    
-    public String getToken() {
-        return token;
-    }
 
-    public void setToken(String token) {
-        this.token = token;
+    public void getEvents(Callback callback) {
+        EventDAO eventDAO = APIConnector.getRetrofitInstance().create(EventDAO.class);
+        Call<ArrayList<Event>> call = eventDAO.getEvents();
+        call.enqueue(callback);
     }
 
     public void insertEvent(String name, File image, String location, String description, String eventStart_date,
@@ -95,7 +95,7 @@ public class CallSingelton {
         RequestBody requestFile = RequestBody.create(MediaType.parse("multipart/form-data"), image);
         MultipartBody.Part requestImage = MultipartBody.Part.createFormData("image", image.getName(), requestFile);
         Call<Event> call = eventDAO.createEvent(
-                "Bearer " + getToken(),
+                "Bearer " + token,
                 RequestBody.create(MultipartBody.FORM, name),
                 requestImage,
                 RequestBody.create(MultipartBody.FORM, location),
@@ -110,12 +110,11 @@ public class CallSingelton {
 
     public void insertEvent(String name, String image, String location, String description, String eventStart_date,
                             String eventEnd_date, String type, String n_participators, Callback<Event> callback) {
-        setToken("eyJhbGciOiJIUzI1NiJ9.eyJpZCI6MjM5LCJuYW1lIjoiQWxiYTIiLCJsYXN0X25hbWUiOiJCb3NjaCIsImVtYWlsIjoiYWxiYWJvc2NoQGdtYWlsLmNvbSIsImltYWdlIjoiOTFjMDViNDUtZWJiOS00ZjRmLWE1OGUtNmNjYWU2OGQwYjI3LmpwZyJ9.GupcKuzcApA3pDKF-uQ1uypjVne6QtCKf6g5tsWAMkY");
         Retrofit retrofit = APIConnector.getRetrofitInstance();
         EventDAO eventDAO = retrofit.create(EventDAO.class);
 
         Call<Event> call = eventDAO.createEventWithoutImg(
-                "Bearer " + getToken(),
+                "Bearer " + token,
                 name,
                 image,
                 location,
@@ -126,5 +125,19 @@ public class CallSingelton {
                 type);
 
         call.enqueue(callback);
+    }
+
+    public void getEventAssistances(int id, Callback callback) {
+        EventDAO eventDAO = APIConnector.getRetrofitInstance().create(EventDAO.class);
+        Call<ArrayList<User>> call = eventDAO.getAssistances("Bearer " + token, id);
+        call.enqueue(callback);
+    }
+
+    public String getToken() {
+        return token;
+    }
+
+    public void setToken(String token) {
+        this.token = token;
     }
 }

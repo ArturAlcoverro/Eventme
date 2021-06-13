@@ -61,7 +61,7 @@ public class TimelineAdapter extends RecyclerView.Adapter<TimelineAdapter.timeli
         public void bind(Event _event){
             this.event = _event;
             this.name.setText(this.event.getName());
-            this.location.setText(this.event.getLocalization());
+            this.location.setText(this.event.getLocation());
             this.day.setText(this.event.getDay());
             this.month.setText(this.event.getMonth());
             this.category.setText(this.event.getType());

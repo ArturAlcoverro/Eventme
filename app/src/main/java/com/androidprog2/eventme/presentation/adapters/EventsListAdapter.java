@@ -65,7 +65,7 @@ public class EventsListAdapter extends RecyclerView.Adapter<EventsListAdapter.Ev
         public void bind(Event _event){
             this.event = _event;
 
-            String url = "http://puigmal.salle.url.edu/img/" + this.event.getImg();
+            String url = "http://puigmal.salle.url.edu/img/" + this.event.getImage();
             ImageLoader imageLoader = VolleySingleton.getImageLoader();
 
             imageLoader.get(url, new ImageLoader.ImageListener() {
@@ -84,7 +84,7 @@ public class EventsListAdapter extends RecyclerView.Adapter<EventsListAdapter.Ev
             });
 
             this.name.setText(this.event.getName());
-            this.location.setText(this.event.getLocalization());
+            this.location.setText(this.event.getLocation());
             this.date.setText(this.event.getStartDate() + " - " + this.event.getEndDate());
             this.category.setText(this.event.getType());
         }

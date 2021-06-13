@@ -8,52 +8,52 @@ import androidx.fragment.app.Fragment;
 import androidx.recyclerview.widget.RecyclerView;
 import androidx.viewpager2.widget.ViewPager2;
 
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.LinearLayout;
 
 import com.androidprog2.eventme.R;
 import com.androidprog2.eventme.business.Event;
+import com.androidprog2.eventme.persistance.API.CallSingelton;
 import com.androidprog2.eventme.presentation.adapters.EventsCarrouselAdapter;
+import com.google.android.material.chip.Chip;
 
 import java.util.ArrayList;
 import java.util.Date;
+
+import retrofit2.Call;
+import retrofit2.Callback;
+import retrofit2.Response;
 
 /**
  * A simple {@link Fragment} subclass.
  * Use the {@link HomeFragment#newInstance} factory method to
  * create an instance of this fragment.
  */
-public class HomeFragment extends Fragment implements ViewPager2.PageTransformer {
+public class HomeFragment extends Fragment implements ViewPager2.PageTransformer, View.OnClickListener {
 
-
-//    private static final String ARG_PARAM1 = "param1";
-//    private static final String ARG_PARAM2 = "param2";
-//
-//    private String mParam1;
-//    private String mParam2;
 
     private ViewPager2 mViewPager;
+    private LinearLayout mNoEventsLayout;
+    private ArrayList<Event> mEvents;
+
+    private EventsCarrouselAdapter mCarrouselAdapter;
+    private ArrayList<Chip> mChips;
 
     public HomeFragment() {
     }
 
     public static HomeFragment newInstance(String param1, String param2) {
         HomeFragment fragment = new HomeFragment();
-//        Bundle args = new Bundle();
-//        args.putString(ARG_PARAM1, param1);
-//        args.putString(ARG_PARAM2, param2);
-//        fragment.setArguments(args);
+
         return fragment;
     }
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-//        if (getArguments() != null) {
-//            mParam1 = getArguments().getString(ARG_PARAM1);
-//            mParam2 = getArguments().getString(ARG_PARAM2);
-//        }
     }
 
     @Override
@@ -61,25 +61,89 @@ public class HomeFragment extends Fragment implements ViewPager2.PageTransformer
                              Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.fragment_home, container, false);
 
-        mViewPager = (ViewPager2) view.findViewById(R.id.home_view_pager);
+        mViewPager = view.findViewById(R.id.home_view_pager);
+        mNoEventsLayout = view.findViewById(R.id.home_no_events_layout);
+
+        loadChips(view);
+
         mViewPager.setPageTransformer(this);
         mViewPager.addItemDecoration(new HorizontalMarginItemDecoration(55));
         mViewPager.setOffscreenPageLimit(1);
 
-        ArrayList<Event> events = new ArrayList<>();
-
-        events.add(new Event(1, "Name string exisde", 1, "Plaça Catalunya", new Date(), new Date(), new Date(), 20, "imagen"));
-        events.add(new Event(2, "Name string", 1, "Plaça Catalunya", new Date(), new Date(), new Date(), 20, "imagen"));
-        events.add(new Event(3, "Name string", 1, "Plaça Catalunya", new Date(), new Date(), new Date(), 20, "imagen"));
-        events.add(new Event(4, "Name string", 1, "Plaça Catalunya", new Date(), new Date(), new Date(), 20, "imagen"));
-        events.add(new Event(5, "Name string", 1, "Plaça Catalunya", new Date(), new Date(), new Date(), 20, "imagen"));
-        events.add(new Event(6, "Name string", 1, "Plaça Catalunya", new Date(), new Date(), new Date(), 20, "imagen"));
-
-        EventsCarrouselAdapter adapter = new EventsCarrouselAdapter(events, getContext());
-
-        mViewPager.setAdapter(adapter);
+        loadEvents();
 
         return view;
+    }
+
+    private void loadEvents() {
+        CallSingelton.getInstance().getEvents(new Callback() {
+            @Override
+            public void onResponse(Call call, Response response) {
+                for (Chip chip : mChips) {
+                    chip.setEnabled(true);
+                }
+
+                //                ArrayList<Event> events = new ArrayList<>();
+                mEvents = (ArrayList<Event>) response.body();
+
+//                for(Event event: _events){
+//                    if(event.getStartDate() != null)
+//                        if(event.getStartDate().c)
+//                }
+
+                isEvents(mEvents.size() > 0);
+                mCarrouselAdapter = new EventsCarrouselAdapter(mEvents, getContext());
+                mViewPager.setAdapter(mCarrouselAdapter);
+
+            }
+
+            @Override
+            public void onFailure(Call call, Throwable t) {
+                Log.d("ERR", "------GET EVENTS------");
+            }
+        });
+    }
+
+    private void loadChips(View view) {
+        mChips = new ArrayList<>();
+        Chip allChip = view.findViewById(R.id.home_chip_all);
+        allChip.setChecked(true);
+        mChips.add(allChip);
+        mChips.add(view.findViewById(R.id.home_chip_music));
+        mChips.add(view.findViewById(R.id.home_chip_sport));
+        mChips.add(view.findViewById(R.id.home_chip_education));
+        mChips.add(view.findViewById(R.id.home_chip_travel));
+        mChips.add(view.findViewById(R.id.home_chip_games));
+        mChips.add(view.findViewById(R.id.home_chip_technology));
+        mChips.add(view.findViewById(R.id.home_chip_science));
+        mChips.add(view.findViewById(R.id.home_chip_art));
+        mChips.add(view.findViewById(R.id.home_chip_food));
+        mChips.add(view.findViewById(R.id.home_chip_fashion));
+        mChips.add(view.findViewById(R.id.home_chip_politics));
+        mChips.add(view.findViewById(R.id.home_chip_others));
+
+        for (Chip chip : mChips) {
+            chip.setEnabled(false);
+            chip.setOnClickListener(this);
+        }
+    }
+
+    private void applyFilter(String type) {
+        Log.d("TAG", "---" + type + "---");
+        ArrayList<Event> events = new ArrayList<>();
+        for (Event event : mEvents)
+            if (event.getType().toLowerCase().equals(type))
+                events.add(event);
+
+        isEvents(events.size() > 0);
+        mCarrouselAdapter.updateData(events);
+        mViewPager.setCurrentItem(0, false);
+    }
+
+    private void clearFilter() {
+        isEvents(mEvents.size() > 0);
+        mCarrouselAdapter.updateData(mEvents);
+        mViewPager.setCurrentItem(0, false);
     }
 
     @Override
@@ -89,7 +153,22 @@ public class HomeFragment extends Fragment implements ViewPager2.PageTransformer
         view.setScaleY(1 - (0.15f * Math.abs(position)));
     }
 
-    public class HorizontalMarginItemDecoration extends RecyclerView.ItemDecoration{
+    @Override
+    public void onClick(View v) {
+        for (Chip chip : mChips) {
+            chip.setChecked(false);
+        }
+        Chip chip = (Chip) v;
+        chip.setChecked(true);
+        String type = (String) chip.getTag();
+
+        if (!type.equals("all"))
+            applyFilter((String) chip.getTag());
+        else
+            clearFilter();
+    }
+
+    public class HorizontalMarginItemDecoration extends RecyclerView.ItemDecoration {
         private final int horizontalMarginInPx;
 
         public HorizontalMarginItemDecoration(int horizontalMarginInPx) {
@@ -101,6 +180,16 @@ public class HomeFragment extends Fragment implements ViewPager2.PageTransformer
                                    RecyclerView.State state) {
             outRect.right = horizontalMarginInPx;
             outRect.left = horizontalMarginInPx;
+        }
+    }
+
+    private void isEvents(boolean is){
+        if(is){
+            mViewPager.setVisibility(View.VISIBLE);
+            mNoEventsLayout.setVisibility(View.GONE);
+        }else{
+            mViewPager.setVisibility(View.GONE);
+            mNoEventsLayout.setVisibility(View.VISIBLE);
         }
     }
 }
