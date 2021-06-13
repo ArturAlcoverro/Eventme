@@ -111,6 +111,14 @@
     <string name="home_chip_politics">Politics</string>
     <string name="home_chip_others">Others</string>
 
+    <!--Backdrop Elements -->
+    <string name="backdrop_all">All</string>
+    <string name="backdrop_finished">Finished</string>
+    <string name="backdrop_started">Started</string>
+    <string name="backdrop_toGetStarted">To get started</string>
+    <string name="backdrop_done">Done</string>
+    <string name="backdrop_todo">To do</string>
+
     <!-- TODO: Remove or change this placeholder text -->
     <string name="hello_blank_fragment">Hello blank fragment</string>
     <string name="sign_up_image_label">Profile image</string>

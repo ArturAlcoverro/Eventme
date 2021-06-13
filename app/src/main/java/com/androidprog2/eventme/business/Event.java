@@ -56,22 +56,25 @@ public class Event {
 
     public String getPeriod() {
         this.calendar = Calendar.getInstance();
-        String r;
+        String r = "";
         int startDay, startMonth, endDay, endMonth;
         SimpleDateFormat format = new SimpleDateFormat("MMM dd");
 
-        calendar.setTime(startDate);
-        startDay = calendar.get(Calendar.DAY_OF_MONTH);
-        startMonth = calendar.get(Calendar.MONTH);
+        if(startDate != null && endDate != null) {
+            calendar.setTime(startDate);
+            startDay = calendar.get(Calendar.DAY_OF_MONTH);
+            startMonth = calendar.get(Calendar.MONTH);
 
-        calendar.setTime(endDate);
-        endDay = calendar.get(Calendar.DAY_OF_MONTH);
-        endMonth = calendar.get(Calendar.MONTH);
+            calendar.setTime(endDate);
+            endDay = calendar.get(Calendar.DAY_OF_MONTH);
+            endMonth = calendar.get(Calendar.MONTH);
 
-        if (startDay == endDay && startMonth == endMonth) {
-            r = format.format(startDate);
-        } else {
-            r = format.format(startDate) + " - " + format.format(endDate);
+
+            if (startDay == endDay && startMonth == endMonth) {
+                r = format.format(startDate);
+            } else {
+                r = format.format(startDate) + " - " + format.format(endDate);
+            }
         }
         return r;
     }

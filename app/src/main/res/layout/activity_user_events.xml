@@ -1,10 +1,11 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<androidx.coordinatorlayout.widget.CoordinatorLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".presentation.activities.UserEventsActivity">
+    tools:context=".presentation.activities.UserEventsActivity"
+    android:orientation="vertical">
 
     <androidx.appcompat.widget.Toolbar
         android:id="@+id/toolbar"
@@ -51,10 +52,13 @@
     </androidx.appcompat.widget.Toolbar>
 
     <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/eventsRecyclerView"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:padding="15dp"
-        app:layout_constraintTop_toBottomOf="@+id/toolbar"
+        android:layout_height="match_parent"
+        android:layout_marginTop="@dimen/navigation_space"
+        android:padding="12dp"
         tools:layout_editor_absoluteX="15dp" />
 
-</androidx.constraintlayout.widget.ConstraintLayout>
+    <include layout="@layout/backdrop_sheep" />
+
+</androidx.coordinatorlayout.widget.CoordinatorLayout>

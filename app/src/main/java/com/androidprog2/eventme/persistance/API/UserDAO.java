@@ -76,15 +76,29 @@ public interface UserDAO {
     Call<List<Event>> userEvents(@Header("Authorization") String token, @Path("id") int id);
 
     // GET /users/ID/events/future	Obté la llista d'events (que n'és propietari) l'usuari ID que encara no han succeït
+    @GET("users/{id}/events/future")
+    Call<List<Event>> userEventsFuture(@Header("Authorization") String token, @Path("id") int id);
+
     // GET /users/ID/events/finished	Obté la llista d'events (que n'és propietari) l'usuari ID que ja han acabat
+    @GET("users/{id}/events/finished")
+    Call<List<Event>> userEventsFinished(@Header("Authorization") String token, @Path("id") int id);
+
     // GET /users/ID/events/current	Obté la llista d'events (que n'és propietari) l'usuari ID que están succeint en aquest moment.
+    @GET("users/{id}/events/current")
+    Call<List<Event>> userEventsCurrent(@Header("Authorization") String token, @Path("id") int id);
 
     // GET /users/ID/assistances	Obté la llista d'assistències a events per a l'usuari ID
     @GET("users/{id}/assistances")
     Call<List<Event>> userAssistances(@Header("Authorization") String token, @Path("id") int id);
 
     // GET /users/ID/assistances/future	Obté la llista d'assistències a events per a l'usuari ID que encara no han succeît
+    @GET("users/{id}/assistances/future")
+    Call<List<Event>> userAssistancesFuture(@Header("Authorization") String token, @Path("id") int id);
+
     // GET /users/ID/assistances/finished	Obté la llista d'assistències a events per a l'usuari ID que ja ha finalitzat
+    @GET("users/{id}/assistances/finished")
+    Call<List<Event>> userAssistancesFinished(@Header("Authorization") String token, @Path("id") int id);
+
     // GET /users/ID/friends	Obté el llistat d'usuaris que són amics de l'usuari ID
     @GET("users/{id}/friends")
     Call<List<User>> getUserFriends(@Header("Authorization") String token, @Path("id") int id);

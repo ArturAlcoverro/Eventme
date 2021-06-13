@@ -79,14 +79,14 @@ public class EventsListAdapter extends RecyclerView.Adapter<EventsListAdapter.Ev
                 }
 
                 public void onErrorResponse(VolleyError error) {
-                    event_image.setImageResource(R.drawable.event_image_test);
+                    event_image.setImageResource(R.drawable.default_event);
                 }
 
             });
 
             this.name.setText(this.event.getName());
             this.location.setText(this.event.getLocalization());
-            this.date.setText(this.event.getStartDate() + " - " + this.event.getEndDate());
+            this.date.setText(this.event.getPeriod());
             this.category.setText(this.event.getType());
         }
 

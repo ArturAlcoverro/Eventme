@@ -25,7 +25,10 @@ import com.androidprog2.eventme.business.Event;
 import com.androidprog2.eventme.business.User;
 import com.androidprog2.eventme.persistance.API.CallSingelton;
 import com.androidprog2.eventme.presentation.activities.EditProfileActivity;
+import com.androidprog2.eventme.presentation.activities.UserEventsActivity;
+import com.androidprog2.eventme.presentation.activities.UserFriendsActivity;
 import com.androidprog2.eventme.presentation.adapters.TimelineAdapter;
+import com.google.android.material.button.MaterialButton;
 
 import java.io.IOException;
 import java.util.List;
@@ -41,8 +44,14 @@ import retrofit2.Response;
  */
 public class ProfileFragment extends Fragment {
 
+    public static final String EXTRA_ID = "EXTRA_ID";
+    public static final String EXTRA_NAME = "EXTRA_NAME";
+    public static final String EXTRA_TYPE = "EXTRA_TYPE";
+
     private ImageButton editProfileBtn;
     private ImageButton chatProfileBtn;
+    private MaterialButton sendMessageBtn;
+    private MaterialButton requestFriendBtn;
     private ImageButton backArrow_btn;
     private LinearLayout linearLayout;
     private ImageView profileImage;
@@ -52,6 +61,9 @@ public class ProfileFragment extends Fragment {
     private TextView createdNumber;
     private TextView assistanceNumber;
     private TextView friendsNumber;
+    private LinearLayout friendsLinear;
+    private LinearLayout createdLinear;
+    private LinearLayout assistanceLinear;
 
     private int id;
 
@@ -112,6 +124,11 @@ public class ProfileFragment extends Fragment {
         createdNumber = view.findViewById(R.id.createdStatistics);
         assistanceNumber = view.findViewById(R.id.assistedStatistics);
         friendsNumber = view.findViewById(R.id.friendsStatistics);
+        sendMessageBtn = view.findViewById(R.id.sendMessage);
+        requestFriendBtn = view.findViewById(R.id.requestFriend);
+        friendsLinear = view.findViewById(R.id.friendsLinear);
+        createdLinear = view.findViewById(R.id.createdLinear);
+        assistanceLinear = view.findViewById(R.id.assistanceLinear);
 
         updateData();
 
@@ -121,10 +138,46 @@ public class ProfileFragment extends Fragment {
         chatProfileBtn.setVisibility(View.GONE);
 
         editProfileBtn.setOnClickListener(v -> { startActivity(intent); });
-        chatProfileBtn.setOnClickListener(v -> {
-         //start chatActivity
-        });
+        chatProfileBtn.setOnClickListener(v -> { startChatActivity(); });
+        sendMessageBtn.setOnClickListener(v -> { startChatActivity(); });
+        requestFriendBtn.setOnClickListener(v -> { requestFriendShip(); });
+        friendsLinear.setOnClickListener(v -> { startFriendActivity(); });
+        createdLinear.setOnClickListener(v -> { startCreatedActivity(); });
+        assistanceLinear.setOnClickListener(v -> { startAssistanceActivity(); });
         return view;
+    }
+
+    private void startAssistanceActivity() {
+        Intent intent = new Intent(getContext(), UserEventsActivity.class);
+        intent.putExtra(EXTRA_ID, id);
+        intent.putExtra(EXTRA_NAME, profileName.getText().toString());
+        intent.putExtra(EXTRA_TYPE, "EXTRA_ASSISTANCE");
+
+        startActivity(intent);
+    }
+
+    private void startCreatedActivity() {
+        Intent intent = new Intent(getContext(), UserEventsActivity.class);
+        intent.putExtra(EXTRA_ID, id);
+        intent.putExtra(EXTRA_NAME, profileName.getText().toString());
+        intent.putExtra(EXTRA_TYPE, "EXTRA_CREATED");
+
+        startActivity(intent);
+    }
+
+    private void startFriendActivity() {
+        Intent intent = new Intent(getContext(), UserFriendsActivity.class);
+        intent.putExtra(EXTRA_ID, id);
+
+        startActivity(intent);
+    }
+
+    private void requestFriendShip() {
+
+    }
+
+    private void startChatActivity() {
+
     }
 
     @RequiresApi(api = Build.VERSION_CODES.O)
@@ -177,6 +230,7 @@ public class ProfileFragment extends Fragment {
                             if (response.code() == 200) {
                                 List<Event> created = response.body();
                                 createdNumber.setText(String.valueOf(created.size()));
+                                System.out.println(created.size() + " vaja vaja pero que passa");
                             }
                         } else {
                             try {

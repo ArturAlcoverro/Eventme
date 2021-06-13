@@ -1,0 +1,64 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:backgroundTint="@color/background_color_light"
+    android:background="@drawable/shape_backdrop"
+    android:id="@+id/bottomSheet"
+    app:behavior_hideable="true"
+    app:behavior_skipCollapsed="true"
+    android:padding="15dp"
+    app:behavior_peekHeight="300dp"
+    app:layout_behavior="com.google.android.material.bottomsheet.BottomSheetBehavior">
+
+    <RadioGroup
+        android:id="@+id/radioGroup"
+        android:checkedButton="@+id/radio_button_1"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        tools:ignore="MissingConstraints">
+        <RadioButton
+            android:id="@+id/radio_button_1"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:text="@string/backdrop_all"
+            android:textColor="@color/font_color"/>
+        <RadioButton
+            android:id="@+id/radio_button_2"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:text="@string/backdrop_finished"
+            android:textColor="@color/font_color"/>
+        <RadioButton
+            android:id="@+id/radio_button_3"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:text="@string/backdrop_started"
+            android:textColor="@color/font_color"/>
+        <RadioButton
+            android:id="@+id/radio_button_4"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:text="@string/backdrop_toGetStarted"
+            android:textColor="@color/font_color"/>
+
+        <RadioButton
+            android:id="@+id/radio_button_5"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:text="@string/backdrop_done"
+            android:visibility="gone"
+            android:textColor="@color/font_color"/>
+        <RadioButton
+            android:id="@+id/radio_button_6"
+            android:visibility="gone"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:text="@string/backdrop_todo"
+            android:textColor="@color/font_color"/>
+
+    </RadioGroup>
+
+</androidx.constraintlayout.widget.ConstraintLayout>
