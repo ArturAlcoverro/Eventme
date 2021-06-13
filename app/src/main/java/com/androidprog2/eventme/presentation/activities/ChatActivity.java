@@ -93,7 +93,12 @@ public class ChatActivity extends AppCompatActivity implements Callback<List<Mes
     }
 
     private void setImage() {
-        String url = "http://puigmal.salle.url.edu/img/" + this.user.getImage();
+        String url;
+        if(this.user.getImage().startsWith("http")){
+            url = this.user.getImage();
+        }else{
+            url = "http://puigmal.salle.url.edu/img/" + this.user.getImage();
+        }
         ImageLoader imageLoader = VolleySingleton.getInstance(getApplicationContext()).getImageLoader();
         imageLoader.get(url, new ImageLoader.ImageListener() {
 

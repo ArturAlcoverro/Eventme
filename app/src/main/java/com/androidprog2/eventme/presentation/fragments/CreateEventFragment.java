@@ -205,10 +205,10 @@ public class CreateEventFragment extends Fragment implements Callback {
     public void onResponse(Call call, Response response) {
         loading(false);
         if (response.isSuccessful()) {
-            System.out.println(response.code() + "codi al crear un evento");
             if (response.code() == 201) {
                 //Decidir que fer
-                System.out.println("event creat");
+                getView().invalidate();
+                //nameInput.getEditText().getText().clear();
             }
             else if (response.code() == 400){
                 Toast.makeText(getContext(), getString(R.string.incorrect_body_error), Toast.LENGTH_LONG).show();
@@ -637,19 +637,21 @@ public class CreateEventFragment extends Fragment implements Callback {
     }
 
     public void setDefaultImage(String category){
-        String[] urls = new String[] {"shorturl.at/cnFT1", "shorturl.at/eiDX6", "shorturl.at/cgmI5", "shorturl.at/hrCL5", "shorturl.at/fnvV3",
-                    "shorturl.at/cwB36", "shorturl.at/mtwWX", "shorturl.at/tHPS8", "shorturl.at/ksKO0"};
-        int position = -1;
+        String[] urls = new String[] {"https://images.unsplash.com/photo-1547826039-bfc35e0f1ea8?ixid=MnwxMjA3fDB8MHxzZWFyY2h8NXx8YXJ0fGVufDB8fDB8fA%3D%3D&ixlib=rb-1.2.1&w=1000&q=80",
+                "https://nucleovisual.com/wp-content/uploads/2019/12/Cultura-material-e-inmaterial-01.jpg",
+                "https://www.unir.net/wp-content/uploads/2019/10/iStock-1000887536.jpg",
+                "https://i.pcmag.com/imagery/roundups/04nBPwuUCcHJKEjeohmzNEA-5.fit_lim.size_1050x.jpg",
+                "https://storage.googleapis.com/gweb-uniblog-publish-prod/original_images/YT_Music.jpg",
+                    "https://www.voicesofyouth.org/sites/voy/files/styles/blog_teaser/public/images/2019-01/politics3.jpg?h=ae1281eb&itok=7pVud1WX",
+                "https://www.rd-alliance.org/sites/default/files/Banner%20DNA%20ORION%20MOOC.jpg",
+                "https://www.okomeds.com/wp-content/uploads/2016/02/p18lq7ediepl816p6s04171vo23.jpg",
+                "https://i.hurimg.com/i/hdn/75/0x0/5da425cc0f25441cf4279f1d.jpg",
+        "https://sloanreview.mit.edu/wp-content/uploads/2017/04/DL-Mukherjee-Digital-Leadership-Neutrality-Neutral-Culture-1200.jpg"};
+
         for (int i = 0; i < categories.length; i++) {
             if(category.equals(categories[i])){
-                position = i;
+                DEFAULT_IMG = urls[i];
             }
-        }
-
-        if(position == -1){
-            DEFAULT_IMG = "shorturl.at/pxCX0";
-        }else{
-            DEFAULT_IMG = urls[position];
         }
     }
 

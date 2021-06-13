@@ -66,7 +66,13 @@ public class EventsListAdapter extends RecyclerView.Adapter<EventsListAdapter.Ev
         public void bind(Event _event, Context _context){
             this.event = _event;
             this.context = _context;
-            String url = "http://puigmal.salle.url.edu/img/" + this.event.getImg();
+            String url;
+            if(this.event.getImg().startsWith("http")){
+                url = this.event.getImg();
+            }else{
+                url = "http://puigmal.salle.url.edu/img/" + this.event.getImg();
+            }
+
             ImageLoader imageLoader = VolleySingleton.getInstance(context).getImageLoader();
 
             imageLoader.get(url, new ImageLoader.ImageListener() {
