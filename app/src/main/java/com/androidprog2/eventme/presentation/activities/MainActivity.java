@@ -1,10 +1,12 @@
 package com.androidprog2.eventme.presentation.activities;
 
+import android.os.Build;
 import android.os.Bundle;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.FrameLayout;
 
+import androidx.annotation.RequiresApi;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentTransaction;
@@ -40,6 +42,7 @@ public class MainActivity extends AppCompatActivity {
     private final int CHAT_BTN_ID = R.id.navigation_menu_chat;
     private final int PROFILE_BTN_ID = R.id.navigation_menu_profile;
 
+    @RequiresApi(api = Build.VERSION_CODES.O)
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -53,6 +56,7 @@ public class MainActivity extends AppCompatActivity {
         keyboardListener();
     }
 
+    @RequiresApi(api = Build.VERSION_CODES.O)
     private void loadFragments() {
         mNavViewLastPosition = 1;
 
@@ -84,9 +88,11 @@ public class MainActivity extends AppCompatActivity {
                     break;
                 case CHAT_BTN_ID:
                     switchFragment(CHAT_POSITION, mChatListFragment);
+                    mChatListFragment.updateData();
                     break;
                 case PROFILE_BTN_ID:
                     switchFragment(PROFILE_POSITION, mProfileFragment);
+                    mProfileFragment.updateData();
                     break;
             }
             return true;
