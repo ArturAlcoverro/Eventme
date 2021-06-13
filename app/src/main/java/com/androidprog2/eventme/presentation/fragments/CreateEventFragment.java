@@ -6,6 +6,7 @@ import android.app.TimePickerDialog;
 import android.content.ContentResolver;
 import android.content.Intent;
 import android.net.Uri;
+import android.os.Build;
 import android.os.Bundle;
 import android.os.Environment;
 import android.text.Editable;
@@ -32,13 +33,13 @@ import android.widget.TimePicker;
 import android.widget.Toast;
 
 import androidx.annotation.Nullable;
+import androidx.annotation.RequiresApi;
 import androidx.fragment.app.DialogFragment;
 import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentTransaction;
 
-import com.androidprog2.eventme.persistance.API.CallSingelton;
 import com.androidprog2.eventme.R;
-import com.androidprog2.eventme.business.Event;
+import com.androidprog2.eventme.persistance.API.CallSingelton;
 import com.google.android.material.button.MaterialButton;
 import com.google.android.material.textfield.TextInputLayout;
 
@@ -65,7 +66,7 @@ import static android.content.Context.INPUT_METHOD_SERVICE;
  * Use the {@link CreateEventFragment#newInstance} factory method to
  * create an instance of this fragment.
  */
-public class CreateEventFragment extends Fragment implements Callback<Event> {
+public class CreateEventFragment extends Fragment implements Callback {
 
     // TODO: Rename parameter arguments, choose names that match
     // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
@@ -132,6 +133,7 @@ public class CreateEventFragment extends Fragment implements Callback<Event> {
         }
     }
 
+    @RequiresApi(api = Build.VERSION_CODES.O)
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
@@ -171,6 +173,7 @@ public class CreateEventFragment extends Fragment implements Callback<Event> {
         return view;
     }
 
+    @RequiresApi(api = Build.VERSION_CODES.O)
     public void createEvent(){
         if(validateData()){
             String name = nameInput.getEditText().getText().toString();
@@ -202,8 +205,10 @@ public class CreateEventFragment extends Fragment implements Callback<Event> {
     public void onResponse(Call call, Response response) {
         loading(false);
         if (response.isSuccessful()) {
+            System.out.println(response.code() + "codi al crear un evento");
             if (response.code() == 201) {
                 //Decidir que fer
+                System.out.println("event creat");
             }
             else if (response.code() == 400){
                 Toast.makeText(getContext(), getString(R.string.incorrect_body_error), Toast.LENGTH_LONG).show();
