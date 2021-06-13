@@ -156,9 +156,9 @@ public class RegisterActivity extends AppCompatActivity implements Callback<User
         String rePassword = mRepeatPasswordInputLayout.getEditText().getText().toString();
 
         boolean err = validateData(firstName, lastName, email, password, rePassword);
-        loading(true);
 
         if (!err) {
+            loading(true);
             if (mImageFile != null)
                 CallSingelton
                         .getInstance()
@@ -168,9 +168,9 @@ public class RegisterActivity extends AppCompatActivity implements Callback<User
                         .getInstance()
                         .insertUser(firstName, lastName, DEFAULT_IMG, email, password, this);
 
-        } else {
-            Toast.makeText(getApplicationContext(), "ERROR", Toast.LENGTH_LONG).show();
         }
+        // else
+        // Toast.makeText(getApplicationContext(), "ERROR", Toast.LENGTH_LONG).show();
     }
 
     @Override
@@ -194,6 +194,7 @@ public class RegisterActivity extends AppCompatActivity implements Callback<User
 
     @Override
     public void onFailure(Call call, Throwable t) {
+        loading(false);
         Toast.makeText(getApplicationContext(), t.getMessage(), Toast.LENGTH_SHORT).show();
     }
 

@@ -108,6 +108,8 @@
     <string name="home_chip_technology">Technology</string>
     <string name="home_chip_science">Science</string>
     <string name="home_chip_art">Art</string>
+    <string name="home_chip_food">Food</string>
+    <string name="home_chip_fashion">Fashion</string>
     <string name="home_chip_politics">Politics</string>
     <string name="home_chip_others">Others</string>
 

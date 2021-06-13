@@ -24,8 +24,10 @@ public interface UserDAO {
     // POST /users	Crea un usuari amb fitxer
     @Multipart
     @POST("users")
-    Call<User> createUser(@Part("name") RequestBody name, @Part("last_name") RequestBody last_name,
-                          @Part MultipartBody.Part image, @Part("email") RequestBody email,
+    Call<User> createUser(@Part("name") RequestBody name,
+                          @Part("last_name") RequestBody last_name,
+                          @Part MultipartBody.Part image,
+                          @Part("email") RequestBody email,
                           @Part("password") RequestBody password);
 
     // POST /users	Crea un usuari amb URL
@@ -66,6 +68,7 @@ public interface UserDAO {
                           @Part MultipartBody.Part image,
                           @Part("name") RequestBody name,
                           @Part("last_name") RequestBody last_name,
+                          @Part("password") RequestBody password,
                           @Part("email") RequestBody email);
 
     // DELETE /users	Borra l'usuari autenticat

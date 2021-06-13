@@ -1,6 +1,7 @@
 package com.androidprog2.eventme.persistance.API;
 
 import com.androidprog2.eventme.business.Event;
+import com.androidprog2.eventme.business.User;
 
 import java.util.ArrayList;
 
@@ -9,10 +10,12 @@ import okhttp3.RequestBody;
 import retrofit2.Call;
 import retrofit2.http.Field;
 import retrofit2.http.FormUrlEncoded;
+import retrofit2.http.GET;
 import retrofit2.http.Header;
 import retrofit2.http.Multipart;
 import retrofit2.http.POST;
 import retrofit2.http.Part;
+import retrofit2.http.Path;
 
 public interface EventDAO {
     //POST /events	Crea un event associat a l'usuari autenticat.
@@ -43,8 +46,8 @@ public interface EventDAO {
             @Field("type") String type
     );
 
-    //GET /events	Retorna tots el events
-    public ArrayList<Event> getAllEvents();
+    @GET("events")
+    Call<ArrayList<Event>> getEvents();
 
     // GET /events/ID	Retorna l'event amb l'ID
     public Event getEvent(int id);
@@ -56,8 +59,12 @@ public interface EventDAO {
     public void deleteEvent(Event event);
 
     // GET /events/ID/assistances	Obté la llista d'asistents que asistiràn a l'event ID
+    @GET("events/{id}/assistances")
+    Call<ArrayList<User>> getAssistances(@Header("authorization") String token, @Path("id") int id);
+
     // GET /events/ID/assistances/ID_USER	Obté la assistència de l'ID_USER que asistirà a l'event ID
     // POST /events/ID/assistances	Crea una assistència de l'usuari autenticat a l'event ID
     // PUT /events/ID/assistances	Crea la informació de assistència de l'usuari autenticat a l'event ID
     // DELETE /events/ID/assistances	Esborra l'asistència de l'usuari autenticat a l'event ID
 }
+

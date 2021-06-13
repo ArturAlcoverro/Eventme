@@ -1,5 +1,7 @@
 package com.androidprog2.eventme.business;
 
+import android.util.Log;
+
 import com.google.gson.annotations.SerializedName;
 
 import java.text.SimpleDateFormat;
@@ -8,23 +10,20 @@ import java.util.Date;
 
 public class Event {
 
-    @SerializedName("id")
     private int id;
-    @SerializedName("name")
     private String name;
     @SerializedName("location")
-    private String localization;
+    private String location;
     @SerializedName("description")
     private String description;
     @SerializedName("image")
-    private String img;
+    private String image;
     @SerializedName("type")
     private String type;
     @SerializedName("comentary")
     private String comentary;
     @SerializedName("puntuation")
     private String puntuation;
-    private Calendar calendar;
 
     @SerializedName("owner_id")
     private int ownerId;
@@ -41,21 +40,22 @@ public class Event {
     public Event() {
     }
 
-    public Event(int id, String name, int ownerId, String localization, Date creationDate, Date startDate, Date endDate, int numParticipants, String img) {
+    public Event(int id, String name, String location, String image, String description, String type, int ownerId, Date creationDate, Date startDate, Date endDate, int numParticipants) {
         this.id = id;
         this.name = name;
+        this.location = location;
+        this.image = image;
+        this.description = description;
+        this.type = type;
         this.ownerId = ownerId;
-        this.localization = localization;
         this.creationDate = creationDate;
         this.startDate = startDate;
         this.endDate = endDate;
         this.numParticipants = numParticipants;
-        this.img = img;
-        this.calendar = Calendar.getInstance();
     }
 
     public String getPeriod() {
-        this.calendar = Calendar.getInstance();
+        Calendar calendar = Calendar.getInstance();
         String r = "";
         int startDay, startMonth, endDay, endMonth;
         SimpleDateFormat format = new SimpleDateFormat("MMM dd");
@@ -69,7 +69,6 @@ public class Event {
             endDay = calendar.get(Calendar.DAY_OF_MONTH);
             endMonth = calendar.get(Calendar.MONTH);
 
-
             if (startDay == endDay && startMonth == endMonth) {
                 r = format.format(startDate);
             } else {
@@ -79,36 +78,88 @@ public class Event {
         return r;
     }
 
-    public String getNameAndLocalization(){
-        return this.name + " - " + this.localization;
+    public String getNameAndLocation(){
+        return this.name + " - " + this.location;
     }
 
-    public int getNumParticipants(){
-        return this.numParticipants;
+    public int getId() {
+        return id;
     }
 
-    public String getImg() {
-        return img;
+    public void setId(int id) {
+        this.id = id;
     }
 
     public String getName() {
         return name;
     }
 
-    public String getLocalization() {
-        return localization;
+    public void setName(String name) {
+        this.name = name;
+    }
+
+    public String getLocation() {
+        return location;
+    }
+
+    public void setLocation(String location) {
+        this.location = location;
+    }
+
+    public String getImage() {
+        return image;
+    }
+
+    public void setImage(String image) {
+        this.image = image;
+    }
+
+    public String getType() {
+        return type;
+    }
+
+    public void setType(String type) {
+        this.type = type;
+    }
+
+    public int getOwnerId() {
+        return ownerId;
+    }
+
+    public void setOwnerId(int ownerId) {
+        this.ownerId = ownerId;
+    }
+
+    public Date getCreationDate() {
+        return creationDate;
+    }
+
+    public void setCreationDate(Date creationDate) {
+        this.creationDate = creationDate;
     }
 
     public Date getStartDate() {
         return startDate;
     }
 
+    public void setStartDate(Date startDate) {
+        this.startDate = startDate;
+    }
+
     public Date getEndDate() {
         return endDate;
     }
 
-    public String getType() {
-        return type;
+    public void setEndDate(Date endDate) {
+        this.endDate = endDate;
+    }
+
+    public int getNumParticipants() {
+        return numParticipants;
+    }
+
+    public void setNumParticipants(int numParticipants) {
+        this.numParticipants = numParticipants;
     }
 
     public String getDay(){

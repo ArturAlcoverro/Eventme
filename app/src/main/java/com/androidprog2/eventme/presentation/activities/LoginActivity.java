@@ -17,6 +17,7 @@ import com.androidprog2.eventme.business.User;
 import com.google.android.material.button.MaterialButton;
 import com.google.android.material.textfield.TextInputLayout;
 
+import java.util.Objects;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
@@ -44,7 +45,7 @@ public class LoginActivity extends AppCompatActivity {
         loginBtn = (MaterialButton) findViewById(R.id.login_btn);
 
         textInputLayoutEmail = findViewById(R.id.login_nickname);
-        textInputLayoutEmail.getEditText().addTextChangedListener(new TextWatcher() {
+        Objects.requireNonNull(textInputLayoutEmail.getEditText()).addTextChangedListener(new TextWatcher() {
             @Override
             public void beforeTextChanged(CharSequence s, int start, int count, int after) {
             }
@@ -60,7 +61,7 @@ public class LoginActivity extends AppCompatActivity {
         });
 
         textInputLayoutPassword = findViewById(R.id.login_password);
-        textInputLayoutPassword.getEditText().addTextChangedListener(new TextWatcher() {
+        Objects.requireNonNull(textInputLayoutPassword.getEditText()).addTextChangedListener(new TextWatcher() {
             @Override
             public void beforeTextChanged(CharSequence s, int start, int count, int after) {
             }
@@ -89,20 +90,21 @@ public class LoginActivity extends AppCompatActivity {
                     CallSingelton.getInstance().loginUser(user, new Callback<String>() {
                         @Override
                         public void onResponse(Call<String> call, Response<String> response) {
+                            Toast toast;
                             switch (response.code()) {
 
                                 case 200:
-                                    //CallSingelton callSingelton = new CallSingelton();
-                                    //callSingelton.setToken(response.message());
-                                    //oast toast = Toast.makeText(getApplicationContext(), "token:" + response.message(), Toast.LENGTH_LONG);
-                                    //toast.setGravity(Gravity.TOP, 0, 60);
-                                    //toast.show();
+                                    CallSingelton.getInstance().
+                                            setToken(response.message());
+                                    toast = Toast.makeText(getApplicationContext(), "token:" + response.message(), Toast.LENGTH_LONG);
+                                    toast.setGravity(Gravity.TOP, 0, 60);
+                                    toast.show();
                                     startActivity(mainIntent);
                                     break;
                                 case 400:
                                     break;
                                 case 500:
-                                    Toast toast = Toast.makeText(getApplicationContext(), getString(R.string.login_incorrect), Toast.LENGTH_LONG);
+                                    toast = Toast.makeText(getApplicationContext(), getString(R.string.login_incorrect), Toast.LENGTH_LONG);
                                     toast.setGravity(Gravity.TOP, 0, 60);
                                     toast.show();
                                     break;

@@ -88,11 +88,12 @@ public class EditProfileActivity extends AppCompatActivity implements Callback<U
 
             loading(true);
             if(mImageFile == null) {
-               //call singleton amb la imatge original
-            }else {
                 CallSingelton
                         .getInstance()
-                        .updateUser(mImageFile, name, lastName, email, this);
+                        .updateUser(mImageFile, name, lastName, "Asdasd123", email, this);            }else {
+                CallSingelton
+                        .getInstance()
+                        .updateUser(mImageFile, name, lastName, "Asdasd123", email, this);
             }
         }
     }
