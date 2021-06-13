@@ -93,7 +93,12 @@ public class ChatActivity extends AppCompatActivity implements Callback<List<Mes
     }
 
     private void setImage() {
-        String url = "http://puigmal.salle.url.edu/img/" + this.user.getImage();
+        String url;
+        if(this.user.getImage().startsWith("http")){
+            url = this.user.getImage();
+        }else{
+            url = "http://puigmal.salle.url.edu/img/" + this.user.getImage();
+        }
         ImageLoader imageLoader = VolleySingleton.getInstance(getApplicationContext()).getImageLoader();
         imageLoader.get(url, new ImageLoader.ImageListener() {
 
@@ -113,35 +118,37 @@ public class ChatActivity extends AppCompatActivity implements Callback<List<Mes
     @RequiresApi(api = Build.VERSION_CODES.O)
     private void sendMessage() {
         content = textToSend.getText().toString();
-        user_id_send = CallSingelton.getUserId();
-        user_id_recived = this.user.getId();
+        if(!content.equals("")) {
+            user_id_send = CallSingelton.getUserId();
+            user_id_recived = this.user.getId();
 
-        CallSingelton
-                .getInstance()
-                .insertMessage(content, user_id_send, user_id_recived, new Callback<Message>() {
-                    @Override
-                    public void onResponse(Call<Message> call, Response<Message> response) {
-                        if (response.isSuccessful()) {
-                            if (response.code() == 201) {
-                                Message message = new Message(content, user_id_send, user_id_recived);
-                                adapter.addItem(message);
-                                recyclerView.scrollToPosition(adapter.getItemCount() -1);
-                                textToSend.setText("");
-                            }
-                        } else {
-                            try {
-                                Toast.makeText(getApplicationContext(), response.errorBody().string(), Toast.LENGTH_LONG).show();
-                            } catch (IOException e) {
-                                e.printStackTrace();
+            CallSingelton
+                    .getInstance()
+                    .insertMessage(content, user_id_send, user_id_recived, new Callback<Message>() {
+                        @Override
+                        public void onResponse(Call<Message> call, Response<Message> response) {
+                            if (response.isSuccessful()) {
+                                if (response.code() == 201) {
+                                    Message message = new Message(content, user_id_send, user_id_recived);
+                                    adapter.addItem(message);
+                                    recyclerView.scrollToPosition(adapter.getItemCount() - 1);
+                                    textToSend.setText("");
+                                }
+                            } else {
+                                try {
+                                    Toast.makeText(getApplicationContext(), response.errorBody().string(), Toast.LENGTH_LONG).show();
+                                } catch (IOException e) {
+                                    e.printStackTrace();
+                                }
                             }
                         }
-                    }
 
-                    @Override
-                    public void onFailure(Call<Message> call, Throwable t) {
-                        Toast.makeText(getApplicationContext(), t.getMessage(), Toast.LENGTH_SHORT).show();
-                    }
-                });
+                        @Override
+                        public void onFailure(Call<Message> call, Throwable t) {
+                            Toast.makeText(getApplicationContext(), t.getMessage(), Toast.LENGTH_SHORT).show();
+                        }
+                    });
+        }
     }
 
     @Override

@@ -309,7 +309,12 @@ public class ProfileFragment extends Fragment {
     }
 
     private void setImage(String image) {
-        String url = "http://puigmal.salle.url.edu/img/" + image;
+        String url;
+        if(image.startsWith("http")){
+            url = image;
+        }else{
+            url = "http://puigmal.salle.url.edu/img/" + image;
+        }
         ImageLoader imageLoader = VolleySingleton.getInstance(getContext()).getImageLoader();
         imageLoader.get(url, new ImageLoader.ImageListener() {
 

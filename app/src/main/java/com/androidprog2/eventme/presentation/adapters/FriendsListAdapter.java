@@ -25,6 +25,11 @@ public class FriendsListAdapter extends RecyclerView.Adapter<FriendsListAdapter.
 
     public FriendsListAdapter(List<User> users, Context context) {
         this.users = users;
+        for (User user: users) {
+            if(user.getImage() == null){
+                users.remove(user);
+            }
+        }
         this.context = context;
     }
 
@@ -64,7 +69,12 @@ public class FriendsListAdapter extends RecyclerView.Adapter<FriendsListAdapter.
             this.user = _user;
             this.context = _context;
 
-            String url = "http://puigmal.salle.url.edu/img/" + this.user.getImage();
+            String url;
+            if(this.user.getImage().startsWith("http")){
+                url = this.user.getImage();
+            }else{
+                url = "http://puigmal.salle.url.edu/img/" + this.user.getImage();
+            }
             ImageLoader imageLoader = VolleySingleton.getInstance(context).getImageLoader();
 
             imageLoader.get(url, new ImageLoader.ImageListener() {

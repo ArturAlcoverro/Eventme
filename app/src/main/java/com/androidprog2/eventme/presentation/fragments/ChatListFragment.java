@@ -79,11 +79,15 @@ public class ChatListFragment extends Fragment implements Callback<List<User>> {
         recyclerView = view.findViewById(R.id.recyclerViewChat);
         recyclerView.setLayoutManager(new LinearLayoutManager(getContext()));
 
+        updateData();
+
+        return view;
+    }
+
+    public void updateData(){
         CallSingelton
                 .getInstance()
                 .getUsersListChat(this);
-
-        return view;
     }
 
     @Override
