@@ -9,6 +9,7 @@ import android.widget.RadioGroup;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.constraintlayout.widget.ConstraintLayout;
 import androidx.recyclerview.widget.LinearLayoutManager;
@@ -20,6 +21,8 @@ import com.androidprog2.eventme.persistance.API.CallSingelton;
 import com.androidprog2.eventme.presentation.adapters.EventsListAdapter;
 import com.androidprog2.eventme.presentation.fragments.ProfileFragment;
 import com.google.android.material.bottomsheet.BottomSheetBehavior;
+
+import org.jetbrains.annotations.NotNull;
 
 import java.io.IOException;
 import java.util.List;
@@ -39,6 +42,7 @@ public class UserEventsActivity extends AppCompatActivity {
     private EventsListAdapter adapter;
     private BottomSheetBehavior<ConstraintLayout> bottomSheet;
     private ConstraintLayout constraintLayout;
+    private View bottomSheepBackground;
     private RadioGroup radioGroup;
     private RadioButton buttonAll;
     private RadioButton buttonDone;
@@ -57,6 +61,7 @@ public class UserEventsActivity extends AppCompatActivity {
         profileName = findViewById(R.id.usernameTitle);
         recyclerView = findViewById(R.id.eventsRecyclerView);
         recyclerView.setLayoutManager(new LinearLayoutManager(getApplicationContext()));
+        bottomSheepBackground = findViewById(R.id.bottomSheetBackgroundLayer);
         constraintLayout = findViewById(R.id.bottomSheet);
         bottomSheet = BottomSheetBehavior.from(constraintLayout);
         radioGroup = findViewById(R.id.radioGroup);
@@ -90,8 +95,23 @@ public class UserEventsActivity extends AppCompatActivity {
         filterBtn.setOnClickListener(v -> {
             if (bottomSheet.getState() == BottomSheetBehavior.STATE_HIDDEN){
                 bottomSheet.setState(BottomSheetBehavior.STATE_EXPANDED);
+                bottomSheepBackground.setVisibility(View.VISIBLE);
             }else if(bottomSheet.getState() == BottomSheetBehavior.STATE_EXPANDED){
                 bottomSheet.setState(BottomSheetBehavior.STATE_HIDDEN);
+                bottomSheepBackground.setVisibility(View.GONE);
+            }
+        });
+
+        bottomSheet.addBottomSheetCallback(new BottomSheetBehavior.BottomSheetCallback() {
+            @Override
+            public void onStateChanged(@NonNull @NotNull View bottomSheet, int newState) {
+                if(newState == BottomSheetBehavior.STATE_HIDDEN){
+                    bottomSheepBackground.setVisibility(View.GONE);
+                }
+            }
+
+            @Override
+            public void onSlide(@NonNull @NotNull View bottomSheet, float slideOffset) {
             }
         });
         radioGroup.setOnCheckedChangeListener((group, checkedId) -> {

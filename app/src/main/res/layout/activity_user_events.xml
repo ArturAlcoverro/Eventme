@@ -59,6 +59,14 @@
         android:padding="12dp"
         tools:layout_editor_absoluteX="15dp" />
 
+    <View
+        android:id="@+id/bottomSheetBackgroundLayer"
+        android:background="#99000000"
+        android:visibility="gone"
+        android:alpha="0.8"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"/>
+
     <include layout="@layout/backdrop_sheep" />
 
 </androidx.coordinatorlayout.widget.CoordinatorLayout>
