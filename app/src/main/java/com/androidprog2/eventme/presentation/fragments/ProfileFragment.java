@@ -151,7 +151,7 @@ public class ProfileFragment extends Fragment {
         Intent intent = new Intent(getContext(), UserEventsActivity.class);
         intent.putExtra(EXTRA_ID, id);
         intent.putExtra(EXTRA_NAME, profileName.getText().toString());
-        intent.putExtra(EXTRA_TYPE, "EXTRA_CREATED");
+        intent.putExtra(EXTRA_TYPE, "EXTRA_ASSISTANCE");
 
         startActivity(intent);
     }
@@ -160,7 +160,7 @@ public class ProfileFragment extends Fragment {
         Intent intent = new Intent(getContext(), UserEventsActivity.class);
         intent.putExtra(EXTRA_ID, id);
         intent.putExtra(EXTRA_NAME, profileName.getText().toString());
-        intent.putExtra(EXTRA_TYPE, "EXTRA_ASSISTANCE");
+        intent.putExtra(EXTRA_TYPE, "EXTRA_CREATED");
 
         startActivity(intent);
     }
@@ -290,7 +290,6 @@ public class ProfileFragment extends Fragment {
                                     adapter = new TimelineAdapter(assistances, getContext());
                                     recyclerView.setAdapter(adapter);
                                 }
-                                System.out.println(assistances.size() + "hola que cony passa");
                                 assistanceNumber.setText(String.valueOf(assistances.size()));
                             }
                         } else {

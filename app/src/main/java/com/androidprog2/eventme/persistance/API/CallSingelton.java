@@ -107,7 +107,7 @@ public class CallSingelton {
     }
 
     public void getProfileUser(int id, Callback<List<User>> callback){
-        setToken("eyJhbGciOiJIUzI1NiJ9.eyJpZCI6MjM5LCJuYW1lIjoiQWxiYTIiLCJsYXN0X25hbWUiOiJCb3NjaCIsImVtYWlsIjoiYWxiYWJvc2NoQGdtYWlsLmNvbSIsImltYWdlIjoiOTFjMDViNDUtZWJiOS00ZjRmLWE1OGUtNmNjYWU2OGQwYjI3LmpwZyJ9.GupcKuzcApA3pDKF-uQ1uypjVne6QtCKf6g5tsWAMkY");
+        setToken("eyJhbGciOiJIUzI1NiJ9.eyJpZCI6MTEsIm5hbWUiOiJMb3JlbSIsImxhc3RfbmFtZSI6Iklwc3VtIiwiZW1haWwiOiJsb3JlbUBpcHN1bS5jb20iLCJpbWFnZSI6IiJ9.oOSABVyRDqIGtslDCNTzE4HiSz74uW6saBtJO9CMTY8");
         Retrofit retrofit = APIConnector.getRetrofitInstance();
         UserDAO userDAO = retrofit.create(UserDAO.class);
 
@@ -165,7 +165,7 @@ public class CallSingelton {
     }
 
     public void getUserFriends(int id, Callback<List<User>> callback){
-        setToken("eyJhbGciOiJIUzI1NiJ9.eyJpZCI6MjM5LCJuYW1lIjoiQWxiYTIiLCJsYXN0X25hbWUiOiJCb3NjaCIsImVtYWlsIjoiYWxiYWJvc2NoQGdtYWlsLmNvbSIsImltYWdlIjoiOTFjMDViNDUtZWJiOS00ZjRmLWE1OGUtNmNjYWU2OGQwYjI3LmpwZyJ9.GupcKuzcApA3pDKF-uQ1uypjVne6QtCKf6g5tsWAMkY");
+        setToken("eyJhbGciOiJIUzI1NiJ9.eyJpZCI6MTEsIm5hbWUiOiJMb3JlbSIsImxhc3RfbmFtZSI6Iklwc3VtIiwiZW1haWwiOiJsb3JlbUBpcHN1bS5jb20iLCJpbWFnZSI6IiJ9.oOSABVyRDqIGtslDCNTzE4HiSz74uW6saBtJO9CMTY8");
         Retrofit retrofit = APIConnector.getRetrofitInstance();
         UserDAO userDAO = retrofit.create(UserDAO.class);
 
@@ -174,7 +174,7 @@ public class CallSingelton {
     }
 
     public void getUserEventsCreated(int id, Callback<List<Event>> callback){
-        setToken("eyJhbGciOiJIUzI1NiJ9.eyJpZCI6MjM5LCJuYW1lIjoiQWxiYTIiLCJsYXN0X25hbWUiOiJCb3NjaCIsImVtYWlsIjoiYWxiYWJvc2NoQGdtYWlsLmNvbSIsImltYWdlIjoiOTFjMDViNDUtZWJiOS00ZjRmLWE1OGUtNmNjYWU2OGQwYjI3LmpwZyJ9.GupcKuzcApA3pDKF-uQ1uypjVne6QtCKf6g5tsWAMkY");
+        setToken("eyJhbGciOiJIUzI1NiJ9.eyJpZCI6MTEsIm5hbWUiOiJMb3JlbSIsImxhc3RfbmFtZSI6Iklwc3VtIiwiZW1haWwiOiJsb3JlbUBpcHN1bS5jb20iLCJpbWFnZSI6IiJ9.oOSABVyRDqIGtslDCNTzE4HiSz74uW6saBtJO9CMTY8");
         Retrofit retrofit = APIConnector.getRetrofitInstance();
         UserDAO userDAO = retrofit.create(UserDAO.class);
 
@@ -182,12 +182,57 @@ public class CallSingelton {
         call.enqueue(callback);
     }
 
+    public void getUserEventsCreatedFuture(int id, Callback<List<Event>> callback){
+        setToken("eyJhbGciOiJIUzI1NiJ9.eyJpZCI6MTEsIm5hbWUiOiJMb3JlbSIsImxhc3RfbmFtZSI6Iklwc3VtIiwiZW1haWwiOiJsb3JlbUBpcHN1bS5jb20iLCJpbWFnZSI6IiJ9.oOSABVyRDqIGtslDCNTzE4HiSz74uW6saBtJO9CMTY8");
+        Retrofit retrofit = APIConnector.getRetrofitInstance();
+        UserDAO userDAO = retrofit.create(UserDAO.class);
+
+        Call<List<Event>> call = userDAO.userEventsFuture("Bearer " + token, id);
+        call.enqueue(callback);
+    }
+
+    public void getUserEventsCreatedFinished(int id, Callback<List<Event>> callback){
+        setToken("eyJhbGciOiJIUzI1NiJ9.eyJpZCI6MTEsIm5hbWUiOiJMb3JlbSIsImxhc3RfbmFtZSI6Iklwc3VtIiwiZW1haWwiOiJsb3JlbUBpcHN1bS5jb20iLCJpbWFnZSI6IiJ9.oOSABVyRDqIGtslDCNTzE4HiSz74uW6saBtJO9CMTY8");
+        Retrofit retrofit = APIConnector.getRetrofitInstance();
+        UserDAO userDAO = retrofit.create(UserDAO.class);
+
+        Call<List<Event>> call = userDAO.userEventsFinished("Bearer " + token, id);
+        call.enqueue(callback);
+    }
+
+    public void getUserEventsCreatedCurrent(int id, Callback<List<Event>> callback){
+        setToken("eyJhbGciOiJIUzI1NiJ9.eyJpZCI6MTEsIm5hbWUiOiJMb3JlbSIsImxhc3RfbmFtZSI6Iklwc3VtIiwiZW1haWwiOiJsb3JlbUBpcHN1bS5jb20iLCJpbWFnZSI6IiJ9.oOSABVyRDqIGtslDCNTzE4HiSz74uW6saBtJO9CMTY8");
+        Retrofit retrofit = APIConnector.getRetrofitInstance();
+        UserDAO userDAO = retrofit.create(UserDAO.class);
+
+        Call<List<Event>> call = userDAO.userEventsCurrent("Bearer " + token, id);
+        call.enqueue(callback);
+    }
+
     public void getUserAssistances(int id, Callback<List<Event>> callback){
-        setToken("eyJhbGciOiJIUzI1NiJ9.eyJpZCI6MjM5LCJuYW1lIjoiQWxiYTIiLCJsYXN0X25hbWUiOiJCb3NjaCIsImVtYWlsIjoiYWxiYWJvc2NoQGdtYWlsLmNvbSIsImltYWdlIjoiOTFjMDViNDUtZWJiOS00ZjRmLWE1OGUtNmNjYWU2OGQwYjI3LmpwZyJ9.GupcKuzcApA3pDKF-uQ1uypjVne6QtCKf6g5tsWAMkY");
+        setToken("eyJhbGciOiJIUzI1NiJ9.eyJpZCI6MTEsIm5hbWUiOiJMb3JlbSIsImxhc3RfbmFtZSI6Iklwc3VtIiwiZW1haWwiOiJsb3JlbUBpcHN1bS5jb20iLCJpbWFnZSI6IiJ9.oOSABVyRDqIGtslDCNTzE4HiSz74uW6saBtJO9CMTY8");
         Retrofit retrofit = APIConnector.getRetrofitInstance();
         UserDAO userDAO = retrofit.create(UserDAO.class);
 
         Call<List<Event>> call = userDAO.userAssistances("Bearer " + token, id);
+        call.enqueue(callback);
+    }
+
+    public void getUserAssistancesFuture(int id, Callback<List<Event>> callback){
+        setToken("eyJhbGciOiJIUzI1NiJ9.eyJpZCI6MTEsIm5hbWUiOiJMb3JlbSIsImxhc3RfbmFtZSI6Iklwc3VtIiwiZW1haWwiOiJsb3JlbUBpcHN1bS5jb20iLCJpbWFnZSI6IiJ9.oOSABVyRDqIGtslDCNTzE4HiSz74uW6saBtJO9CMTY8");
+        Retrofit retrofit = APIConnector.getRetrofitInstance();
+        UserDAO userDAO = retrofit.create(UserDAO.class);
+
+        Call<List<Event>> call = userDAO.userAssistancesFuture("Bearer " + token, id);
+        call.enqueue(callback);
+    }
+
+    public void getUserAssistancesFinished(int id, Callback<List<Event>> callback){
+        setToken("eyJhbGciOiJIUzI1NiJ9.eyJpZCI6MTEsIm5hbWUiOiJMb3JlbSIsImxhc3RfbmFtZSI6Iklwc3VtIiwiZW1haWwiOiJsb3JlbUBpcHN1bS5jb20iLCJpbWFnZSI6IiJ9.oOSABVyRDqIGtslDCNTzE4HiSz74uW6saBtJO9CMTY8");
+        Retrofit retrofit = APIConnector.getRetrofitInstance();
+        UserDAO userDAO = retrofit.create(UserDAO.class);
+
+        Call<List<Event>> call = userDAO.userAssistancesFinished("Bearer " + token, id);
         call.enqueue(callback);
     }
 
