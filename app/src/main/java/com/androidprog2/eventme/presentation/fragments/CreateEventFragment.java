@@ -206,9 +206,7 @@ public class CreateEventFragment extends Fragment implements Callback {
         loading(false);
         if (response.isSuccessful()) {
             if (response.code() == 201) {
-                //Decidir que fer
-                getView().invalidate();
-                //nameInput.getEditText().getText().clear();
+                refreshTextFields();
             }
             else if (response.code() == 400){
                 Toast.makeText(getContext(), getString(R.string.incorrect_body_error), Toast.LENGTH_LONG).show();
@@ -225,9 +223,34 @@ public class CreateEventFragment extends Fragment implements Callback {
         }
     }
 
+    private void refreshTextFields() {
+        nameInput.getEditText().getText().clear();
+        nameInput.setErrorEnabled(false);
+        locationInput.getEditText().getText().clear();
+        locationInput.setErrorEnabled(false);
+        descriptionInput.getEditText().getText().clear();
+        descriptionInput.setErrorEnabled(false);
+        startDateInput.getEditText().getText().clear();
+        startDateInput.setErrorEnabled(false);
+        startTimeInput.getEditText().getText().clear();
+        startTimeInput.setErrorEnabled(false);
+        endDateInput.getEditText().getText().clear();
+        endDateInput.setErrorEnabled(false);
+        endTimeInput.getEditText().getText().clear();
+        endTimeInput.setErrorEnabled(false);
+        categroyInput.getEditText().getText().clear();
+        categroyInput.setErrorEnabled(false);
+        capacityInput.getEditText().getText().clear();
+        capacityInput.setErrorEnabled(false);
+
+        if(mImageFile != null){
+            eventImage.setImageResource(R.drawable.ic_camera_icon);
+        }
+        Toast.makeText(getContext(), R.string.createEvent_correct, Toast.LENGTH_SHORT).show();
+    }
+
     @Override
     public void onFailure(Call call, Throwable t) {
-        System.out.println("aqui he entrat");
         Toast.makeText(getContext(), t.getMessage(), Toast.LENGTH_SHORT).show();
         loading(false);
     }

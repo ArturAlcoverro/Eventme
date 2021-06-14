@@ -19,8 +19,10 @@ import java.util.List;
 import okhttp3.MediaType;
 import okhttp3.MultipartBody;
 import okhttp3.RequestBody;
+import okhttp3.ResponseBody;
 import retrofit2.Call;
 import retrofit2.Callback;
+import retrofit2.Response;
 import retrofit2.Retrofit;
 
 public class CallSingelton {
@@ -182,6 +184,15 @@ public class CallSingelton {
         call.enqueue(callback);
     }
 
+    public void getUserFriendsRequests(Callback<List<User>> callback){
+        setToken("eyJhbGciOiJIUzI1NiJ9.eyJpZCI6MTEsIm5hbWUiOiJMb3JlbSIsImxhc3RfbmFtZSI6Iklwc3VtIiwiZW1haWwiOiJsb3JlbUBpcHN1bS5jb20iLCJpbWFnZSI6IiJ9.oOSABVyRDqIGtslDCNTzE4HiSz74uW6saBtJO9CMTY8");
+        Retrofit retrofit = APIConnector.getRetrofitInstance();
+        FriendDAO friendDAO = retrofit.create(FriendDAO.class);
+
+        Call<List<User>> call = friendDAO.getUserFriendsRequests("Bearer " + token);
+        call.enqueue(callback);
+    }
+
     public void getUserEventsCreated(int id, Callback<List<Event>> callback){
         setToken("eyJhbGciOiJIUzI1NiJ9.eyJpZCI6MTEsIm5hbWUiOiJMb3JlbSIsImxhc3RfbmFtZSI6Iklwc3VtIiwiZW1haWwiOiJsb3JlbUBpcHN1bS5jb20iLCJpbWFnZSI6IiJ9.oOSABVyRDqIGtslDCNTzE4HiSz74uW6saBtJO9CMTY8");
         Retrofit retrofit = APIConnector.getRetrofitInstance();
@@ -275,6 +286,24 @@ public class CallSingelton {
     public void getEventAssistances(int id, Callback callback) {
         EventDAO eventDAO = APIConnector.getRetrofitInstance().create(EventDAO.class);
         Call<ArrayList<User>> call = eventDAO.getAssistances("Bearer " + token, id);
+        call.enqueue(callback);
+    }
+
+    public void acceptFriendShip(int id, Callback<Response<Void>> callback){
+        setToken("eyJhbGciOiJIUzI1NiJ9.eyJpZCI6MTEsIm5hbWUiOiJMb3JlbSIsImxhc3RfbmFtZSI6Iklwc3VtIiwiZW1haWwiOiJsb3JlbUBpcHN1bS5jb20iLCJpbWFnZSI6IiJ9.oOSABVyRDqIGtslDCNTzE4HiSz74uW6saBtJO9CMTY8");
+        Retrofit retrofit = APIConnector.getRetrofitInstance();
+        FriendDAO friendDAO = retrofit.create(FriendDAO.class);
+
+        Call<Response<Void>> call = friendDAO.acceptFriendShip("Bearer " + token, id);
+        call.enqueue(callback);
+    }
+
+    public void declineFriendShip(int id, Callback<Response<Void>> callback){
+        setToken("eyJhbGciOiJIUzI1NiJ9.eyJpZCI6MTEsIm5hbWUiOiJMb3JlbSIsImxhc3RfbmFtZSI6Iklwc3VtIiwiZW1haWwiOiJsb3JlbUBpcHN1bS5jb20iLCJpbWFnZSI6IiJ9.oOSABVyRDqIGtslDCNTzE4HiSz74uW6saBtJO9CMTY8");
+        Retrofit retrofit = APIConnector.getRetrofitInstance();
+        FriendDAO friendDAO = retrofit.create(FriendDAO.class);
+
+        Call<Response<Void>> call = friendDAO.declineFriendShip("Bearer " + token, id);
         call.enqueue(callback);
     }
 }

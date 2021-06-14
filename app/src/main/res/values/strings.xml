@@ -76,6 +76,7 @@
     <string name="createEvent_startTime_error">Missing StartTime field</string>
     <string name="createEvent_endTime_error">Missing EndTime field</string>
     <string name="cancel">Cancel</string>
+    <string name="createEvent_correct">Event created Done</string>
 
     <!-- EditProfileFragment Strings-->
     <string name="editProfile_apply_btn">Apply changes</string>

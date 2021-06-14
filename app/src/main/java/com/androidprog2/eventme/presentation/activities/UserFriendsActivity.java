@@ -55,10 +55,33 @@ public class UserFriendsActivity extends AppCompatActivity {
                         if (response.isSuccessful()) {
                             if (response.code() == 200) {
                                 List<User> friends = (List<User>) response.body();
-                                if(!friends.isEmpty()){
-                                    adapter = new FriendsListAdapter(friends, getApplicationContext());
-                                    recyclerView.setAdapter(adapter);
-                                }
+                                System.out.println(friends.size() + "ei auqi esan els aics");
+                                CallSingelton
+                                        .getInstance()
+                                        .getUserFriendsRequests(new Callback<List<User>>() {
+                                            @Override
+                                            public void onResponse(Call<List<User>> call, Response<List<User>> response) {
+                                                if (response.isSuccessful()) {
+                                                    if (response.code() == 200) {
+                                                        List<User> requests = response.body();
+                                                        System.out.println(requests.size() + "joe quantes requests");
+                                                        adapter = new FriendsListAdapter(friends, requests, getApplicationContext());
+                                                        recyclerView.setAdapter(adapter);
+                                                    }
+                                                } else {
+                                                    try {
+                                                        Toast.makeText(getApplicationContext(), response.errorBody().string(), Toast.LENGTH_LONG).show();
+                                                    } catch (IOException e) {
+                                                        e.printStackTrace();
+                                                    }
+                                                }
+                                            }
+
+                                            @Override
+                                            public void onFailure(Call<List<User>> call, Throwable t) {
+                                                Toast.makeText(getApplicationContext(), t.getMessage(), Toast.LENGTH_SHORT).show();
+                                            }
+                                        });
                             }
                         } else {
                             try {
