@@ -39,7 +39,7 @@
                     android:layout_width="55dp"
                     android:layout_height="55dp"
                     app:cardBackgroundColor="@color/main_purple"
-                    app:cardCornerRadius="30dp"
+                    app:cardCornerRadius="27.5dp"
                     android:layout_margin="13dp"
                     app:cardElevation="0dp"
                     >
@@ -104,25 +104,20 @@
                 android:layout_width="wrap_content"
                 android:layout_height="match_parent"
                 android:gravity="center_vertical">
-                <androidx.cardview.widget.CardView
-                    android:layout_width="80dp"
-                    android:layout_marginHorizontal="12dp"
+
+                <TextView
+                    android:id="@+id/timeline_item_event_category"
+                    android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    app:cardCornerRadius="100dp"
-                    android:layout_marginBottom="12dp"
-                    app:cardBackgroundColor="@color/background_color_light">
-                    <TextView
-                        android:id="@+id/timeline_item_event_category"
-                        android:layout_width="match_parent"
-                        android:textAlignment="center"
-                        android:layout_height="wrap_content"
-                        android:text="Art"
-                        android:maxLines="1"
-                        android:layout_marginVertical="2dp"
-                        android:ellipsize="end"
-                        style="@style/Style.Eventme.Text.Little"
-                        android:textColor="@color/font_color_dark"/>
-                </androidx.cardview.widget.CardView>
+                    android:background="@drawable/shape_category"
+                    android:gravity="right"
+                    android:paddingLeft="25dp"
+                    android:paddingRight="25dp"
+                    android:layout_marginHorizontal="12dp"
+                    android:text="Tech"
+                    android:textSize="15sp"
+                    android:layout_marginBottom="12dp"/>
+
             </LinearLayout>
 
         </LinearLayout>

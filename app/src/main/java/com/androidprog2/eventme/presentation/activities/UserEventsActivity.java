@@ -4,12 +4,12 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.ImageButton;
+import android.widget.LinearLayout;
 import android.widget.RadioButton;
 import android.widget.RadioGroup;
 import android.widget.TextView;
 import android.widget.Toast;
 
-import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.constraintlayout.widget.ConstraintLayout;
 import androidx.recyclerview.widget.LinearLayoutManager;
@@ -21,8 +21,6 @@ import com.androidprog2.eventme.persistance.API.CallSingelton;
 import com.androidprog2.eventme.presentation.adapters.EventsListAdapter;
 import com.androidprog2.eventme.presentation.fragments.ProfileFragment;
 import com.google.android.material.bottomsheet.BottomSheetBehavior;
-
-import org.jetbrains.annotations.NotNull;
 
 import java.io.IOException;
 import java.util.List;
@@ -41,8 +39,8 @@ public class UserEventsActivity extends AppCompatActivity {
     private RecyclerView recyclerView;
     private EventsListAdapter adapter;
     private BottomSheetBehavior<ConstraintLayout> bottomSheet;
+    private LinearLayout backdropLayout;
     private ConstraintLayout constraintLayout;
-    private View bottomSheepBackground;
     private RadioGroup radioGroup;
     private RadioButton buttonAll;
     private RadioButton buttonDone;
@@ -61,9 +59,9 @@ public class UserEventsActivity extends AppCompatActivity {
         profileName = findViewById(R.id.usernameTitle);
         recyclerView = findViewById(R.id.eventsRecyclerView);
         recyclerView.setLayoutManager(new LinearLayoutManager(getApplicationContext()));
-        bottomSheepBackground = findViewById(R.id.bottomSheetBackgroundLayer);
         constraintLayout = findViewById(R.id.bottomSheet);
         bottomSheet = BottomSheetBehavior.from(constraintLayout);
+        backdropLayout = findViewById(R.id.backdrop_background);
         radioGroup = findViewById(R.id.radioGroup);
         buttonAll = findViewById(R.id.radio_button_1);
         buttonFinished = findViewById(R.id.radio_button_2);
@@ -91,30 +89,20 @@ public class UserEventsActivity extends AppCompatActivity {
             buttonTodo.setVisibility(View.VISIBLE);
         }
 
+        backdropLayout.setOnClickListener(v -> {
+            hideBottomSheet();
+        });
+
         backArrowBtn.setOnClickListener(v -> { finish(); });
         filterBtn.setOnClickListener(v -> {
             if (bottomSheet.getState() == BottomSheetBehavior.STATE_HIDDEN){
-                bottomSheet.setState(BottomSheetBehavior.STATE_EXPANDED);
-                bottomSheepBackground.setVisibility(View.VISIBLE);
+                showBottomSheet();
             }else if(bottomSheet.getState() == BottomSheetBehavior.STATE_EXPANDED){
-                bottomSheet.setState(BottomSheetBehavior.STATE_HIDDEN);
-                bottomSheepBackground.setVisibility(View.GONE);
-            }
-        });
-
-        bottomSheet.addBottomSheetCallback(new BottomSheetBehavior.BottomSheetCallback() {
-            @Override
-            public void onStateChanged(@NonNull @NotNull View bottomSheet, int newState) {
-                if(newState == BottomSheetBehavior.STATE_HIDDEN){
-                    bottomSheepBackground.setVisibility(View.GONE);
-                }
-            }
-
-            @Override
-            public void onSlide(@NonNull @NotNull View bottomSheet, float slideOffset) {
+                hideBottomSheet();
             }
         });
         radioGroup.setOnCheckedChangeListener((group, checkedId) -> {
+            hideBottomSheet();
             if(type.equals("EXTRA_CREATED")){
                 if(buttonAll.isChecked()) loadCreatedEvents();
                 if(buttonFinished.isChecked()) loadCreatedFinishedEvents();
@@ -125,7 +113,6 @@ public class UserEventsActivity extends AppCompatActivity {
                 if(buttonDone.isChecked()) loadAssistanceFinishedEvents();
                 if(buttonTodo.isChecked()) loadAssistanceFutureEvents();
             }
-            bottomSheet.setState(BottomSheetBehavior.STATE_HIDDEN);
         });
     }
 
@@ -326,5 +313,15 @@ public class UserEventsActivity extends AppCompatActivity {
                         Toast.makeText(getApplicationContext(), t.getMessage(), Toast.LENGTH_SHORT).show();
                     }
                 });
+    }
+
+    private void showBottomSheet(){
+        bottomSheet.setState(BottomSheetBehavior.STATE_EXPANDED);
+        backdropLayout.setVisibility(View.VISIBLE);
+    }
+
+    private void hideBottomSheet(){
+        bottomSheet.setState(BottomSheetBehavior.STATE_HIDDEN);
+        backdropLayout.setVisibility(View.GONE);
     }
 }

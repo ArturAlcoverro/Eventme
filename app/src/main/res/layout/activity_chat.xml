@@ -1,18 +1,19 @@
 <?xml version="1.0" encoding="utf-8"?>
 
-<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     tools:context=".presentation.activities.ChatActivity"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:orientation="vertical"
     android:background="@color/background_color_dark">
 
     <androidx.appcompat.widget.Toolbar
         android:id="@+id/toolbar"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        tools:ignore="MissingConstraints"
         android:background="@color/background_color"
         app:contentInsetStart="0dp">
 
@@ -35,7 +36,7 @@
                 android:layout_width="40dp"
                 android:layout_height="40dp"
                 android:layout_marginLeft="10dp"
-                app:cardCornerRadius="50dp"
+                app:cardCornerRadius="20dp"
                 app:cardElevation="0dp"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintStart_toEndOf="@+id/xat_back_arrow"
@@ -57,7 +58,7 @@
                 android:ellipsize="end"
                 android:maxLines="1"
                 android:text="Wilson Wilson"
-                android:textSize="18dp"
+                style="@style/Style.Eventme.Text.Important"
                 android:fontFamily="@font/roboto_medium"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintStart_toEndOf="@+id/profileImageChat"
@@ -68,53 +69,57 @@
 
     </androidx.appcompat.widget.Toolbar>
 
-    <androidx.recyclerview.widget.RecyclerView
-        android:id="@+id/recyclerViewChat"
+    <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:padding="15dp"
-        android:layout_marginTop="50dp"
-        android:layout_marginBottom="70dp"
-        app:layout_constraintBottom_toTopOf="@+id/inputLayout"
-        app:layout_constraintTop_toBottomOf="@+id/toolbar"
-        tools:ignore="MissingConstraints">
+        android:layout_height="match_parent">
 
-    </androidx.recyclerview.widget.RecyclerView>
-
-    <LinearLayout
-        android:id="@+id/inputLayout"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:orientation="horizontal"
-        android:padding="10dp"
-        app:layout_constraintBottom_toBottomOf="parent"
-        tools:ignore="MissingConstraints"
-        >
-
-        <EditText
-            android:id="@+id/xat_text_send"
-            android:layout_marginRight="20px"
-            android:paddingVertical="1dp"
-            android:layout_weight="1"
-            android:hint="@string/xat_type_message"
-            android:textColorHint="@color/font_color_dark"
-            android:textColor="@color/font_color"
-            android:inputType="textCapSentences"
-            android:layout_width="wrap_content"
-            android:paddingHorizontal="20dp"
-            android:maxLines="1"
+        <androidx.recyclerview.widget.RecyclerView
+            android:id="@+id/recyclerViewChat"
+            android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:backgroundTint="@color/background_color_light"
-            android:background="@drawable/shape_icon_send"/>
+            android:layout_marginBottom="56dp"
+            app:layout_constraintBottom_toTopOf="@+id/inputLayout"
+            >
 
-        <ImageButton
-            android:id="@+id/xat_send_button"
-            style="@style/Style.Eventme.IconButton"
-            android:background="@drawable/shape_icon_send"
-            android:src="@drawable/ic_baseline_send_24"
-            android:padding="13dp"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toEndOf="@+id/xat_text_send" />
-    </LinearLayout>
+        </androidx.recyclerview.widget.RecyclerView>
 
-</androidx.constraintlayout.widget.ConstraintLayout>
+        <LinearLayout
+            android:id="@+id/inputLayout"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:padding="10dp"
+            app:layout_constraintBottom_toBottomOf="parent"
+            >
+
+            <EditText
+                android:id="@+id/xat_text_send"
+                android:layout_marginRight="20px"
+                android:paddingVertical="1dp"
+                android:layout_weight="1"
+                android:hint="@string/xat_type_message"
+                android:textColorHint="@color/font_color_dark"
+                android:textColor="@color/font_color"
+                android:inputType="textCapSentences"
+                android:layout_width="wrap_content"
+                android:paddingHorizontal="20dp"
+                android:maxLines="1"
+                android:layout_height="match_parent"
+                android:backgroundTint="@color/background_color_light"
+                android:background="@drawable/shape_icon_send"/>
+
+            <ImageButton
+                android:id="@+id/xat_send_button"
+                style="@style/Style.Eventme.IconButton"
+                android:background="@drawable/shape_icon_send"
+                android:src="@drawable/ic_baseline_send_24"
+                android:padding="13dp"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toEndOf="@+id/xat_text_send" />
+        </LinearLayout>
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+
+
+</LinearLayout>
