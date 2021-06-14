@@ -125,6 +125,7 @@ public class UserEventsActivity extends AppCompatActivity {
                 if(buttonDone.isChecked()) loadAssistanceFinishedEvents();
                 if(buttonTodo.isChecked()) loadAssistanceFutureEvents();
             }
+            bottomSheet.setState(BottomSheetBehavior.STATE_HIDDEN);
         });
     }
 
