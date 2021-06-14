@@ -4,6 +4,7 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.ImageButton;
+import android.widget.LinearLayout;
 import android.widget.RadioButton;
 import android.widget.RadioGroup;
 import android.widget.TextView;
@@ -38,6 +39,7 @@ public class UserEventsActivity extends AppCompatActivity {
     private RecyclerView recyclerView;
     private EventsListAdapter adapter;
     private BottomSheetBehavior<ConstraintLayout> bottomSheet;
+    private LinearLayout backdropLayout;
     private ConstraintLayout constraintLayout;
     private RadioGroup radioGroup;
     private RadioButton buttonAll;
@@ -59,6 +61,7 @@ public class UserEventsActivity extends AppCompatActivity {
         recyclerView.setLayoutManager(new LinearLayoutManager(getApplicationContext()));
         constraintLayout = findViewById(R.id.bottomSheet);
         bottomSheet = BottomSheetBehavior.from(constraintLayout);
+        backdropLayout = findViewById(R.id.backdrop_background);
         radioGroup = findViewById(R.id.radioGroup);
         buttonAll = findViewById(R.id.radio_button_1);
         buttonFinished = findViewById(R.id.radio_button_2);
@@ -86,15 +89,20 @@ public class UserEventsActivity extends AppCompatActivity {
             buttonTodo.setVisibility(View.VISIBLE);
         }
 
+        backdropLayout.setOnClickListener(v -> {
+            hideBottomSheet();
+        });
+
         backArrowBtn.setOnClickListener(v -> { finish(); });
         filterBtn.setOnClickListener(v -> {
             if (bottomSheet.getState() == BottomSheetBehavior.STATE_HIDDEN){
-                bottomSheet.setState(BottomSheetBehavior.STATE_EXPANDED);
+                showBottomSheet();
             }else if(bottomSheet.getState() == BottomSheetBehavior.STATE_EXPANDED){
-                bottomSheet.setState(BottomSheetBehavior.STATE_HIDDEN);
+                hideBottomSheet();
             }
         });
         radioGroup.setOnCheckedChangeListener((group, checkedId) -> {
+            hideBottomSheet();
             if(type.equals("EXTRA_CREATED")){
                 if(buttonAll.isChecked()) loadCreatedEvents();
                 if(buttonFinished.isChecked()) loadCreatedFinishedEvents();
@@ -305,5 +313,15 @@ public class UserEventsActivity extends AppCompatActivity {
                         Toast.makeText(getApplicationContext(), t.getMessage(), Toast.LENGTH_SHORT).show();
                     }
                 });
+    }
+
+    private void showBottomSheet(){
+        bottomSheet.setState(BottomSheetBehavior.STATE_EXPANDED);
+        backdropLayout.setVisibility(View.VISIBLE);
+    }
+
+    private void hideBottomSheet(){
+        bottomSheet.setState(BottomSheetBehavior.STATE_HIDDEN);
+        backdropLayout.setVisibility(View.GONE);
     }
 }
