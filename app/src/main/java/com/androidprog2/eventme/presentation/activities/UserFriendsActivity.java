@@ -80,7 +80,6 @@ public class UserFriendsActivity extends AppCompatActivity {
                                             @Override
                                             public void onFailure(Call<List<User>> call, Throwable t) {
                                                 Toast.makeText(getApplicationContext(), t.getMessage(), Toast.LENGTH_SHORT).show();
-
                                             }
                                         });
                             }
