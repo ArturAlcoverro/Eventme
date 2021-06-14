@@ -37,7 +37,7 @@
                     android:layout_gravity="center"
                     android:layout_marginBottom="20dp"
                     android:layout_marginTop="20dp"
-                    app:cardCornerRadius="50dp"
+                    app:cardCornerRadius="40dp"
                     app:cardElevation="0dp"
                     app:layout_constraintTop_toBottomOf="@+id/registerTitle"
                     tools:ignore="MissingConstraints"

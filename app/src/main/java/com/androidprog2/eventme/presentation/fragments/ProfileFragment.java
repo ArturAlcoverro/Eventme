@@ -31,6 +31,7 @@ import org.json.JSONException;
 import org.json.JSONObject;
 
 import java.io.IOException;
+import java.util.Collections;
 import java.util.List;
 
 import retrofit2.Call;
@@ -98,7 +99,7 @@ public class ProfileFragment extends Fragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
-        View view =  inflater.inflate(R.layout.fragment_profile, container, false);
+        View view = inflater.inflate(R.layout.fragment_profile, container, false);
         profileImage = view.findViewById(R.id.imageProfile);
         profileName = view.findViewById(R.id.textView_Name);
         editProfileBtn = view.findViewById(R.id.editProfileBtn);
@@ -122,7 +123,11 @@ public class ProfileFragment extends Fragment {
         profileName.setText(this.user.getFull_name());
         setImage(image);
 
-        loadTimeline();
+        try {
+            loadTimeline();
+        } catch (JSONException e) {
+            e.printStackTrace();
+        }
 
         Intent intent = new Intent(getContext(), EditProfileActivity.class);
         backArrow_btn.setVisibility(View.GONE);
@@ -134,16 +139,20 @@ public class ProfileFragment extends Fragment {
         return view;
     }
 
-    private void loadTimeline() {
+    @RequiresApi(api = Build.VERSION_CODES.O)
+    private void loadTimeline() throws JSONException {
         CallSingelton
                 .getInstance()
-                .getUserAssistances(239, new Callback<List<Event>>() {
+                .getUserAssistances((int) CallSingelton.getPayload().get("id"), new Callback<List<Event>>() {
                     @Override
                     public void onResponse(Call<List<Event>> call, Response<List<Event>> response) {
                         if (response.isSuccessful()) {
                             if (response.code() == 200) {
                                 List<Event> assistances = response.body();
-                                if(!assistances.isEmpty()){
+
+                                if (!assistances.isEmpty()) {
+                                    assistances.removeIf(event -> (event.getStartDate() == null));
+                                    Collections.sort(assistances, (e1, e2) -> e2.getStartDate().compareTo(e1.getStartDate()));
                                     adapter = new TimelineAdapter(assistances, getContext());
                                     recyclerView.setAdapter(adapter);
                                 }
@@ -171,7 +180,7 @@ public class ProfileFragment extends Fragment {
 
             @Override
             public void onResponse(ImageLoader.ImageContainer response, boolean isImmediate) {
-                if (response.getBitmap() != null){
+                if (response.getBitmap() != null) {
                     profileImage.setImageBitmap(response.getBitmap());
                 }
             }

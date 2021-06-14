@@ -1,6 +1,9 @@
 package com.androidprog2.eventme.presentation.activities;
 
+import android.location.Address;
+import android.location.Geocoder;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.FrameLayout;
@@ -18,6 +21,9 @@ import com.google.android.material.bottomnavigation.BottomNavigationView;
 
 import net.yslibrary.android.keyboardvisibilityevent.KeyboardVisibilityEvent;
 import net.yslibrary.android.keyboardvisibilityevent.KeyboardVisibilityEventListener;
+
+import java.io.IOException;
+import java.util.List;
 
 public class MainActivity extends AppCompatActivity {
     private HomeFragment mHomeFragment;
@@ -51,6 +57,23 @@ public class MainActivity extends AppCompatActivity {
         loadFragments();
 
         keyboardListener();
+
+        Geocoder geocoder = new Geocoder(getApplicationContext());
+        List<Address> addresses;
+        try {
+            addresses = geocoder.getFromLocationName("Plaça Espanya", 1);
+            for (Address address : addresses) {
+                double latitude = address.getLatitude();
+                double longitude = address.getLongitude();
+
+                Log.d("LATITUDE", "---" + latitude + "---");
+                Log.d("LONGITUDE", "---" + longitude + "---");
+
+            }
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+
     }
 
     private void loadFragments() {

@@ -12,6 +12,7 @@
     <color name="background_color_darker">#040506</color>
     <color name="background_color_light">#3B4558</color>
     <color name="background_color_lighter">#525F7A</color>
+    <color name="background_color_lighter_opaque">#80525F7A</color>
     <color name="font_color">#FFFFFF</color>
     <color name="font_color_dark">#D1D1D1</color>
     <color name="font_color_darker">#B2B2B2</color>

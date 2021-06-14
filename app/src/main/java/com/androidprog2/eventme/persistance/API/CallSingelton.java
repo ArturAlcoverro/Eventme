@@ -26,6 +26,7 @@ public class CallSingelton {
     private static CallSingelton instance;
     private static String token;
 
+
     private CallSingelton() {
     }
 
@@ -38,7 +39,7 @@ public class CallSingelton {
 
     @RequiresApi(api = Build.VERSION_CODES.O)
     public static JSONObject getPayload(){
-        String[] chunks = token.split("\\.");
+        String[] chunks = "eyJhbGciOiJIUzI1NiJ9.eyJpZCI6NTMyLCJuYW1lIjoiUGFjbyIsImxhc3RfbmFtZSI6IkdhcmNpYSIsImVtYWlsIjoiaGV5MkBoZXkuY29tIiwiaW1hZ2UiOiIxNTllZmU4OC1kMDJlLTRkZjItYmEwOS04ZWE1NmU0OTRjNjMuanBnIn0.2arbYC78Lo7gjkzxO4rnPGxhpHT8O1e5dnv2yvAmscM".split("\\.");
         Base64.Decoder decoder = Base64.getDecoder();
         String header = new String(decoder.decode(chunks[0]));
         String payload = new String(decoder.decode(chunks[1]));
