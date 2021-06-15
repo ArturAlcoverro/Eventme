@@ -69,6 +69,7 @@ public class ProfileFragment extends Fragment {
     private LinearLayout friendsLinear;
     private LinearLayout createdLinear;
     private LinearLayout assistanceLinear;
+    private TextView pendingRequests;
 
     // TODO: Rename parameter arguments, choose names that match
     // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
@@ -119,6 +120,7 @@ public class ProfileFragment extends Fragment {
         profileName = view.findViewById(R.id.textView_Name);
         editProfileBtn = view.findViewById(R.id.editProfileBtn);
         chatProfileBtn = view.findViewById(R.id.chatProfileBtn);
+        pendingRequests = view.findViewById(R.id.pendingRequests);
         backArrow_btn = view.findViewById(R.id.arrowLeft);
         linearLayout = view.findViewById(R.id.linearButtons);
         recyclerView = view.findViewById(R.id.recyclerViewTimeline);
@@ -138,7 +140,6 @@ public class ProfileFragment extends Fragment {
             chatProfileBtn.setVisibility(View.GONE);
             updateData();
         }else{
-
             updateData(id);
             checkisFriendOrNot();
         }
@@ -236,12 +237,7 @@ public class ProfileFragment extends Fragment {
                                 requestFriendBtn.setText(R.string.pending_friendship);
                             }
                         } else {
-                            try {
-                                Toast.makeText(getContext(), response.errorBody().string(), Toast.LENGTH_LONG).show();
-                                System.out.println(response.errorBody().string());
-                            } catch (IOException e) {
-                                e.printStackTrace();
-                            }
+                            requestFriendBtn.setText(R.string.pending_friendship);
                         }
                     }
 
@@ -309,12 +305,42 @@ public class ProfileFragment extends Fragment {
         CallSingelton
                 .getInstance()
                 .getUserFriends(id, new Callback<List<User>>() {
+                    @RequiresApi(api = Build.VERSION_CODES.O)
                     @Override
                     public void onResponse(Call<List<User>> call, Response<List<User>> response) {
                         if (response.isSuccessful()) {
                             if (response.code() == 200) {
                                 List<User> friends = (List<User>) response.body();
                                 friendsNumber.setText(String.valueOf(friends.size()));
+                                if(id == CallSingelton.getUserId()) {
+                                    CallSingelton
+                                            .getInstance()
+                                            .getUserFriendsRequests(new Callback<List<User>>() {
+                                                @Override
+                                                public void onResponse(Call<List<User>> call, Response<List<User>> response) {
+                                                    if (response.isSuccessful()) {
+                                                        if (response.code() == 200) {
+                                                            List<User> requests = response.body();
+                                                            if(!requests.isEmpty()){
+                                                                pendingRequests.setText(String.valueOf(requests.size()));
+                                                                pendingRequests.setVisibility(View.VISIBLE);
+                                                            }
+                                                        }
+                                                    } else {
+                                                        try {
+                                                            Toast.makeText(getContext(), response.errorBody().string(), Toast.LENGTH_LONG).show();
+                                                        } catch (IOException e) {
+                                                            e.printStackTrace();
+                                                        }
+                                                    }
+                                                }
+
+                                                @Override
+                                                public void onFailure(Call<List<User>> call, Throwable t) {
+                                                    Toast.makeText(getContext(), t.getMessage(), Toast.LENGTH_SHORT).show();
+                                                }
+                                            });
+                                }
                             }
                         } else {
                             try {

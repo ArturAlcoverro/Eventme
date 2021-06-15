@@ -43,9 +43,9 @@ public class FriendsListAdapter extends RecyclerView.Adapter<FriendsListAdapter.
 
     public FriendsListAdapter(List<User> users, List<User> requests, Context context) {
         this.users = users;
-        for (User user: users) {
-            if(user.getImage() == null){
-                users.remove(user);
+        for (int i = 0; i < users.size(); i++) {
+            if(users.get(i).getImage() == null){
+                users.remove(i);
             }
         }
         this.requests = requests;
