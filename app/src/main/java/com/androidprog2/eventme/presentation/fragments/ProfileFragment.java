@@ -237,7 +237,15 @@ public class ProfileFragment extends Fragment {
                                 requestFriendBtn.setText(R.string.pending_friendship);
                             }
                         } else {
-                            requestFriendBtn.setText(R.string.pending_friendship);
+                            if(response.code() == 400) {
+                                requestFriendBtn.setText(R.string.pending_friendship);
+                            }else{
+                                try {
+                                    Toast.makeText(getContext(), response.errorBody().string(), Toast.LENGTH_LONG).show();
+                                } catch (IOException e) {
+                                    e.printStackTrace();
+                                }
+                            }
                         }
                     }
 
