@@ -9,6 +9,7 @@ import retrofit2.Response;
 import retrofit2.http.DELETE;
 import retrofit2.http.GET;
 import retrofit2.http.Header;
+import retrofit2.http.POST;
 import retrofit2.http.PUT;
 import retrofit2.http.Path;
 
@@ -19,6 +20,8 @@ public interface FriendDAO {
 
     // GET /friends	Obté la llista d'usuaris que són amics amb l'usuari autenticat
     // POST /friends/ID	Crea una petició d'amistat de l'usuari autenticat a l'usuari ID.
+    @POST("friends/{id}")
+    Call<Response<Void>> requestFriendShip(@Header("Authorization") String token, @Path("id") int id);
 
     // PUT /friends/ID	Accepta la petició d'amistad de l'usuari ID (que ha rebut l'usuari autenticat)
     @PUT("friends/{id}")

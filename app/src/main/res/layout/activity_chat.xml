@@ -31,6 +31,16 @@
                 app:srcCompat="@drawable/ic_baseline_arrow_back_24"
                 tools:ignore="MissingConstraints" />
 
+            <LinearLayout
+                android:id="@+id/profileInformation"
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                android:orientation="horizontal"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintStart_toEndOf="@+id/xat_back_arrow"
+                app:layout_constraintTop_toTopOf="parent">
+
+
             <androidx.cardview.widget.CardView
                 android:id="@+id/profileImageChat"
                 android:layout_width="40dp"
@@ -38,9 +48,7 @@
                 android:layout_marginLeft="10dp"
                 app:cardCornerRadius="20dp"
                 app:cardElevation="0dp"
-                app:layout_constraintBottom_toBottomOf="parent"
-                app:layout_constraintStart_toEndOf="@+id/xat_back_arrow"
-                app:layout_constraintTop_toTopOf="parent">
+                >
 
                 <ImageView
                     android:id="@+id/imageProfile"
@@ -55,6 +63,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="match_parent"
                 android:layout_marginLeft="10dp"
+                android:gravity="center"
                 android:ellipsize="end"
                 android:maxLines="1"
                 android:text="Wilson Wilson"
@@ -64,6 +73,7 @@
                 app:layout_constraintStart_toEndOf="@+id/profileImageChat"
                 app:layout_constraintTop_toTopOf="parent" />
 
+            </LinearLayout>
 
         </androidx.constraintlayout.widget.ConstraintLayout>
 

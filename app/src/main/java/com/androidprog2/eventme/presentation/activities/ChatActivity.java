@@ -6,6 +6,7 @@ import android.os.Bundle;
 import android.widget.EditText;
 import android.widget.ImageButton;
 import android.widget.ImageView;
+import android.widget.LinearLayout;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -33,6 +34,8 @@ import retrofit2.Response;
 
 public class ChatActivity extends AppCompatActivity implements Callback<List<Message>> {
 
+    public static String EXTRA_ID = "EXTRA_ID";
+
     private User user;
     private MessageListAdapter adapter;
     private TextView userName;
@@ -40,6 +43,7 @@ public class ChatActivity extends AppCompatActivity implements Callback<List<Mes
     private ImageView arrowBack_btn;
     private EditText textToSend;
     private RecyclerView recyclerView;
+    private LinearLayout profileInformation;
     private ImageButton send_btn;
     private List<Message> messages;
 
@@ -59,6 +63,7 @@ public class ChatActivity extends AppCompatActivity implements Callback<List<Mes
         textToSend = findViewById(R.id.xat_text_send);
         send_btn = findViewById(R.id.xat_send_button);
         recyclerView = findViewById(R.id.recyclerViewChat);
+        profileInformation = findViewById(R.id.profileInformation);
         LinearLayoutManager linearLayoutManager = new LinearLayoutManager(getApplicationContext(), LinearLayoutManager.VERTICAL, false);
         linearLayoutManager.setStackFromEnd(true);
         recyclerView.setLayoutManager(linearLayoutManager);
@@ -83,12 +88,21 @@ public class ChatActivity extends AppCompatActivity implements Callback<List<Mes
 
         arrowBack_btn.setOnClickListener(v -> { finish(); });
         send_btn.setOnClickListener(v -> { sendMessage(); });
+        profileInformation.setOnClickListener(v -> { startProfileActivity(); });
+    }
+
+    private void startProfileActivity() {
+        Intent intent = new Intent(getApplicationContext(), ProfileActivity.class);
+        intent.putExtra(EXTRA_ID, this.user.getId());
+        startActivity(intent);
     }
 
     public void listener(){
         textToSend.setOnFocusChangeListener((v, hasFocus) -> {
-            if(hasFocus){
-                recyclerView.scrollToPosition(adapter.getItemCount() -1); }
+            if(hasFocus) {
+                    recyclerView.scrollToPosition(adapter.getItemCount() - 1);
+
+            }
         });
     }
 
@@ -156,11 +170,9 @@ public class ChatActivity extends AppCompatActivity implements Callback<List<Mes
         if (response.isSuccessful()) {
             if (response.code() == 200) {
                 messages = (List<Message>) response.body();
-                if(!messages.isEmpty()){
-                    adapter = new MessageListAdapter(messages, this.user, getApplicationContext());
-                    recyclerView.setAdapter(adapter);
-                    recyclerView.scrollToPosition(adapter.getItemCount() -1);
-                }
+                adapter = new MessageListAdapter(messages, this.user, getApplicationContext());
+                recyclerView.setAdapter(adapter);
+                recyclerView.scrollToPosition(adapter.getItemCount() -1);
             }
         } else {
             try {

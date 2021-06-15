@@ -90,7 +90,8 @@ public class EditProfileActivity extends AppCompatActivity implements Callback<U
             if(mImageFile == null) {
                 CallSingelton
                         .getInstance()
-                        .updateUser(mImageFile, name, lastName, "Asdasd123", email, this);            }else {
+                        .updateUser(mImageFile, name, lastName, "Asdasd123", email, this);
+            }else {
                 CallSingelton
                         .getInstance()
                         .updateUser(mImageFile, name, lastName, "Asdasd123", email, this);

@@ -48,6 +48,7 @@ public class MainActivity extends AppCompatActivity {
     private final int CHAT_BTN_ID = R.id.navigation_menu_chat;
     private final int PROFILE_BTN_ID = R.id.navigation_menu_profile;
 
+    @RequiresApi(api = Build.VERSION_CODES.O)
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -78,13 +79,18 @@ public class MainActivity extends AppCompatActivity {
 
     }
 
+    @RequiresApi(api = Build.VERSION_CODES.O)
     private void loadFragments() {
         mNavViewLastPosition = 1;
 
         mHomeFragment = new HomeFragment();
         mCreateEventFragment = new CreateEventFragment();
         mChatListFragment = new ChatListFragment();
+        Bundle bundle = new Bundle();
+        bundle.putInt("EXTRA_ID", -1);
+
         mProfileFragment = new ProfileFragment();
+        mProfileFragment.setArguments(bundle);
 
         getSupportFragmentManager()
                 .beginTransaction()
@@ -137,8 +143,6 @@ public class MainActivity extends AppCompatActivity {
             mNavViewLastFragment = fragment;
 
             transaction
-                    //.detach(fragment)
-                    //.attach(fragment)
                     .show(fragment)
                     .commit();
         }
