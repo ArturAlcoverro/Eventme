@@ -1,10 +1,12 @@
 package com.androidprog2.eventme.presentation.activities;
 
 import android.content.Intent;
+import android.os.Build;
 import android.os.Bundle;
 import android.widget.ImageButton;
 import android.widget.Toast;
 
+import androidx.annotation.RequiresApi;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
@@ -16,6 +18,7 @@ import com.androidprog2.eventme.presentation.adapters.FriendsListAdapter;
 import com.androidprog2.eventme.presentation.fragments.ProfileFragment;
 
 import java.io.IOException;
+import java.util.ArrayList;
 import java.util.List;
 
 import retrofit2.Call;
@@ -50,38 +53,43 @@ public class UserFriendsActivity extends AppCompatActivity {
         CallSingelton
                 .getInstance()
                 .getUserFriends(id, new Callback<List<User>>() {
+                    @RequiresApi(api = Build.VERSION_CODES.O)
                     @Override
                     public void onResponse(Call<List<User>> call, Response<List<User>> response) {
                         if (response.isSuccessful()) {
                             if (response.code() == 200) {
                                 List<User> friends = (List<User>) response.body();
-                                System.out.println(friends.size() + "ei auqi esan els aics");
-                                CallSingelton
-                                        .getInstance()
-                                        .getUserFriendsRequests(new Callback<List<User>>() {
-                                            @Override
-                                            public void onResponse(Call<List<User>> call, Response<List<User>> response) {
-                                                if (response.isSuccessful()) {
-                                                    if (response.code() == 200) {
-                                                        List<User> requests = response.body();
-                                                        System.out.println(requests.size() + "joe quantes requests");
-                                                        adapter = new FriendsListAdapter(friends, requests, getApplicationContext());
-                                                        recyclerView.setAdapter(adapter);
-                                                    }
-                                                } else {
-                                                    try {
-                                                        Toast.makeText(getApplicationContext(), response.errorBody().string(), Toast.LENGTH_LONG).show();
-                                                    } catch (IOException e) {
-                                                        e.printStackTrace();
+                                if(id == CallSingelton.getUserId()) {
+                                    CallSingelton
+                                            .getInstance()
+                                            .getUserFriendsRequests(new Callback<List<User>>() {
+                                                @Override
+                                                public void onResponse(Call<List<User>> call, Response<List<User>> response) {
+                                                    if (response.isSuccessful()) {
+                                                        if (response.code() == 200) {
+                                                            List<User> requests = response.body();
+                                                            adapter = new FriendsListAdapter(friends, requests, getApplicationContext());
+                                                            recyclerView.setAdapter(adapter);
+                                                        }
+                                                    } else {
+                                                        try {
+                                                            Toast.makeText(getApplicationContext(), response.errorBody().string(), Toast.LENGTH_LONG).show();
+                                                        } catch (IOException e) {
+                                                            e.printStackTrace();
+                                                        }
                                                     }
                                                 }
-                                            }
 
-                                            @Override
-                                            public void onFailure(Call<List<User>> call, Throwable t) {
-                                                Toast.makeText(getApplicationContext(), t.getMessage(), Toast.LENGTH_SHORT).show();
-                                            }
-                                        });
+                                                @Override
+                                                public void onFailure(Call<List<User>> call, Throwable t) {
+                                                    Toast.makeText(getApplicationContext(), t.getMessage(), Toast.LENGTH_SHORT).show();
+                                                }
+                                            });
+                                }else{
+                                    List<User> requests = new ArrayList<>();
+                                    adapter = new FriendsListAdapter(friends, requests, getApplicationContext());
+                                    recyclerView.setAdapter(adapter);
+                                }
                             }
                         } else {
                             try {

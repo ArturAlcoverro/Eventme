@@ -87,11 +87,13 @@ public class ChatListAdapter extends RecyclerView.Adapter<ChatListAdapter.ChatLi
                     .getInstance()
                     .getMessages(this.user.getId(), this);
             this.context = _context;
-            String url;
-            if(this.user.getImage().startsWith("http")){
-                url = this.user.getImage();
-            }else{
-                url = "http://puigmal.salle.url.edu/img/" + this.user.getImage();
+            String url = "";
+            if(this.user.getImage() != null) {
+                if (this.user.getImage().startsWith("http")) {
+                    url = this.user.getImage();
+                } else {
+                    url = "http://puigmal.salle.url.edu/img/" + this.user.getImage();
+                }
             }
             ImageLoader imageLoader = VolleySingleton.getInstance(context).getImageLoader();
             imageLoader.get(url, new ImageLoader.ImageListener() {

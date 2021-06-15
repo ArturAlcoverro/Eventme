@@ -1,6 +1,8 @@
 package com.androidprog2.eventme.presentation.adapters;
 
 import android.content.Context;
+import android.content.Intent;
+import android.os.Build;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -10,6 +12,7 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import androidx.annotation.NonNull;
+import androidx.annotation.RequiresApi;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.android.volley.VolleyError;
@@ -18,6 +21,7 @@ import com.androidprog2.eventme.R;
 import com.androidprog2.eventme.VolleySingleton;
 import com.androidprog2.eventme.business.User;
 import com.androidprog2.eventme.persistance.API.CallSingelton;
+import com.androidprog2.eventme.presentation.activities.ProfileActivity;
 import com.google.android.material.button.MaterialButton;
 
 import java.io.IOException;
@@ -39,9 +43,9 @@ public class FriendsListAdapter extends RecyclerView.Adapter<FriendsListAdapter.
 
     public FriendsListAdapter(List<User> users, List<User> requests, Context context) {
         this.users = users;
-        for (User user: users) {
-            if(user.getImage() == null){
-                users.remove(user);
+        for (int i = 0; i < users.size(); i++) {
+            if(users.get(i).getImage() == null){
+                users.remove(i);
             }
         }
         this.requests = requests;
@@ -107,10 +111,10 @@ public class FriendsListAdapter extends RecyclerView.Adapter<FriendsListAdapter.
     }
 
     public static class FriendsListViewHolder extends RecyclerView.ViewHolder implements View.OnClickListener{
+        public static String EXTRA_ID = "EXTRA_ID";
 
         private User user;
         private Context context;
-        private View item;
         private ImageView user_image;
         private TextView nickname;
         private TextView full_name;
@@ -126,18 +130,20 @@ public class FriendsListAdapter extends RecyclerView.Adapter<FriendsListAdapter.
             this.linearLayout = itemView.findViewById(R.id.linearButtonsFriend);
             this.confirmBtn = itemView.findViewById(R.id.confirmFriend);
             this.deleteBtn = itemView.findViewById(R.id.declineFriend);
-            item = itemView;
+            itemView.setOnClickListener(this);
         }
 
         public void bind(User _user, boolean isRequest, Context _context){
             this.user = _user;
             this.context = _context;
 
-            String url;
-            if(this.user.getImage().startsWith("http")){
-                url = this.user.getImage();
-            }else{
-                url = "http://puigmal.salle.url.edu/img/" + this.user.getImage();
+            String url = "";
+            if(this.user.getImage() != null) {
+                if (this.user.getImage().startsWith("http")) {
+                    url = this.user.getImage();
+                } else {
+                    url = "http://puigmal.salle.url.edu/img/" + this.user.getImage();
+                }
             }
             ImageLoader imageLoader = VolleySingleton.getInstance(context).getImageLoader();
 
@@ -197,9 +203,16 @@ public class FriendsListAdapter extends RecyclerView.Adapter<FriendsListAdapter.
                     });
         }
 
+        @RequiresApi(api = Build.VERSION_CODES.O)
         @Override
         public void onClick(View v) {
             //Open activity detail
+            if(this.user.getId() != CallSingelton.getUserId()) {
+                Intent intent = new Intent(context, ProfileActivity.class);
+                intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+                intent.putExtra(EXTRA_ID, this.user.getId());
+                context.startActivity(intent);
+            }
         }
     }
 }

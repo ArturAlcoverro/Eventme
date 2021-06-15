@@ -19,7 +19,6 @@ import java.util.List;
 import okhttp3.MediaType;
 import okhttp3.MultipartBody;
 import okhttp3.RequestBody;
-import okhttp3.ResponseBody;
 import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
@@ -304,6 +303,15 @@ public class CallSingelton {
         FriendDAO friendDAO = retrofit.create(FriendDAO.class);
 
         Call<Response<Void>> call = friendDAO.declineFriendShip("Bearer " + token, id);
+        call.enqueue(callback);
+    }
+
+    public void requestFriendShip(int id, Callback<Response<Void>> callback){
+        setToken("eyJhbGciOiJIUzI1NiJ9.eyJpZCI6MTEsIm5hbWUiOiJMb3JlbSIsImxhc3RfbmFtZSI6Iklwc3VtIiwiZW1haWwiOiJsb3JlbUBpcHN1bS5jb20iLCJpbWFnZSI6IiJ9.oOSABVyRDqIGtslDCNTzE4HiSz74uW6saBtJO9CMTY8");
+        Retrofit retrofit = APIConnector.getRetrofitInstance();
+        FriendDAO friendDAO = retrofit.create(FriendDAO.class);
+
+        Call<Response<Void>> call = friendDAO.requestFriendShip("Bearer " + token, id);
         call.enqueue(callback);
     }
 }
