@@ -127,5 +127,15 @@
     <string name="sign_up_image_label">Profile image</string>
     <string name="incorrect_body_error">The data is incorrect, please check the fields</string>
     <string name="incorrect_to_insert">The server could not create the event, try again</string>
+    <string name="event_detail_participants">participants</string>
+    <string name="event_detail_max_participants">maximum seats</string>
+    <string name="event_detail_starts">Start on</string>
+    <string name="event_detail_ends">Ends on</string>
+    <string name="event_detail_by">By</string>
+    <string name="event_detail_ask_help">Ask help</string>
+    <string name="event_detail_i_ll_attend">I’ll attend</string>
+    <string name="event_detail_im_out">I\'m out</string>
+    <string name="event_detail_finished_event">Finished event!</string>
+    <string name="event_detail_started_event">Started event!</string>
 
 </resources>

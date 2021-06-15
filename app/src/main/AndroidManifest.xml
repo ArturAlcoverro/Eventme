@@ -14,6 +14,11 @@
         android:supportsRtl="true"
         android:usesCleartextTraffic="true"
         android:theme="@style/Theme.Eventme">
+
+        <meta-data
+            android:name="com.google.android.geo.API_KEY"
+            android:value="AIzaSyDtrr_csBSo88vkRAHcSn3JoTiRCfukpF4" />
+
         <activity android:name=".presentation.activities.UserFriendsActivity" />
         <activity android:name=".presentation.activities.UserEventsActivity" />
         <activity android:name=".presentation.activities.EditProfileActivity" />

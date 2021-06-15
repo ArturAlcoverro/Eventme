@@ -59,23 +59,6 @@ public class MainActivity extends AppCompatActivity {
         loadFragments();
 
         keyboardListener();
-
-        Geocoder geocoder = new Geocoder(getApplicationContext());
-        List<Address> addresses;
-        try {
-            addresses = geocoder.getFromLocationName("Plaça Espanya", 1);
-            for (Address address : addresses) {
-                double latitude = address.getLatitude();
-                double longitude = address.getLongitude();
-
-                Log.d("LATITUDE", "---" + latitude + "---");
-                Log.d("LONGITUDE", "---" + longitude + "---");
-
-            }
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
-
     }
 
     private void loadFragments() {

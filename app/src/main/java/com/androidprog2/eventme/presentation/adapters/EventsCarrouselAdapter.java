@@ -1,6 +1,7 @@
 package com.androidprog2.eventme.presentation.adapters;
 
 import android.content.Context;
+import android.content.Intent;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -18,6 +19,8 @@ import com.androidprog2.eventme.VolleySingleton;
 import com.androidprog2.eventme.business.Event;
 import com.androidprog2.eventme.business.User;
 import com.androidprog2.eventme.persistance.API.CallSingelton;
+import com.androidprog2.eventme.presentation.activities.ChatActivity;
+import com.androidprog2.eventme.presentation.activities.EventDetailActivity;
 import com.bumptech.glide.Glide;
 import com.bumptech.glide.request.RequestOptions;
 
@@ -30,6 +33,7 @@ import retrofit2.Callback;
 import retrofit2.Response;
 
 public class EventsCarrouselAdapter extends RecyclerView.Adapter<EventsCarrouselAdapter.EventsCarrouselViewHolder> {
+    public static String EVENT_ID = "EVENT_ID";
 
     private List<Event> events;
     private Context context;
@@ -64,6 +68,7 @@ public class EventsCarrouselAdapter extends RecyclerView.Adapter<EventsCarrousel
     public static class EventsCarrouselViewHolder extends RecyclerView.ViewHolder implements View.OnClickListener {
 
         private Event event;
+        private Context context;
         private TextView event_days;
         private TextView event_name;
         private TextView event_participants;
@@ -75,26 +80,11 @@ public class EventsCarrouselAdapter extends RecyclerView.Adapter<EventsCarrousel
             this.event_name = (TextView) itemView.findViewById(R.id.home_carrousel_event_name);
             this.event_participants = (TextView) itemView.findViewById(R.id.home_carrousel_event_participations);
             this.event_image = (ImageView) itemView.findViewById(R.id.home_carrousel_event_img);
-        }
-
-        private void setImage(String image, Context context) {
-            ImageLoader imageLoader = VolleySingleton.getInstance(context).getImageLoader();
-            Log.d("IMAGE:", "---" + image + "---");
-            imageLoader.get(image, new ImageLoader.ImageListener() {
-                @Override
-                public void onResponse(ImageLoader.ImageContainer response, boolean isImmediate) {
-                    if (response.getBitmap() != null){
-                        event_image.setImageBitmap(response.getBitmap());
-                    }
-                }
-
-                public void onErrorResponse(VolleyError error) {
-                    event_image.setImageResource(R.drawable.avatar_profile);
-                }
-            });
+            itemView.setOnClickListener(this);
         }
 
         public void bind(Event _event, Context context) {
+            this.context = context;
             this.event = _event;
             this.event_days.setText(event.getPeriod());
             this.event_name.setText(event.getNameAndLocation());
@@ -140,7 +130,9 @@ public class EventsCarrouselAdapter extends RecyclerView.Adapter<EventsCarrousel
 
         @Override
         public void onClick(View v) {
-            //Open activity detail
+            Intent intent = new Intent(context, EventDetailActivity.class);
+            intent.putExtra(EVENT_ID, this.event.getId());
+            this.context.startActivity(intent);
         }
     }
 }

@@ -8,12 +8,14 @@ import java.util.ArrayList;
 import okhttp3.MultipartBody;
 import okhttp3.RequestBody;
 import retrofit2.Call;
+import retrofit2.http.DELETE;
 import retrofit2.http.Field;
 import retrofit2.http.FormUrlEncoded;
 import retrofit2.http.GET;
 import retrofit2.http.Header;
 import retrofit2.http.Multipart;
 import retrofit2.http.POST;
+import retrofit2.http.PUT;
 import retrofit2.http.Part;
 import retrofit2.http.Path;
 
@@ -49,8 +51,23 @@ public interface EventDAO {
     @GET("events")
     Call<ArrayList<Event>> getEvents();
 
-    // GET /events/ID	Retorna l'event amb l'ID
-    public Event getEvent(int id);
+    @GET("events/{id}")
+    Call<ArrayList<Event>> getEvent(@Path("id") int id);
+
+    @POST("events/{id}/assistances")
+    Call<String> createAssistance(@Header("authorization") String token, @Path("id") int id);
+
+    @FormUrlEncoded
+    @PUT("events/{id}/assistances")
+    Call<String> updateAssistance(@Header("authorization") String token,
+                                  @Path("id") int id,
+                                  @Field("puntuation") String puntuation,
+                                  @Field("comentary") String comentary
+    );
+
+    @DELETE("events/{id}/assistances")
+    Call<String> deleteAssistance(@Header("authorization") String token, @Path("id") int id);
+
 
     // PUT /events/ID	Modifica l'event autenticat
     public void changeEvent(Event event);
