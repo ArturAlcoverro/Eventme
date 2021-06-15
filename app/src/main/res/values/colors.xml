@@ -23,6 +23,7 @@
     <color name="menu_button_color">#9EA2AB</color>
 
     <color name="error_color">#E14F4F</color>
+    <color name="danger_color">#C75450</color>
 
     <color name="transparent">#00000000</color>
     <color name="black">#000</color>

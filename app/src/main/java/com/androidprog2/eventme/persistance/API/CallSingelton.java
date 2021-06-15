@@ -118,7 +118,7 @@ public class CallSingelton {
         Call<List<User>> call = userDAO.getUserProfile("Bearer " + token, id);
         call.enqueue(callback);
     }
-    
+
     public String getToken() {
         return token;
     }
@@ -130,6 +130,12 @@ public class CallSingelton {
     public void getEvents(Callback callback) {
         EventDAO eventDAO = APIConnector.getRetrofitInstance().create(EventDAO.class);
         Call<ArrayList<Event>> call = eventDAO.getEvents();
+        call.enqueue(callback);
+    }
+
+    public void getEvent(int id, Callback callback) {
+        EventDAO eventDAO = APIConnector.getRetrofitInstance().create(EventDAO.class);
+        Call<ArrayList<Event>> call = eventDAO.getEvent(id);
         call.enqueue(callback);
     }
 
@@ -225,6 +231,30 @@ public class CallSingelton {
         UserDAO userDAO = retrofit.create(UserDAO.class);
 
         Call<List<Event>> call = userDAO.userEventsCurrent("Bearer " + token, id);
+        call.enqueue(callback);
+    }
+
+    public void createAssistance(int eventId, Callback<String> callback){
+        Retrofit retrofit = APIConnector.getRetrofitInstance();
+        EventDAO eventDAO = retrofit.create(EventDAO.class);
+
+        Call<String> call = eventDAO.createAssistance("Bearer " + token, eventId);
+        call.enqueue(callback);
+    }
+
+    public void deleteAssistance(int eventId, Callback<String> callback){
+        Retrofit retrofit = APIConnector.getRetrofitInstance();
+        EventDAO eventDAO = retrofit.create(EventDAO.class);
+
+        Call<String> call = eventDAO.deleteAssistance("Bearer " + token, eventId);
+        call.enqueue(callback);
+    }
+
+    public void Assistance(int eventId, Callback<String> callback){
+        Retrofit retrofit = APIConnector.getRetrofitInstance();
+        EventDAO eventDAO = retrofit.create(EventDAO.class);
+
+        Call<String> call = eventDAO.createAssistance("Bearer " + token, eventId);
         call.enqueue(callback);
     }
 
