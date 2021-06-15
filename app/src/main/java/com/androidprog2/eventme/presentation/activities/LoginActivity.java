@@ -1,6 +1,8 @@
 package com.androidprog2.eventme.presentation.activities;
 
+import android.annotation.SuppressLint;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.text.Editable;
 import android.text.TextWatcher;
@@ -30,7 +32,7 @@ public class LoginActivity extends AppCompatActivity {
     private MaterialButton loginBtn;
     private TextInputLayout textInputLayoutEmail;
     private TextInputLayout textInputLayoutPassword;
-    private boolean validation = false;
+    private final boolean validation = false;
     private UserDAO userDAO;
 
     @Override
@@ -41,8 +43,8 @@ public class LoginActivity extends AppCompatActivity {
         Intent registerIntent = new Intent(this, RegisterActivity.class);
         Intent mainIntent = new Intent(this, MainActivity.class);
 
-        signUpBtn = (MaterialButton) findViewById(R.id.loginToRegisterBtn);
-        loginBtn = (MaterialButton) findViewById(R.id.login_btn);
+        signUpBtn = findViewById(R.id.loginToRegisterBtn);
+        loginBtn = findViewById(R.id.login_btn);
 
         textInputLayoutEmail = findViewById(R.id.login_nickname);
         Objects.requireNonNull(textInputLayoutEmail.getEditText()).addTextChangedListener(new TextWatcher() {
@@ -94,8 +96,8 @@ public class LoginActivity extends AppCompatActivity {
                             switch (response.code()) {
 
                                 case 200:
-                                    CallSingelton.getInstance().
-                                            setToken(response.message());
+                                    saveData(response.message());
+                                    //CallSingelton.getInstance().setToken(response.message());
                                     toast = Toast.makeText(getApplicationContext(), "token:" + response.message(), Toast.LENGTH_LONG);
                                     toast.setGravity(Gravity.TOP, 0, 60);
                                     toast.show();
@@ -129,6 +131,12 @@ public class LoginActivity extends AppCompatActivity {
                 startActivity(registerIntent);
             }
         });
+    }
+
+    private void saveData(String message) {
+        SharedPreferences sharedPreferences=getSharedPreferences(CallSingelton.TOKEN,MODE_PRIVATE);
+        @SuppressLint("CommitPrefEdits") SharedPreferences.Editor editor= sharedPreferences.edit();
+        editor.putString(CallSingelton.TOKEN,message);
     }
 
     public boolean validateEmail(String email) {
