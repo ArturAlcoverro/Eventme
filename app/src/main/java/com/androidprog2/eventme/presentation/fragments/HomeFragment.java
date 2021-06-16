@@ -38,6 +38,7 @@ public class HomeFragment extends Fragment implements ViewPager2.PageTransformer
     private ViewPager2 mViewPager;
     private LinearLayout mNoEventsLayout;
     private ArrayList<Event> mEvents;
+    private ArrayList<String> mCategories;
 
     private EventsCarrouselAdapter mCarrouselAdapter;
     private ArrayList<Chip> mChips;
@@ -60,6 +61,19 @@ public class HomeFragment extends Fragment implements ViewPager2.PageTransformer
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.fragment_home, container, false);
+        mCategories = new ArrayList<>();
+        mCategories.add("music");
+        mCategories.add("art");
+        mCategories.add("cultural");
+        mCategories.add("sport");
+        mCategories.add("science");
+        mCategories.add("technology");
+        mCategories.add("food");
+        mCategories.add("fashion");
+        mCategories.add("politics");
+        mCategories.add("education");
+        mCategories.add("travel");
+        mCategories.add("games");
 
         mViewPager = view.findViewById(R.id.home_view_pager);
         mNoEventsLayout = view.findViewById(R.id.home_no_events_layout);
@@ -110,6 +124,7 @@ public class HomeFragment extends Fragment implements ViewPager2.PageTransformer
         allChip.setChecked(true);
         mChips.add(allChip);
         mChips.add(view.findViewById(R.id.home_chip_music));
+        mChips.add(view.findViewById(R.id.home_chip_cultural));
         mChips.add(view.findViewById(R.id.home_chip_sport));
         mChips.add(view.findViewById(R.id.home_chip_education));
         mChips.add(view.findViewById(R.id.home_chip_travel));
@@ -140,6 +155,23 @@ public class HomeFragment extends Fragment implements ViewPager2.PageTransformer
         mViewPager.setCurrentItem(0, false);
     }
 
+    private void otherFilter() {
+        ArrayList<Event> events = new ArrayList<>();
+        boolean isOther = true;
+        for (Event event : mEvents) {
+            for (String category : mCategories) {
+                if (event.getType().toLowerCase().equals(category))
+                    isOther = false;
+            }
+            if(isOther) events.add(event);
+            isOther = true;
+        }
+
+        isEvents(events.size() > 0);
+        mCarrouselAdapter.updateData(events);
+        mViewPager.setCurrentItem(0, false);
+    }
+
     private void clearFilter() {
         isEvents(mEvents.size() > 0);
         mCarrouselAdapter.updateData(mEvents);
@@ -162,10 +194,13 @@ public class HomeFragment extends Fragment implements ViewPager2.PageTransformer
         chip.setChecked(true);
         String type = (String) chip.getTag();
 
-        if (!type.equals("all"))
-            applyFilter((String) chip.getTag());
-        else
+        if (type.equals("all"))
             clearFilter();
+        else if (type.equals("others"))
+            otherFilter();
+        else
+            applyFilter((String) chip.getTag());
+
     }
 
     public class HorizontalMarginItemDecoration extends RecyclerView.ItemDecoration {
@@ -183,11 +218,11 @@ public class HomeFragment extends Fragment implements ViewPager2.PageTransformer
         }
     }
 
-    private void isEvents(boolean is){
-        if(is){
+    private void isEvents(boolean is) {
+        if (is) {
             mViewPager.setVisibility(View.VISIBLE);
             mNoEventsLayout.setVisibility(View.GONE);
-        }else{
+        } else {
             mViewPager.setVisibility(View.GONE);
             mNoEventsLayout.setVisibility(View.VISIBLE);
         }
