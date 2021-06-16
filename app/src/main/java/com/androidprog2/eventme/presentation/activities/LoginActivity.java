@@ -6,25 +6,24 @@ import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.text.Editable;
 import android.text.TextWatcher;
-import android.util.Log;
 import android.view.Gravity;
 import android.view.View;
 import android.widget.Toast;
 
 import androidx.appcompat.app.AppCompatActivity;
 
-import com.androidprog2.eventme.persistance.API.CallSingelton;
-import com.androidprog2.eventme.persistance.API.UserDAO;
 import com.androidprog2.eventme.R;
 import com.androidprog2.eventme.business.User;
+import com.androidprog2.eventme.persistance.API.CallSingelton;
+import com.androidprog2.eventme.persistance.API.UserDAO;
 import com.google.android.material.button.MaterialButton;
 import com.google.android.material.textfield.TextInputLayout;
 
+import org.jetbrains.annotations.NotNull;
 import org.json.JSONException;
 import org.json.JSONObject;
 
 import java.util.Objects;
-import java.util.logging.Logger;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
@@ -96,7 +95,7 @@ public class LoginActivity extends AppCompatActivity {
                     //Fetch a la api endpoint login
                     CallSingelton.getInstance().loginUser(user, new Callback<String>() {
                         @Override
-                        public void onResponse(Call<String> call, Response<String> response) {
+                        public void onResponse(@NotNull Call<String> call, @NotNull Response<String> response) {
                             JSONObject jObject = null;
                             try {
                                 jObject = new JSONObject(response.body());

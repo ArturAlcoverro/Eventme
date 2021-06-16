@@ -19,7 +19,6 @@ import java.util.List;
 import okhttp3.MediaType;
 import okhttp3.MultipartBody;
 import okhttp3.RequestBody;
-import okhttp3.ResponseBody;
 import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
@@ -40,10 +39,6 @@ public class CallSingelton {
         return instance;
     }
 
-    public String getToken() {
-        return token;
-    }
-
     public void setToken(String token) {
         CallSingelton.token = token;
     }
@@ -54,7 +49,7 @@ public class CallSingelton {
         Base64.Decoder decoder = Base64.getDecoder();
         String header = new String(decoder.decode(chunks[0]));
         String payload = new String(decoder.decode(chunks[1]));
-        JSONObject jsonObject = null;
+        JSONObject jsonObject;
         int id = 0;
         try {
             jsonObject = new JSONObject(payload);

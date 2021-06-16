@@ -1,6 +1,5 @@
 package com.androidprog2.eventme.presentation.activities;
 
-import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
@@ -28,7 +27,7 @@ public class StartActivity extends AppCompatActivity {
             startActivity(mainIntent);
         }
 
-        accessBtn = (MaterialButton) findViewById(R.id.accessButton);
+        accessBtn = findViewById(R.id.accessButton);
         accessBtn.setOnClickListener(new View.OnClickListener(){
             @Override
             public void onClick(View v) {
