@@ -4,6 +4,7 @@ import com.androidprog2.eventme.business.Event;
 import com.androidprog2.eventme.business.User;
 
 import java.util.ArrayList;
+import java.util.Date;
 
 import okhttp3.MultipartBody;
 import okhttp3.RequestBody;
@@ -28,8 +29,8 @@ public interface EventDAO {
                             @Part MultipartBody.Part image,
                             @Part("location") RequestBody location,
                             @Part("description") RequestBody description,
-                            @Part("eventStart_date") RequestBody eventStart_date,
-                            @Part("eventEnd_date") RequestBody eventEnd_date,
+                            @Part("eventStart_date") Date eventStart_date,
+                            @Part("eventEnd_date") Date eventEnd_date,
                             @Part("n_participators") RequestBody n_participators,
                             @Part("type") RequestBody type);
 
@@ -42,8 +43,8 @@ public interface EventDAO {
             @Field("image") String image,
             @Field("location") String location,
             @Field("description") String description,
-            @Field("eventStart_date") String eventStart_date,
-            @Field("eventEnd_date") String eventEnd_date,
+            @Field("eventStart_date") Date eventStart_date,
+            @Field("eventEnd_date") Date eventEnd_date,
             @Field("n_participators") String n_participators,
             @Field("type") String type
     );
