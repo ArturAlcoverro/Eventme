@@ -10,6 +10,7 @@ import android.widget.RadioGroup;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.constraintlayout.widget.ConstraintLayout;
 import androidx.recyclerview.widget.LinearLayoutManager;
@@ -21,6 +22,8 @@ import com.androidprog2.eventme.persistance.API.CallSingelton;
 import com.androidprog2.eventme.presentation.adapters.EventsListAdapter;
 import com.androidprog2.eventme.presentation.fragments.ProfileFragment;
 import com.google.android.material.bottomsheet.BottomSheetBehavior;
+
+import org.jetbrains.annotations.NotNull;
 
 import java.io.IOException;
 import java.util.List;
@@ -99,6 +102,19 @@ public class UserEventsActivity extends AppCompatActivity {
                 showBottomSheet();
             }else if(bottomSheet.getState() == BottomSheetBehavior.STATE_EXPANDED){
                 hideBottomSheet();
+            }
+        });
+        bottomSheet.addBottomSheetCallback(new BottomSheetBehavior.BottomSheetCallback() {
+            @Override
+            public void onStateChanged(@NonNull @NotNull View bottomSheet, int newState) {
+                if (newState == BottomSheetBehavior.STATE_HIDDEN){
+                    hideBottomSheet();
+                }
+            }
+
+            @Override
+            public void onSlide(@NonNull @NotNull View bottomSheet, float slideOffset) {
+
             }
         });
         radioGroup.setOnCheckedChangeListener((group, checkedId) -> {

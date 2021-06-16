@@ -2,6 +2,7 @@ package com.androidprog2.eventme.presentation.adapters;
 
 import android.content.Context;
 import android.content.Intent;
+import android.os.Build;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -10,6 +11,7 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import androidx.annotation.NonNull;
+import androidx.annotation.RequiresApi;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.android.volley.VolleyError;
@@ -38,8 +40,14 @@ public class ChatListAdapter extends RecyclerView.Adapter<ChatListAdapter.ChatLi
     List<User> users;
     Context context;
 
+    @RequiresApi(api = Build.VERSION_CODES.O)
     public ChatListAdapter(List<User> users, Context context) {
         this.users = users;
+        for (int i = 0; i < users.size(); i++) {
+            if(users.get(i).getId() == CallSingelton.getUserId()){
+                this.users.remove(i);
+            }
+        }
         this.context = context;
     }
 

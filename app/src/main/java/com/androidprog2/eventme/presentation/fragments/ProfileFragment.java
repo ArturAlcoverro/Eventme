@@ -144,9 +144,7 @@ public class ProfileFragment extends Fragment {
             checkisFriendOrNot();
         }
 
-        Intent intent = new Intent(getContext(), EditProfileActivity.class);
-
-        editProfileBtn.setOnClickListener(v -> { startActivity(intent); });
+        editProfileBtn.setOnClickListener(v -> { startUpdateActivity(); });
         chatProfileBtn.setOnClickListener(v -> { startChatActivity(); });
         sendMessageBtn.setOnClickListener(v -> { startChatActivity(); });
         requestFriendBtn.setOnClickListener(v -> { requestFriendShip(); });
@@ -154,6 +152,13 @@ public class ProfileFragment extends Fragment {
         createdLinear.setOnClickListener(v -> { startCreatedActivity(); });
         assistanceLinear.setOnClickListener(v -> { startAssistanceActivity(); });
         return view;
+    }
+
+    private void startUpdateActivity() {
+        Intent intent = new Intent(getContext(), EditProfileActivity.class);
+        intent.putExtra(EXTRA_ID, id);
+
+        startActivity(intent);
     }
 
     @RequiresApi(api = Build.VERSION_CODES.O)
@@ -463,11 +468,13 @@ public class ProfileFragment extends Fragment {
     }
 
     private void setImage(String image) {
-        String url;
-        if(image.startsWith("http")){
-            url = image;
-        }else{
-            url = "http://puigmal.salle.url.edu/img/" + image;
+        String url = "";
+        if(image != null) {
+            if (image.startsWith("http")) {
+                url = image;
+            } else {
+                url = "http://puigmal.salle.url.edu/img/" + image;
+            }
         }
         ImageLoader imageLoader = VolleySingleton.getInstance(getContext()).getImageLoader();
         imageLoader.get(url, new ImageLoader.ImageListener() {
