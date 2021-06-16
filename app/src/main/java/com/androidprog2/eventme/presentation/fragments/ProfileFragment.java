@@ -1,6 +1,8 @@
 package com.androidprog2.eventme.presentation.fragments;
 
+import android.annotation.SuppressLint;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.os.Build;
 import android.os.Bundle;
 import android.util.Log;
@@ -39,6 +41,8 @@ import java.util.List;
 import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
+
+import static android.content.Context.MODE_PRIVATE;
 
 /**
  * A simple {@link Fragment} subclass.
@@ -519,5 +523,13 @@ public class ProfileFragment extends Fragment {
                 profileImage.setImageResource(R.drawable.avatar_profile);
             }
         });
+    }
+
+    private void deleteToken(){
+
+        SharedPreferences sharedPreferences = getActivity().getSharedPreferences(CallSingelton.TOKEN, MODE_PRIVATE);
+        @SuppressLint("CommitPrefEdits") SharedPreferences.Editor editor = sharedPreferences.edit();
+        editor.clear();
+        editor.commit();
     }
 }

@@ -1,5 +1,6 @@
 package com.androidprog2.eventme.presentation.activities;
 
+import android.annotation.SuppressLint;
 import android.content.ContentResolver;
 import android.content.Intent;
 import android.net.Uri;
@@ -33,6 +34,7 @@ import java.io.InputStream;
 import java.io.OutputStream;
 import java.text.SimpleDateFormat;
 import java.util.Date;
+import java.util.Objects;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
@@ -103,6 +105,7 @@ public class RegisterActivity extends AppCompatActivity implements Callback<User
         super.onActivityResult(requestCode, resultCode, data);
 
         if (requestCode == REQUEST_GALLERY_IMAGE && resultCode == RESULT_OK) {
+            assert data != null;
             Uri uriData = data.getData();
             try {
                 // Creating file
@@ -129,7 +132,7 @@ public class RegisterActivity extends AppCompatActivity implements Callback<User
     }
 
     private File createImageFile(String extension) throws IOException {
-        String timeStamp = new SimpleDateFormat("yyyyMMdd_HHmmss").format(new Date());
+        @SuppressLint("SimpleDateFormat") String timeStamp = new SimpleDateFormat("yyyyMMdd_HHmmss").format(new Date());
         String imageFileName = "JPEG_" + timeStamp + "_";
         File storageDir = getExternalFilesDir(Environment.DIRECTORY_PICTURES);
 
@@ -149,11 +152,11 @@ public class RegisterActivity extends AppCompatActivity implements Callback<User
     }
 
     private void signup() {
-        String firstName = mFirstNameInputLayout.getEditText().getText().toString();
-        String lastName = mLastNameInputLayout.getEditText().getText().toString();
-        String email = mEmailInputLayout.getEditText().getText().toString();
-        String password = mPasswordInputLayout.getEditText().getText().toString();
-        String rePassword = mRepeatPasswordInputLayout.getEditText().getText().toString();
+        String firstName = Objects.requireNonNull(mFirstNameInputLayout.getEditText()).getText().toString();
+        String lastName = Objects.requireNonNull(mLastNameInputLayout.getEditText()).getText().toString();
+        String email = Objects.requireNonNull(mEmailInputLayout.getEditText()).getText().toString();
+        String password = Objects.requireNonNull(mPasswordInputLayout.getEditText()).getText().toString();
+        String rePassword = Objects.requireNonNull(mRepeatPasswordInputLayout.getEditText()).getText().toString();
 
         boolean err = validateData(firstName, lastName, email, password, rePassword);
 
