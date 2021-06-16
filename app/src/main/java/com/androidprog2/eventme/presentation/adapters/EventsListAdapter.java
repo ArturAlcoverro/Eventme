@@ -60,6 +60,7 @@ public class EventsListAdapter extends RecyclerView.Adapter<EventsListAdapter.Ev
         private TextView location;
         private TextView date;
         private TextView category;
+        private MaterialCardView eventCard;
 
         public EventsListViewHolder(@NonNull View itemView) {
             super(itemView);
@@ -118,7 +119,10 @@ public class EventsListAdapter extends RecyclerView.Adapter<EventsListAdapter.Ev
 
         @Override
         public void onClick(View v) {
-            //Open activity detail
+            Intent intent = new Intent(context, EventDetailActivity.class);
+            intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+            intent.putExtra(EventsCarrouselAdapter.EVENT_ID, this.event.getId());
+            this.context.startActivity(intent);
         }
     }
 }
