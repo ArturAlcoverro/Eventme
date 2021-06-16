@@ -59,13 +59,14 @@
                 android:id="@+id/statistics"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="15dp"
                 android:gravity="center"
                 android:orientation="horizontal"
                 app:layout_constraintTop_toBottomOf="@+id/textView_Name"
                 tools:layout_editor_absoluteX="15dp">
 
                 <LinearLayout
+                    android:paddingTop="15dp"
+
                     android:id="@+id/createdLinear"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
@@ -87,6 +88,8 @@
                 </LinearLayout>
 
                 <LinearLayout
+                    android:paddingTop="15dp"
+
                     android:id="@+id/assistanceLinear"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
@@ -116,11 +119,14 @@
                     android:orientation="vertical">
 
                     <LinearLayout
+                        android:paddingTop="15dp"
+
                         android:id="@+id/relativeParent"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:orientation="horizontal"
                         android:clipToPadding="false">
+
 
                         <TextView
                             android:id="@+id/friendsStatistics"
@@ -132,14 +138,15 @@
                             android:text="763" />
 
                         <TextView
+                            android:translationY="-5dp"
                             android:id="@+id/pendingRequests"
                             android:visibility="gone"
                             android:background="@drawable/shape_notification"
-                            android:layout_width="17dp"
-                            android:layout_height="17dp"
+                            android:layout_width="15dp"
+                            android:layout_height="15dp"
                             android:gravity="center"
                             android:textStyle="bold"
-                            android:layout_gravity="start"
+                            android:layout_gravity="center"
                             android:text="3"
                             android:textColor="@color/font_color"
                             android:textSize="10dp"/>

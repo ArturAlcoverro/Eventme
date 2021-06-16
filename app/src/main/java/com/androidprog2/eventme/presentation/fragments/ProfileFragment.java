@@ -3,6 +3,7 @@ package com.androidprog2.eventme.presentation.fragments;
 import android.content.Intent;
 import android.os.Build;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -47,6 +48,7 @@ import retrofit2.Response;
 public class ProfileFragment extends Fragment {
 
     public static final String EXTRA_ID = "EXTRA_ID";
+    public static final String ACTIVITY = "ACTIVITY";
     public static final String EXTRA_NAME = "EXTRA_NAME";
     public static final String EXTRA_TYPE = "EXTRA_TYPE";
     private static final String EXTRA_LAST_NAME = "EXTRA_LAST_NAME";
@@ -78,6 +80,7 @@ public class ProfileFragment extends Fragment {
 
     // TODO: Rename and change types of parameters
     private int id;
+    private boolean isActivity;
     //private String mParam2;
 
     public ProfileFragment() {
@@ -114,6 +117,10 @@ public class ProfileFragment extends Fragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         id = this.getArguments().getInt("EXTRA_ID");
+        isActivity = this.getArguments().getBoolean(ACTIVITY, false);
+
+        Log.d("--ACTIVITY--", isActivity? "---TRUE---":"---FALSE---");
+
         // Inflate the layout for this fragment
         View view = inflater.inflate(R.layout.fragment_profile, container, false);
         profileImage = view.findViewById(R.id.imageProfile);
@@ -134,23 +141,43 @@ public class ProfileFragment extends Fragment {
         createdLinear = view.findViewById(R.id.createdLinear);
         assistanceLinear = view.findViewById(R.id.assistanceLinear);
 
-        if(id == -1) {
+        if (id == -1) {
             backArrow_btn.setVisibility(View.GONE);
             linearLayout.setVisibility(View.GONE);
             chatProfileBtn.setVisibility(View.GONE);
             updateData();
-        }else{
+        } else {
             updateData(id);
             checkisFriendOrNot();
         }
 
-        editProfileBtn.setOnClickListener(v -> { startUpdateActivity(); });
-        chatProfileBtn.setOnClickListener(v -> { startChatActivity(); });
-        sendMessageBtn.setOnClickListener(v -> { startChatActivity(); });
-        requestFriendBtn.setOnClickListener(v -> { requestFriendShip(); });
-        friendsLinear.setOnClickListener(v -> { startFriendActivity(); });
-        createdLinear.setOnClickListener(v -> { startCreatedActivity(); });
-        assistanceLinear.setOnClickListener(v -> { startAssistanceActivity(); });
+        if (isActivity) {
+            LinearLayout.LayoutParams params = (LinearLayout.LayoutParams)recyclerView.getLayoutParams();
+            params.setMargins(0, 0, 0, 0); //substitute parameters for left, top, right, bottom
+            recyclerView.setLayoutParams(params);
+        }
+
+        editProfileBtn.setOnClickListener(v -> {
+            startUpdateActivity();
+        });
+        chatProfileBtn.setOnClickListener(v -> {
+            startChatActivity();
+        });
+        sendMessageBtn.setOnClickListener(v -> {
+            startChatActivity();
+        });
+        requestFriendBtn.setOnClickListener(v -> {
+            requestFriendShip();
+        });
+        friendsLinear.setOnClickListener(v -> {
+            startFriendActivity();
+        });
+        createdLinear.setOnClickListener(v -> {
+            startCreatedActivity();
+        });
+        assistanceLinear.setOnClickListener(v -> {
+            startAssistanceActivity();
+        });
         return view;
     }
 
@@ -172,16 +199,16 @@ public class ProfileFragment extends Fragment {
                             if (response.code() == 200) {
                                 List<User> friends = (List<User>) response.body();
                                 boolean isFriend = false;
-                                for (User friend: friends) {
-                                    if(friend.getId() == id){
+                                for (User friend : friends) {
+                                    if (friend.getId() == id) {
                                         isFriend = true;
                                     }
                                 }
-                                if(isFriend){
+                                if (isFriend) {
                                     chatProfileBtn.setVisibility(View.VISIBLE);
                                     editProfileBtn.setVisibility(View.GONE);
                                     linearLayout.setVisibility(View.GONE);
-                                }else{
+                                } else {
                                     editProfileBtn.setVisibility(View.GONE);
                                     chatProfileBtn.setVisibility(View.GONE);
                                 }
@@ -242,9 +269,9 @@ public class ProfileFragment extends Fragment {
                                 requestFriendBtn.setText(R.string.pending_friendship);
                             }
                         } else {
-                            if(response.code() == 400) {
+                            if (response.code() == 400) {
                                 requestFriendBtn.setText(R.string.pending_friendship);
-                            }else{
+                            } else {
                                 try {
                                     Toast.makeText(getContext(), response.errorBody().string(), Toast.LENGTH_LONG).show();
                                 } catch (IOException e) {
@@ -277,7 +304,8 @@ public class ProfileFragment extends Fragment {
                                 intent.putExtra(EXTRA_EMAIL, user.get(0).getEmail());
                                 intent.putExtra(EXTRA_IMAGE, user.get(0).getImage());
 
-                                getContext().startActivity(intent);                            }
+                                getContext().startActivity(intent);
+                            }
                         } else {
                             try {
                                 Toast.makeText(getContext(), response.errorBody().string(), Toast.LENGTH_LONG).show();
@@ -295,7 +323,7 @@ public class ProfileFragment extends Fragment {
     }
 
     @RequiresApi(api = Build.VERSION_CODES.O)
-    public void updateData(){
+    public void updateData() {
         id = CallSingelton.getUserId();
         setProfileInformation(id);
         setStatistics(id);
@@ -303,7 +331,7 @@ public class ProfileFragment extends Fragment {
     }
 
     @RequiresApi(api = Build.VERSION_CODES.O)
-    public void updateData(int id){
+    public void updateData(int id) {
         setProfileInformation(id);
         setStatistics(id);
         loadTimeline(id);
@@ -325,7 +353,7 @@ public class ProfileFragment extends Fragment {
                             if (response.code() == 200) {
                                 List<User> friends = (List<User>) response.body();
                                 friendsNumber.setText(String.valueOf(friends.size()));
-                                if(id == CallSingelton.getUserId()) {
+                                if (id == CallSingelton.getUserId()) {
                                     CallSingelton
                                             .getInstance()
                                             .getUserFriendsRequests(new Callback<List<User>>() {
@@ -334,7 +362,7 @@ public class ProfileFragment extends Fragment {
                                                     if (response.isSuccessful()) {
                                                         if (response.code() == 200) {
                                                             List<User> requests = response.body();
-                                                            if(!requests.isEmpty()){
+                                                            if (!requests.isEmpty()) {
                                                                 pendingRequests.setText(String.valueOf(requests.size()));
                                                                 pendingRequests.setVisibility(View.VISIBLE);
                                                             }
@@ -436,7 +464,8 @@ public class ProfileFragment extends Fragment {
                         if (response.isSuccessful()) {
                             if (response.code() == 200) {
                                 List<Event> assistances = response.body();
-
+                                String assistance = assistances.size() + "";
+                                assistanceNumber.setText(assistance);
                                 if (!assistances.isEmpty()) {
                                     assistances.removeIf(event -> (event.getStartDate() == null));
                                     Collections.sort(assistances, (e1, e2) -> e2.getStartDate().compareTo(e1.getStartDate()));
@@ -444,11 +473,11 @@ public class ProfileFragment extends Fragment {
                                     recyclerView.setAdapter(adapter);
                                 }
 
-                                if(id != CallSingelton.getUserId()){
+                                if (id != CallSingelton.getUserId()) {
                                     int paddingDp = -70;
                                     float density = getContext().getResources().getDisplayMetrics().density;
-                                    int paddingPixel = (int)(paddingDp * density);
-                                    recyclerView.setPadding(0,0,0,paddingPixel);
+                                    int paddingPixel = (int) (paddingDp * density);
+                                    recyclerView.setPadding(0, 0, 0, paddingPixel);
                                 }
                             }
                         } else {
@@ -469,7 +498,7 @@ public class ProfileFragment extends Fragment {
 
     private void setImage(String image) {
         String url = "";
-        if(image != null) {
+        if (image != null) {
             if (image.startsWith("http")) {
                 url = image;
             } else {

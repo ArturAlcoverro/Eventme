@@ -1,6 +1,9 @@
 package com.androidprog2.eventme.presentation.activities;
 
 import android.content.Intent;
+import android.content.pm.ApplicationInfo;
+import android.content.pm.PackageItemInfo;
+import android.content.pm.PackageManager;
 import android.location.Address;
 import android.location.Geocoder;
 import android.net.Uri;
@@ -36,10 +39,15 @@ import com.google.android.gms.maps.model.BitmapDescriptorFactory;
 import com.google.android.gms.maps.model.LatLng;
 import com.google.android.gms.maps.model.MapStyleOptions;
 import com.google.android.gms.maps.model.MarkerOptions;
+import com.google.maps.GeoApiContext;
+import com.google.maps.GeocodingApi;
+import com.google.maps.errors.ApiException;
+import com.google.maps.model.GeocodingResult;
 
 import java.io.IOException;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.Date;
 import java.util.List;
 
@@ -66,6 +74,8 @@ public class EventDetailActivity extends AppCompatActivity implements OnMapReady
     private LinearLayout mProgressBarLayout;
 
     private View mMapDivider;
+    private View mDateDivider;
+
 
     private CardView mMapCard;
 
@@ -110,6 +120,7 @@ public class EventDetailActivity extends AppCompatActivity implements OnMapReady
         mLocationLayout = findViewById(R.id.event_detail_location_layout);
         mDateLayout = findViewById(R.id.event_detail_date_layout);
         mMapDivider = findViewById(R.id.event_detail_description_divider);
+        mDateDivider = findViewById(R.id.event_detail_date_layout_divider);
         mProgressBarLayout = findViewById(R.id.event_detail_progress_bar_layout);
 
         mBackBtn.setOnClickListener(v -> {
@@ -129,6 +140,7 @@ public class EventDetailActivity extends AppCompatActivity implements OnMapReady
 
     private void loadEvent() {
         CallSingelton.getInstance().getEvent(mEventId, new Callback<ArrayList<Event>>() {
+            @RequiresApi(api = Build.VERSION_CODES.O)
             @Override
             public void onResponse(Call<ArrayList<Event>> call, Response<ArrayList<Event>> response) {
                 if (response.isSuccessful()) {
@@ -155,23 +167,33 @@ public class EventDetailActivity extends AppCompatActivity implements OnMapReady
         });
     }
 
+    @RequiresApi(api = Build.VERSION_CODES.O)
     private void printEvent(Event event) {
         SimpleDateFormat formatter = new SimpleDateFormat("MMM dd, yyyy · hh:mm a");
         String msg = "";
 
         mEventName.setText(event.getName());
         printOwnerName(event.getOwnerId());
+        if (event.getOwnerId() == CallSingelton.getUserId())
+            mHelpBtn.setVisibility(View.GONE);
         mEventCategory.setText(event.getType());
         printParticipants(event.getNumParticipants());
-        msg = getString(R.string.event_detail_starts) + " " + formatter.format(event.getStartDate());
-        mEventStarDate.setText(msg);
-        msg = getString(R.string.event_detail_ends) + " " + formatter.format(event.getEndDate());
-        mEventEndDate.setText(msg);
+
+        if (event.getStartDate() != null && event.getEndDate() != null) {
+            msg = getString(R.string.event_detail_starts) + " " + formatter.format(event.getStartDate());
+            mEventStarDate.setText(msg);
+            msg = getString(R.string.event_detail_ends) + " " + formatter.format(event.getEndDate());
+            mEventEndDate.setText(msg);
+            setCalendar();
+        } else {
+            mDateLayout.setVisibility(View.GONE);
+            mDateDivider.setVisibility(View.GONE);
+        }
+
         mEventLocation.setText(event.getLocation());
         mEventDescription.setText(event.getDescription());
 
         setLocation();
-        setCalendar();
 
         String imageUrl = "";
         if (event.getImage() != null)
@@ -191,8 +213,8 @@ public class EventDetailActivity extends AppCompatActivity implements OnMapReady
 //                setImage(imageUrl, context);
         }
 
-        if (event.getStartDate().before(new Date())) {
-            if (event.getEndDate().before(new Date()))
+        if (event.getStartDate() == null || event.getStartDate().before(new Date())) {
+            if (event.getEndDate() == null || event.getEndDate().before(new Date()))
                 setFinished(true);
             else
                 setFinished(false);
@@ -248,6 +270,7 @@ public class EventDetailActivity extends AppCompatActivity implements OnMapReady
 
     private void printOwnerName(int id) {
         CallSingelton.getInstance().getProfileUser(id, new Callback<List<User>>() {
+            @RequiresApi(api = Build.VERSION_CODES.O)
             @Override
             public void onResponse(Call<List<User>> call, Response<List<User>> response) {
                 if (response.isSuccessful()) {
@@ -256,7 +279,8 @@ public class EventDetailActivity extends AppCompatActivity implements OnMapReady
                         List<User> users = response.body();
                         msg = getString(R.string.event_detail_by) + " " + users.get(0).getFull_name();
                         mCreatorName.setText(msg);
-                        loadOwnerButtons(users.get(0));
+                        if (users.get(0).getId() != CallSingelton.getUserId())
+                            loadOwnerButtons(users.get(0));
                     }
                 } else {
                     try {
@@ -277,6 +301,12 @@ public class EventDetailActivity extends AppCompatActivity implements OnMapReady
     private void loadOwnerButtons(User user) {
 
         mCreatorName.setOnClickListener(v -> {
+            Intent intent = new Intent(getApplicationContext(), ProfileActivity.class);
+            intent.putExtra(ChatActivity.EXTRA_ID, user.getId());
+            startActivity(intent);
+        });
+
+        mHelpBtn.setOnClickListener(v -> {
             Intent intent = new Intent(this, ChatActivity.class);
             intent.putExtra(ChatListAdapter.EXTRA_ID, user.getId());
             intent.putExtra(ChatListAdapter.EXTRA_NAME, user.getName());
@@ -285,10 +315,6 @@ public class EventDetailActivity extends AppCompatActivity implements OnMapReady
             intent.putExtra(ChatListAdapter.EXTRA_IMAGE, user.getImage());
 
             startActivity(intent);
-        });
-
-        mHelpBtn.setOnClickListener(v -> {
-
         });
 
     }

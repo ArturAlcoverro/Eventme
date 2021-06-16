@@ -1,6 +1,7 @@
 package com.androidprog2.eventme.presentation.adapters;
 
 import android.content.Context;
+import android.content.Intent;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -15,8 +16,14 @@ import com.android.volley.toolbox.ImageLoader;
 import com.androidprog2.eventme.R;
 import com.androidprog2.eventme.VolleySingleton;
 import com.androidprog2.eventme.business.Event;
+import com.androidprog2.eventme.presentation.activities.EventDetailActivity;
+import com.bumptech.glide.Glide;
+import com.bumptech.glide.request.RequestOptions;
+import com.google.android.material.card.MaterialCardView;
 
 import java.util.List;
+
+import jp.wasabeef.glide.transformations.BlurTransformation;
 
 public class EventsListAdapter extends RecyclerView.Adapter<EventsListAdapter.EventsListViewHolder> {
     List<Event> events;
@@ -44,7 +51,7 @@ public class EventsListAdapter extends RecyclerView.Adapter<EventsListAdapter.Ev
         return this.events.size();
     }
 
-    public static class EventsListViewHolder extends RecyclerView.ViewHolder implements View.OnClickListener{
+    public static class EventsListViewHolder extends RecyclerView.ViewHolder implements View.OnClickListener {
 
         private Event event;
         private Context context;
@@ -53,6 +60,7 @@ public class EventsListAdapter extends RecyclerView.Adapter<EventsListAdapter.Ev
         private TextView location;
         private TextView date;
         private TextView category;
+        private MaterialCardView eventCard;
 
         public EventsListViewHolder(@NonNull View itemView) {
             super(itemView);
@@ -61,9 +69,10 @@ public class EventsListAdapter extends RecyclerView.Adapter<EventsListAdapter.Ev
             this.location = (TextView) itemView.findViewById(R.id.eventLocationList);
             this.date = (TextView) itemView.findViewById(R.id.eventDateList);
             this.category = (TextView) itemView.findViewById(R.id.eventCategoryList);
+            this.eventCard = (MaterialCardView) itemView.findViewById(R.id.event_card);
         }
 
-        public void bind(Event _event, Context _context){
+        public void bind(Event _event, Context _context) {
             this.event = _event;
             this.context = _context;
             String url = "";
@@ -75,22 +84,32 @@ public class EventsListAdapter extends RecyclerView.Adapter<EventsListAdapter.Ev
                 }
             }
 
-            ImageLoader imageLoader = VolleySingleton.getInstance(context).getImageLoader();
+            Glide.with(context)
+                    .load(url)
+                    .apply(RequestOptions
+                            .bitmapTransform(new BlurTransformation(10, 3))
+                            .placeholder(R.drawable.default_event)
+                            .error(R.drawable.default_event))
+                    .into(event_image);
 
-            imageLoader.get(url, new ImageLoader.ImageListener() {
+            this.eventCard.setOnClickListener(this);
 
-                @Override
-                public void onResponse(ImageLoader.ImageContainer response, boolean isImmediate) {
-                    if (response.getBitmap() != null){
-                        event_image.setImageBitmap(response.getBitmap());
-                    }
-                }
-
-                public void onErrorResponse(VolleyError error) {
-                    event_image.setImageResource(R.drawable.default_event);
-                }
-
-            });
+//            ImageLoader imageLoader = VolleySingleton.getInstance(context).getImageLoader();
+//
+//            imageLoader.get(url, new ImageLoader.ImageListener() {
+//
+//                @Override
+//                public void onResponse(ImageLoader.ImageContainer response, boolean isImmediate) {
+//                    if (response.getBitmap() != null){
+//                        event_image.setImageBitmap(response.getBitmap());
+//                    }
+//                }
+//
+//                public void onErrorResponse(VolleyError error) {
+//                    event_image.setImageResource(R.drawable.default_event);
+//                }
+//
+//            });
 
             this.name.setText(this.event.getName());
             this.location.setText(this.event.getLocation());
@@ -100,7 +119,10 @@ public class EventsListAdapter extends RecyclerView.Adapter<EventsListAdapter.Ev
 
         @Override
         public void onClick(View v) {
-            //Open activity detail
+            Intent intent = new Intent(context, EventDetailActivity.class);
+            intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+            intent.putExtra(EventsCarrouselAdapter.EVENT_ID, this.event.getId());
+            this.context.startActivity(intent);
         }
     }
 }

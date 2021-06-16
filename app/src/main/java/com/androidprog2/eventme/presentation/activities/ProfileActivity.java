@@ -25,6 +25,8 @@ public class ProfileActivity extends AppCompatActivity {
         id = intent.getIntExtra(ChatActivity.EXTRA_ID, 0);
         Bundle bundle = new Bundle();
         bundle.putInt("EXTRA_ID", id);
+        bundle.putBoolean("ACTIVITY", true);
+
 
         mProfileFragment = new ProfileFragment();
         mProfileFragment.setArguments(bundle);
