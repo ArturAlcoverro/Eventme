@@ -329,6 +329,8 @@ public class EventDetailActivity extends AppCompatActivity implements OnMapReady
                 }
             } catch (IOException e) {
                 e.printStackTrace();
+                mMapLayout.setVisibility(View.GONE);
+                mMapDivider.setVisibility(View.GONE);
             }
         }
     }
