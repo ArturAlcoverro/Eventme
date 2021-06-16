@@ -21,9 +21,13 @@ import android.widget.Toast;
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
 
+import com.android.volley.VolleyError;
+import com.android.volley.toolbox.ImageLoader;
 import com.androidprog2.eventme.R;
+import com.androidprog2.eventme.VolleySingleton;
 import com.androidprog2.eventme.business.User;
 import com.androidprog2.eventme.persistance.API.CallSingelton;
+import com.androidprog2.eventme.presentation.fragments.ProfileFragment;
 import com.google.android.material.button.MaterialButton;
 import com.google.android.material.textfield.TextInputLayout;
 
@@ -34,6 +38,7 @@ import java.io.InputStream;
 import java.io.OutputStream;
 import java.text.SimpleDateFormat;
 import java.util.Date;
+import java.util.List;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
@@ -43,8 +48,9 @@ import retrofit2.Response;
 
 public class EditProfileActivity extends AppCompatActivity implements Callback<User> {
     private static final int REQUEST_GALLERY_IMAGE = 1;
+    private User myUser;
     private ProgressBar progressBar;
-    private ImageView eventImage;
+    private ImageView userImage;
     private File mImageFile;
 
     private ImageButton backArrow_btn;
@@ -61,23 +67,84 @@ public class EditProfileActivity extends AppCompatActivity implements Callback<U
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_edit_profile);
 
+        Intent intent = getIntent();
+        int id = intent.getIntExtra(ProfileFragment.EXTRA_ID, 0);
+
         mImageFile = null;
         backArrow_btn = (ImageButton) findViewById(R.id.arrowLeft);
         apply_changes_btn = (MaterialButton) findViewById(R.id.apply_changes_btn);
         change_image_btn = (MaterialButton) findViewById(R.id.upload_btn);
         progressBar = findViewById(R.id.progress_bar_profle_activity);
-        eventImage = findViewById(R.id.imageProfileEdit);
+        userImage = findViewById(R.id.imageProfileEdit);
         profileName = findViewById(R.id.usernameTitle);
 
         nameInput = findViewById(R.id.editProfileNickname);
         lastNameInput = findViewById(R.id.editProfileName);
         emailInput = findViewById(R.id.editProfileEmail);
 
+        getUserInformation(id);
         validationListeners();
 
         backArrow_btn.setOnClickListener(v -> { finish(); });
         change_image_btn.setOnClickListener(v -> { selectImage(); });
         apply_changes_btn.setOnClickListener(v -> { saveChanges(); });
+    }
+
+    private void getUserInformation(int id) {
+        CallSingelton
+                .getInstance()
+                .getProfileUser(id, new Callback<List<User>>() {
+                    @Override
+                    public void onResponse(Call<List<User>> call, Response<List<User>> response) {
+                        if (response.isSuccessful()) {
+                            if (response.code() == 200) {
+                                List<User> users = (List<User>) response.body();
+                                myUser = users.get(0);
+                                profileName.setText(myUser.getFull_name());
+                                nameInput.getEditText().setText(myUser.getName());
+                                lastNameInput.getEditText().setText(myUser.getLast_name());
+                                emailInput.getEditText().setText(myUser.getEmail());
+                                setImage(myUser.getImage());
+                            }
+                        } else {
+                            try {
+                                Toast.makeText(getApplicationContext(), response.errorBody().string(), Toast.LENGTH_LONG).show();
+                            } catch (IOException e) {
+                                e.printStackTrace();
+                            }
+                        }
+                    }
+
+                    @Override
+                    public void onFailure(Call<List<User>> call, Throwable t) {
+                        Toast.makeText(getApplicationContext(), t.getMessage(), Toast.LENGTH_SHORT).show();
+                    }
+                });
+    }
+
+    private void setImage(String image) {
+        String url = "";
+        if(image != null) {
+            if (image.startsWith("http")) {
+                url = image;
+            } else {
+                url = "http://puigmal.salle.url.edu/img/" + image;
+            }
+        }
+        ImageLoader imageLoader = VolleySingleton.getInstance(getApplicationContext()).getImageLoader();
+        imageLoader.get(url, new ImageLoader.ImageListener() {
+
+            @Override
+            public void onResponse(ImageLoader.ImageContainer response, boolean isImmediate) {
+                if (response.getBitmap() != null) {
+                    userImage.setImageBitmap(response.getBitmap());
+                }
+            }
+
+            public void onErrorResponse(VolleyError error) {
+                userImage.setImageResource(R.drawable.avatar_profile);
+            }
+        });
     }
 
     public void saveChanges() {
@@ -90,11 +157,11 @@ public class EditProfileActivity extends AppCompatActivity implements Callback<U
             if(mImageFile == null) {
                 CallSingelton
                         .getInstance()
-                        .updateUser(mImageFile, name, lastName, "Asdasd123", email, this);
+                        .updateUser(null, name, lastName, email, this);
             }else {
                 CallSingelton
                         .getInstance()
-                        .updateUser(mImageFile, name, lastName, "Asdasd123", email, this);
+                        .updateUser(mImageFile, name, lastName, email, this);
             }
         }
     }
@@ -270,7 +337,7 @@ public class EditProfileActivity extends AppCompatActivity implements Callback<U
                 } catch (IOException ex) {
                     Log.d("ERR", "Error occurred while creating the file");
                 }
-                eventImage.setImageURI(uriData);
+                userImage.setImageURI(uriData);
                 InputStream inputStream = getContentResolver().openInputStream(uriData);
                 FileOutputStream fileOutputStream = new FileOutputStream(mImageFile);
                 // Copying

@@ -64,12 +64,18 @@ public interface UserDAO {
     // PUT /users/	Modifica l'usuari autenticat
     @Multipart
     @PUT("users")
-    Call<User> updateUser(@Header("authorization") String token,
+    Call<User> updateUserWithImage(@Header("authorization") String token,
                           @Part MultipartBody.Part image,
                           @Part("name") RequestBody name,
                           @Part("last_name") RequestBody last_name,
-                          @Part("password") RequestBody password,
                           @Part("email") RequestBody email);
+
+    @Multipart
+    @PUT("users")
+    Call<User> updateUser(@Header("authorization") String token,
+                                   @Part("name") RequestBody name,
+                                   @Part("last_name") RequestBody last_name,
+                                   @Part("email") RequestBody email);
 
     // DELETE /users	Borra l'usuari autenticat
     public void deleteUser();

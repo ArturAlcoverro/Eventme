@@ -86,22 +86,31 @@ public class CallSingelton {
         call.enqueue(callback);
     }
 
-    public void updateUser(File image, String firstName, String lastName, String password, String email, Callback<User> callback) {
+    public void updateUser(File image, String firstName, String lastName, String email, Callback<User> callback) {
         Retrofit retrofit = APIConnector.getRetrofitInstance();
         UserDAO userDAO = retrofit.create(UserDAO.class);
-        setToken("eyJhbGciOiJIUzI1NiJ9.eyJpZCI6MjM5LCJuYW1lIjoiQWxiYTIiLCJsYXN0X25hbWUiOiJCb3NjaCIsImVtYWlsIjoiYWxiYWJvc2NoQGdtYWlsLmNvbSIsImltYWdlIjoiOTFjMDViNDUtZWJiOS00ZjRmLWE1OGUtNmNjYWU2OGQwYjI3LmpwZyJ9.GupcKuzcApA3pDKF-uQ1uypjVne6QtCKf6g5tsWAMkY");
+        setToken("eyJhbGciOiJIUzI1NiJ9.eyJpZCI6MTEsIm5hbWUiOiJMb3JlbSIsImxhc3RfbmFtZSI6Iklwc3VtIiwiZW1haWwiOiJsb3JlbUBpcHN1bS5jb20iLCJpbWFnZSI6IiJ9.oOSABVyRDqIGtslDCNTzE4HiSz74uW6saBtJO9CMTY8");
 
-        RequestBody requestFile = RequestBody.create(MediaType.parse("multipart/form-data"), image);
-        MultipartBody.Part requestImage = MultipartBody.Part.createFormData("image", image.getName(), requestFile);
-        Call<User> call = userDAO.updateUser(
-                "Bearer " + token,
-                requestImage,
-                RequestBody.create(MultipartBody.FORM, firstName),
-                RequestBody.create(MultipartBody.FORM, lastName),
-                RequestBody.create(MultipartBody.FORM, password),
-                RequestBody.create(MultipartBody.FORM, email));
+        if(image != null) {
+            RequestBody requestFile = RequestBody.create(MediaType.parse("multipart/form-data"), image);
+            MultipartBody.Part requestImage = MultipartBody.Part.createFormData("image", image.getName(), requestFile);
+            Call<User> call = userDAO.updateUserWithImage(
+                    "Bearer " + token,
+                    requestImage,
+                    RequestBody.create(MultipartBody.FORM, firstName),
+                    RequestBody.create(MultipartBody.FORM, lastName),
+                    RequestBody.create(MultipartBody.FORM, email));
 
-        call.enqueue(callback);
+            call.enqueue(callback);
+        }else{
+            Call<User> call = userDAO.updateUser(
+                    "Bearer " + token,
+                    RequestBody.create(MultipartBody.FORM, firstName),
+                    RequestBody.create(MultipartBody.FORM, lastName),
+                    RequestBody.create(MultipartBody.FORM, email));
+
+            call.enqueue(callback);
+        }
     }
 
     public void loginUser(User user, Callback callback) {
