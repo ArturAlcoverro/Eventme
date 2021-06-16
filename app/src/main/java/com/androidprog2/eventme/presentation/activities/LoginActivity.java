@@ -6,6 +6,7 @@ import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.text.Editable;
 import android.text.TextWatcher;
+import android.util.Log;
 import android.view.Gravity;
 import android.view.View;
 import android.widget.Toast;
@@ -19,7 +20,11 @@ import com.androidprog2.eventme.business.User;
 import com.google.android.material.button.MaterialButton;
 import com.google.android.material.textfield.TextInputLayout;
 
+import org.json.JSONException;
+import org.json.JSONObject;
+
 import java.util.Objects;
+import java.util.logging.Logger;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
@@ -92,15 +97,21 @@ public class LoginActivity extends AppCompatActivity {
                     CallSingelton.getInstance().loginUser(user, new Callback<String>() {
                         @Override
                         public void onResponse(Call<String> call, Response<String> response) {
-                            Toast toast;
+                            JSONObject jObject = null;
+                            try {
+                                jObject = new JSONObject(response.body());
+                            } catch (JSONException e) {
+                                e.printStackTrace();
+                            }
+                            Toast toast = null;
                             switch (response.code()) {
 
                                 case 200:
-                                    saveData(response.message());
-                                    //CallSingelton.getInstance().setToken(response.message());
-                                    toast = Toast.makeText(getApplicationContext(), "token:" + response.message(), Toast.LENGTH_LONG);
-                                    toast.setGravity(Gravity.TOP, 0, 60);
-                                    toast.show();
+                                    try {
+                                        saveData(jObject.getString("accessToken"));
+                                    } catch (JSONException e) {
+                                        e.printStackTrace();
+                                    }
                                     startActivity(mainIntent);
                                     break;
                                 case 400:
@@ -134,9 +145,11 @@ public class LoginActivity extends AppCompatActivity {
     }
 
     private void saveData(String message) {
-        SharedPreferences sharedPreferences=getSharedPreferences(CallSingelton.TOKEN,MODE_PRIVATE);
-        @SuppressLint("CommitPrefEdits") SharedPreferences.Editor editor= sharedPreferences.edit();
-        editor.putString(CallSingelton.TOKEN,message);
+        SharedPreferences sharedPreferences = getSharedPreferences(CallSingelton.TOKEN, MODE_PRIVATE);
+        @SuppressLint("CommitPrefEdits") SharedPreferences.Editor editor = sharedPreferences.edit();
+        editor.putString(CallSingelton.TOKEN, message);
+        editor.commit();
+        CallSingelton.getInstance().setToken(message);
     }
 
     public boolean validateEmail(String email) {
