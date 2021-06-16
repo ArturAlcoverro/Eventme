@@ -31,7 +31,6 @@ public class CallSingelton {
     public static final String TOKEN="TOKEN";
 
     private CallSingelton() {
-        //token = "eyJhbGciOiJIUzI1NiJ9.eyJpZCI6NDMyLCJuYW1lIjoiSm9obiIsImxhc3RfbmFtZSI6IkRvZSIsImVtYWlsIjoiam9uaDEyM0Bkb2UuY29tIiwiaW1hZ2UiOiJodHRwczovL2kuaW1ndXIuY29tL3pZZnJ6REUuanBnIn0.ri402JbvGa4b69YKSLLriZBPcnB0ZmROjamPO5go0yc";
     }
 
     public static CallSingelton getInstance() {
@@ -99,7 +98,6 @@ public class CallSingelton {
     public void updateUser(File image, String firstName, String lastName, String password, String email, Callback<User> callback) {
         Retrofit retrofit = APIConnector.getRetrofitInstance();
         UserDAO userDAO = retrofit.create(UserDAO.class);
-        //setToken("eyJhbGciOiJIUzI1NiJ9.eyJpZCI6MjM5LCJuYW1lIjoiQWxiYTIiLCJsYXN0X25hbWUiOiJCb3NjaCIsImVtYWlsIjoiYWxiYWJvc2NoQGdtYWlsLmNvbSIsImltYWdlIjoiOTFjMDViNDUtZWJiOS00ZjRmLWE1OGUtNmNjYWU2OGQwYjI3LmpwZyJ9.GupcKuzcApA3pDKF-uQ1uypjVne6QtCKf6g5tsWAMkY");
 
         RequestBody requestFile = RequestBody.create(MediaType.parse("multipart/form-data"), image);
         MultipartBody.Part requestImage = MultipartBody.Part.createFormData("image", image.getName(), requestFile);
@@ -121,7 +119,6 @@ public class CallSingelton {
     }
 
     public void getProfileUser(int id, Callback<List<User>> callback) {
-        //setToken("eyJhbGciOiJIUzI1NiJ9.eyJpZCI6MTEsIm5hbWUiOiJMb3JlbSIsImxhc3RfbmFtZSI6Iklwc3VtIiwiZW1haWwiOiJsb3JlbUBpcHN1bS5jb20iLCJpbWFnZSI6IiJ9.oOSABVyRDqIGtslDCNTzE4HiSz74uW6saBtJO9CMTY8");
         Retrofit retrofit = APIConnector.getRetrofitInstance();
         UserDAO userDAO = retrofit.create(UserDAO.class);
 
@@ -158,7 +155,6 @@ public class CallSingelton {
 
     public void insertEvent(String name, String image, String location, String description, String eventStart_date,
                             String eventEnd_date, String type, String n_participators, Callback<Event> callback) {
-        //setToken("eyJhbGciOiJIUzI1NiJ9.eyJpZCI6MjM5LCJuYW1lIjoiQWxiYTIiLCJsYXN0X25hbWUiOiJCb3NjaCIsImVtYWlsIjoiYWxiYWJvc2NoQGdtYWlsLmNvbSIsImltYWdlIjoiOTFjMDViNDUtZWJiOS00ZjRmLWE1OGUtNmNjYWU2OGQwYjI3LmpwZyJ9.GupcKuzcApA3pDKF-uQ1uypjVne6QtCKf6g5tsWAMkY");
         Retrofit retrofit = APIConnector.getRetrofitInstance();
         EventDAO eventDAO = retrofit.create(EventDAO.class);
 
@@ -177,7 +173,6 @@ public class CallSingelton {
     }
 
     public void getUserFriends(int id, Callback<List<User>> callback) {
-        //setToken("eyJhbGciOiJIUzI1NiJ9.eyJpZCI6MTEsIm5hbWUiOiJMb3JlbSIsImxhc3RfbmFtZSI6Iklwc3VtIiwiZW1haWwiOiJsb3JlbUBpcHN1bS5jb20iLCJpbWFnZSI6IiJ9.oOSABVyRDqIGtslDCNTzE4HiSz74uW6saBtJO9CMTY8");
         Retrofit retrofit = APIConnector.getRetrofitInstance();
         UserDAO userDAO = retrofit.create(UserDAO.class);
 
@@ -186,7 +181,6 @@ public class CallSingelton {
     }
 
     public void getUserFriendsRequests(Callback<List<User>> callback) {
-        //setToken("eyJhbGciOiJIUzI1NiJ9.eyJpZCI6MTEsIm5hbWUiOiJMb3JlbSIsImxhc3RfbmFtZSI6Iklwc3VtIiwiZW1haWwiOiJsb3JlbUBpcHN1bS5jb20iLCJpbWFnZSI6IiJ9.oOSABVyRDqIGtslDCNTzE4HiSz74uW6saBtJO9CMTY8");
         Retrofit retrofit = APIConnector.getRetrofitInstance();
         FriendDAO friendDAO = retrofit.create(FriendDAO.class);
 
@@ -195,7 +189,6 @@ public class CallSingelton {
     }
 
     public void getUserEventsCreated(int id, Callback<List<Event>> callback) {
-        //setToken("eyJhbGciOiJIUzI1NiJ9.eyJpZCI6MTEsIm5hbWUiOiJMb3JlbSIsImxhc3RfbmFtZSI6Iklwc3VtIiwiZW1haWwiOiJsb3JlbUBpcHN1bS5jb20iLCJpbWFnZSI6IiJ9.oOSABVyRDqIGtslDCNTzE4HiSz74uW6saBtJO9CMTY8");
         Retrofit retrofit = APIConnector.getRetrofitInstance();
         UserDAO userDAO = retrofit.create(UserDAO.class);
 
@@ -204,7 +197,6 @@ public class CallSingelton {
     }
 
     public void getUserEventsCreatedFuture(int id, Callback<List<Event>> callback) {
-        //setToken("eyJhbGciOiJIUzI1NiJ9.eyJpZCI6MTEsIm5hbWUiOiJMb3JlbSIsImxhc3RfbmFtZSI6Iklwc3VtIiwiZW1haWwiOiJsb3JlbUBpcHN1bS5jb20iLCJpbWFnZSI6IiJ9.oOSABVyRDqIGtslDCNTzE4HiSz74uW6saBtJO9CMTY8");
         Retrofit retrofit = APIConnector.getRetrofitInstance();
         UserDAO userDAO = retrofit.create(UserDAO.class);
 
@@ -213,7 +205,6 @@ public class CallSingelton {
     }
 
     public void getUserEventsCreatedFinished(int id, Callback<List<Event>> callback) {
-        //setToken("eyJhbGciOiJIUzI1NiJ9.eyJpZCI6MTEsIm5hbWUiOiJMb3JlbSIsImxhc3RfbmFtZSI6Iklwc3VtIiwiZW1haWwiOiJsb3JlbUBpcHN1bS5jb20iLCJpbWFnZSI6IiJ9.oOSABVyRDqIGtslDCNTzE4HiSz74uW6saBtJO9CMTY8");
         Retrofit retrofit = APIConnector.getRetrofitInstance();
         UserDAO userDAO = retrofit.create(UserDAO.class);
 
@@ -222,7 +213,6 @@ public class CallSingelton {
     }
 
     public void getUserEventsCreatedCurrent(int id, Callback<List<Event>> callback) {
-        //setToken("eyJhbGciOiJIUzI1NiJ9.eyJpZCI6MTEsIm5hbWUiOiJMb3JlbSIsImxhc3RfbmFtZSI6Iklwc3VtIiwiZW1haWwiOiJsb3JlbUBpcHN1bS5jb20iLCJpbWFnZSI6IiJ9.oOSABVyRDqIGtslDCNTzE4HiSz74uW6saBtJO9CMTY8");
         Retrofit retrofit = APIConnector.getRetrofitInstance();
         UserDAO userDAO = retrofit.create(UserDAO.class);
 
@@ -231,7 +221,6 @@ public class CallSingelton {
     }
 
     public void getUserAssistances(int id, Callback<List<Event>> callback) {
-        //setToken("eyJhbGciOiJIUzI1NiJ9.eyJpZCI6MTEsIm5hbWUiOiJMb3JlbSIsImxhc3RfbmFtZSI6Iklwc3VtIiwiZW1haWwiOiJsb3JlbUBpcHN1bS5jb20iLCJpbWFnZSI6IiJ9.oOSABVyRDqIGtslDCNTzE4HiSz74uW6saBtJO9CMTY8");
         Retrofit retrofit = APIConnector.getRetrofitInstance();
         UserDAO userDAO = retrofit.create(UserDAO.class);
 
@@ -240,7 +229,6 @@ public class CallSingelton {
     }
 
     public void getUserAssistancesFuture(int id, Callback<List<Event>> callback) {
-        //setToken("eyJhbGciOiJIUzI1NiJ9.eyJpZCI6MTEsIm5hbWUiOiJMb3JlbSIsImxhc3RfbmFtZSI6Iklwc3VtIiwiZW1haWwiOiJsb3JlbUBpcHN1bS5jb20iLCJpbWFnZSI6IiJ9.oOSABVyRDqIGtslDCNTzE4HiSz74uW6saBtJO9CMTY8");
         Retrofit retrofit = APIConnector.getRetrofitInstance();
         UserDAO userDAO = retrofit.create(UserDAO.class);
 
@@ -249,7 +237,6 @@ public class CallSingelton {
     }
 
     public void getUserAssistancesFinished(int id, Callback<List<Event>> callback) {
-        //setToken("eyJhbGciOiJIUzI1NiJ9.eyJpZCI6MTEsIm5hbWUiOiJMb3JlbSIsImxhc3RfbmFtZSI6Iklwc3VtIiwiZW1haWwiOiJsb3JlbUBpcHN1bS5jb20iLCJpbWFnZSI6IiJ9.oOSABVyRDqIGtslDCNTzE4HiSz74uW6saBtJO9CMTY8");
         Retrofit retrofit = APIConnector.getRetrofitInstance();
         UserDAO userDAO = retrofit.create(UserDAO.class);
 
@@ -258,7 +245,6 @@ public class CallSingelton {
     }
 
     public void getUsersListChat(Callback<List<User>> callback) {
-        //setToken("eyJhbGciOiJIUzI1NiJ9.eyJpZCI6MTEsIm5hbWUiOiJMb3JlbSIsImxhc3RfbmFtZSI6Iklwc3VtIiwiZW1haWwiOiJsb3JlbUBpcHN1bS5jb20iLCJpbWFnZSI6IiJ9.oOSABVyRDqIGtslDCNTzE4HiSz74uW6saBtJO9CMTY8");
         Retrofit retrofit = APIConnector.getRetrofitInstance();
         ChatDAO chatDAO = retrofit.create(ChatDAO.class);
 
@@ -267,7 +253,6 @@ public class CallSingelton {
     }
 
     public void getMessages(int id, Callback<List<Message>> callback) {
-        //setToken("eyJhbGciOiJIUzI1NiJ9.eyJpZCI6MTEsIm5hbWUiOiJMb3JlbSIsImxhc3RfbmFtZSI6Iklwc3VtIiwiZW1haWwiOiJsb3JlbUBpcHN1bS5jb20iLCJpbWFnZSI6IiJ9.oOSABVyRDqIGtslDCNTzE4HiSz74uW6saBtJO9CMTY8");
         Retrofit retrofit = APIConnector.getRetrofitInstance();
         ChatDAO chatDAO = retrofit.create(ChatDAO.class);
 
@@ -276,7 +261,6 @@ public class CallSingelton {
     }
 
     public void insertMessage(String content, int user_id_send, int user_id_recived, Callback<Message> callback) {
-        //setToken("eyJhbGciOiJIUzI1NiJ9.eyJpZCI6MTEsIm5hbWUiOiJMb3JlbSIsImxhc3RfbmFtZSI6Iklwc3VtIiwiZW1haWwiOiJsb3JlbUBpcHN1bS5jb20iLCJpbWFnZSI6IiJ9.oOSABVyRDqIGtslDCNTzE4HiSz74uW6saBtJO9CMTY8");
         Retrofit retrofit = APIConnector.getRetrofitInstance();
         ChatDAO chatDAO = retrofit.create(ChatDAO.class);
 
@@ -291,7 +275,6 @@ public class CallSingelton {
     }
 
     public void acceptFriendShip(int id, Callback<Response<Void>> callback) {
-        //setToken("eyJhbGciOiJIUzI1NiJ9.eyJpZCI6MTEsIm5hbWUiOiJMb3JlbSIsImxhc3RfbmFtZSI6Iklwc3VtIiwiZW1haWwiOiJsb3JlbUBpcHN1bS5jb20iLCJpbWFnZSI6IiJ9.oOSABVyRDqIGtslDCNTzE4HiSz74uW6saBtJO9CMTY8");
         Retrofit retrofit = APIConnector.getRetrofitInstance();
         FriendDAO friendDAO = retrofit.create(FriendDAO.class);
 
@@ -300,7 +283,6 @@ public class CallSingelton {
     }
 
     public void declineFriendShip(int id, Callback<Response<Void>> callback) {
-        //setToken("eyJhbGciOiJIUzI1NiJ9.eyJpZCI6MTEsIm5hbWUiOiJMb3JlbSIsImxhc3RfbmFtZSI6Iklwc3VtIiwiZW1haWwiOiJsb3JlbUBpcHN1bS5jb20iLCJpbWFnZSI6IiJ9.oOSABVyRDqIGtslDCNTzE4HiSz74uW6saBtJO9CMTY8");
         Retrofit retrofit = APIConnector.getRetrofitInstance();
         FriendDAO friendDAO = retrofit.create(FriendDAO.class);
 
