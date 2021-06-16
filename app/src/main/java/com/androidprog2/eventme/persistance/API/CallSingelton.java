@@ -12,8 +12,11 @@ import org.json.JSONException;
 import org.json.JSONObject;
 
 import java.io.File;
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Base64;
+import java.util.Date;
 import java.util.List;
 
 import okhttp3.MediaType;
@@ -150,9 +153,18 @@ public class CallSingelton {
 
     public void insertEvent(String name, File image, String location, String description, String eventStart_date,
                             String eventEnd_date, String type, String n_participators, Callback<Event> callback) {
+        setToken("eyJhbGciOiJIUzI1NiJ9.eyJpZCI6MTEsIm5hbWUiOiJMb3JlbSIsImxhc3RfbmFtZSI6Iklwc3VtIiwiZW1haWwiOiJsb3JlbUBpcHN1bS5jb20iLCJpbWFnZSI6IiJ9.oOSABVyRDqIGtslDCNTzE4HiSz74uW6saBtJO9CMTY8");
         Retrofit retrofit = APIConnector.getRetrofitInstance();
         EventDAO eventDAO = retrofit.create(EventDAO.class);
 
+        Date startDate = null;
+        Date endDate = null;
+        try {
+            startDate = new SimpleDateFormat("dd/MM/yyyy").parse(eventStart_date);
+            endDate = new SimpleDateFormat("dd/MM/yyyy").parse(eventEnd_date);
+        } catch (ParseException e) {
+            e.printStackTrace();
+        }
         RequestBody requestFile = RequestBody.create(MediaType.parse("multipart/form-data"), image);
         MultipartBody.Part requestImage = MultipartBody.Part.createFormData("image", image.getName(), requestFile);
         Call<Event> call = eventDAO.createEvent(
@@ -161,8 +173,8 @@ public class CallSingelton {
                 requestImage,
                 RequestBody.create(MultipartBody.FORM, location),
                 RequestBody.create(MultipartBody.FORM, description),
-                RequestBody.create(MultipartBody.FORM, eventStart_date),
-                RequestBody.create(MultipartBody.FORM, eventEnd_date),
+                startDate,
+                endDate,
                 RequestBody.create(MultipartBody.FORM, n_participators),
                 RequestBody.create(MultipartBody.FORM, type));
 
@@ -171,18 +183,26 @@ public class CallSingelton {
 
     public void insertEvent(String name, String image, String location, String description, String eventStart_date,
                             String eventEnd_date, String type, String n_participators, Callback<Event> callback) {
-        setToken("eyJhbGciOiJIUzI1NiJ9.eyJpZCI6MjM5LCJuYW1lIjoiQWxiYTIiLCJsYXN0X25hbWUiOiJCb3NjaCIsImVtYWlsIjoiYWxiYWJvc2NoQGdtYWlsLmNvbSIsImltYWdlIjoiOTFjMDViNDUtZWJiOS00ZjRmLWE1OGUtNmNjYWU2OGQwYjI3LmpwZyJ9.GupcKuzcApA3pDKF-uQ1uypjVne6QtCKf6g5tsWAMkY");
+        setToken("eyJhbGciOiJIUzI1NiJ9.eyJpZCI6MTEsIm5hbWUiOiJMb3JlbSIsImxhc3RfbmFtZSI6Iklwc3VtIiwiZW1haWwiOiJsb3JlbUBpcHN1bS5jb20iLCJpbWFnZSI6IiJ9.oOSABVyRDqIGtslDCNTzE4HiSz74uW6saBtJO9CMTY8");
         Retrofit retrofit = APIConnector.getRetrofitInstance();
         EventDAO eventDAO = retrofit.create(EventDAO.class);
 
+        Date startDate = null;
+        Date endDate = null;
+        try {
+            startDate = new SimpleDateFormat("dd/MM/yyyy").parse(eventStart_date);
+            endDate = new SimpleDateFormat("dd/MM/yyyy").parse(eventEnd_date);
+        } catch (ParseException e) {
+            e.printStackTrace();
+        }
         Call<Event> call = eventDAO.createEventWithoutImg(
                 "Bearer " + token,
                 name,
                 image,
                 location,
                 description,
-                eventStart_date,
-                eventEnd_date,
+                startDate,
+                endDate,
                 n_participators,
                 type);
 
