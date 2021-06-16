@@ -102,21 +102,36 @@
             app:layout_constraintBottom_toBottomOf="parent"
             >
 
-            <EditText
-                android:id="@+id/xat_text_send"
-                android:layout_marginRight="20px"
-                android:paddingVertical="1dp"
-                android:layout_weight="1"
-                android:hint="@string/xat_type_message"
-                android:textColorHint="@color/font_color_dark"
-                android:textColor="@color/font_color"
-                android:inputType="textCapSentences"
-                android:layout_width="wrap_content"
-                android:paddingHorizontal="20dp"
-                android:maxLines="1"
+            <androidx.constraintlayout.widget.ConstraintLayout
+                android:layout_width="0dp"
                 android:layout_height="match_parent"
-                android:backgroundTint="@color/background_color_light"
-                android:background="@drawable/shape_icon_send"/>
+                android:layout_weight="1">
+                <EditText
+                    android:id="@+id/xat_text_send"
+                    android:layout_marginRight="10dp"
+                    android:paddingVertical="1dp"
+                    android:hint="@string/xat_type_message"
+                    android:textColorHint="@color/font_color_dark"
+                    android:textColor="@color/font_color"
+                    android:inputType="textCapSentences"
+                    android:layout_width="match_parent"
+                    android:paddingHorizontal="20dp"
+                    android:maxLines="1"
+                    android:layout_height="match_parent"
+                    android:backgroundTint="@color/background_color_light"
+                    android:background="@drawable/shape_icon_send"/>
+
+                <ImageButton
+                    android:layout_marginRight="5dp"
+                    android:id="@+id/xat_send_image"
+                    style="@style/Style.Eventme.IconButton"
+                    app:layout_constraintEnd_toEndOf="@+id/xat_text_send"
+                    android:src="@drawable/ic_baseline_image_24"
+                    tools:ignore="MissingConstraints"
+                    android:alpha=".8"
+                    app:tint="@color/font_color" />
+            </androidx.constraintlayout.widget.ConstraintLayout>
+
 
             <ImageButton
                 android:id="@+id/xat_send_button"

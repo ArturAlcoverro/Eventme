@@ -12,14 +12,18 @@
     <color name="background_color_darker">#040506</color>
     <color name="background_color_light">#3B4558</color>
     <color name="background_color_lighter">#525F7A</color>
+    <color name="background_color_lighter_opaque">#80525F7A</color>
     <color name="font_color">#FFFFFF</color>
     <color name="font_color_dark">#D1D1D1</color>
     <color name="font_color_darker">#B2B2B2</color>
     <color name="background_chat_msg">#332756</color>
 
+    <color name="notification_bar">#1d212b</color>
+
     <color name="menu_button_color">#9EA2AB</color>
 
-    <color name="error_color">#e94560</color>
+    <color name="error_color">#E14F4F</color>
+    <color name="danger_color">#C75450</color>
 
     <color name="transparent">#00000000</color>
     <color name="black">#000</color>

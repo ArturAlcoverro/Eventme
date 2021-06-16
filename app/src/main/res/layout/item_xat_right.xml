@@ -21,9 +21,19 @@
         android:padding="12dp">
 
         <LinearLayout
-            android:layout_width="match_parent"
+            android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:background="@drawable/shape_chat_bg"
+            android:backgroundTint="@color/background_chat_msg"
+            android:padding="10dp"
             android:gravity="end">
+
+            <ImageView
+                android:visibility="gone"
+                android:id="@+id/xat_item_img"
+                android:layout_width="wrap_content"
+                android:layout_height="250dp"
+                />
 
             <TextView
                 android:id="@+id/xat_item_message"
@@ -31,11 +41,8 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:autoSizeTextType="uniform"
-                android:background="@drawable/shape_chat_bg"
-                android:backgroundTint="@color/background_chat_msg"
                 android:minWidth="60dp"
                 android:minEms="3"
-                android:padding="12dp"
                 android:text="@string/xat_message"
                 tools:ignore="MissingConstraints" />
 
