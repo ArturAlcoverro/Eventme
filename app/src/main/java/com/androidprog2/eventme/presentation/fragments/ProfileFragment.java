@@ -1,8 +1,6 @@
 package com.androidprog2.eventme.presentation.fragments;
 
-import android.annotation.SuppressLint;
 import android.content.Intent;
-import android.content.SharedPreferences;
 import android.os.Build;
 import android.os.Bundle;
 import android.util.Log;
@@ -15,15 +13,13 @@ import android.widget.LinearLayout;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import androidx.annotation.Nullable;
 import androidx.annotation.RequiresApi;
 import androidx.fragment.app.Fragment;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
-import com.android.volley.VolleyError;
-import com.android.volley.toolbox.ImageLoader;
 import com.androidprog2.eventme.R;
-import com.androidprog2.eventme.VolleySingleton;
 import com.androidprog2.eventme.business.Event;
 import com.androidprog2.eventme.business.User;
 import com.androidprog2.eventme.persistance.API.CallSingelton;
@@ -45,8 +41,6 @@ import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
 
-import static android.content.Context.MODE_PRIVATE;
-
 /**
  * A simple {@link Fragment} subclass.
  * Use the {@link ProfileFragment#newInstance} factory method to
@@ -61,6 +55,7 @@ public class ProfileFragment extends Fragment {
     private static final String EXTRA_LAST_NAME = "EXTRA_LAST_NAME";
     private static final String EXTRA_EMAIL = "EXTRA_EMAIL";
     private static final String EXTRA_IMAGE = "EXTRA_IMAGE";
+    public static final int EXTRA_CODE = 2;
 
     private ImageButton editProfileBtn;
     private ImageButton chatProfileBtn;
@@ -204,7 +199,16 @@ public class ProfileFragment extends Fragment {
         Intent intent = new Intent(getContext(), EditProfileActivity.class);
         intent.putExtra(EXTRA_ID, id);
 
-        startActivity(intent);
+        startActivityForResult(intent, EXTRA_CODE);
+    }
+
+    @RequiresApi(api = Build.VERSION_CODES.O)
+    @Override
+    public void onActivityResult(int requestCode, int resultCode, @Nullable @org.jetbrains.annotations.Nullable Intent data) {
+        super.onActivityResult(requestCode, resultCode, data);
+        if(requestCode == EXTRA_CODE){
+            updateData();
+        }
     }
 
     @RequiresApi(api = Build.VERSION_CODES.O)

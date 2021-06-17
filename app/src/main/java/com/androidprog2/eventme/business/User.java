@@ -16,6 +16,8 @@ public class User {
     @SerializedName("password")
     private String password;
 
+    private boolean isFriend;
+
     public User(int id, String image, String name, String last_name, String email, String password) {
         this.id = id;
         this.image = image;
@@ -66,5 +68,13 @@ public class User {
 
     public String getPassword() {
         return password;
+    }
+
+    public boolean isFriend() {
+        return isFriend;
+    }
+
+    public void setFriend(boolean friend) {
+        isFriend = friend;
     }
 }

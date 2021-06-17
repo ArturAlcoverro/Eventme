@@ -38,7 +38,6 @@ public class FriendsListAdapter extends RecyclerView.Adapter<FriendsListAdapter.
     List<User> users;
     List<User> requests;
     List<User> allUsers;
-    int requestSize;
     Context context;
 
     public FriendsListAdapter(List<User> users, List<User> requests, Context context) {
@@ -46,10 +45,18 @@ public class FriendsListAdapter extends RecyclerView.Adapter<FriendsListAdapter.
         for (int i = 0; i < users.size(); i++) {
             if(users.get(i).getImage() == null){
                 users.remove(i);
+            }else {
+                users.get(i).setFriend(true);
+            }
+        }
+        for (int i = 0; i < requests.size(); i++) {
+            if(requests.get(i).getImage() == null){
+                requests.remove(i);
+            }else {
+                requests.get(i).setFriend(false);
             }
         }
         this.requests = requests;
-        requestSize = this.requests.size();
         this.allUsers = Stream.of(this.requests, this.users)
                 .flatMap(x -> x.stream())
                 .collect(Collectors.toList());
@@ -65,7 +72,7 @@ public class FriendsListAdapter extends RecyclerView.Adapter<FriendsListAdapter.
 
     @Override
     public void onBindViewHolder(@NonNull FriendsListAdapter.FriendsListViewHolder holder, int position) {
-        if (position < requestSize){
+        if (!allUsers.get(position).isFriend()){
             holder.bind(allUsers.get(position), true, context);
         }else {
             holder.bind(allUsers.get(position), false, context);
@@ -83,10 +90,9 @@ public class FriendsListAdapter extends RecyclerView.Adapter<FriendsListAdapter.
                                     allUsers.remove(position);
                                     notifyItemRemoved(position);
                                     notifyItemRangeChanged(position, allUsers.size());
-                                    requestSize--;
-                                    if(!(position < requestSize)){
+                                    /*if(!(position < requestSize)){
                                         holder.linearLayout.setVisibility(View.GONE);
-                                    }
+                                    }*/
                                 }
                             } else {
                                 try {

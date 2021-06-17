@@ -85,7 +85,10 @@ public class EditProfileActivity extends AppCompatActivity implements Callback<U
         getUserInformation(id);
         validationListeners();
 
-        backArrow_btn.setOnClickListener(v -> { finish(); });
+        backArrow_btn.setOnClickListener(v -> {
+            setResult(ProfileFragment.EXTRA_CODE);
+            finish();
+        });
         change_image_btn.setOnClickListener(v -> { selectImage(); });
         apply_changes_btn.setOnClickListener(v -> { saveChanges(); });
     }
