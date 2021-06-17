@@ -71,7 +71,7 @@ public class SettingsActivity extends AppCompatActivity {
     private void logOut() {
         deleteToken();
         Intent intent = new Intent(getApplicationContext(), StartActivity.class);
-        intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
+        intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK);
         startActivity(intent);
     }
 
