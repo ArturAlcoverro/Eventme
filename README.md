@@ -12,9 +12,8 @@
 
  <br/><br/>
 ## **Desenvolupament en dispositius mòbils (Android)**
-<figure class="video_container">
-  <iframe src="https://www.youtube.com/watch?v=J0ExeJk72hY" frameborder="0" allowfullscreen="true"> </iframe>
-</figure>
+
+https://user-images.githubusercontent.com/29460917/122480373-0a1f4980-cfcd-11eb-8c76-8c24e8c5d8f5.mp4
 
  <br/><br/>
 
