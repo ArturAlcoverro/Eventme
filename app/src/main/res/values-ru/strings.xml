@@ -140,4 +140,7 @@
     <string name="event_detail_finished_event">Событие окончено!</string>
     <string name="event_detail_started_event">Событие началось!</string>
     <string name="login_email_syntax_error">Неправильный формат электронного письма</string>
+
+    <string name="settings_title">Настройки</string>
+    <string name="settings_theme">Темная тема</string>
 </resources>

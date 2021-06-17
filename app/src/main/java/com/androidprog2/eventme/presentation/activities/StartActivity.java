@@ -7,6 +7,7 @@ import android.util.Log;
 import android.view.View;
 
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.appcompat.app.AppCompatDelegate;
 
 import com.androidprog2.eventme.R;
 import com.androidprog2.eventme.persistance.API.CallSingelton;
@@ -21,6 +22,14 @@ public class StartActivity extends AppCompatActivity {
         setContentView(R.layout.activity_start);
         Intent intent = new Intent(this, LoginActivity.class);
         Intent mainIntent = new Intent(this, MainActivity.class);
+
+        SharedPreferences sharedPreferences = getSharedPreferences(SettingsActivity.SP_DARKMODE, MODE_PRIVATE);
+        boolean darkmode = sharedPreferences.getBoolean(SettingsActivity.SP_DARKMODE, true);
+
+        if (darkmode)
+            AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_NO);
+        else
+            AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_YES);
 
 
         if (loadData()!=null){

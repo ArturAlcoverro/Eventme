@@ -52,6 +52,7 @@
                 android:gravity="center_vertical">
 
                 <TextView
+                    android:textColor="@color/font_color_constant"
                     android:layout_weight="1"
                     android:id="@+id/eventTitleList"
                     android:layout_width="wrap_content"
@@ -63,6 +64,7 @@
                     android:textStyle="bold" />
 
                 <TextView
+                    android:textColor="@color/font_color"
                     android:id="@+id/eventCategoryList"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
@@ -78,6 +80,7 @@
 
 
             <TextView
+                android:textColor="@color/font_color_constant"
                 android:id="@+id/eventLocationList"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
@@ -87,6 +90,7 @@
                 android:textSize="18sp" />
 
             <TextView
+                android:textColor="@color/font_color_constant"
                 android:id="@+id/eventDateList"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
@@ -98,6 +102,7 @@
 
 
         <ImageView
+            android:visibility="gone"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:src="@drawable/ic_baseline_share_24"

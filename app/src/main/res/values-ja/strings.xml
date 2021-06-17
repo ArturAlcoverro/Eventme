@@ -140,4 +140,7 @@
     <string name="event_detail_finished_event">イベント終了！</string>
     <string name="event_detail_started_event">イベント開始！</string>
     <string name="login_email_syntax_error">メールの形式が正しくありません</string>
+
+    <string name="settings_title">設定</string>
+    <string name="settings_theme">暗いテーマ</string>
 </resources>

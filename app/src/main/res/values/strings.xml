@@ -95,7 +95,7 @@
     <string name="profileTimeline_friends">Friends</string>
     <string name="profileTimeline_requestFriend">Request Friend</string>
     <string name="profileTimeline_sendMessage">Send message</string>
-    <string name="accept_friendship">Confrim</string>
+    <string name="accept_friendship">Confirm</string>
     <string name="decline_friendship">Delete</string>
     <string name="pending_friendship">Pending</string>
 
@@ -140,5 +140,7 @@
     <string name="event_detail_finished_event">Finished event!</string>
     <string name="event_detail_started_event">Started event!</string>
     <string name="login_email_syntax_error">The email format is not correct</string>
+    <string name="settings_title">Settings</string>
+    <string name="settings_theme">Dark Theme</string>
 
 </resources>

@@ -140,4 +140,7 @@
     <string name="event_detail_finished_event">Arrangementet er over!</string>
     <string name="event_detail_started_event">Arrangement startet!</string>
     <string name="login_email_syntax_error">E-postformatet er ikke riktig</string>
+
+    <string name="settings_title">Innstillinger</string>
+    <string name="settings_theme">Mørkt tema</string>
 </resources>

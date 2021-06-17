@@ -29,9 +29,12 @@ import com.androidprog2.eventme.business.User;
 import com.androidprog2.eventme.persistance.API.CallSingelton;
 import com.androidprog2.eventme.presentation.activities.ChatActivity;
 import com.androidprog2.eventme.presentation.activities.EditProfileActivity;
+import com.androidprog2.eventme.presentation.activities.SettingsActivity;
 import com.androidprog2.eventme.presentation.activities.UserEventsActivity;
 import com.androidprog2.eventme.presentation.activities.UserFriendsActivity;
 import com.androidprog2.eventme.presentation.adapters.TimelineAdapter;
+import com.bumptech.glide.Glide;
+import com.bumptech.glide.request.RequestOptions;
 import com.google.android.material.button.MaterialButton;
 
 import java.io.IOException;
@@ -61,6 +64,7 @@ public class ProfileFragment extends Fragment {
 
     private ImageButton editProfileBtn;
     private ImageButton chatProfileBtn;
+    private ImageButton settingsProfileBtn;
     private MaterialButton sendMessageBtn;
     private MaterialButton requestFriendBtn;
     private ImageButton backArrow_btn;
@@ -120,7 +124,7 @@ public class ProfileFragment extends Fragment {
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
-        id = this.getArguments().getInt("EXTRA_ID");
+        id = this.getArguments().getInt("EXTRA_ID", 0);
         isActivity = this.getArguments().getBoolean(ACTIVITY, false);
 
         Log.d("--ACTIVITY--", isActivity? "---TRUE---":"---FALSE---");
@@ -130,6 +134,7 @@ public class ProfileFragment extends Fragment {
         profileImage = view.findViewById(R.id.imageProfile);
         profileName = view.findViewById(R.id.textView_Name);
         editProfileBtn = view.findViewById(R.id.editProfileBtn);
+        settingsProfileBtn = view.findViewById(R.id.settingsProfileBtn);
         chatProfileBtn = view.findViewById(R.id.chatProfileBtn);
         pendingRequests = view.findViewById(R.id.pendingRequests);
         backArrow_btn = view.findViewById(R.id.arrowLeft);
@@ -164,6 +169,9 @@ public class ProfileFragment extends Fragment {
         editProfileBtn.setOnClickListener(v -> {
             startUpdateActivity();
         });
+        settingsProfileBtn.setOnClickListener(v -> {
+            startSettingsActivity();
+        });
         chatProfileBtn.setOnClickListener(v -> {
             startChatActivity();
         });
@@ -182,8 +190,15 @@ public class ProfileFragment extends Fragment {
         assistanceLinear.setOnClickListener(v -> {
             startAssistanceActivity();
         });
+
         return view;
     }
+
+    private void startSettingsActivity(){
+        Intent intent = new Intent(getContext(), SettingsActivity.class);
+        startActivity(intent);
+    }
+
 
     private void startUpdateActivity() {
         Intent intent = new Intent(getContext(), EditProfileActivity.class);
@@ -211,9 +226,11 @@ public class ProfileFragment extends Fragment {
                                 if (isFriend) {
                                     chatProfileBtn.setVisibility(View.VISIBLE);
                                     editProfileBtn.setVisibility(View.GONE);
+                                    settingsProfileBtn.setVisibility(View.GONE);
                                     linearLayout.setVisibility(View.GONE);
                                 } else {
                                     editProfileBtn.setVisibility(View.GONE);
+                                    settingsProfileBtn.setVisibility(View.GONE);
                                     chatProfileBtn.setVisibility(View.GONE);
                                 }
                                 backArrow_btn.setOnClickListener(v -> {
@@ -475,6 +492,9 @@ public class ProfileFragment extends Fragment {
                                     Collections.sort(assistances, (e1, e2) -> e2.getStartDate().compareTo(e1.getStartDate()));
                                     adapter = new TimelineAdapter(assistances, getContext());
                                     recyclerView.setAdapter(adapter);
+                                    recyclerView.setVisibility(View.VISIBLE);
+                                }else {
+                                    recyclerView.setVisibility(View.GONE);
                                 }
 
                                 if (id != CallSingelton.getUserId()) {
@@ -509,27 +529,26 @@ public class ProfileFragment extends Fragment {
                 url = "http://puigmal.salle.url.edu/img/" + image;
             }
         }
-        ImageLoader imageLoader = VolleySingleton.getInstance(getContext()).getImageLoader();
-        imageLoader.get(url, new ImageLoader.ImageListener() {
 
-            @Override
-            public void onResponse(ImageLoader.ImageContainer response, boolean isImmediate) {
-                if (response.getBitmap() != null) {
-                    profileImage.setImageBitmap(response.getBitmap());
-                }
-            }
-
-            public void onErrorResponse(VolleyError error) {
-                profileImage.setImageResource(R.drawable.avatar_profile);
-            }
-        });
-    }
-
-    private void deleteToken(){
-
-        SharedPreferences sharedPreferences = getActivity().getSharedPreferences(CallSingelton.TOKEN, MODE_PRIVATE);
-        @SuppressLint("CommitPrefEdits") SharedPreferences.Editor editor = sharedPreferences.edit();
-        editor.clear();
-        editor.commit();
+        RequestOptions options = new RequestOptions()
+                .error(R.drawable.test_event_img);
+        Glide.with(getActivity())
+                .applyDefaultRequestOptions(options)
+                .load(url)
+                .into(profileImage);
+//        ImageLoader imageLoader = VolleySingleton.getInstance(getContext()).getImageLoader();
+//        imageLoader.get(url, new ImageLoader.ImageListener() {
+//
+//            @Override
+//            public void onResponse(ImageLoader.ImageContainer response, boolean isImmediate) {
+//                if (response.getBitmap() != null) {
+//                    profileImage.setImageBitmap(response.getBitmap());
+//                }
+//            }
+//
+//            public void onErrorResponse(VolleyError error) {
+//                profileImage.setImageResource(R.drawable.avatar_profile);
+//            }
+//        });
     }
 }

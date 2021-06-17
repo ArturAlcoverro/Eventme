@@ -140,4 +140,7 @@
     <string name="event_detail_finished_event">Evento finito!</string>
     <string name="event_detail_started_event">Evento iniziato!</string>
     <string name="login_email_syntax_error">Il formato dell\'email non è corretto</string>
+
+    <string name="settings_title">Impostazioni</string>
+    <string name="settings_theme">Tema scuro</string>
 </resources>

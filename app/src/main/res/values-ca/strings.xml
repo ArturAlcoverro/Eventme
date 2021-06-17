@@ -1,7 +1,6 @@
 <resources>
 <string name="app_name">Eventme</string>
 
-    
     <string name="login_nickname_email_label">Correu electrònic</string>
     <string name="login_password_label">Contrasenya</string>
     <string name="login_login_btn">Iniciar Sessió</string>
@@ -11,7 +10,6 @@
     <string name="login_email_error">Falta el camp de correu electrònic</string>
     <string name="login_incorrect">Les credencials no coincideixen amb els nostres registres.</string>
 
-    
     <string name="signup_gotologin_btn">Iniciar Sessió</string>
     <string name="signup_lastname_label">Cognom</string>
     <string name="signup_firstname_label">Nom</string>
@@ -34,7 +32,6 @@
     <string name="signup_password_char_error">La contrasenya conté caràcters no vàlids</string>
     <string name="signup_password_compare">les contrasenyes han de coincidir</string>
     <string name="signup_incorrect"/>
-
     
     <string name="xat_type_message">Escriviu un missatge</string>
     <string name="xat_backarrow_desc">Imatge de fletxa enrere</string>
@@ -44,12 +41,10 @@
     <string name="xat_message">Això és un missatge</string>
     <string name="xat_test_time">09:41</string>
 
-    
     <string name="start_acces_but">Accés a eventme</string>
     <string name="start_welcome">Benvingut a eventme.</string>
     <string name="start_welcome_subtitle">Els teus esdeveniments preferits a prop teu</string>
 
-    
     <string name="createEvent_title">Registre d’esdeveniments</string>
     <string name="createEvent_imageDescription">Imatge de l\'esdeveniment</string>
     <string name="createEvent_create_btn">Crear</string>
@@ -77,19 +72,15 @@
     <string name="cancel">Cancel · lar</string>
     <string name="createEvent_correct">Esdeveniment creat Fet</string>
 
-    
     <string name="editProfile_apply_btn">Aplica els canvis</string>
     <string name="editProfile_upload_label">Imatge de perfil</string>
     <string name="editProfile_prova_maqueteig">wilson_wilson</string>
     <string name="editProfile_changeImage_Btn">Canvia la imatge</string>
 
-    
     <string name="friendsList_title">Amics</string>
 
-    
     <string name="chatList_title">Xat</string>
 
-    
     <string name="profileTimeline_created">Creat</string>
     <string name="profileTimeline_assisted">Assistit</string>
     <string name="profileTimeline_friends">Amics</string>
@@ -116,7 +107,6 @@
     <string name="home_chip_politics">Política</string>
     <string name="home_chip_others">Altres</string>
 
-    
     <string name="backdrop_all">Tots</string>
     <string name="backdrop_finished">Acabat</string>
     <string name="backdrop_started">Començat</string>
@@ -124,7 +114,6 @@
     <string name="backdrop_done">Fet</string>
     <string name="backdrop_todo">Fer</string>
 
-    
     <string name="hello_blank_fragment">Hola fragment en blanc</string>
     <string name="sign_up_image_label">Imatge de perfil</string>
     <string name="incorrect_body_error">Les dades són incorrectes, comproveu els camps</string>
@@ -140,4 +129,8 @@
     <string name="event_detail_finished_event">Acabat l\'esdeveniment.</string>
     <string name="event_detail_started_event">Esdeveniment iniciat.</string>
     <string name="login_email_syntax_error">El format del correu electrònic no és correcte</string>
+
+    <string name="settings_title">Configuració</string>
+    <string name="settings_theme">Tema fosc</string>
+
 </resources>

@@ -7,10 +7,12 @@
     tools:context=".presentation.activities.StartActivity">
 
     <ImageView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
+        android:scaleType="centerCrop"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
         android:contentDescription="Girl having fun in a festival"
-        android:src="@drawable/initial_image" />
+        android:src="@drawable/initial_image"
+        android:layout_marginBottom="170dp"/>
 
     <LinearLayout
         android:layout_width="match_parent"
@@ -21,6 +23,7 @@
         android:padding="30px">
 
         <TextView
+            android:textColor="@color/font_color"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_gravity="center"
@@ -29,6 +32,7 @@
             android:textSize="30sp" />
 
         <TextView
+            android:textColor="@color/font_color"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_gravity="center"

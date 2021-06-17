@@ -1,0 +1,105 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".presentation.activities.SettingsActivity"
+    android:orientation="vertical">
+    <androidx.appcompat.widget.Toolbar
+        android:id="@+id/toolbar"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        app:contentInsetStart="0dp"
+        tools:ignore="MissingConstraints">
+
+        <ImageButton
+            app:tint="@color/font_color"
+            android:id="@+id/arrowLeft"
+            style="@style/Style.Eventme.IconButton"
+            android:src="@drawable/ic_baseline_arrow_back_24"
+            app:layout_constraintEnd_toStartOf="@+id/usernameTitle"
+            tools:ignore="MissingConstraints"
+            tools:layout_editor_absoluteX="15dp" />
+
+        <TextView
+            style="@style/Style.Eventme.Text.Header2"
+            android:textColor="@color/font_color"
+            android:id="@+id/usernameTitle"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_marginLeft="10dp"
+            android:text="@string/settings_title"
+            app:layout_constraintStart_toEndOf="@+id/arrowLeft"
+            tools:ignore="MissingConstraints" />
+
+    </androidx.appcompat.widget.Toolbar>
+
+    <LinearLayout
+        android:paddingLeft="10dp"
+        android:layout_height="match_parent"
+        android:layout_width="match_parent"
+        android:orientation="vertical">
+
+        <LinearLayout
+            android:id="@+id/settings_theme"
+            android:padding="14dp"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:gravity="center_vertical">
+
+            <ImageView
+                app:tint="@color/font_color"
+                android:layout_marginRight="20dp"
+                android:layout_width="25dp"
+                android:layout_height="25dp"
+                android:src="@drawable/ic_baseline_dark_mode_24"
+                />
+
+            <TextView
+                style="@style/Style.Eventme.Text.Regular.Medium"
+                android:textColor="@color/font_color_dark"
+                android:layout_width="wrap_content"
+                android:layout_weight="1"
+                android:layout_height="wrap_content"
+                android:text="@string/settings_theme"/>
+
+            <com.google.android.material.switchmaterial.SwitchMaterial
+                android:id="@+id/settings_theme_switch"
+                android:layout_gravity="right"
+                app:useMaterialThemeColors="true"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"/>
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:id="@+id/settings_logout"
+            android:padding="14dp"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:gravity="center_vertical">
+
+            <ImageView
+                app:tint="@color/font_color"
+                android:layout_marginRight="20dp"
+                android:layout_width="25dp"
+                android:layout_height="25dp"
+                android:src="@drawable/ic_baseline_logout_24"
+                />
+
+            <TextView
+                style="@style/Style.Eventme.Text.Regular.Medium"
+                android:textColor="@color/font_color_dark"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Log out"/>
+
+        </LinearLayout>
+
+    </LinearLayout>
+
+</LinearLayout>

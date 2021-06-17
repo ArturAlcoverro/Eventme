@@ -24,7 +24,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:background="@drawable/shape_chat_bg"
-            android:backgroundTint="@color/background_chat_msg"
+            android:backgroundTint="@color/background_chat_msg_right"
             android:padding="10dp"
             android:gravity="end">
 
@@ -36,6 +36,7 @@
                 />
 
             <TextView
+                android:textAlignment="textEnd"
                 android:id="@+id/xat_item_message"
                 style="@style/Style.Eventme.Text.Little"
                 android:layout_width="wrap_content"

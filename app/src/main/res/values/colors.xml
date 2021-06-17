@@ -16,7 +16,11 @@
     <color name="font_color">#FFFFFF</color>
     <color name="font_color_dark">#D1D1D1</color>
     <color name="font_color_darker">#B2B2B2</color>
-    <color name="background_chat_msg">#332756</color>
+    <color name="font_color_constant">#FFFFFF</color>
+    <color name="font_color_dark_constant">#D1D1D1</color>
+    <color name="font_color_darker_constant">#B2B2B2</color>
+    <color name="background_chat_msg_right">#332756</color>
+    <color name="background_chat_msg_left">#252B37</color>
 
     <color name="notification_bar">#1d212b</color>
 

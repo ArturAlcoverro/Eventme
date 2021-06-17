@@ -50,8 +50,9 @@
                         android:layout_height="wrap_content"
                         android:text="May 21 - May 23"
                         android:textSize="16dp"
-                        android:textColor="@color/font_color_dark"/>
+                        android:textColor="@color/font_color_dark_constant"/>
                     <TextView
+                        android:textColor="@color/font_color_constant"
                         android:id="@+id/home_carrousel_event_name"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
@@ -64,7 +65,7 @@
                         android:layout_height="wrap_content"
                         android:textSize="16dp"
                         android:text="12 friends are attending"
-                        android:textColor="@color/font_color_dark"/>
+                        android:textColor="@color/font_color_dark_constant"/>
 
                 </LinearLayout>
 

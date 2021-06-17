@@ -24,6 +24,7 @@
                 android:layout_height="match_parent">
 
                 <ImageButton
+                    app:tint="@color/font_color"
                     android:id="@+id/arrowLeft"
                     style="@style/Style.Eventme.IconButton"
                     android:src="@drawable/ic_baseline_arrow_back_24"
@@ -31,6 +32,7 @@
                     tools:ignore="MissingConstraints" />
 
                 <ImageButton
+                    app:tint="@color/font_color"
                     android:id="@+id/filter"
                     style="@style/Style.Eventme.IconButton"
                     android:src="@drawable/ic_baseline_filter_alt_24"

@@ -1,6 +1,6 @@
 <resources xmlns:tools="http://schemas.android.com/tools">
     <!-- Base application theme. -->
-    <style name="Theme.Eventme" parent="Theme.MaterialComponents.Light.NoActionBar">
+        <style name="Theme.Eventme" parent="Theme.MaterialComponents.DayNight.NoActionBar">
         <item name="colorPrimary">@color/main_purple</item>
         <item name="colorAccent">@color/main_purple</item>
         <item name="colorPrimaryDark">@color/notification_bar</item>

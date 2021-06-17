@@ -39,6 +39,7 @@
         tools:ignore="MissingConstraints">
 
         <TextView
+            android:textColor="@color/font_color"
             android:id="@+id/nickname"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
@@ -49,6 +50,7 @@
             android:textStyle="bold" />
 
         <TextView
+            android:textColor="@color/font_color"
             android:id="@+id/full_name"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
@@ -76,6 +78,7 @@
 
             <com.google.android.material.button.MaterialButton
                 android:id="@+id/declineFriend"
+
                 style="@style/Style.Eventme.Button"
                 android:backgroundTint="@color/background_color"
                 android:layout_width="wrap_content"

@@ -25,6 +25,7 @@
             tools:ignore="MissingConstraints">
 
             <ImageView
+                app:tint="@color/font_color"
                 android:id="@+id/xat_back_arrow"
                 style="@style/Style.Eventme.IconButton"
                 android:contentDescription="@string/xat_backarrow_desc"

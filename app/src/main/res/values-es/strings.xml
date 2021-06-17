@@ -54,7 +54,7 @@
     <string name="createEvent_imageDescription">Imagen del evento</string>
     <string name="createEvent_create_btn">Crear</string>
     <string name="createEvent_upload_btn">Cargar</string>
-    <string name="createEvent_name_label">Nombre propio</string>
+    <string name="createEvent_name_label">Nombre</string>
     <string name="createEvent_location_label">Posición</string>
     <string name="createEvent_description_label">Descripción</string>
     <string name="createEvent_startDate_label">Fecha de inicio</string>
@@ -140,4 +140,7 @@
     <string name="event_detail_finished_event">¡Evento terminado!</string>
     <string name="event_detail_started_event">¡Evento iniciado!</string>
     <string name="login_email_syntax_error">El formato del correo electrónico no es correcto</string>
+
+    <string name="settings_title">Ajustes</string>
+    <string name="settings_theme">Tema oscuro</string>
 </resources>
