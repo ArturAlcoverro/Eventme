@@ -1,0 +1,143 @@
+<resources>
+<string name="app_name">Eventme</string>
+
+    
+    <string name="login_nickname_email_label">Correu electrònic</string>
+    <string name="login_password_label">Contrasenya</string>
+    <string name="login_login_btn">Iniciar Sessió</string>
+    <string name="login_account_question">No tens cap compte?</string>
+    <string name="login_gotosignup_btn">Registra\'t</string>
+    <string name="login_password_error">Falta el camp de la contrasenya</string>
+    <string name="login_email_error">Falta el camp de correu electrònic</string>
+    <string name="login_incorrect">Les credencials no coincideixen amb els nostres registres.</string>
+
+    
+    <string name="signup_gotologin_btn">Iniciar Sessió</string>
+    <string name="signup_lastname_label">Cognom</string>
+    <string name="signup_firstname_label">Nom</string>
+    <string name="signup_email_label">Correu electrònic</string>
+    <string name="signup_password_label">Contrasenya</string>
+    <string name="signup_repassword_label">Repeteix la contrassenya</string>
+    <string name="signup_signup_btn">Registra\'t</string>
+    <string name="signup_account_question">Té un compte?</string>
+    <string name="signup_name_error">Falta el camp de nom</string>
+    <string name="signup_lastname_error">Falta el camp Cognom</string>
+    <string name="signup_email_error">Falta el camp de correu electrònic</string>
+    <string name="signup_password_error">Falta el camp de la contrasenya</string>
+    <string name="signup_repeat_password_error">Falta el camp de repetició de la contrasenya</string>
+    <string name="signup_email_syntax_error">El format del correu electrònic no és correcte</string>
+    <string name="signup_password_regex">La contrasenya ha de tenir 8 caràcters</string>
+    <string name="signup_password_caps_error">La contrasenya ha de tenir una majúscula</string>
+    <string name="signup_password_lows_error">La contrasenya ha de tenir una lletra minúscula</string>
+    <string name="signup_password_nums_error">La contrasenya ha de tenir un número</string>
+    <string name="signup_password_spaces_error">La contrasenya no pot contenir espais</string>
+    <string name="signup_password_char_error">La contrasenya conté caràcters no vàlids</string>
+    <string name="signup_password_compare">les contrasenyes han de coincidir</string>
+    <string name="signup_incorrect"/>
+
+    
+    <string name="xat_type_message">Escriviu un missatge</string>
+    <string name="xat_backarrow_desc">Imatge de fletxa enrere</string>
+    <string name="xat_user_name_desc">David Marquet</string>
+    <string name="xat_user_image_desc">Imatge d\'usuari</string>
+    <string name="xat_bottom_to_send_text_desc">inferior per enviar text</string>
+    <string name="xat_message">Això és un missatge</string>
+    <string name="xat_test_time">09:41</string>
+
+    
+    <string name="start_acces_but">Accés a eventme</string>
+    <string name="start_welcome">Benvingut a eventme.</string>
+    <string name="start_welcome_subtitle">Els teus esdeveniments preferits a prop teu</string>
+
+    
+    <string name="createEvent_title">Registre d’esdeveniments</string>
+    <string name="createEvent_imageDescription">Imatge de l\'esdeveniment</string>
+    <string name="createEvent_create_btn">Crear</string>
+    <string name="createEvent_upload_btn">Pujar</string>
+    <string name="createEvent_name_label">Nom</string>
+    <string name="createEvent_location_label">Ubicació</string>
+    <string name="createEvent_description_label">Descripció</string>
+    <string name="createEvent_startDate_label">Data d\'inici</string>
+    <string name="createEvent_startTime_label">L\'hora d\'inici</string>
+    <string name="createEvent_endDate_label">Data de finalització</string>
+    <string name="createEvent_endTime_label">Temps esgotat</string>
+    <string name="createEvent_category_label">Categoria</string>
+    <string name="createEvent_capacity_label">Capacitat</string>
+    <string name="createEvent_icon_calendar">Icona del calendari</string>
+    <string name="createEvent_name_error">Falta el camp del nom</string>
+    <string name="createEvent_location_error">Falta el camp d\'ubicació</string>
+    <string name="createEvent_description_error">Falta el camp de descripció</string>
+    <string name="createEvent_capacity_error">Falta el camp de capacitat</string>
+    <string name="createEvent_capacity_error_syntax">El camp ha de ser un número</string>
+    <string name="createEvent_categroy_error">Falta el camp de la categoria</string>
+    <string name="createEvent_startDate_error">Falta el camp StartDate</string>
+    <string name="createEvent_endDate_error">Falta el camp Data final</string>
+    <string name="createEvent_startTime_error">Falta el camp StartTime</string>
+    <string name="createEvent_endTime_error">Falta el camp EndTime</string>
+    <string name="cancel">Cancel · lar</string>
+    <string name="createEvent_correct">Esdeveniment creat Fet</string>
+
+    
+    <string name="editProfile_apply_btn">Aplica els canvis</string>
+    <string name="editProfile_upload_label">Imatge de perfil</string>
+    <string name="editProfile_prova_maqueteig">wilson_wilson</string>
+    <string name="editProfile_changeImage_Btn">Canvia la imatge</string>
+
+    
+    <string name="friendsList_title">Amics</string>
+
+    
+    <string name="chatList_title">Xat</string>
+
+    
+    <string name="profileTimeline_created">Creat</string>
+    <string name="profileTimeline_assisted">Assistit</string>
+    <string name="profileTimeline_friends">Amics</string>
+    <string name="profileTimeline_requestFriend">Sol·licita amic</string>
+    <string name="profileTimeline_sendMessage">Enviar missatge</string>
+    <string name="accept_friendship">Confirmeu</string>
+    <string name="decline_friendship">Suprimeix</string>
+    <string name="pending_friendship">Pendents</string>
+
+    
+    <string name="home_title">Esdeveniments a prop vostre.</string>
+    <string name="home_chip_all">Tots</string>
+    <string name="home_chip_music">Música</string>
+    <string name="home_chip_sport">Esport</string>
+    <string name="home_chip_cultural">Cultural</string>
+    <string name="home_chip_education">Educació</string>
+    <string name="home_chip_travel">Viatges</string>
+    <string name="home_chip_games">Jocs</string>
+    <string name="home_chip_technology">Tecnologia</string>
+    <string name="home_chip_science">Ciència</string>
+    <string name="home_chip_art">Art</string>
+    <string name="home_chip_food">Menjar</string>
+    <string name="home_chip_fashion">Moda</string>
+    <string name="home_chip_politics">Política</string>
+    <string name="home_chip_others">Altres</string>
+
+    
+    <string name="backdrop_all">Tots</string>
+    <string name="backdrop_finished">Acabat</string>
+    <string name="backdrop_started">Començat</string>
+    <string name="backdrop_toGetStarted">Per començar</string>
+    <string name="backdrop_done">Fet</string>
+    <string name="backdrop_todo">Fer</string>
+
+    
+    <string name="hello_blank_fragment">Hola fragment en blanc</string>
+    <string name="sign_up_image_label">Imatge de perfil</string>
+    <string name="incorrect_body_error">Les dades són incorrectes, comproveu els camps</string>
+    <string name="incorrect_to_insert">El servidor no ha pogut crear l\'esdeveniment. Torneu-ho a provar</string>
+    <string name="event_detail_participants">participants</string>
+    <string name="event_detail_max_participants">places màximes</string>
+    <string name="event_detail_starts">Comenceu</string>
+    <string name="event_detail_ends">Acaba el</string>
+    <string name="event_detail_by">Per</string>
+    <string name="event_detail_ask_help">Demana ajuda</string>
+    <string name="event_detail_i_ll_attend">Hi assistiré</string>
+    <string name="event_detail_im_out">Estic fora</string>
+    <string name="event_detail_finished_event">Acabat l\'esdeveniment.</string>
+    <string name="event_detail_started_event">Esdeveniment iniciat.</string>
+    <string name="login_email_syntax_error">El format del correu electrònic no és correcte</string>
+</resources>

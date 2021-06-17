@@ -9,7 +9,6 @@
     <string name="login_gotosignup_btn">Sign up</string>
     <string name="login_password_error">Missing password field</string>
     <string name="login_email_error">Missing email field</string>
-    <string name="login_email_syntax_error">The email format is not correct</string>
     <string name="login_incorrect">The credentials did not match our records.</string>
 
     <!-- RegisterActivity Strings -->
@@ -140,5 +139,6 @@
     <string name="event_detail_im_out">I\'m out</string>
     <string name="event_detail_finished_event">Finished event!</string>
     <string name="event_detail_started_event">Started event!</string>
+    <string name="login_email_syntax_error">The email format is not correct</string>
 
 </resources>
