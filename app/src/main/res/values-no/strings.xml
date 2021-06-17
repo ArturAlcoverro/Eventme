@@ -1,4 +1,143 @@
-<?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <string name="app_name">Eventme</string>
+<string name="app_name">Eventme</string>
+
+    
+    <string name="login_nickname_email_label">E-post</string>
+    <string name="login_password_label">Passord</string>
+    <string name="login_login_btn">Adgang</string>
+    <string name="login_account_question">Ingen konto?</string>
+    <string name="login_gotosignup_btn">abonnere</string>
+    <string name="login_password_error">Mangler passordfelt</string>
+    <string name="login_email_error">Mangler e-postfelt</string>
+    <string name="login_incorrect">Påloggingsinformasjonen samsvarer ikke med postene våre.</string>
+
+    
+    <string name="signup_gotologin_btn">Adgang</string>
+    <string name="signup_lastname_label">Etternavn</string>
+    <string name="signup_firstname_label">Fornavn</string>
+    <string name="signup_email_label">E-post</string>
+    <string name="signup_password_label">Passord</string>
+    <string name="signup_repassword_label">Gjenta passord</string>
+    <string name="signup_signup_btn">abonnere</string>
+    <string name="signup_account_question">Har du en konto?</string>
+    <string name="signup_name_error">Navnefelt mangler</string>
+    <string name="signup_lastname_error">Etternavn felt mangler</string>
+    <string name="signup_email_error">Mangler e-postfelt</string>
+    <string name="signup_password_error">Mangler passordfelt</string>
+    <string name="signup_repeat_password_error">Mangler felt for repetisjon av passord</string>
+    <string name="signup_email_syntax_error">E-postformatet er ikke riktig</string>
+    <string name="signup_password_regex">Passordet må bestå av 8 tegn</string>
+    <string name="signup_password_caps_error">Passordet må ha store bokstaver</string>
+    <string name="signup_password_lows_error">Passordet må ha små bokstaver</string>
+    <string name="signup_password_nums_error">Passordet må ha et nummer</string>
+    <string name="signup_password_spaces_error">Passordet kan ikke inneholde mellomrom</string>
+    <string name="signup_password_char_error">Passordet inneholder ugyldige tegn</string>
+    <string name="signup_password_compare">Passordene må være like</string>
+    <string name="signup_incorrect"/>
+
+    
+    <string name="xat_type_message">skrive en melding</string>
+    <string name="xat_backarrow_desc">Bakre pilbilde</string>
+    <string name="xat_user_name_desc">David Marquet</string>
+    <string name="xat_user_image_desc">Brukerbilde</string>
+    <string name="xat_bottom_to_send_text_desc">nedenfor for å sende teksten</string>
+    <string name="xat_message">Dette er en melding</string>
+    <string name="xat_test_time">09:41</string>
+
+    
+    <string name="start_acces_but">Tilgang til arrangementet</string>
+    <string name="start_welcome">Velkommen til eventme.</string>
+    <string name="start_welcome_subtitle">Favorittbegivenhetene dine i nærheten</string>
+
+    
+    <string name="createEvent_title">Hendelsesloggen</string>
+    <string name="createEvent_imageDescription">Bilde av arrangementet</string>
+    <string name="createEvent_create_btn">Skape</string>
+    <string name="createEvent_upload_btn">Å laste</string>
+    <string name="createEvent_name_label">Fornavn</string>
+    <string name="createEvent_location_label">Posisjon</string>
+    <string name="createEvent_description_label">Beskrivelse</string>
+    <string name="createEvent_startDate_label">Startdato</string>
+    <string name="createEvent_startTime_label">Starttid</string>
+    <string name="createEvent_endDate_label">Sluttdato</string>
+    <string name="createEvent_endTime_label">Pause</string>
+    <string name="createEvent_category_label">Kategori</string>
+    <string name="createEvent_capacity_label">Kapasitet</string>
+    <string name="createEvent_icon_calendar">Kalenderikon</string>
+    <string name="createEvent_name_error">Navnefelt mangler</string>
+    <string name="createEvent_location_error">Manglende posisjonsfelt</string>
+    <string name="createEvent_description_error">Manglende beskrivelsesfelt</string>
+    <string name="createEvent_capacity_error">Manglende kapasitetsfelt</string>
+    <string name="createEvent_capacity_error_syntax">Feltet må være et tall</string>
+    <string name="createEvent_categroy_error">Manglende kategorifelt</string>
+    <string name="createEvent_startDate_error">Mangler startdatofelt</string>
+    <string name="createEvent_endDate_error">Manglende sluttdatofelt</string>
+    <string name="createEvent_startTime_error">Mangler StartTime-felt</string>
+    <string name="createEvent_endTime_error">EndTime-felt mangler</string>
+    <string name="cancel">Avbryt</string>
+    <string name="createEvent_correct">Arrangement opprettet Ferdig</string>
+
+    
+    <string name="editProfile_apply_btn">Bruk endringene</string>
+    <string name="editProfile_upload_label">Profilbilde</string>
+    <string name="editProfile_prova_maqueteig">wilson_wilson</string>
+    <string name="editProfile_changeImage_Btn">Endre bilde</string>
+
+    
+    <string name="friendsList_title">Venner</string>
+
+    
+    <string name="chatList_title">Å chatte</string>
+
+    
+    <string name="profileTimeline_created">Laget</string>
+    <string name="profileTimeline_assisted">Assistert</string>
+    <string name="profileTimeline_friends">Venner</string>
+    <string name="profileTimeline_requestFriend">Venneforespørsel</string>
+    <string name="profileTimeline_sendMessage">Sende melding</string>
+    <string name="accept_friendship">Bekrefte</string>
+    <string name="decline_friendship">Slett</string>
+    <string name="pending_friendship">venter på</string>
+
+    
+    <string name="home_title">Arrangementer i nærheten av deg.</string>
+    <string name="home_chip_all">Alle</string>
+    <string name="home_chip_music">Musikk</string>
+    <string name="home_chip_sport">Sport</string>
+    <string name="home_chip_cultural">Kulturell</string>
+    <string name="home_chip_education">utdanning</string>
+    <string name="home_chip_travel">Reise</string>
+    <string name="home_chip_games">Spill</string>
+    <string name="home_chip_technology">Teknologi</string>
+    <string name="home_chip_science">Vitenskap</string>
+    <string name="home_chip_art">Kunst</string>
+    <string name="home_chip_food">Mat</string>
+    <string name="home_chip_fashion">Mote</string>
+    <string name="home_chip_politics">Politikk</string>
+    <string name="home_chip_others">Andre</string>
+
+    
+    <string name="backdrop_all">Alle</string>
+    <string name="backdrop_finished">Ferdig</string>
+    <string name="backdrop_started">Startet</string>
+    <string name="backdrop_toGetStarted">Å starte</string>
+    <string name="backdrop_done">Ferdig</string>
+    <string name="backdrop_todo">Å gjøre</string>
+
+    
+    <string name="hello_blank_fragment">Hei tomt fragment</string>
+    <string name="sign_up_image_label">Profilbilde</string>
+    <string name="incorrect_body_error">Dataene er feil, sjekk feltene</string>
+    <string name="incorrect_to_insert">Serveren klarte ikke å opprette hendelsen. Prøv på nytt</string>
+    <string name="event_detail_participants">deltakere</string>
+    <string name="event_detail_max_participants">maksimale plasser</string>
+    <string name="event_detail_starts">Begynn på</string>
+    <string name="event_detail_ends">Ender på</string>
+    <string name="event_detail_by">Av</string>
+    <string name="event_detail_ask_help">Be om hjelp</string>
+    <string name="event_detail_i_ll_attend">Jeg skal delta</string>
+    <string name="event_detail_im_out">Er ute</string>
+    <string name="event_detail_finished_event">Arrangementet er over!</string>
+    <string name="event_detail_started_event">Arrangement startet!</string>
+    <string name="login_email_syntax_error">E-postformatet er ikke riktig</string>
 </resources>
