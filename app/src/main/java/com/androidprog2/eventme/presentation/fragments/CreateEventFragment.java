@@ -180,8 +180,6 @@ public class CreateEventFragment extends Fragment implements Callback {
             String name = nameInput.getEditText().getText().toString();
             String location = locationInput.getEditText().getText().toString();
             String description = descriptionInput.getEditText().getText().toString();
-            //String startDate = unionDateAndTime(startDateInput.getEditText().getText().toString(), startTimeInput.getEditText().getText().toString());
-            //String endDate = unionDateAndTime(endDateInput.getEditText().getText().toString(), endTimeInput.getEditText().getText().toString());
             String startDate = startDateInput.getEditText().getText().toString();
             String endDate = endDateInput.getEditText().getText().toString();
             String category = categroyInput.getEditText().getText().toString();
@@ -404,38 +402,6 @@ public class CreateEventFragment extends Fragment implements Callback {
                 validateEndTime(endTimeInput.getEditText().getText().toString());
             }
         });
-        
-        /*startDateInput.getEditText().setOnEditorActionListener((v, actionId, event) -> {
-            if(actionId == EditorInfo.IME_ACTION_UNSPECIFIED){
-                startTimeInput.requestFocus();
-                return true;
-            }
-            return false;
-        });
-
-        startTimeInput.getEditText().setOnEditorActionListener((v, actionId, event) -> {
-            if(actionId == EditorInfo.IME_ACTION_UNSPECIFIED){
-                endDateInput.requestFocus();
-                return true;
-            }
-            return false;
-        });
-
-        endDateInput.getEditText().setOnEditorActionListener((v, actionId, event) -> {
-            if(actionId == EditorInfo.IME_ACTION_UNSPECIFIED){
-                endTimeInput.requestFocus();
-                return true;
-            }
-            return false;
-        });
-
-        endTimeInput.getEditText().setOnEditorActionListener((v, actionId, event) -> {
-            if(actionId == EditorInfo.IME_ACTION_UNSPECIFIED){
-                categroyInput.requestFocus();
-                return true;
-            }
-            return false;
-        });*/
 
         capacityInput.getEditText().setOnEditorActionListener((v, actionId, event) -> {
             if(actionId == EditorInfo.IME_ACTION_UNSPECIFIED){
