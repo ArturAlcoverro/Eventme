@@ -1,0 +1,146 @@
+<resources>
+<string name="app_name">Eventme</string>
+
+    
+    <string name="login_nickname_email_label">Correo electrónico</string>
+    <string name="login_password_label">Contraseña</string>
+    <string name="login_login_btn">Acceso</string>
+    <string name="login_account_question">¿No tiene una cuenta?</string>
+    <string name="login_gotosignup_btn">suscribir</string>
+    <string name="login_password_error">Falta el campo de contraseña</string>
+    <string name="login_email_error">Falta el campo de correo electrónico</string>
+    <string name="login_incorrect">Las credenciales no coinciden con nuestros registros.</string>
+
+    
+    <string name="signup_gotologin_btn">Acceso</string>
+    <string name="signup_lastname_label">Apellido</string>
+    <string name="signup_firstname_label">Nombre propio</string>
+    <string name="signup_email_label">Correo electrónico</string>
+    <string name="signup_password_label">Contraseña</string>
+    <string name="signup_repassword_label">repite la contraseña</string>
+    <string name="signup_signup_btn">suscribir</string>
+    <string name="signup_account_question">¿Tiene usted una cuenta?</string>
+    <string name="signup_name_error">Falta el campo de nombre</string>
+    <string name="signup_lastname_error">Falta el campo de apellido</string>
+    <string name="signup_email_error">Falta el campo de correo electrónico</string>
+    <string name="signup_password_error">Falta el campo de contraseña</string>
+    <string name="signup_repeat_password_error">Falta el campo de repetición de contraseña</string>
+    <string name="signup_email_syntax_error">El formato del correo electrónico no es correcto</string>
+    <string name="signup_password_regex">La contraseña debe tener 8 caracteres</string>
+    <string name="signup_password_caps_error">La contraseña debe tener una letra mayúscula</string>
+    <string name="signup_password_lows_error">La contraseña debe tener una letra minúscula</string>
+    <string name="signup_password_nums_error">La contraseña debe tener un número</string>
+    <string name="signup_password_spaces_error">La contraseña no puede contener espacios</string>
+    <string name="signup_password_char_error">La contraseña contiene caracteres no válidos.</string>
+    <string name="signup_password_compare">Las contraseñas deben coincidir</string>
+    <string name="signup_incorrect"/>
+
+    
+    <string name="xat_type_message">escribe un mensaje</string>
+    <string name="xat_backarrow_desc">Imagen de flecha hacia atrás</string>
+    <string name="xat_user_name_desc">David Marquet</string>
+    <string name="xat_user_image_desc">Imagen de usuario</string>
+    <string name="xat_bottom_to_send_text_desc">a continuación para enviar el texto</string>
+    <string name="xat_message">Este es un mensaje</string>
+    <string name="xat_test_time">09:41</string>
+
+    
+    <string name="start_acces_but">Acceso al evento</string>
+    <string name="start_welcome">Bienvenido a eventme.</string>
+    <string name="start_welcome_subtitle">Tus eventos favoritos cerca de ti</string>
+
+    
+    <string name="createEvent_title">Registro de eventos</string>
+    <string name="createEvent_imageDescription">Imagen del evento</string>
+    <string name="createEvent_create_btn">Crear</string>
+    <string name="createEvent_upload_btn">Cargar</string>
+    <string name="createEvent_name_label">Nombre</string>
+    <string name="createEvent_location_label">Posición</string>
+    <string name="createEvent_description_label">Descripción</string>
+    <string name="createEvent_startDate_label">Fecha de inicio</string>
+    <string name="createEvent_startTime_label">Hora de inicio</string>
+    <string name="createEvent_endDate_label">Fecha final</string>
+    <string name="createEvent_endTime_label">Se acabó el tiempo</string>
+    <string name="createEvent_category_label">Categoría</string>
+    <string name="createEvent_capacity_label">Capacidad</string>
+    <string name="createEvent_icon_calendar">Icono de calendario</string>
+    <string name="createEvent_name_error">Falta el campo de nombre</string>
+    <string name="createEvent_location_error">Falta el campo de posición</string>
+    <string name="createEvent_description_error">Falta el campo de descripción</string>
+    <string name="createEvent_capacity_error">Falta campo de capacidad</string>
+    <string name="createEvent_capacity_error_syntax">El campo debe ser un número</string>
+    <string name="createEvent_categroy_error">Falta el campo de categoría</string>
+    <string name="createEvent_startDate_error">Falta el campo de fecha de inicio</string>
+    <string name="createEvent_endDate_error">Falta el campo de fecha de finalización</string>
+    <string name="createEvent_startTime_error">Falta el campo StartTime</string>
+    <string name="createEvent_endTime_error">Falta el campo EndTime</string>
+    <string name="cancel">Cancelar</string>
+    <string name="createEvent_correct">Evento creado Hecho</string>
+
+    
+    <string name="editProfile_apply_btn">Aplicar los cambios</string>
+    <string name="editProfile_upload_label">Foto de perfil</string>
+    <string name="editProfile_prova_maqueteig">wilson_wilson</string>
+    <string name="editProfile_changeImage_Btn">Cambiar imagen</string>
+
+    
+    <string name="friendsList_title">Amigos</string>
+
+    
+    <string name="chatList_title">Para charlar</string>
+
+    
+    <string name="profileTimeline_created">Creado</string>
+    <string name="profileTimeline_assisted">Asistido</string>
+    <string name="profileTimeline_friends">Amigos</string>
+    <string name="profileTimeline_requestFriend">Solicitud de amistad</string>
+    <string name="profileTimeline_sendMessage">Enviar mensaje</string>
+    <string name="accept_friendship">Confirmar</string>
+    <string name="decline_friendship">Borrar</string>
+    <string name="pending_friendship">esperando</string>
+
+    
+    <string name="home_title">Eventos cerca de ti.</string>
+    <string name="home_chip_all">Todas</string>
+    <string name="home_chip_music">Música</string>
+    <string name="home_chip_sport">Deporte</string>
+    <string name="home_chip_cultural">Cultural</string>
+    <string name="home_chip_education">Educación</string>
+    <string name="home_chip_travel">Viaje</string>
+    <string name="home_chip_games">Juegos</string>
+    <string name="home_chip_technology">Tecnología</string>
+    <string name="home_chip_science">Ciencias</string>
+    <string name="home_chip_art">Arte</string>
+    <string name="home_chip_food">Comida</string>
+    <string name="home_chip_fashion">Moda</string>
+    <string name="home_chip_politics">Política</string>
+    <string name="home_chip_others">Otros</string>
+
+    
+    <string name="backdrop_all">Todas</string>
+    <string name="backdrop_finished">Terminado</string>
+    <string name="backdrop_started">Empezado</string>
+    <string name="backdrop_toGetStarted">Para comenzar</string>
+    <string name="backdrop_done">Hecho</string>
+    <string name="backdrop_todo">Que hacer</string>
+
+    
+    <string name="hello_blank_fragment">Hola fragmento vacío</string>
+    <string name="sign_up_image_label">Foto de perfil</string>
+    <string name="incorrect_body_error">Los datos son incorrectos, verifique los campos</string>
+    <string name="incorrect_to_insert">El servidor no pudo crear el evento. Vuelve a intentarlo.</string>
+    <string name="event_detail_participants">Participantes</string>
+    <string name="event_detail_max_participants">plazas máximas</string>
+    <string name="event_detail_starts">Comienza en</string>
+    <string name="event_detail_ends">Termina el</string>
+    <string name="event_detail_by">De</string>
+    <string name="event_detail_ask_help">Pedir ayuda</string>
+    <string name="event_detail_i_ll_attend">Voy a participar</string>
+    <string name="event_detail_im_out">Están fuera</string>
+    <string name="event_detail_finished_event">¡Evento terminado!</string>
+    <string name="event_detail_started_event">¡Evento iniciado!</string>
+    <string name="login_email_syntax_error">El formato del correo electrónico no es correcto</string>
+
+    <string name="settings_title">Ajustes</string>
+    <string name="settings_theme">Tema oscuro</string>
+</resources>

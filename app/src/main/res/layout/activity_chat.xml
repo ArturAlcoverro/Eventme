@@ -1,0 +1,151 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    tools:context=".presentation.activities.ChatActivity"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:background="@color/background_color_dark">
+
+    <androidx.appcompat.widget.Toolbar
+        android:id="@+id/toolbar"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@color/background_color"
+        app:contentInsetStart="0dp">
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:id="@+id/constraintLayout"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:orientation="horizontal"
+            tools:ignore="MissingConstraints">
+
+            <ImageView
+                app:tint="@color/font_color"
+                android:id="@+id/xat_back_arrow"
+                style="@style/Style.Eventme.IconButton"
+                android:contentDescription="@string/xat_backarrow_desc"
+                app:srcCompat="@drawable/ic_baseline_arrow_back_24"
+                tools:ignore="MissingConstraints" />
+
+            <LinearLayout
+                android:id="@+id/profileInformation"
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                android:orientation="horizontal"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintStart_toEndOf="@+id/xat_back_arrow"
+                app:layout_constraintTop_toTopOf="parent">
+
+
+            <androidx.cardview.widget.CardView
+                android:id="@+id/profileImageChat"
+                android:layout_width="40dp"
+                android:layout_height="40dp"
+                android:layout_marginLeft="10dp"
+                app:cardCornerRadius="20dp"
+                app:cardElevation="0dp"
+                >
+
+                <ImageView
+                    android:id="@+id/imageProfile"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:src="@drawable/profile_image_test" />
+
+            </androidx.cardview.widget.CardView>
+
+            <TextView
+                android:id="@+id/nameProfile"
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                android:layout_marginLeft="10dp"
+                android:gravity="center"
+                android:ellipsize="end"
+                android:maxLines="1"
+                android:text="Wilson Wilson"
+                style="@style/Style.Eventme.Text.Important"
+                android:fontFamily="@font/roboto_medium"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintStart_toEndOf="@+id/profileImageChat"
+                app:layout_constraintTop_toTopOf="parent" />
+
+            </LinearLayout>
+
+        </androidx.constraintlayout.widget.ConstraintLayout>
+
+    </androidx.appcompat.widget.Toolbar>
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <androidx.recyclerview.widget.RecyclerView
+            android:id="@+id/recyclerViewChat"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_marginBottom="56dp"
+            app:layout_constraintBottom_toTopOf="@+id/inputLayout"
+            >
+
+        </androidx.recyclerview.widget.RecyclerView>
+
+        <LinearLayout
+            android:id="@+id/inputLayout"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:padding="10dp"
+            app:layout_constraintBottom_toBottomOf="parent"
+            >
+
+            <androidx.constraintlayout.widget.ConstraintLayout
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_weight="1">
+                <EditText
+                    android:id="@+id/xat_text_send"
+                    android:layout_marginRight="10dp"
+                    android:paddingVertical="1dp"
+                    android:hint="@string/xat_type_message"
+                    android:textColorHint="@color/font_color_dark"
+                    android:textColor="@color/font_color"
+                    android:inputType="textCapSentences"
+                    android:layout_width="match_parent"
+                    android:paddingHorizontal="20dp"
+                    android:maxLines="1"
+                    android:layout_height="match_parent"
+                    android:backgroundTint="@color/background_color_light"
+                    android:background="@drawable/shape_icon_send"/>
+
+                <ImageButton
+                    android:layout_marginRight="5dp"
+                    android:id="@+id/xat_send_image"
+                    style="@style/Style.Eventme.IconButton"
+                    app:layout_constraintEnd_toEndOf="@+id/xat_text_send"
+                    android:src="@drawable/ic_baseline_image_24"
+                    tools:ignore="MissingConstraints"
+                    android:alpha=".8"
+                    app:tint="@color/font_color" />
+            </androidx.constraintlayout.widget.ConstraintLayout>
+
+
+            <ImageButton
+                android:id="@+id/xat_send_button"
+                style="@style/Style.Eventme.IconButton"
+                android:background="@drawable/shape_icon_send"
+                android:src="@drawable/ic_baseline_send_24"
+                android:padding="13dp"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toEndOf="@+id/xat_text_send" />
+        </LinearLayout>
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+
+
+</LinearLayout>

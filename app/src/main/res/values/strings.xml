@@ -1,3 +1,146 @@
 <resources>
     <string name="app_name">Eventme</string>
+
+    <!-- LoginActivity Strings -->
+    <string name="login_nickname_email_label">Email</string>
+    <string name="login_password_label">Password</string>
+    <string name="login_login_btn">Log in</string>
+    <string name="login_account_question">Don\'t have an account?</string>
+    <string name="login_gotosignup_btn">Sign up</string>
+    <string name="login_password_error">Missing password field</string>
+    <string name="login_email_error">Missing email field</string>
+    <string name="login_incorrect">The credentials did not match our records.</string>
+
+    <!-- RegisterActivity Strings -->
+    <string name="signup_gotologin_btn">Log in</string>
+    <string name="signup_lastname_label">Last Name</string>
+    <string name="signup_firstname_label">First Name</string>
+    <string name="signup_email_label">Email</string>
+    <string name="signup_password_label">Password</string>
+    <string name="signup_repassword_label">Repeat password</string>
+    <string name="signup_signup_btn">Sign up</string>
+    <string name="signup_account_question">Have an acount?</string>
+    <string name="signup_name_error">Missing First name field</string>
+    <string name="signup_lastname_error">Missing Last name field</string>
+    <string name="signup_email_error">Missing email field</string>
+    <string name="signup_password_error">Missing password field</string>
+    <string name="signup_repeat_password_error">Missing repeat password field</string>
+    <string name="signup_email_syntax_error">The email format is not correct</string>
+    <string name="signup_password_regex">Password must be 8 characters long</string>
+    <string name="signup_password_caps_error">Password must have a capital letter</string>
+    <string name="signup_password_lows_error">Password must have a lowercase letter</string>
+    <string name="signup_password_nums_error">Password must have a number</string>
+    <string name="signup_password_spaces_error">Password cannot contain spaces</string>
+    <string name="signup_password_char_error">Password contains invalid characters</string>
+    <string name="signup_password_compare">Passwords must match</string>
+    <string name="signup_incorrect"></string>
+
+    <!-- Xat Strings -->
+    <string name="xat_type_message">Type a message</string>
+    <string name="xat_backarrow_desc">Back Arrow image</string>
+    <string name="xat_user_name_desc">David Marquet</string>
+    <string name="xat_user_image_desc">User image</string>
+    <string name="xat_bottom_to_send_text_desc">bottom to send text</string>
+    <string name="xat_message">Esto es un mensaje</string>
+    <string name="xat_test_time">09:41</string>
+
+    <!-- StartActivity Strings -->
+    <string name="start_acces_but">Acces to eventme</string>
+    <string name="start_welcome">Welcome to eventme.</string>
+    <string name="start_welcome_subtitle">Your favourite events near you</string>
+
+    <!-- CreateEventFragment Strings-->
+    <string name="createEvent_title">Event Register</string>
+    <string name="createEvent_imageDescription">Event image</string>
+    <string name="createEvent_create_btn">Create</string>
+    <string name="createEvent_upload_btn">Upload</string>
+    <string name="createEvent_name_label">Name</string>
+    <string name="createEvent_location_label">Location</string>
+    <string name="createEvent_description_label">Description</string>
+    <string name="createEvent_startDate_label">Start Date</string>
+    <string name="createEvent_startTime_label">Start Time</string>
+    <string name="createEvent_endDate_label">End Date</string>
+    <string name="createEvent_endTime_label">End Time</string>
+    <string name="createEvent_category_label">Category</string>
+    <string name="createEvent_capacity_label">Capacity</string>
+    <string name="createEvent_icon_calendar">Calendar Icon</string>
+    <string name="createEvent_name_error">Missing name field</string>
+    <string name="createEvent_location_error">Missing location field</string>
+    <string name="createEvent_description_error">Missing description field</string>
+    <string name="createEvent_capacity_error">Missing capacity field</string>
+    <string name="createEvent_capacity_error_syntax">Field must be a number</string>
+    <string name="createEvent_categroy_error">Missing category field</string>
+    <string name="createEvent_startDate_error">Missing StartDate field</string>
+    <string name="createEvent_endDate_error">Missing EndDate field</string>
+    <string name="createEvent_startTime_error">Missing StartTime field</string>
+    <string name="createEvent_endTime_error">Missing EndTime field</string>
+    <string name="cancel">Cancel</string>
+    <string name="createEvent_correct">Event created Done</string>
+
+    <!-- EditProfileFragment Strings-->
+    <string name="editProfile_apply_btn">Apply changes</string>
+    <string name="editProfile_upload_label">Profile image</string>
+    <string name="editProfile_prova_maqueteig">wilson_wilson</string>
+    <string name="editProfile_changeImage_Btn">Change Image</string>
+
+    <!-- FriendsListFragment Strings-->
+    <string name="friendsList_title">Friends</string>
+
+    <!-- ChatListFragment Strings-->
+    <string name="chatList_title">Chat</string>
+
+    <!-- ProfileTimeline Strings-->
+    <string name="profileTimeline_created">Created</string>
+    <string name="profileTimeline_assisted">Assisted</string>
+    <string name="profileTimeline_friends">Friends</string>
+    <string name="profileTimeline_requestFriend">Request Friend</string>
+    <string name="profileTimeline_sendMessage">Send message</string>
+    <string name="accept_friendship">Confirm</string>
+    <string name="decline_friendship">Delete</string>
+    <string name="pending_friendship">Pending</string>
+
+    <!-- HomeFragment Strings -->
+    <string name="home_title">Events near you.</string>
+    <string name="home_chip_all">All</string>
+    <string name="home_chip_music">Music</string>
+    <string name="home_chip_sport">Sport</string>
+    <string name="home_chip_cultural">Cultural</string>
+    <string name="home_chip_education">Education</string>
+    <string name="home_chip_travel">Travel</string>
+    <string name="home_chip_games">Games</string>
+    <string name="home_chip_technology">Technology</string>
+    <string name="home_chip_science">Science</string>
+    <string name="home_chip_art">Art</string>
+    <string name="home_chip_food">Food</string>
+    <string name="home_chip_fashion">Fashion</string>
+    <string name="home_chip_politics">Politics</string>
+    <string name="home_chip_others">Others</string>
+
+    <!--Backdrop Elements -->
+    <string name="backdrop_all">All</string>
+    <string name="backdrop_finished">Finished</string>
+    <string name="backdrop_started">Started</string>
+    <string name="backdrop_toGetStarted">To get started</string>
+    <string name="backdrop_done">Done</string>
+    <string name="backdrop_todo">To do</string>
+
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Hello blank fragment</string>
+    <string name="sign_up_image_label">Profile image</string>
+    <string name="incorrect_body_error">The data is incorrect, please check the fields</string>
+    <string name="incorrect_to_insert">The server could not create the event, try again</string>
+    <string name="event_detail_participants">participants</string>
+    <string name="event_detail_max_participants">maximum seats</string>
+    <string name="event_detail_starts">Start on</string>
+    <string name="event_detail_ends">Ends on</string>
+    <string name="event_detail_by">By</string>
+    <string name="event_detail_ask_help">Ask help</string>
+    <string name="event_detail_i_ll_attend">I’ll attend</string>
+    <string name="event_detail_im_out">I\'m out</string>
+    <string name="event_detail_finished_event">Finished event!</string>
+    <string name="event_detail_started_event">Started event!</string>
+    <string name="login_email_syntax_error">The email format is not correct</string>
+    <string name="settings_title">Settings</string>
+    <string name="settings_theme">Dark Theme</string>
+
 </resources>

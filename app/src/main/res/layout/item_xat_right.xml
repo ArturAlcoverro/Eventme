@@ -1,0 +1,65 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:background="@color/background_color_dark"
+    android:orientation="horizontal">
+
+    <View
+        android:layout_width="wrap_content"
+        android:layout_height="10dp"
+        android:layout_weight="8" />
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_weight="2"
+        android:gravity="end"
+        android:orientation="vertical"
+        android:padding="12dp">
+
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:background="@drawable/shape_chat_bg"
+            android:backgroundTint="@color/background_chat_msg_right"
+            android:padding="10dp"
+            android:gravity="end">
+
+            <ImageView
+                android:visibility="gone"
+                android:id="@+id/xat_item_img"
+                android:layout_width="wrap_content"
+                android:layout_height="250dp"
+                />
+
+            <TextView
+                android:textAlignment="textEnd"
+                android:id="@+id/xat_item_message"
+                style="@style/Style.Eventme.Text.Little"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:autoSizeTextType="uniform"
+                android:minWidth="60dp"
+                android:minEms="3"
+                android:text="@string/xat_message"
+                tools:ignore="MissingConstraints" />
+
+        </LinearLayout>
+
+        <TextView
+            android:id="@+id/xat_message_time"
+            style="@style/Style.Eventme.Text.Little"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="5dp"
+            android:textColor="@color/font_color"
+            app:layout_constraintTop_toBottomOf="@+id/xat_item_message"
+            tools:ignore="LabelFor,MissingConstraints"
+            tools:text="@string/xat_test_time" />
+
+    </LinearLayout>
+
+</LinearLayout>

@@ -1,0 +1,146 @@
+<resources>
+<string name="app_name">Eventme</string>
+
+    
+    <string name="login_nickname_email_label">Email</string>
+    <string name="login_password_label">Passwort</string>
+    <string name="login_login_btn">Einloggen</string>
+    <string name="login_account_question">Sie haben kein Konto?</string>
+    <string name="login_gotosignup_btn">Anmelden</string>
+    <string name="login_password_error">Passwortfeld fehlt</string>
+    <string name="login_email_error">E-Mail-Feld fehlt</string>
+    <string name="login_incorrect">Die Anmeldeinformationen stimmten nicht mit unseren Aufzeichnungen überein.</string>
+
+    
+    <string name="signup_gotologin_btn">Einloggen</string>
+    <string name="signup_lastname_label">Nachname</string>
+    <string name="signup_firstname_label">Vorname</string>
+    <string name="signup_email_label">Email</string>
+    <string name="signup_password_label">Passwort</string>
+    <string name="signup_repassword_label">Wiederhole das Passwort</string>
+    <string name="signup_signup_btn">Anmelden</string>
+    <string name="signup_account_question">Haben Sie ein Konto?</string>
+    <string name="signup_name_error">Feld Vorname fehlt</string>
+    <string name="signup_lastname_error">Feld Nachname fehlt</string>
+    <string name="signup_email_error">E-Mail-Feld fehlt</string>
+    <string name="signup_password_error">Passwortfeld fehlt</string>
+    <string name="signup_repeat_password_error">Fehlendes Passwort-Wiederholungsfeld</string>
+    <string name="signup_email_syntax_error">Das E-Mail-Format ist nicht korrekt</string>
+    <string name="signup_password_regex">Das Passwort muss 8 Zeichen lang sein</string>
+    <string name="signup_password_caps_error">Passwort muss einen Großbuchstaben enthalten</string>
+    <string name="signup_password_lows_error">Das Passwort muss einen Kleinbuchstaben enthalten</string>
+    <string name="signup_password_nums_error">Passwort muss eine Zahl haben</string>
+    <string name="signup_password_spaces_error">Passwort darf keine Leerzeichen enthalten</string>
+    <string name="signup_password_char_error">Passwort enthält ungültige Zeichen</string>
+    <string name="signup_password_compare">Passwörter müssen übereinstimmen</string>
+    <string name="signup_incorrect"/>
+
+    
+    <string name="xat_type_message">Geben Sie eine Nachricht ein</string>
+    <string name="xat_backarrow_desc">Zurück Pfeilbild</string>
+    <string name="xat_user_name_desc">David Marquet</string>
+    <string name="xat_user_image_desc">Benutzerbild</string>
+    <string name="xat_bottom_to_send_text_desc">unten, um Text zu senden</string>
+    <string name="xat_message">Dies ist eine Nachricht</string>
+    <string name="xat_test_time">09:41</string>
+
+    
+    <string name="start_acces_but">Zugang zu eventme</string>
+    <string name="start_welcome">Willkommen bei eventme.</string>
+    <string name="start_welcome_subtitle">Deine Lieblingsveranstaltungen in deiner Nähe</string>
+
+    
+    <string name="createEvent_title">Veranstaltungsregister</string>
+    <string name="createEvent_imageDescription">Ereignisbild</string>
+    <string name="createEvent_create_btn">Erstellen</string>
+    <string name="createEvent_upload_btn">Hochladen</string>
+    <string name="createEvent_name_label">Name</string>
+    <string name="createEvent_location_label">Ort</string>
+    <string name="createEvent_description_label">Beschreibung</string>
+    <string name="createEvent_startDate_label">Anfangsdatum</string>
+    <string name="createEvent_startTime_label">Startzeit</string>
+    <string name="createEvent_endDate_label">Endtermin</string>
+    <string name="createEvent_endTime_label">Endzeit</string>
+    <string name="createEvent_category_label">Kategorie</string>
+    <string name="createEvent_capacity_label">Kapazität</string>
+    <string name="createEvent_icon_calendar">Kalendersymbol</string>
+    <string name="createEvent_name_error">Namensfeld fehlt</string>
+    <string name="createEvent_location_error">Standortfeld fehlt</string>
+    <string name="createEvent_description_error">Beschreibungsfeld fehlt</string>
+    <string name="createEvent_capacity_error">Kapazitätsfeld fehlt</string>
+    <string name="createEvent_capacity_error_syntax">Feld muss eine Zahl sein</string>
+    <string name="createEvent_categroy_error">Kategoriefeld fehlt</string>
+    <string name="createEvent_startDate_error">Fehlendes StartDatum-Feld</string>
+    <string name="createEvent_endDate_error">Fehlendes EndDate-Feld</string>
+    <string name="createEvent_startTime_error">Fehlendes StartTime-Feld</string>
+    <string name="createEvent_endTime_error">Fehlendes EndTime-Feld</string>
+    <string name="cancel">Stornieren</string>
+    <string name="createEvent_correct">Ereignis erstellt Fertig</string>
+
+    
+    <string name="editProfile_apply_btn">Änderungen übernehmen</string>
+    <string name="editProfile_upload_label">Profilbild</string>
+    <string name="editProfile_prova_maqueteig">wilson_wilson</string>
+    <string name="editProfile_changeImage_Btn">Bild ändern</string>
+
+    
+    <string name="friendsList_title">Freunde</string>
+
+    
+    <string name="chatList_title">Plaudern</string>
+
+    
+    <string name="profileTimeline_created">Erstellt</string>
+    <string name="profileTimeline_assisted">Assistiert</string>
+    <string name="profileTimeline_friends">Freunde</string>
+    <string name="profileTimeline_requestFriend">Freundschaftsanfrage</string>
+    <string name="profileTimeline_sendMessage">Nachricht senden</string>
+    <string name="accept_friendship">Bestätigen</string>
+    <string name="decline_friendship">Löschen</string>
+    <string name="pending_friendship">steht aus</string>
+
+    
+    <string name="home_title">Veranstaltungen in Ihrer Nähe.</string>
+    <string name="home_chip_all">Alle</string>
+    <string name="home_chip_music">Musik</string>
+    <string name="home_chip_sport">Sport</string>
+    <string name="home_chip_cultural">Kulturell</string>
+    <string name="home_chip_education">Bildung</string>
+    <string name="home_chip_travel">Reise</string>
+    <string name="home_chip_games">Spiele</string>
+    <string name="home_chip_technology">Technologie</string>
+    <string name="home_chip_science">Wissenschaft</string>
+    <string name="home_chip_art">Kunst</string>
+    <string name="home_chip_food">Essen</string>
+    <string name="home_chip_fashion">Mode</string>
+    <string name="home_chip_politics">Politik</string>
+    <string name="home_chip_others">Andere</string>
+
+    
+    <string name="backdrop_all">Alle</string>
+    <string name="backdrop_finished">Fertig</string>
+    <string name="backdrop_started">Gestartet</string>
+    <string name="backdrop_toGetStarted">Um loszulegen</string>
+    <string name="backdrop_done">Getan</string>
+    <string name="backdrop_todo">Machen</string>
+
+    
+    <string name="hello_blank_fragment">Hallo leeres Fragment</string>
+    <string name="sign_up_image_label">Profilbild</string>
+    <string name="incorrect_body_error">Die Daten sind falsch, bitte überprüfen Sie die Felder</string>
+    <string name="incorrect_to_insert">Der Server konnte das Ereignis nicht erstellen, versuchen Sie es erneut</string>
+    <string name="event_detail_participants">Teilnehmer</string>
+    <string name="event_detail_max_participants">maximale Sitzplätze</string>
+    <string name="event_detail_starts">Beginnen am</string>
+    <string name="event_detail_ends">Endet am</string>
+    <string name="event_detail_by">Durch</string>
+    <string name="event_detail_ask_help">Bitte um Hilfe</string>
+    <string name="event_detail_i_ll_attend">ich werde teilnehmen</string>
+    <string name="event_detail_im_out">Ich bin raus</string>
+    <string name="event_detail_finished_event">Fertige Veranstaltung!</string>
+    <string name="event_detail_started_event">Veranstaltung gestartet!</string>
+    <string name="login_email_syntax_error">Das E-Mail-Format ist nicht korrekt</string>
+
+    <string name="settings_title">Einstellungen</string>
+    <string name="settings_theme">Dunkles Thema</string>
+</resources>

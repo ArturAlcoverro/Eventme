@@ -1,0 +1,146 @@
+<resources>
+<string name="app_name">Eventme</string>
+
+    
+    <string name="login_nickname_email_label">Электронная почта</string>
+    <string name="login_password_label">Пароль</string>
+    <string name="login_login_btn">Доступ</string>
+    <string name="login_account_question">Нет аккаунта?</string>
+    <string name="login_gotosignup_btn">подписываться</string>
+    <string name="login_password_error">Отсутствует поле пароля</string>
+    <string name="login_email_error">Отсутствует поле электронной почты</string>
+    <string name="login_incorrect">Учетные данные не соответствуют нашим записям.</string>
+
+    
+    <string name="signup_gotologin_btn">Доступ</string>
+    <string name="signup_lastname_label">Фамилия</string>
+    <string name="signup_firstname_label">Имя</string>
+    <string name="signup_email_label">Электронная почта</string>
+    <string name="signup_password_label">Пароль</string>
+    <string name="signup_repassword_label">Повторите пароль</string>
+    <string name="signup_signup_btn">подписываться</string>
+    <string name="signup_account_question">У тебя есть аккаунт?</string>
+    <string name="signup_name_error">Отсутствует поле имени</string>
+    <string name="signup_lastname_error">Поле фамилии отсутствует</string>
+    <string name="signup_email_error">Отсутствует поле электронной почты</string>
+    <string name="signup_password_error">Отсутствует поле пароля</string>
+    <string name="signup_repeat_password_error">Отсутствует поле для повторения пароля</string>
+    <string name="signup_email_syntax_error">Неправильный формат электронного письма</string>
+    <string name="signup_password_regex">Пароль должен состоять из 8 символов.</string>
+    <string name="signup_password_caps_error">Пароль должен состоять из заглавной буквы.</string>
+    <string name="signup_password_lows_error">Пароль должен состоять из строчной буквы.</string>
+    <string name="signup_password_nums_error">Пароль должен иметь цифру</string>
+    <string name="signup_password_spaces_error">Пароль не может содержать пробелов</string>
+    <string name="signup_password_char_error">Пароль содержит недопустимые символы</string>
+    <string name="signup_password_compare">Пароли должны совпадать</string>
+    <string name="signup_incorrect"/>
+
+    
+    <string name="xat_type_message">Напиши сообщение</string>
+    <string name="xat_backarrow_desc">Изображение стрелки назад</string>
+    <string name="xat_user_name_desc">Дэвид Марке</string>
+    <string name="xat_user_image_desc">Изображение пользователя</string>
+    <string name="xat_bottom_to_send_text_desc">ниже, чтобы отправить текст</string>
+    <string name="xat_message">Это сообщение</string>
+    <string name="xat_test_time">09:41</string>
+
+    
+    <string name="start_acces_but">Доступ к мероприятию</string>
+    <string name="start_welcome">Добро пожаловать на eventme.</string>
+    <string name="start_welcome_subtitle">Ваши любимые мероприятия рядом с вами</string>
+
+    
+    <string name="createEvent_title">Журнал событий</string>
+    <string name="createEvent_imageDescription">Изображение события</string>
+    <string name="createEvent_create_btn">Создавать</string>
+    <string name="createEvent_upload_btn">Загружать</string>
+    <string name="createEvent_name_label">Имя</string>
+    <string name="createEvent_location_label">Должность</string>
+    <string name="createEvent_description_label">Описание</string>
+    <string name="createEvent_startDate_label">Дата начала</string>
+    <string name="createEvent_startTime_label">Время начала</string>
+    <string name="createEvent_endDate_label">Дата окончания</string>
+    <string name="createEvent_endTime_label">Тайм-аут</string>
+    <string name="createEvent_category_label">Категория</string>
+    <string name="createEvent_capacity_label">Вместимость</string>
+    <string name="createEvent_icon_calendar">Значок календаря</string>
+    <string name="createEvent_name_error">Отсутствует поле имени</string>
+    <string name="createEvent_location_error">Отсутствует поле позиции</string>
+    <string name="createEvent_description_error">Отсутствует поле описания</string>
+    <string name="createEvent_capacity_error">Отсутствует поле емкости</string>
+    <string name="createEvent_capacity_error_syntax">Поле должно быть числом</string>
+    <string name="createEvent_categroy_error">Отсутствует поле категории</string>
+    <string name="createEvent_startDate_error">Отсутствует поле даты начала</string>
+    <string name="createEvent_endDate_error">Отсутствует поле даты окончания</string>
+    <string name="createEvent_startTime_error">Отсутствует поле StartTime</string>
+    <string name="createEvent_endTime_error">Поле EndTime отсутствует</string>
+    <string name="cancel">Отмена</string>
+    <string name="createEvent_correct">Событие создано Готово</string>
+
+    
+    <string name="editProfile_apply_btn">Применить изменения</string>
+    <string name="editProfile_upload_label">Изображение профиля</string>
+    <string name="editProfile_prova_maqueteig">wilson_wilson</string>
+    <string name="editProfile_changeImage_Btn">Сменить изображение</string>
+
+    
+    <string name="friendsList_title">Друзья</string>
+
+    
+    <string name="chatList_title">Болтать</string>
+
+    
+    <string name="profileTimeline_created">Созданный</string>
+    <string name="profileTimeline_assisted">Помощь</string>
+    <string name="profileTimeline_friends">Друзья</string>
+    <string name="profileTimeline_requestFriend">Просьба о дружбе</string>
+    <string name="profileTimeline_sendMessage">Отправить сообщение</string>
+    <string name="accept_friendship">Подтверждать</string>
+    <string name="decline_friendship">Удалить</string>
+    <string name="pending_friendship">в ожидании</string>
+
+    
+    <string name="home_title">События рядом с вами.</string>
+    <string name="home_chip_all">Все</string>
+    <string name="home_chip_music">Музыка</string>
+    <string name="home_chip_sport">Спорт</string>
+    <string name="home_chip_cultural">Культурный</string>
+    <string name="home_chip_education">Образование</string>
+    <string name="home_chip_travel">Путешествовать</string>
+    <string name="home_chip_games">Игры</string>
+    <string name="home_chip_technology">Технология</string>
+    <string name="home_chip_science">Наука</string>
+    <string name="home_chip_art">Изобразительное искусство</string>
+    <string name="home_chip_food">Еда</string>
+    <string name="home_chip_fashion">Мода</string>
+    <string name="home_chip_politics">Политика</string>
+    <string name="home_chip_others">Другие</string>
+
+    
+    <string name="backdrop_all">Все</string>
+    <string name="backdrop_finished">Законченный</string>
+    <string name="backdrop_started">Начал</string>
+    <string name="backdrop_toGetStarted">Начать</string>
+    <string name="backdrop_done">Сделанный</string>
+    <string name="backdrop_todo">Делать</string>
+
+    
+    <string name="hello_blank_fragment">Привет, пустой фрагмент</string>
+    <string name="sign_up_image_label">Изображение профиля</string>
+    <string name="incorrect_body_error">Данные неверны, проверьте поля</string>
+    <string name="incorrect_to_insert">Серверу не удалось создать событие, попробуйте еще раз</string>
+    <string name="event_detail_participants">участники</string>
+    <string name="event_detail_max_participants">максимальное количество мест</string>
+    <string name="event_detail_starts">Начать</string>
+    <string name="event_detail_ends">Заканчивается</string>
+    <string name="event_detail_by">Из</string>
+    <string name="event_detail_ask_help">Попросить помощи</string>
+    <string name="event_detail_i_ll_attend">Я буду участвовать</string>
+    <string name="event_detail_im_out">Вышли</string>
+    <string name="event_detail_finished_event">Событие окончено!</string>
+    <string name="event_detail_started_event">Событие началось!</string>
+    <string name="login_email_syntax_error">Неправильный формат электронного письма</string>
+
+    <string name="settings_title">Настройки</string>
+    <string name="settings_theme">Темная тема</string>
+</resources>

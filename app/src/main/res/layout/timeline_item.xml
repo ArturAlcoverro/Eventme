@@ -1,0 +1,131 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:orientation="horizontal">
+
+    <FrameLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal">
+
+            <FrameLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content">
+
+                <View
+                    android:id="@+id/timeline_line_top"
+                    android:layout_width="10dp"
+                    android:layout_height="50dp"
+                    android:layout_gravity="center_horizontal"
+                    android:background="@color/main_purple_opaque"/>
+
+                <View
+                    android:id="@+id/timeline_line_bottom"
+                    android:layout_width="10dp"
+                    android:layout_height="50dp"
+                    android:layout_gravity="center_horizontal|bottom"
+                    android:gravity="bottom"
+                    android:background="@color/main_purple_opaque"/>
+
+
+                <com.google.android.material.card.MaterialCardView
+                    android:id="@+id/circle_card_view"
+                    android:layout_width="55dp"
+                    android:layout_height="55dp"
+                    app:cardBackgroundColor="@color/main_purple"
+                    app:cardCornerRadius="27.5dp"
+                    android:layout_margin="13dp"
+                    app:cardElevation="0dp"
+                    >
+
+                    <LinearLayout
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:orientation="vertical"
+                        android:gravity="center"
+                        android:layout_gravity="center"
+                        >
+                        <TextView
+                            android:textColor="@color/font_color_constant"
+                            android:id="@+id/timeline_item_event_day"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:textSize="20sp"
+                            android:inputType="number"
+                            android:textStyle="bold"
+                            android:text="31"/>
+
+                        <TextView
+                            android:textColor="@color/font_color_constant"
+                            android:id="@+id/timeline_item_event_month"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginTop="-5dp"
+                            android:textSize="14sp"
+                            android:text="Apr"/>
+                    </LinearLayout>
+                </com.google.android.material.card.MaterialCardView>
+
+            </FrameLayout>
+
+            <LinearLayout
+                android:layout_weight="1"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:orientation="vertical"
+                android:gravity="center_vertical">
+
+                <TextView
+                    android:id="@+id/timeline_item_event_name"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    style="@style/Style.Eventme.Text.Important"
+                    android:maxLines="1"
+
+                    android:ellipsize="end"
+                    android:text="Global Code"/>
+                <TextView
+                    android:id="@+id/timeline_item_event_location"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:maxLines="1"
+                    android:ellipsize="end"
+                    style="@style/Style.Eventme.Text.Regular"
+                    android:textColor="@color/font_color_dark"
+                    android:text="Los Angeles, California, Park blabla"/>
+
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                android:gravity="center_vertical">
+
+                <TextView
+                    android:textColor="@color/font_color"
+                    android:id="@+id/timeline_item_event_category"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:background="@drawable/shape_category"
+                    android:gravity="right"
+                    android:paddingLeft="25dp"
+                    android:paddingRight="25dp"
+                    android:layout_marginHorizontal="12dp"
+                    android:text="Tech"
+                    android:textSize="15sp"
+                    android:layout_marginBottom="12dp"/>
+
+            </LinearLayout>
+
+        </LinearLayout>
+
+    </FrameLayout>
+
+
+</LinearLayout>

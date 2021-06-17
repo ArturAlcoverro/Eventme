@@ -1,0 +1,146 @@
+<resources>
+<string name="app_name">Eventme</string>
+
+    
+    <string name="login_nickname_email_label">Eメール</string>
+    <string name="login_password_label">パスワード</string>
+    <string name="login_login_btn">アクセス</string>
+    <string name="login_account_question">アカウントを持っていないのですか？</string>
+    <string name="login_gotosignup_btn">申し込む</string>
+    <string name="login_password_error">パスワードフィールドがありません</string>
+    <string name="login_email_error">メールフィールドがありません</string>
+    <string name="login_incorrect">クレデンシャルが私たちの記録と一致しません。</string>
+
+    
+    <string name="signup_gotologin_btn">アクセス</string>
+    <string name="signup_lastname_label">姓</string>
+    <string name="signup_firstname_label">ファーストネーム</string>
+    <string name="signup_email_label">Eメール</string>
+    <string name="signup_password_label">パスワード</string>
+    <string name="signup_repassword_label">パスワードを再度入力してください</string>
+    <string name="signup_signup_btn">申し込む</string>
+    <string name="signup_account_question">アカウントをお持ちですか？</string>
+    <string name="signup_name_error">名前フィールドがありません</string>
+    <string name="signup_lastname_error">姓フィールドがありません</string>
+    <string name="signup_email_error">メールフィールドがありません</string>
+    <string name="signup_password_error">パスワードフィールドがありません</string>
+    <string name="signup_repeat_password_error">パスワードの繰り返しフィールドがありません</string>
+    <string name="signup_email_syntax_error">メールの形式が正しくありません</string>
+    <string name="signup_password_regex">パスワードは8文字である必要があります</string>
+    <string name="signup_password_caps_error">パスワードには大文字が必要です</string>
+    <string name="signup_password_lows_error">パスワードには小文字を使用する必要があります</string>
+    <string name="signup_password_nums_error">パスワードには番号が必要です</string>
+    <string name="signup_password_spaces_error">パスワードにスペースを含めることはできません</string>
+    <string name="signup_password_char_error">パスワードに無効な文字が含まれています</string>
+    <string name="signup_password_compare">パスワードが一致する必要があります</string>
+    <string name="signup_incorrect"/>
+
+    
+    <string name="xat_type_message">メッセージを書く</string>
+    <string name="xat_backarrow_desc">戻る矢印の画像</string>
+    <string name="xat_user_name_desc">デビッド・マルケ</string>
+    <string name="xat_user_image_desc">ユーザー画像</string>
+    <string name="xat_bottom_to_send_text_desc">以下のテキストを送信します</string>
+    <string name="xat_message">これはメッセージです</string>
+    <string name="xat_test_time">09:41</string>
+
+    
+    <string name="start_acces_but">イベントへのアクセス</string>
+    <string name="start_welcome">eventmeへようこそ。</string>
+    <string name="start_welcome_subtitle">お近くのお気に入りのイベント</string>
+
+    
+    <string name="createEvent_title">イベントログ</string>
+    <string name="createEvent_imageDescription">イベントの画像</string>
+    <string name="createEvent_create_btn">作成する</string>
+    <string name="createEvent_upload_btn">ロードするには</string>
+    <string name="createEvent_name_label">ファーストネーム</string>
+    <string name="createEvent_location_label">ポジション</string>
+    <string name="createEvent_description_label">説明</string>
+    <string name="createEvent_startDate_label">開始日</string>
+    <string name="createEvent_startTime_label">始まる時間</string>
+    <string name="createEvent_endDate_label">終了日</string>
+    <string name="createEvent_endTime_label">タイムアウト</string>
+    <string name="createEvent_category_label">カテゴリー</string>
+    <string name="createEvent_capacity_label">容量</string>
+    <string name="createEvent_icon_calendar">カレンダーアイコン</string>
+    <string name="createEvent_name_error">名前フィールドがありません</string>
+    <string name="createEvent_location_error">位置フィールドがありません</string>
+    <string name="createEvent_description_error">説明フィールドがありません</string>
+    <string name="createEvent_capacity_error">容量フィールドがありません</string>
+    <string name="createEvent_capacity_error_syntax">フィールドは数字でなければなりません</string>
+    <string name="createEvent_categroy_error">カテゴリフィールドがありません</string>
+    <string name="createEvent_startDate_error">開始日フィールドがありません</string>
+    <string name="createEvent_endDate_error">終了日フィールドがありません</string>
+    <string name="createEvent_startTime_error">StartTimeフィールドがありません</string>
+    <string name="createEvent_endTime_error">EndTimeフィールドがありません</string>
+    <string name="cancel">キャンセル</string>
+    <string name="createEvent_correct">イベントが作成されました完了</string>
+
+    
+    <string name="editProfile_apply_btn">変更を適用します</string>
+    <string name="editProfile_upload_label">プロフィールの写真</string>
+    <string name="editProfile_prova_maqueteig">wilson_wilson</string>
+    <string name="editProfile_changeImage_Btn">画像を変更する</string>
+
+    
+    <string name="friendsList_title">友達</string>
+
+    
+    <string name="chatList_title">チャットするには</string>
+
+    
+    <string name="profileTimeline_created">作成した</string>
+    <string name="profileTimeline_assisted">支援</string>
+    <string name="profileTimeline_friends">友達</string>
+    <string name="profileTimeline_requestFriend">友情のリクエスト</string>
+    <string name="profileTimeline_sendMessage">メッセージを送る</string>
+    <string name="accept_friendship">確認</string>
+    <string name="decline_friendship">削除</string>
+    <string name="pending_friendship">待っている</string>
+
+    
+    <string name="home_title">お近くのイベント。</string>
+    <string name="home_chip_all">すべて</string>
+    <string name="home_chip_music">音楽</string>
+    <string name="home_chip_sport">スポーツ</string>
+    <string name="home_chip_cultural">文化</string>
+    <string name="home_chip_education">教育</string>
+    <string name="home_chip_travel">トラベル</string>
+    <string name="home_chip_games">ゲーム</string>
+    <string name="home_chip_technology">技術</string>
+    <string name="home_chip_science">理科</string>
+    <string name="home_chip_art">アート</string>
+    <string name="home_chip_food">食物</string>
+    <string name="home_chip_fashion">ファッション</string>
+    <string name="home_chip_politics">ポリシー</string>
+    <string name="home_chip_others">その他</string>
+
+    
+    <string name="backdrop_all">すべて</string>
+    <string name="backdrop_finished">終了しました</string>
+    <string name="backdrop_started">開始</string>
+    <string name="backdrop_toGetStarted">始めること</string>
+    <string name="backdrop_done">完了</string>
+    <string name="backdrop_todo">するために</string>
+
+    
+    <string name="hello_blank_fragment">こんにちは空のフラグメント</string>
+    <string name="sign_up_image_label">プロフィールの写真</string>
+    <string name="incorrect_body_error">データが正しくありません。フィールドを確認してください</string>
+    <string name="incorrect_to_insert">サーバーはイベントを作成できませんでした。再試行してください</string>
+    <string name="event_detail_participants">参加者</string>
+    <string name="event_detail_max_participants">最大の場所</string>
+    <string name="event_detail_starts">開始</string>
+    <string name="event_detail_ends">で終わる</string>
+    <string name="event_detail_by">の</string>
+    <string name="event_detail_ask_help">助けを求める</string>
+    <string name="event_detail_i_ll_attend">参加します</string>
+    <string name="event_detail_im_out">出ています</string>
+    <string name="event_detail_finished_event">イベント終了！</string>
+    <string name="event_detail_started_event">イベント開始！</string>
+    <string name="login_email_syntax_error">メールの形式が正しくありません</string>
+
+    <string name="settings_title">設定</string>
+    <string name="settings_theme">暗いテーマ</string>
+</resources>
