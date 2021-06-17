@@ -1,5 +1,5 @@
 <resources>
-    <string name="app_name">Eventme</string>
+    <string name="app_name" translatable="false">Eventme</string>
 
     <!-- LoginActivity Strings -->
     <string name="login_nickname_email_label">Nickname / Email</string>
