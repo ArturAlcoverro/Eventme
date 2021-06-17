@@ -96,16 +96,18 @@ public class LoginActivity extends AppCompatActivity {
                     CallSingelton.getInstance().loginUser(user, new Callback<String>() {
                         @Override
                         public void onResponse(@NotNull Call<String> call, @NotNull Response<String> response) {
-                            JSONObject jObject = null;
-                            try {
-                                jObject = new JSONObject(response.body());
-                            } catch (JSONException e) {
-                                e.printStackTrace();
-                            }
+
                             Toast toast = null;
+                            int i = response.code();
                             switch (response.code()) {
 
                                 case 200:
+                                    JSONObject jObject = null;
+                                    try {
+                                        jObject = new JSONObject(response.body());
+                                    } catch (JSONException e) {
+                                        e.printStackTrace();
+                                    }
                                     try {
                                         saveData(jObject.getString("accessToken"));
                                     } catch (JSONException e) {
@@ -114,7 +116,7 @@ public class LoginActivity extends AppCompatActivity {
                                     startActivity(mainIntent);
                                     break;
                                 case 400:
-                                    break;
+                                case 404:
                                 case 500:
                                     toast = Toast.makeText(getApplicationContext(), getString(R.string.login_incorrect), Toast.LENGTH_LONG);
                                     toast.setGravity(Gravity.TOP, 0, 60);
