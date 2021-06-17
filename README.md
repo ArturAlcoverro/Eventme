@@ -12,6 +12,10 @@
 
  <br/><br/>
 ## **Desenvolupament en dispositius mòbils (Android)**
+<figure class="video_container">
+  <iframe src="https://www.youtube.com/watch?v=J0ExeJk72hY" frameborder="0" allowfullscreen="true"> </iframe>
+</figure>
+
  <br/><br/>
 
 **Introducció:**
