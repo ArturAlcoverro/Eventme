@@ -45,7 +45,7 @@ import retrofit2.Response;
 public class RegisterActivity extends AppCompatActivity implements Callback<User> {
 
     private static final int REQUEST_GALLERY_IMAGE = 1;
-    private static final String DEFAULT_IMG = "https://i.imgur.com/toKfoY6.png";
+    private static final String DEFAULT_IMG = "https://i.imgur.com/7mfmifc.png";
 
     private MaterialButton mLoginBtn;
     private MaterialButton mRegisterBtn;
